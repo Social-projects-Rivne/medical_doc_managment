@@ -9,17 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var http_1 = require('@angular/http');
+var HttpService = (function () {
+    function HttpService(http) {
+        this.http = http;
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'my-app',
-            templateUrl: './app/views/app.component.html'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    HttpService.prototype.getUsersList = function () {
+        return this.http.get('/api/UsersList');
+    };
+    HttpService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], HttpService);
+    return HttpService;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.HttpService = HttpService;
+//# sourceMappingURL=http.service.js.map
