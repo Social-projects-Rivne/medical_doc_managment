@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("doctors")]
+[assembly: AssemblyTitle("MedicalDocManagment.UI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("TEAM OS")]
-[assembly: AssemblyProduct("doctors")]
+[assembly: AssemblyProduct("MedicalDocManagment.UI")]
 [assembly: AssemblyCopyright("Copyright © TEAM OS 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("be13de3d-8dba-47ae-ac49-fabc53880aec")]
+[assembly: Guid("436cce8c-f251-4bd4-8f0a-a9fe94d304cc")]
 
 // Version information for an assembly consists of the following four values:
 //
