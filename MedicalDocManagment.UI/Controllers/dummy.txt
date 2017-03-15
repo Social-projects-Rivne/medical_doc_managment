@@ -1,0 +1,2 @@
+This file should be deleted after this folder will be filled by necessary files.
+This file was created because empty folder cannot be pushed into repositary.
