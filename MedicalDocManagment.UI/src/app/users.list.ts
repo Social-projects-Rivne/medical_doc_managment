@@ -17,9 +17,9 @@ export class UsersListComponent {
     getUsersList() {
         // mock-up
        return [
-            { username: "Іван", email: "ivan@lala.net", position: "лікар", role: "якась роль", isactive: "так" },
-            { username: "Сергій", email: "Sergiy@lala.net", position: "лікар", role: "якась роль", isactive: "так" },
-            { username: "Степан", email: "Stepan@lala.net", position: "лікар", role: "якась роль", isactive: "ні" }
+            { username: "Іван", email: "ivan@lala.net", position: "лікар", role: "якась роль"},
+            { username: "Сергій", email: "Sergiy@lala.net", position: "лікар", role: "якась роль"},
+            { username: "Степан", email: "Stepan@lala.net", position: "лікар", role: "якась роль"}
         ]
     }
 
