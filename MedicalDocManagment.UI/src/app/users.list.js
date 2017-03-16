@@ -9,26 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var http_service_1 = require('./http.service');
 var UsersListComponent = (function () {
-    function UsersListComponent(httpService) {
-        this.httpService = httpService;
+    function UsersListComponent() {
         this.users = this.getUsersList();
     }
     UsersListComponent.prototype.ngOnInit = function () {
         this.getUsersList();
     };
     UsersListComponent.prototype.getUsersList = function () {
-        var _this = this;
-        this.httpService.getUsersList().subscribe(function (data) { _this.users = data.json(); });
+        // mock-up
+        return [
+            { username: "Іван", email: "ivan@lala.net", position: "лікар", role: "якась роль", isactive: "так" },
+            { username: "Сергій", email: "Sergiy@lala.net", position: "лікар", role: "якась роль", isactive: "так" },
+            { username: "Степан", email: "Stepan@lala.net", position: "лікар", role: "якась роль", isactive: "ні" }
+        ];
     };
     UsersListComponent = __decorate([
         core_1.Component({
             selector: 'emptyContent',
-            templateUrl: './app/views/users.list.html',
-            providers: [http_service_1.HttpService]
+            templateUrl: './app/views/users.list.html'
         }), 
-        __metadata('design:paramtypes', [http_service_1.HttpService])
+        __metadata('design:paramtypes', [])
     ], UsersListComponent);
     return UsersListComponent;
 }());
