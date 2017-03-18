@@ -1,4 +1,5 @@
 ﻿using MedicalDocManagment.UsersDAL;
+using MedicalDocManagment.UsersDAL.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -31,6 +32,22 @@ namespace MedicalDocManagment.WebUI.Controllers.api
                 return NotFound();
 
              return Ok(user);
+        }
+        public async Task<IdentityResult> AddUser(UserModel userModel)
+        {
+            var user = new User
+            {
+                UserName = userModel.UserName,
+                Email = userModel.Email,
+                FirstName = userModel.FirstName,
+                SecondName = userModel.SecondName,
+                LastName = userModel.LastName,
+                Position = userModel.Position,
+                IsActive = true
+            };
+            var result = await UsersManager.CreateAsync(user, userModel.Password);
+
+            return result;
         }
 
     }
