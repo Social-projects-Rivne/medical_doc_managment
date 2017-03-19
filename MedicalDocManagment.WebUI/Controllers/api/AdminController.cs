@@ -46,7 +46,6 @@ namespace MedicalDocManagment.WebUI.Controllers.api
                 IsActive = true
             };
             var result = await UsersManager.CreateAsync(user, userModel.Password);
-
             return result;
         }
 
