@@ -1,31 +1,63 @@
-﻿<div class="form-group">
-    <label>UserName</label>
-    <input class="form-control" name="username" [(ngModel)]="user.userName" />
-</div>
-<div class="form-group">
-    <label>Email</label>
-    <input class="form-control" name="email" [(ngModel)]="user.email" />
-</div>
-<div class="form-group">
-    <label>Password</label>
-    <input class="form-control" name="password" [(ngModel)]="user.password" />
-</div>
-<div class="form-group">
-    <label>First Name</label>
-    <input class="form-control" name="firstName" [(ngModel)]="user.firstName" />
-</div>
-<div class="form-group">
-    <label>Second Name</label>
-    <input class="form-control" name="secondName" [(ngModel)]="user.secondName" />
-</div>
-<div class="form-group">
-    <label>Last Name</label>
-    <input class="form-control" name="lastName" [(ngModel)]="user.lastName" />
-</div>
-<div class="form-group">
-    <label>Position</label>
-    <input class="form-control" name="position" [(ngModel)]="user.position" />
-</div>
-<div class="form-group">
-    <button class="btn btn-default" (click)="submit(user)">Add user</button>
-</div>
+﻿<form class="form">
+    <div class="form-group">
+        <label for="username">UserName</label>
+        <input type="text" class="form-control" id="username" name="username" [(ngModel)]="user.userName"
+               #username="ngModel" required pattern="[a-zA-Z0-9]{3,60}"/>
+        <div [hidden]="username.valid || username.untouched" class="alert alert-danger">
+            UserName is not correct
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" name="email" [(ngModel)]="user.email" 
+               #email="ngModel" required pattern="[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}"/>
+        <div [hidden]="email.valid || email.untouched" class="alert alert-danger">
+            Email address is invalid
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" class="form-control" id="password" name="password" [(ngModel)]="user.password" 
+               #password="ngModel" required pattern="[A-Za-z0-9!@#$%^&amp;*'&gt;&lt;?.,&quot;()+-_~`{}|]{6,100}"/>
+        <div [hidden]="password.valid || password.untouched" class="alert alert-danger">
+            Password is not correct
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="user.firstName" 
+               #firstName="ngModel" required pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"/>
+        <div [hidden]="firstName.valid || firstName.untouched" class="alert alert-danger">
+            First Name is not correct
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="secondName">Second Name</label>
+        <input type="text" class="form-control" id="secondName" name="secondName" [(ngModel)]="user.secondName" 
+               #secondName="ngModel" pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"/>
+        <div [hidden]="secondName.valid || secondName.untouched" class="alert alert-danger">
+            Second Name is not correct
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="user.lastName"  
+               #lastName="ngModel" required pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"/>
+        <div [hidden]="lastName.valid || lastName.untouched" class="alert alert-danger">
+            Last Name is not correct
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Position</label>
+        <input type="text" class="form-control" id="position" name="position" [(ngModel)]="user.position" 
+               #position="ngModel" required/>
+        <div [hidden]="position.valid || position.untouched" class="alert alert-danger">
+            Position is required
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="username.invalid || email.invalid || password.invalid || firstName.invalid 
+                || lastName.invalid || position.invalid"
+                class="btn btn-default" (click)="submit(user)">Add user</button>
+    </div>
+</form>

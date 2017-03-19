@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
+using System.Web;
 
-namespace MedicalDocManagment.UsersDAL.Models
+namespace MedicalDocManagment.WebUI.Models
 {
-    public class UserModel
+    public class UserViewModel
     {
         public string UserName { get; set; }
         public string Email { get; set; }
@@ -16,6 +14,5 @@ namespace MedicalDocManagment.UsersDAL.Models
         public string SecondName { get; set; }
         public string LastName { get; set; }
         public string Position { get; set; }
-
     }
 }

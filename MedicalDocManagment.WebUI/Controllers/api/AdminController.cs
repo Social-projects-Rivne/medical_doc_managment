@@ -1,5 +1,5 @@
 ﻿using MedicalDocManagment.UsersDAL;
-using MedicalDocManagment.UsersDAL.Models;
+using MedicalDocManagment.WebUI.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -33,7 +33,7 @@ namespace MedicalDocManagment.WebUI.Controllers.api
 
              return Ok(user);
         }
-        public async Task<IdentityResult> AddUser(UserModel userModel)
+        public async Task<IdentityResult> AddUser(UserViewModel userModel)
         {
             var user = new User
             {
