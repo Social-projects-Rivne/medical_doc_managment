@@ -49,5 +49,23 @@ namespace MedicalDocManagment.WebUI.Controllers.api
             return result;
         }
 
+        [HttpPut]
+        public async Task<IHttpActionResult> EditUser(UserEditViewModel userModel)
+        {
+            var userInDb = await UsersManager.FindByIdAsync(userModel.Id.ToString());
+
+            if (userInDb == null)
+                return NotFound();
+
+            userInDb.FirstName = userModel.FirstName;
+            userInDb.LastName = userModel.LastName;
+            userInDb.SecondName = userModel.SecondName;
+            userInDb.Position = userModel.Position;
+            userInDb.IsActive = userModel.IsActive;
+
+            var result = await UsersManager.UpdateAsync(userInDb);
+            return Ok(result);
+        }
+        
     }
 }
