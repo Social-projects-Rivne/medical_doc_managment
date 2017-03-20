@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 import UserModel from './models/usermodel'
 
 @Component({
-    selector: 'userUsersList',
+    selector: '[userUsersList]',
     templateUrl: './app/views/user-userslist-component.html'
 })
 

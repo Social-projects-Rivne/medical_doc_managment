@@ -10,7 +10,5 @@
     </tr>
 
 
-    <tr *ngFor="let user of users">
-        <userUsersList [user]="user"></userUsersList>
-    </tr>
+    <tr *ngFor="let user of users" userUsersList [user]="user"></tr>
 </table>
