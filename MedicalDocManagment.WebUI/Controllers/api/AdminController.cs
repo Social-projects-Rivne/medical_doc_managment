@@ -104,6 +104,25 @@ namespace MedicalDocManagment.WebUI.Controllers.api
             var result = await UsersManager.UpdateAsync(userInDb);
             return Ok(result);
         }
-        
+        [HttpDelete]
+        public async Task<HttpResponseMessage> DeleteUser(int id)
+        {
+            var user = await UsersManager.FindByIdAsync(id.ToString());
+            if (user != null)
+            {
+                if (!user.IsActive)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, new HttpError("User already deleted."));
+                }
+                user.IsActive = false;
+                var result = await UsersManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, "User successfully deleted.");
+                }
+            }
+            return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
+        }
+
     }
 }
