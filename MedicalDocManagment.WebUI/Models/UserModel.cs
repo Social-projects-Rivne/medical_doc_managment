@@ -1,5 +1,9 @@
-﻿namespace MedicalDocManagment.WebUI.Models
+﻿using FluentValidation.Attributes;
+using MedicalDocManagment.WebUI.Models.Validators;
+
+namespace MedicalDocManagment.WebUI.Models
 {
+    [Validator(typeof(UserModelValidator))]
     public class UserModel
     {
         public string UserName { get; set; }
