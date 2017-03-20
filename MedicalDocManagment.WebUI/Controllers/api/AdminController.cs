@@ -1,21 +1,21 @@
-﻿using MedicalDocManagment.UsersDAL;
-using MedicalDocManagment.WebUI.Models;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
-namespace MedicalDocManagment.WebUI.Controllers.api
+using MedicalDocManagment.UsersDAL;
+using MedicalDocManagment.WebUI.Helpers;
+using MedicalDocManagment.WebUI.Models;
+
+namespace MedicalDocManagment.WebUI.Controllers.Api
 {
     public class AdminController : ApiController
     {
-        private UsersManager UsersManager = HttpContext.Current.GetOwinContext().GetUserManager<UsersManager>();
+        private UsersManager UsersManager => HttpContext.Current
+                                                        .GetOwinContext()
+                                                        .GetUserManager<UsersManager>();
 
         [HttpGet]
         public IHttpActionResult GetUsers()
@@ -24,39 +24,53 @@ namespace MedicalDocManagment.WebUI.Controllers.api
         }
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetUser(int id)
+        public async Task<IHttpActionResult> GetUser(string id)
         {
             var user = await UsersManager.FindByIdAsync(id.ToString());
 
             if (user == null)
+            {
                 return NotFound();
+            }
 
-             return Ok(user);
+            return Ok(user);
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> AddUser(UserViewModel userModel)
+        public async Task<IHttpActionResult> AddUser(UserModel userModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var user = new User
+
+            var user = UserHelpers.ConvertUserModelToUser(userModel);
+            user.IsActive = true;
+            
+            var result = await UsersManager.CreateAsync(user, userModel.Password);
+            var errorResult = GetErrorResult(result);
+
+            return errorResult ?? Ok(result);
+        }
+
+        [HttpPut]
+        public async Task<IHttpActionResult> EditUser(UserEditModel userEditModel)
+        {
+            var user = await UsersManager.FindByIdAsync(userEditModel.Id);
+
+            if (user == null)
             {
-                UserName = userModel.UserName,
-                Email = userModel.Email,
-                FirstName = userModel.FirstName,
-                SecondName = userModel.SecondName,
-                LastName = userModel.LastName,
-                Position = userModel.Position,
-                IsActive = true
-            };
-            IdentityResult result = await UsersManager.CreateAsync(user, userModel.Password);
-            IHttpActionResult errorResult = GetErrorResult(result);
-            if (errorResult != null)
-            {
-                return errorResult;
+                return NotFound();
             }
+                           
+            user.FirstName = userEditModel.FirstName;
+            user.LastName = userEditModel.LastName;
+            user.SecondName = userEditModel.SecondName;
+            user.Position = userEditModel.Position;
+            user.IsActive = userEditModel.IsActive;
+
+            var result = await UsersManager.UpdateAsync(user);
+
             return Ok(result);
         }
 
@@ -66,44 +80,24 @@ namespace MedicalDocManagment.WebUI.Controllers.api
             {
                 return InternalServerError();
             }
-            if (!result.Succeeded)
+            if (result.Succeeded)
             {
-                if (result.Errors != null)
+                return null;
+            }
+            if (result.Errors != null)
+            {
+                foreach (var error in result.Errors)
                 {
-                    foreach (string error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error);
-                    }
+                    ModelState.AddModelError("", error);
                 }
-                if (ModelState.IsValid)
-                {
-                    // If no ModelState errors are available to send, just return an empty BadRequest.
-                    return BadRequest();
-                }
-
-                return BadRequest(ModelState);
+            }
+            if (ModelState.IsValid)
+            {
+                // If no ModelState errors are available to send, just return an empty BadRequest.
+                return BadRequest();
             }
 
-            return null;
+            return BadRequest(ModelState);
         }
-
-        [HttpPut]
-        public async Task<IHttpActionResult> EditUser(UserEditViewModel userModel)
-        {
-            var userInDb = await UsersManager.FindByIdAsync(userModel.Id.ToString());
-
-            if (userInDb == null)
-                return NotFound();
-
-            userInDb.FirstName = userModel.FirstName;
-            userInDb.LastName = userModel.LastName;
-            userInDb.SecondName = userModel.SecondName;
-            userInDb.Position = userModel.Position;
-            userInDb.IsActive = userModel.IsActive;
-
-            var result = await UsersManager.UpdateAsync(userInDb);
-            return Ok(result);
-        }
-        
     }
 }

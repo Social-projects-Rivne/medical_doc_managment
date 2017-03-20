@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-
-namespace MedicalDocManagment.WebUI.Models
+﻿namespace MedicalDocManagment.WebUI.Models
 {
-    public class UserEditViewModel
+    public class UserEditModel
     {
         public string Id { get; set; }
         public string FirstName { get; set; }

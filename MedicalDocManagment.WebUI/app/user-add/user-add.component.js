@@ -17,15 +17,14 @@ let UserAddComponent = class UserAddComponent {
         this.httpService = httpService;
         this.user = new user_1.User();
     }
-    submit(user) {
-        this.httpService.postData(user)
+    submit() {
+        this.httpService.postData(this.user)
             .subscribe((data) => { console.log(data); });
     }
 };
 UserAddComponent = __decorate([
     core_1.Component({
         selector: 'app-user-add',
-        //template: '<h1>User add is working</h1>'
         templateUrl: 'app/user-add/user-add.component.html',
         providers: [http_service_1.HttpService]
     }),
