@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity.EntityFramework;
+using System.Web;
 
-namespace MedicalDocManagment.UsersDAL
+namespace MedicalDocManagment.WebUI.Models
 {
-    public class User : IdentityUser
+    public class UserEditViewModel
     {
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string LastName { get; set; }
