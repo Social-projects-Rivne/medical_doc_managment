@@ -7,7 +7,7 @@ namespace MedicalDocManagment.WebUI.Models.Validators
         public UserModelValidator()
         {
             RuleFor(user => user.UserName).Matches(@"[a-zA-Z0-9]{3,60}");
-            RuleFor(user => user.Email).Matches(@"[a-zA-Z_0-9]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}");
+            RuleFor(user => user.Email).Matches(@"[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}");
             RuleFor(user => user.Password).Length(6, 100);
             RuleSet("Names", () =>
             {
