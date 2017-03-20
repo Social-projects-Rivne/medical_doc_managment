@@ -1,13 +1,13 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Response, Headers, URLSearchParams } from '@angular/http';
-import UserModel from './models/usermodel';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw'
 
+import UserModel from './models/usermodel';
 
 @Injectable()
 export class HttpService {
@@ -21,4 +21,9 @@ export class HttpService {
       .map((resp: Response) => resp.json())
       .catch((error: any) => { return Observable.throw(error); });
   }
+
+  getUsersList(): Observable<Response> {
+    return this.http.get('/api/Admin/GetUsers');
+  }
+
 }
