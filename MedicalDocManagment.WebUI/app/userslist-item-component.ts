@@ -2,10 +2,11 @@
 import { Response } from '@angular/http';
 
 import UserModel from './models/usermodel'
+import { UsersListItemActionListComponent } from './userslist-item-actionlist-component';
 
 @Component({
     selector: '[usersListItem]',
-    templateUrl: './app/views/userslistitem-component.html'
+    templateUrl: './app/views/userslist-item-component.html'
 })
 
 export class UsersListItemComponent {

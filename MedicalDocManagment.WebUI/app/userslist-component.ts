@@ -3,8 +3,8 @@ import { Response } from '@angular/http';
 
 import UserModel from './models/usermodel';
 
-import { UsersListItemComponent } from './userslistitem-component';
-import { UsersListPaginationComponent } from './userslistpagination-component';
+import { UsersListItemComponent } from './userslist-item-component';
+import { UsersListPaginationComponent } from './userslist-pagination-component';
 
 @Component({
     selector: 'usersList',

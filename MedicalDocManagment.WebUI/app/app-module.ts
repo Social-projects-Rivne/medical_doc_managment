@@ -5,8 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app-component';
 
 import { UsersListComponent } from './userslist-component';
-import { UsersListItemComponent } from './userslistitem-component';
-import { UsersListPaginationComponent } from './userslistpagination-component';
+import { UsersListItemComponent } from './userslist-item-component';
+import { UsersListItemActionListComponent } from './userslist-item-actionlist-component';
+import { UsersListPaginationComponent } from './userslist-pagination-component';
 
 @NgModule({
         imports: [BrowserModule, FormsModule],
@@ -15,6 +16,7 @@ import { UsersListPaginationComponent } from './userslistpagination-component';
             UsersListComponent,
             UsersListItemComponent,
             UsersListPaginationComponent,
+            UsersListItemActionListComponent
         ],
         bootstrap: [AppComponent]
 })
