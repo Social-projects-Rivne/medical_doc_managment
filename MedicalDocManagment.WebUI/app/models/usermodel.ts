@@ -5,12 +5,12 @@
 
 import RoleModel from './rolemodel';
 
-export default class UserModel{
-    id: number;
-    username: string;
-    email: string;
-    avatar: string;
-    position: string;
-    role: RoleModel;
-    isActive: boolean; 
+export default class UserModel {
+  id: number;
+  username: string;
+  email: string;
+  avatar: string;
+  position: string;
+  role: RoleModel;
+  isActive: boolean;
 }

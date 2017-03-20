@@ -197,6 +197,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="app\app-component.ts" />
     <TypeScriptCompile Include="app\app-module.ts" />
+    <TypeScriptCompile Include="app\http-service.ts" />
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\models\rolemodel.ts" />
     <TypeScriptCompile Include="app\models\usermodel.ts" />
