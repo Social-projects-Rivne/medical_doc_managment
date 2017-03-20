@@ -4,11 +4,11 @@ import { Response } from '@angular/http';
 import UserModel from './models/usermodel'
 
 @Component({
-    selector: '[userUsersList]',
-    templateUrl: './app/views/user-userslist-component.html'
+    selector: '[usersListItem]',
+    templateUrl: './app/views/userslistitem-component.html'
 })
 
-export class UserUsersListComponent {
+export class UsersListItemComponent {
     @Input() user: UserModel;
 }
 

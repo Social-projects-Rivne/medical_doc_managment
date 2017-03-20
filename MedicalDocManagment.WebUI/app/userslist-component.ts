@@ -3,7 +3,7 @@ import { Response } from '@angular/http';
 
 import UserModel from './models/usermodel';
 
-import { UserUsersListComponent } from './user-userslist-component';
+import { UsersListItemComponent } from './userslistitem-component';
 
 @Component({
     selector: 'usersList',
