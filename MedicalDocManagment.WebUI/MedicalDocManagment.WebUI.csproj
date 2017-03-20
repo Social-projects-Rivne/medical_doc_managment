@@ -201,6 +201,7 @@
     <TypeScriptCompile Include="app\models\usermodel.ts" />
     <TypeScriptCompile Include="app\userslist-component.ts" />
     <TypeScriptCompile Include="app\userslistitem-component.ts" />
+    <TypeScriptCompile Include="app\userslistpagination-component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
