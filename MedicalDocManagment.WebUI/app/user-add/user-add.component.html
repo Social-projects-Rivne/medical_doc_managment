@@ -1,4 +1,4 @@
-﻿<form class="form">
+﻿<form class="form" (ngSubmit)="submit(); userAddForm.reset();" #userAddForm="ngForm">
     <div class="form-group">
         <label for="username">UserName</label>
         <input type="text" class="form-control" id="username" name="username" [(ngModel)]="user.userName"
@@ -10,7 +10,7 @@
     <div class="form-group">
         <label for="email">Email</label>
         <input type="text" class="form-control" id="email" name="email" [(ngModel)]="user.email" 
-               #email="ngModel" required pattern="[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}"/>
+               #email="ngModel" required pattern="[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}"/>
         <div [hidden]="email.valid || email.untouched" class="alert alert-danger">
             Email address is invalid
         </div>
@@ -56,8 +56,6 @@
         </div>
     </div>
     <div class="form-group">
-        <button [disabled]="username.invalid || email.invalid || password.invalid || firstName.invalid 
-                || lastName.invalid || position.invalid"
-                class="btn btn-default" (click)="submit(user)">Add user</button>
+        <button [disabled]="userAddForm.form.invalid" class="btn btn-default" type="submit">Save</button>
     </div>
 </form>

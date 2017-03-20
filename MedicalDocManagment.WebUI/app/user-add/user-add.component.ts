@@ -10,8 +10,8 @@ import {User} from './user';
 export class UserAddComponent {
     user: User = new User();
     constructor(private httpService: HttpService) { }
-    submit(user) {
-        this.httpService.postData(user)
+    submit() {
+        this.httpService.postData(this.user)
             .subscribe((data) => { console.log(data) });
     }
 }

@@ -33,8 +33,14 @@ namespace MedicalDocManagment.WebUI.Controllers.api
 
              return Ok(user);
         }
-        public async Task<IdentityResult> AddUser(UserViewModel userModel)
+
+        [HttpPost]
+        public async Task<IHttpActionResult> AddUser(UserViewModel userModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var user = new User
             {
                 UserName = userModel.UserName,
@@ -45,8 +51,40 @@ namespace MedicalDocManagment.WebUI.Controllers.api
                 Position = userModel.Position,
                 IsActive = true
             };
-            var result = await UsersManager.CreateAsync(user, userModel.Password);
-            return result;
+            IdentityResult result = await UsersManager.CreateAsync(user, userModel.Password);
+            IHttpActionResult errorResult = GetErrorResult(result);
+            if (errorResult != null)
+            {
+                return errorResult;
+            }
+            return Ok(result);
+        }
+
+        private IHttpActionResult GetErrorResult(IdentityResult result)
+        {
+            if (result == null)
+            {
+                return InternalServerError();
+            }
+            if (!result.Succeeded)
+            {
+                if (result.Errors != null)
+                {
+                    foreach (string error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error);
+                    }
+                }
+                if (ModelState.IsValid)
+                {
+                    // If no ModelState errors are available to send, just return an empty BadRequest.
+                    return BadRequest();
+                }
+
+                return BadRequest(ModelState);
+            }
+
+            return null;
         }
 
         [HttpPut]
