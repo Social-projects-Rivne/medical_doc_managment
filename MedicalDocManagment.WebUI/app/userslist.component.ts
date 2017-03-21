@@ -43,10 +43,9 @@ export class UsersListComponent {
 
   /**
    * Method acquires list of users from HttpService and writes it into _users property.
-   * @return {Observable<Response>} Response from server. 
    */
   updateUsersList(): void {
-    this._httpService.getUsersList().subscribe((data: Response) => { this._users = data.json(); });
+    this._httpService.getUsersList().subscribe((data: Array<UserModel>) => { this._users = data; });
   }
 
 }
