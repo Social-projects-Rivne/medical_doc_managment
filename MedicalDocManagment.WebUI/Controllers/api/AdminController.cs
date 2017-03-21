@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System.Linq;
+using System.Net.Http;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -8,6 +10,7 @@ using System.Web.Http;
 using MedicalDocManagment.UsersDAL;
 using MedicalDocManagment.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Models;
+
 
 namespace MedicalDocManagment.WebUI.Controllers.Api
 {

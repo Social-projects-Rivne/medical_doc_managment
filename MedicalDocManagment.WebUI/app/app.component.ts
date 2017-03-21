@@ -13,7 +13,7 @@ import { UsersListComponent } from './userslist.component';
     '<input [(ngModel)]="name" placeholder="name">'+
     '<hr>'+
     '<usersList>Завантажується список користувачів...</usersList>'+
-    '<hr></hr>'+
+    '<hr>'+
     '<app-user-add></app-user-add>'
 })
 export class AppComponent {
