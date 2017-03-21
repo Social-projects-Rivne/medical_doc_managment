@@ -34,7 +34,7 @@ export class HttpService {
    * Sends HTTP-request to server for list of users.
    * @return {Observable<Array<UserModel>>} observable array with users. 
    */
-  getUsersList(): Observable<Array<UserModel>> {
+  getUsersList(): Observable<UserModel[]> {
     return this.http_.get('/api/Admin/GetUsers')
       .map((resp: Response) => resp.json())
       .catch((error: any) => { return Observable.throw(error); });

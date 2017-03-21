@@ -22,9 +22,9 @@ import UserModel from './models/usermodel';
 export class UsersListComponent {
   /**
    * Array, which contains users, which are displayed in list.
-   * @private {Array<UserModel>}
+   * @private {UserModel[]}
    */
-  private _users: Array<UserModel>;
+  private _users: UserModel[];
   /**
    * HttpService component via which this class acquire data for list of users.
    * @private {HttpService}
@@ -45,7 +45,7 @@ export class UsersListComponent {
    * Method acquires list of users from HttpService and writes it into _users property.
    */
   updateUsersList(): void {
-    this._httpService.getUsersList().subscribe((data: Array<UserModel>) => { this._users = data; });
+    this._httpService.getUsersList().subscribe((data: UserModel[]) => { this._users = data; });
   }
 
 }
