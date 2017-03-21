@@ -120,6 +120,9 @@ namespace MedicalDocManagment.WebUI.Controllers.api
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, "User successfully deleted.");
                 }
+				
+				
+				
             }
             return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
         }
