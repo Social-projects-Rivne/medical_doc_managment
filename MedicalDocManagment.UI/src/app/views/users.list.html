@@ -1,0 +1,18 @@
+﻿<h3>Список користувачів</h3>
+
+<table>
+    <tr>   
+        <th>Ім'я користувача</th>
+        <th>Аватар</th>
+        <th>E-mail</th>
+        <th>Посада</th>
+        <th>Роль</th>
+    </tr>
+    <tr *ngFor="let user of users">
+        <td>{{user.username}}</td>
+        <td>{{user.avatar}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.position}}</td>
+        <td>{{user.role}}</td>
+    <tr>
+</table>
