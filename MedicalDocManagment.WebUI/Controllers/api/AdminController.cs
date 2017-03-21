@@ -4,10 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Net.Http;
+using System.Net;
 
 using MedicalDocManagment.UsersDAL;
 using MedicalDocManagment.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Models;
+
 
 namespace MedicalDocManagment.WebUI.Controllers.Api
 {
@@ -21,6 +24,20 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
         public IHttpActionResult GetUsers()
         {
             return Ok(UsersManager.Users.ToList());
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetPaged(int pageNumber = 1, int pageSize = 20)
+        {
+            int skip = (pageNumber - 1) * pageSize;
+            int total = UsersManager.Users.Count();
+            var users = UsersManager.Users
+                      .OrderBy(c => c.Id)
+                      .Skip(skip)
+                      .Take(pageSize)
+                      .ToList();
+
+            return Ok(new PagedResultHelper<User>(users, pageNumber, pageSize, total));
         }
 
         [HttpGet]
