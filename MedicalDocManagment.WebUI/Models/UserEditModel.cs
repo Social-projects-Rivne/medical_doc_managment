@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
+﻿using FluentValidation.Attributes;
+using MedicalDocManagment.WebUI.Models.Validators;
 
 namespace MedicalDocManagment.WebUI.Models
 {
-    public class UserEditViewModel
+    [Validator(typeof(UserModelValidator))]
+    public class UserEditModel
     {
         public string Id { get; set; }
         public string FirstName { get; set; }

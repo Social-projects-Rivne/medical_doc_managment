@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using FluentValidation.Attributes;
+using MedicalDocManagment.WebUI.Models.Validators;
 
 namespace MedicalDocManagment.WebUI.Models
 {
-    public class UserViewModel
+    [Validator(typeof(UserModelValidator))]
+    public class UserModel
     {
         public string UserName { get; set; }
         public string Email { get; set; }
