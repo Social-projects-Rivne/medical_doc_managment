@@ -1,0 +1,61 @@
+﻿<form class="form" (ngSubmit)="submit(); userAddForm.reset();" #userAddForm="ngForm">
+    <div class="form-group">
+        <label for="username">UserName</label>
+        <input type="text" class="form-control" id="username" name="username" [(ngModel)]="user.userName"
+               #username="ngModel" required pattern="[a-zA-Z0-9]{3,60}"/>
+        <div [hidden]="username.valid || username.untouched" class="alert alert-danger">
+            UserName is not correct
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" name="email" [(ngModel)]="user.email" 
+               #email="ngModel" required pattern="[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}"/>
+        <div [hidden]="email.valid || email.untouched" class="alert alert-danger">
+            Email address is invalid
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" class="form-control" id="password" name="password" [(ngModel)]="user.password" 
+               #password="ngModel" required pattern="[A-Za-z0-9!@#$%^&amp;*'&gt;&lt;?.,&quot;()+-_~`{}|]{6,100}"/>
+        <div [hidden]="password.valid || password.untouched" class="alert alert-danger">
+            Password is not correct
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="user.firstName" 
+               #firstName="ngModel" required pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"/>
+        <div [hidden]="firstName.valid || firstName.untouched" class="alert alert-danger">
+            First Name is not correct
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="secondName">Second Name</label>
+        <input type="text" class="form-control" id="secondName" name="secondName" [(ngModel)]="user.secondName" 
+               #secondName="ngModel" pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"/>
+        <div [hidden]="secondName.valid || secondName.untouched" class="alert alert-danger">
+            Second Name is not correct
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="user.lastName"  
+               #lastName="ngModel" required pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"/>
+        <div [hidden]="lastName.valid || lastName.untouched" class="alert alert-danger">
+            Last Name is not correct
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Position</label>
+        <input type="text" class="form-control" id="position" name="position" [(ngModel)]="user.position" 
+               #position="ngModel" required/>
+        <div [hidden]="position.valid || position.untouched" class="alert alert-danger">
+            Position is required
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="userAddForm.form.invalid" class="btn btn-default" type="submit">Save</button>
+    </div>
+</form>

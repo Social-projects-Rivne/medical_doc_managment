@@ -9,6 +9,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
+import { UserAddComponent } from './user-add/user-add.component';
 import { UsersListComponent } from './userslist.component';
 import { UsersListItemComponent } from './userslist-item.component';
 import { UsersListItemActionListComponent } from './userslist-item-actionlist.component';
@@ -17,6 +18,7 @@ import { UsersListPaginationComponent } from './userslist-pagination.component';
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpModule],
   declarations: [AppComponent,
+    UserAddComponent,
     UsersListComponent,
     UsersListItemComponent,
     UsersListPaginationComponent,
