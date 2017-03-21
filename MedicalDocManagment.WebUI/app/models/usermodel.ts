@@ -2,6 +2,7 @@
  * @fileoverview This file defines User model, which represents user of the system.
  * @author andriy_katsubo@ukr.net (Andriy Katsubo)
  */
+import PositionModel from './positionmodel';
 import RoleModel from './rolemodel';
 
 /**
@@ -30,9 +31,9 @@ export default class UserModel {
   avatar: string;
   /**
    * Position of the user.
-   * @type {string}
+   * @type {PositionModel}
    */
-  position: string;
+  position: PositionModel;
   /**
    * Role of the user.
    * @type {RoleModel}

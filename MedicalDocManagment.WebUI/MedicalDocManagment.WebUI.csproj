@@ -200,6 +200,7 @@
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\http.service.ts" />
     <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\models\positionmodel.ts" />
     <TypeScriptCompile Include="app\models\rolemodel.ts" />
     <TypeScriptCompile Include="app\models\usermodel.ts" />
     <TypeScriptCompile Include="app\userslist.component.ts" />
