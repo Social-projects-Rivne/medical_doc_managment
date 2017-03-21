@@ -104,10 +104,10 @@ namespace MedicalDocManagment.WebUI.Controllers.api
             var result = await UsersManager.UpdateAsync(userInDb);
             return Ok(result);
         }
-        [HttpDelete]
-        public async Task<HttpResponseMessage> DeleteUser(int id)
+		[HttpDelete]
+        public async Task<HttpResponseMessage> DeleteUser(string id)
         {
-            var user = await UsersManager.FindByIdAsync(id.ToString());
+            var user = await UsersManager.FindByIdAsync(id);
             if (user != null)
             {
                 if (!user.IsActive)
@@ -118,13 +118,11 @@ namespace MedicalDocManagment.WebUI.Controllers.api
                 var result = await UsersManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK, "User successfully deleted.");
+                    return  Request.CreateResponse(HttpStatusCode.OK, "User successfully deleted.");
                 }
-				
-				
-				
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "User was not deleted.Internal error in database.");
             }
-            return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
+            return  Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
         }
 
     }
