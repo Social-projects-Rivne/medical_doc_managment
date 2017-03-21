@@ -138,9 +138,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\views\userslist-component.html" />
-    <Content Include="app\views\userslist-item-component.html" />
-    <Content Include="app\views\userslist-item-actionlist-component.html" />
+    <Content Include="app\views\userslist.component.html" />
+    <Content Include="app\views\userslist-item.component.html" />
+    <Content Include="app\views\userslist-item-actionlist.component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -196,16 +196,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\app-component.ts" />
-    <TypeScriptCompile Include="app\app-module.ts" />
-    <TypeScriptCompile Include="app\http-service.ts" />
+    <TypeScriptCompile Include="app\app.component.ts" />
+    <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\http.service.ts" />
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\models\rolemodel.ts" />
     <TypeScriptCompile Include="app\models\usermodel.ts" />
-    <TypeScriptCompile Include="app\userslist-component.ts" />
-    <TypeScriptCompile Include="app\userslist-item-component.ts" />
-    <TypeScriptCompile Include="app\userslist-item-actionlist-component.ts" />
-    <TypeScriptCompile Include="app\userslist-pagination-component.ts" />
+    <TypeScriptCompile Include="app\userslist.component.ts" />
+    <TypeScriptCompile Include="app\userslist-item.component.ts" />
+    <TypeScriptCompile Include="app\userslist-item-actionlist.component.ts" />
+    <TypeScriptCompile Include="app\userslist-pagination.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
