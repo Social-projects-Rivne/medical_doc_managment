@@ -7,9 +7,9 @@ import { Component, Input } from '@angular/core';
 import { Response } from '@angular/http';
 
 @Component({
+  moduleId: module.id,
   selector: 'usersList-Pagination',
-  template: '<p>Pagination component</p>'
-  //templateUrl: './app/views/userslistitem.component.html'
+  templateUrl: './views/userslist-pagination.component.html'
 })
 
 /**

@@ -10,8 +10,10 @@ import { UsersListItemActionListComponent } from './userslist-item-actionlist.co
 import UserModel from './models/usermodel'
 
 @Component({
+  moduleId: module.id,
   selector: '[usersList-Item]',
-  templateUrl: './app/views/userslist-item.component.html'
+  templateUrl: './views/userslist-item.component.html',
+  styleUrls: ['./views/userslist-item.component.css'],
 })
 
 /**

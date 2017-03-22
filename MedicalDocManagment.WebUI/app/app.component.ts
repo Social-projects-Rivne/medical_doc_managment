@@ -7,15 +7,9 @@ import { Component } from '@angular/core';
 import { UsersListComponent } from './userslist.component';
 
 @Component({
+  moduleId: module.id,
   selector: 'my-app',
-  template: '<h1>Добро пожаловать {{name}}!</h1>'+
-    '<label>Введите имя:</label>'+
-    '<input [(ngModel)]="name" placeholder="name">'+
-    '<hr>'+
-    '<usersList>Завантажується список користувачів...</usersList>'+
-    '<hr>'+
-    '<app-user-add></app-user-add>'
+  templateUrl: './views/app.component.html'
 })
 export class AppComponent {
-  name = '';
 }

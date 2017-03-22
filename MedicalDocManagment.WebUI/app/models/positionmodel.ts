@@ -9,9 +9,9 @@
 export default class PositionModel {
   /**
    * Unique identifier of position.
-   * @type {number}
+   * @type {string}
    */
-  id: number;
+  id: string;
   /**
    * Text, which defines position.
    * @type {string}

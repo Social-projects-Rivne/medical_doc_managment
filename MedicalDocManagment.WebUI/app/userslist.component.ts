@@ -5,15 +5,17 @@
 import { Component } from '@angular/core';
 import { Response } from '@angular/http';
 
-import { HttpService } from './http.service';
+import { HttpFacade } from './http.facade';
 import { UsersListItemComponent } from './userslist-item.component';
 import { UsersListPaginationComponent } from './userslist-pagination.component';
 import UserModel from './models/usermodel';
 
 @Component({
+  moduleId: module.id,
   selector: 'usersList',
-  templateUrl: './app/views/userslist.component.html',
-  providers: [HttpService]
+  templateUrl: './views/userslist.component.html',
+  styleUrls: ['./views/userslist.component.css'],
+  providers: [HttpFacade]
 })
 
 /**
@@ -29,15 +31,15 @@ export class UsersListComponent {
    * HttpService component via which this class acquire data for list of users.
    * @private {HttpService}
    */
-  private _httpService: HttpService;
+  private _httpFacade: HttpFacade;
 
   /**
    * Constructor initializes value of _httpService property and updates users list.
    * @param {HttpService} httpService HttpService object via which this class can interact with server.
    * @constructor
    */
-  constructor(httpService: HttpService) {
-    this._httpService = httpService;
+  constructor(httpService: HttpFacade) {
+    this._httpFacade = httpService;
     this.updateUsersList();
   }
 
@@ -45,7 +47,8 @@ export class UsersListComponent {
    * Method acquires list of users from HttpService and writes it into _users property.
    */
   updateUsersList(): void {
-    this._httpService.getUsersList().subscribe((data: UserModel[]) => { this._users = data; });
+    this._httpFacade.getUsersList()
+                    .subscribe((data: UserModel[]) => { this._users = data; });
   }
 
 }

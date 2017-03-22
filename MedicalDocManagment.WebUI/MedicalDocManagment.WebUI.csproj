@@ -148,8 +148,12 @@
   <ItemGroup>
     <Content Include="app\.gitignore" />
     <Content Include="app\user-add\user-add.component.html" />
+    <Content Include="app\views\app.component.html" />
     <Content Include="app\views\userslist-item-actionlist.component.html" />
+    <Content Include="app\views\userslist-item.component.css" />
     <Content Include="app\views\userslist-item.component.html" />
+    <Content Include="app\views\userslist-pagination.component.html" />
+    <Content Include="app\views\userslist.component.css" />
     <Content Include="app\views\userslist.component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -211,7 +215,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
-    <TypeScriptCompile Include="app\http.service.ts" />
+    <TypeScriptCompile Include="app\http.facade.ts" />
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\models\positionmodel.ts" />
     <TypeScriptCompile Include="app\models\rolemodel.ts" />

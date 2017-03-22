@@ -9,8 +9,9 @@ import { Response } from '@angular/http';
 import UserModel from './models/usermodel'
 
 @Component({
+  moduleId: module.id,
   selector: '[usersList-Item-ActionList]',
-  templateUrl: './app/views/userslist-item-actionlist.component.html'
+  templateUrl: './views/userslist-item-actionlist.component.html'
 })
 
 /**

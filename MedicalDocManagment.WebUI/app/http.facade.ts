@@ -15,29 +15,29 @@ import 'rxjs/add/observable/throw';
 import UserModel from './models/usermodel';
 
 @Injectable()
-export class HttpService {
-  private http_: Http;
+export class HttpFacade {
+  private _http: Http;
 
   constructor(http: Http) {
-    this.http_ = http;
+    this._http = http;
   }
 
   postData(obj: UserModel) {
     const body = JSON.stringify(obj);
     let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
-    return this.http_.post('/api/Admin/AddUser', body, { headers: headers })
-      .map((resp: Response) => resp.json())
-      .catch((error: any) => { return Observable.throw(error); });
+    return this._http.post('/api/Admin/AddUser', body, { headers: headers })
+                     .map((resp: Response) => resp.json())
+                     .catch((error: any) => { return Observable.throw(error); });
   }
 
   /**
    * Sends HTTP-request to server for list of users.
-   * @return {Observable<Array<UserModel>>} observable array with users. 
+   * @return {Observable<UserModel[]>} observable array with users. 
    */
   getUsersList(): Observable<UserModel[]> {
-    return this.http_.get('/api/Admin/GetUsers')
-      .map((resp: Response) => resp.json())
-      .catch((error: any) => { return Observable.throw(error); });
+    return this._http.get('/api/Admin/GetUsers')
+                     .map((resp: Response) => resp.json())
+                     .catch((error: any) => { return Observable.throw(error); });
   }
 
 }
