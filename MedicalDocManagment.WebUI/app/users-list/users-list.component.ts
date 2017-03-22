@@ -5,15 +5,15 @@
 import { Component } from '@angular/core';
 import { Response } from '@angular/http';
 
-import { UsersListPageComponent } from './page/userslist-page.component';
-import { UsersListPaginationComponent } from './userslist-pagination.component';
+import { PageComponent } from './page/page.component';
+import { PaginationComponent } from './pagination.component';
 import UserModel from '../models/usermodel';
 
 @Component({
   moduleId: module.id,
   selector: 'usersList',
-  templateUrl: './views/userslist.component.html',
-  styleUrls: ['./views/userslist.component.css'],
+  templateUrl: './views/users-list.component.html',
+  styleUrls: ['./views/users-list.component.css'],
 })
 
 /**

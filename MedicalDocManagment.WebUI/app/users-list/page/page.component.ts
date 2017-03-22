@@ -2,18 +2,18 @@
 import { Response } from '@angular/http';
 
 import { HttpFacade } from '../../http.facade';
-import { UsersListPageItemComponent } from './userslist-page-item.component';
+import { ItemComponent } from './item.component';
 import UserModel from '../../models/usermodel';
 
 @Component({
   moduleId: module.id,
-  selector: 'usersList-Page',
-  templateUrl: './views/userslist-page.component.html',
-  styleUrls: ['./views/userslist-page.component.css'],
+  selector: 'page',
+  templateUrl: './views/page.component.html',
+  styleUrls: ['./views/page.component.css'],
   providers: [HttpFacade]
 })
 
-export class UsersListPageComponent {
+export class PageComponent {
   private _users: UserModel[];
   private _httpFacade: HttpFacade;
 

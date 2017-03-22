@@ -3,13 +3,13 @@ import { Response } from '@angular/http';
 
 @Component({
   moduleId: module.id,
-  selector: 'usersList-Pagination',
-  templateUrl: './views/userslist-pagination.component.html'
+  selector: 'pagination',
+  templateUrl: './views/pagination.component.html'
 })
 
 /**
  * Class, which implements pagination of list of users.
  */
-export class UsersListPaginationComponent {
+export class PaginationComponent {
 }
 
