@@ -4,8 +4,6 @@
  */
 import { Component } from '@angular/core';
 
-import { UsersListComponent } from './userslist/userslist.component';
-
 @Component({
   moduleId: module.id,
   selector: 'my-app',

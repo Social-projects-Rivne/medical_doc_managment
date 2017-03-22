@@ -225,6 +225,7 @@
     <TypeScriptCompile Include="app\user-add\http.service.ts" />
     <TypeScriptCompile Include="app\user-add\user-add.component.ts" />
     <TypeScriptCompile Include="app\user-add\user.ts" />
+    <TypeScriptCompile Include="app\userslist\users-list.module.ts" />
     <TypeScriptCompile Include="app\userslist\page\userslist-page-item-actionlist.component.ts" />
     <TypeScriptCompile Include="app\userslist\page\userslist-page-item.component.ts" />
     <TypeScriptCompile Include="app\userslist\page\userslist-page.component.ts" />

@@ -1,9 +1,4 @@
-﻿/**
- * @fileoverview This file defines UsersListItemComponent — component, which implements
- *     pagination of list of users.
- * @author Rv-023.Net
- */
-import { Component, Input } from '@angular/core';
+﻿import { Component, Input } from '@angular/core';
 import { Response } from '@angular/http';
 
 @Component({

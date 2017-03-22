@@ -1,9 +1,4 @@
-﻿/**
- * @fileoverview This file defines UsersListItemComponent — component, which implements
- *     item from list of users.
- * @author andriy_katsubo@ukr.net (Andriy Katsubo)
- */
-import { Component, Input } from '@angular/core';
+﻿import { Component, Input } from '@angular/core';
 import { Response } from '@angular/http';
 
 import { UsersListPageItemActionListComponent } from './userslist-page-item-actionlist.component';

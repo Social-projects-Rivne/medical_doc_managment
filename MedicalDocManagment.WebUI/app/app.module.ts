@@ -8,23 +8,20 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-
+import { UsersListModule } from './userslist/users-list.module';
 import { UserAddComponent } from './user-add/user-add.component';
-import { UsersListComponent } from './userslist/userslist.component';
-import { UsersListPageComponent } from './userslist/page/userslist-page.component';
-import { UsersListPageItemComponent } from './userslist/page/userslist-page-item.component';
-import { UsersListPageItemActionListComponent } from './userslist/page/userslist-page-item-actionlist.component';
-import { UsersListPaginationComponent } from './userslist/userslist-pagination.component';
+
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, HttpModule],
-  declarations: [AppComponent,
-    UserAddComponent,
-    UsersListComponent,
-    UsersListPageComponent,
-    UsersListPageItemActionListComponent,
-    UsersListPageItemComponent,
-    UsersListPaginationComponent
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    UsersListModule
+  ],
+  declarations: [
+    AppComponent,
+    UserAddComponent
   ],
   bootstrap: [AppComponent]
 })
