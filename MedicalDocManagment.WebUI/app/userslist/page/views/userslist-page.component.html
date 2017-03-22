@@ -1,0 +1,11 @@
+﻿<table>
+    <tr>
+        <th>Ім'я користувача</th>
+        <th>Аватар</th>
+        <th>E-mail</th>
+        <th>Посада</th>
+        <th>Роль</th>
+        <th>Дії над користувачем</th>
+    </tr>
+    <tr *ngFor="let user of _users" usersList-Page-Item [user]="user"></tr>
+</table>

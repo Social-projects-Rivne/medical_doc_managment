@@ -148,12 +148,14 @@
   <ItemGroup>
     <Content Include="app\.gitignore" />
     <Content Include="app\user-add\user-add.component.html" />
-    <Content Include="app\views\app.component.html" />
-    <Content Include="app\userslist\views\userslist-item-actionlist.component.html" />
-    <Content Include="app\userslist\views\userslist-item.component.css" />
-    <Content Include="app\userslist\views\userslist-item.component.html" />
-    <Content Include="app\userslist\views\userslist-pagination.component.html" />
+    <Content Include="app\userslist\page\views\userslist-page.component.html" />
     <Content Include="app\userslist\views\userslist.component.css" />
+    <Content Include="app\views\app.component.html" />
+    <Content Include="app\userslist\page\views\userslist-page-item-actionlist.component.html" />
+    <Content Include="app\userslist\page\views\userslist-page-item.component.css" />
+    <Content Include="app\userslist\page\views\userslist-page-item.component.html" />
+    <Content Include="app\userslist\views\userslist-pagination.component.html" />
+    <Content Include="app\userslist\page\views\userslist-page.component.css" />
     <Content Include="app\userslist\views\userslist.component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -223,8 +225,9 @@
     <TypeScriptCompile Include="app\user-add\http.service.ts" />
     <TypeScriptCompile Include="app\user-add\user-add.component.ts" />
     <TypeScriptCompile Include="app\user-add\user.ts" />
-    <TypeScriptCompile Include="app\userslist\userslist-item-actionlist.component.ts" />
-    <TypeScriptCompile Include="app\userslist\userslist-item.component.ts" />
+    <TypeScriptCompile Include="app\userslist\page\userslist-page-item-actionlist.component.ts" />
+    <TypeScriptCompile Include="app\userslist\page\userslist-page-item.component.ts" />
+    <TypeScriptCompile Include="app\userslist\page\userslist-page.component.ts" />
     <TypeScriptCompile Include="app\userslist\userslist-pagination.component.ts" />
     <TypeScriptCompile Include="app\userslist\userslist.component.ts" />
   </ItemGroup>

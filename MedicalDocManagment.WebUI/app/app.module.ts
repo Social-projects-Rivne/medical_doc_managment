@@ -11,8 +11,9 @@ import { AppComponent } from './app.component';
 
 import { UserAddComponent } from './user-add/user-add.component';
 import { UsersListComponent } from './userslist/userslist.component';
-import { UsersListItemComponent } from './userslist/userslist-item.component';
-import { UsersListItemActionListComponent } from './userslist/userslist-item-actionlist.component';
+import { UsersListPageComponent } from './userslist/page/userslist-page.component';
+import { UsersListPageItemComponent } from './userslist/page/userslist-page-item.component';
+import { UsersListPageItemActionListComponent } from './userslist/page/userslist-page-item-actionlist.component';
 import { UsersListPaginationComponent } from './userslist/userslist-pagination.component';
 
 @NgModule({
@@ -20,9 +21,10 @@ import { UsersListPaginationComponent } from './userslist/userslist-pagination.c
   declarations: [AppComponent,
     UserAddComponent,
     UsersListComponent,
-    UsersListItemComponent,
-    UsersListPaginationComponent,
-    UsersListItemActionListComponent
+    UsersListPageComponent,
+    UsersListPageItemActionListComponent,
+    UsersListPageItemComponent,
+    UsersListPaginationComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -6,20 +6,20 @@
 import { Component, Input } from '@angular/core';
 import { Response } from '@angular/http';
 
-import { UsersListItemActionListComponent } from './userslist-item-actionlist.component';
-import UserModel from '../models/usermodel'
+import { UsersListPageItemActionListComponent } from './userslist-page-item-actionlist.component';
+import UserModel from '../../models/usermodel'
 
 @Component({
   moduleId: module.id,
-  selector: '[usersList-Item]',
-  templateUrl: './views/userslist-item.component.html',
-  styleUrls: ['./views/userslist-item.component.css'],
+  selector: '[usersList-Page-Item]',
+  templateUrl: './views/userslist-page-item.component.html',
+  styleUrls: ['./views/userslist-page-item.component.css'],
 })
 
 /**
  * Class, which implements item from list of users.
  */
-export class UsersListItemComponent {
+export class UsersListPageItemComponent {
   /**
    * Property which receives data about user from users list.
    * @type {UserModel}
