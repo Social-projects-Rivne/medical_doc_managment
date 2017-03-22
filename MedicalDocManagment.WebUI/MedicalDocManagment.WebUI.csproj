@@ -149,12 +149,12 @@
     <Content Include="app\.gitignore" />
     <Content Include="app\user-add\user-add.component.html" />
     <Content Include="app\views\app.component.html" />
-    <Content Include="app\views\userslist-item-actionlist.component.html" />
-    <Content Include="app\views\userslist-item.component.css" />
-    <Content Include="app\views\userslist-item.component.html" />
-    <Content Include="app\views\userslist-pagination.component.html" />
-    <Content Include="app\views\userslist.component.css" />
-    <Content Include="app\views\userslist.component.html" />
+    <Content Include="app\userslist\views\userslist-item-actionlist.component.html" />
+    <Content Include="app\userslist\views\userslist-item.component.css" />
+    <Content Include="app\userslist\views\userslist-item.component.html" />
+    <Content Include="app\userslist\views\userslist-pagination.component.html" />
+    <Content Include="app\userslist\views\userslist.component.css" />
+    <Content Include="app\userslist\views\userslist.component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -223,10 +223,10 @@
     <TypeScriptCompile Include="app\user-add\http.service.ts" />
     <TypeScriptCompile Include="app\user-add\user-add.component.ts" />
     <TypeScriptCompile Include="app\user-add\user.ts" />
-    <TypeScriptCompile Include="app\userslist-item-actionlist.component.ts" />
-    <TypeScriptCompile Include="app\userslist-item.component.ts" />
-    <TypeScriptCompile Include="app\userslist-pagination.component.ts" />
-    <TypeScriptCompile Include="app\userslist.component.ts" />
+    <TypeScriptCompile Include="app\userslist\userslist-item-actionlist.component.ts" />
+    <TypeScriptCompile Include="app\userslist\userslist-item.component.ts" />
+    <TypeScriptCompile Include="app\userslist\userslist-pagination.component.ts" />
+    <TypeScriptCompile Include="app\userslist\userslist.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,5 +1,5 @@
 ﻿/**
- * @fileoverview This file defines HttpService — component, which provides interaction between
+ * @fileoverview This file defines HttpFacade — component, which provides interaction between
  *     front-end side and back-end side via HTTP requests.   
  * @author Rv-023.Net
  */

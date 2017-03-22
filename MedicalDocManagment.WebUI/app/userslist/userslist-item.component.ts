@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 import { Response } from '@angular/http';
 
 import { UsersListItemActionListComponent } from './userslist-item-actionlist.component';
-import UserModel from './models/usermodel'
+import UserModel from '../models/usermodel'
 
 @Component({
   moduleId: module.id,

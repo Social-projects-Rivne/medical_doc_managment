@@ -4,7 +4,7 @@
  */
 import { Component } from '@angular/core';
 
-import { UsersListComponent } from './userslist.component';
+import { UsersListComponent } from './userslist/userslist.component';
 
 @Component({
   moduleId: module.id,

@@ -5,10 +5,10 @@
 import { Component } from '@angular/core';
 import { Response } from '@angular/http';
 
-import { HttpFacade } from './http.facade';
+import { HttpFacade } from '../http.facade';
 import { UsersListItemComponent } from './userslist-item.component';
 import { UsersListPaginationComponent } from './userslist-pagination.component';
-import UserModel from './models/usermodel';
+import UserModel from '../models/usermodel';
 
 @Component({
   moduleId: module.id,
