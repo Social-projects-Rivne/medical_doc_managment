@@ -10,7 +10,8 @@ using System.Web.Http;
 using MedicalDocManagment.UsersDAL;
 using MedicalDocManagment.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Models;
-
+using System.Collections.Generic;
+using MedicalDocManagment.UsersDAL.Entities;
 
 namespace MedicalDocManagment.WebUI.Controllers.Api
 {
@@ -49,7 +50,7 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
 
             var user = UserHelpers.ConvertUserModelToUser(userModel);
             user.IsActive = true;
-            
+
             var result = await UsersManager.CreateAsync(user, userModel.Password);
             var errorResult = GetErrorResult(result);
 
@@ -57,29 +58,35 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
         }
 
 
-        //TODO fix Position
         [HttpPut]
         public async Task<IHttpActionResult> EditUser(UserEditModel userEditModel)
         {
             var user = await UsersManager.FindByIdAsync(userEditModel.Id);
+            Position newPosition = null;
 
             if (user == null)
             {
                 return NotFound();
             }
-                           
+
+            newPosition = _GetPositionById(userEditModel.Position.Id);
+
+            if (newPosition != null)
+            {
+                user.Position = newPosition;
+            }
+
             user.FirstName = userEditModel.FirstName;
             user.LastName = userEditModel.LastName;
             user.SecondName = userEditModel.SecondName;
-            //user.Position = userEditModel.Position;
             user.IsActive = userEditModel.IsActive;
 
             var result = await UsersManager.UpdateAsync(user);
 
             return Ok(result);
         }
-        
-		[HttpDelete]
+
+        [HttpDelete]
         public async Task<HttpResponseMessage> DeleteUser(string id)
         {
             var user = await UsersManager.FindByIdAsync(id);
@@ -93,11 +100,11 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
                 var result = await UsersManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
-                    return  Request.CreateResponse(HttpStatusCode.OK, "User successfully deleted.");
+                    return Request.CreateResponse(HttpStatusCode.OK, "User successfully deleted.");
                 }
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "User was not deleted.Internal error in database.");
             }
-            return  Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
+            return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
         }
 
         private IHttpActionResult GetErrorResult(IdentityResult result)
@@ -125,5 +132,56 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
 
             return BadRequest(ModelState);
         }
+
+        #region Position's methods
+
+        [HttpGet]
+        public IHttpActionResult GetPositions()
+        {
+            var positions = _GetPositions();
+            if (positions.Any())
+            {
+                return Ok(positions);
+            }
+
+            return NotFound();
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetPosition(int id)
+        {
+            var position = _GetPositionById(id);
+            if (position != null)
+            {
+                return Ok(position);
+            }
+
+            return NotFound();
+        }
+
+        private List<Position> _GetPositions()
+        {
+            List<Position> positions = null;
+            using (var usersContext = new UsersContext())
+            {
+                positions = usersContext.Positions.ToList();
+            }
+
+            return positions;
+        }
+
+        private Position _GetPositionById(int id)
+        {
+            Position position = null;
+            using (var usersContext = new UsersContext())
+            {
+                position = usersContext.Positions.FirstOrDefault(p => p.Id == id);
+            }
+
+            return position;
+        }
+
+        #endregion
+
     }
 }
