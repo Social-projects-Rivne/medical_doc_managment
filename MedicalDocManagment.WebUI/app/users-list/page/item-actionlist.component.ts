@@ -13,5 +13,10 @@ import UserModel from '../../models/usermodel'
  * Class, which implements list of actions on item from list of users.
  */
 export default class ItemActionListComponent {
+  @Input() user: UserModel;
+
+  constructor() {
+    this.user = new UserModel(null);
+  }
 }
 

@@ -155,6 +155,7 @@
   <ItemGroup>
     <Content Include="app\.gitignore" />
     <Content Include="app\user-add\user-add.component.html" />
+    <Content Include="app\users-list\page\views\item-actionlist-delete.component.html" />
     <Content Include="app\users-list\page\views\page.component.html" />
     <Content Include="app\users-list\views\users-list.component.css" />
     <Content Include="app\views\app.component.html" />
@@ -233,6 +234,7 @@
     <TypeScriptCompile Include="app\user-add\http.service.ts" />
     <TypeScriptCompile Include="app\user-add\user-add.component.ts" />
     <TypeScriptCompile Include="app\user-add\user.ts" />
+    <TypeScriptCompile Include="app\users-list\page\item-actionlist-delete.component.ts" />
     <TypeScriptCompile Include="app\users-list\users-list.module.ts" />
     <TypeScriptCompile Include="app\users-list\page\item-actionlist.component.ts" />
     <TypeScriptCompile Include="app\users-list\page\item.component.ts" />

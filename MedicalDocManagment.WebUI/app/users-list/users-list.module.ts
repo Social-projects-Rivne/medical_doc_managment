@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { UsersListComponent } from './users-list.component';
 import UsersListPageComponent from './page/page.component';
+import UsersListPageItemActionListDeleteComponent from './page/item-actionlist-delete.component';
 import UsersListPageItemActionListComponent from './page/item-actionlist.component';
 import UsersListPageItemComponent from './page/item.component';
 import UsersListPaginationComponent from './pagination.component';
@@ -14,6 +15,7 @@ import UsersListPaginationComponent from './pagination.component';
   declarations: [
     UsersListComponent,
     UsersListPageComponent,
+    UsersListPageItemActionListDeleteComponent,
     UsersListPageItemActionListComponent,
     UsersListPageItemComponent,
     UsersListPaginationComponent

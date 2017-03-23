@@ -12,6 +12,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+import UserModel from './models/usermodel';
 import UsersModel from './models/usersmodel';
 
 @Injectable()
@@ -20,6 +21,12 @@ export class HttpFacade {
 
   constructor(http: Http) {
     this._http = http;
+  }
+
+  deleteUser(user: UserModel): void {
+    console.log('Trying to delete user with id ' + user.id);
+    this._http.delete('/api/Admin/DeleteUser?id=' + user.id)
+              .subscribe((ok) => { console.log(); });
   }
 
   getUsersList(): Observable<UsersModel> {
