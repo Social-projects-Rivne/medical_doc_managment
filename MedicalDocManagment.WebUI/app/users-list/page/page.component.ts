@@ -8,8 +8,8 @@ import UserModel from '../../models/usermodel';
 @Component({
   moduleId: module.id,
   selector: 'page',
-  templateUrl: './views/page.component.html',
-  styleUrls: ['./views/page.component.css'],
+  templateUrl: 'views/page.component.html',
+  styleUrls: ['views/page.component.css'],
   providers: [HttpFacade]
 })
 

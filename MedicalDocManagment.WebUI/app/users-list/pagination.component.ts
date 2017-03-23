@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 @Component({
   moduleId: module.id,
   selector: 'pagination',
-  templateUrl: './views/pagination.component.html'
+  templateUrl: 'views/pagination.component.html'
 })
 
 /**

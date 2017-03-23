@@ -6,7 +6,7 @@ import UserModel from '../../models/usermodel'
 @Component({
   moduleId: module.id,
   selector: '[item-ActionList]',
-  templateUrl: './views/item-actionlist.component.html'
+  templateUrl: 'views/item-actionlist.component.html'
 })
 
 /**
