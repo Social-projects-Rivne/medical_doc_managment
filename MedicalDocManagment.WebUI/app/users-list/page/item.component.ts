@@ -20,5 +20,9 @@ export default class ItemComponent {
    * @type {UserModel}
    */
   @Input() user: UserModel;
+
+  constructor() {
+    this.user = new UserModel();
+  }
 }
 

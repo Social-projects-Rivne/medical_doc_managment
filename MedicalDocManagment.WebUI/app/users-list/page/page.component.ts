@@ -1,7 +1,6 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, Input } from '@angular/core';
 import { Response } from '@angular/http';
 
-import { HttpFacade } from '../../http.facade';
 import ItemComponent from './item.component';
 import UserModel from '../../models/usermodel';
 
@@ -9,23 +8,14 @@ import UserModel from '../../models/usermodel';
   moduleId: module.id,
   selector: 'page',
   templateUrl: 'views/page.component.html',
-  styleUrls: ['views/page.component.css'],
-  providers: [HttpFacade]
+  styleUrls: ['views/page.component.css']
 })
 
 export default class PageComponent {
-  private _users: UserModel[];
-  private _httpFacade: HttpFacade;
+  @Input() users: UserModel[];
 
-  constructor(httpService: HttpFacade) {
-    this._httpFacade = httpService;
-    this.updateUsersList();
+  constructor() {
+    this.users = [];
   }
-
-  updateUsersList(): void {
-    this._httpFacade.getUsersList()
-      .subscribe((data: UserModel[]) => { this._users = data; });
-  }
-
 }
 

@@ -20,4 +20,5 @@ import UsersListPaginationComponent from './pagination.component';
   ],
   exports: [UsersListComponent]
 })
-export class UsersListModule { }
+export class UsersListModule {
+}
