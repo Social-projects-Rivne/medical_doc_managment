@@ -56,6 +56,8 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             return errorResult ?? Ok(result);
         }
 
+
+        //TODO fix Position
         [HttpPut]
         public async Task<IHttpActionResult> EditUser(UserEditModel userEditModel)
         {
@@ -69,7 +71,7 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             user.FirstName = userEditModel.FirstName;
             user.LastName = userEditModel.LastName;
             user.SecondName = userEditModel.SecondName;
-            user.Position = userEditModel.Position;
+            //user.Position = userEditModel.Position;
             user.IsActive = userEditModel.IsActive;
 
             var result = await UsersManager.UpdateAsync(user);
@@ -77,7 +79,7 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             return Ok(result);
         }
         
-		    [HttpDelete]
+		[HttpDelete]
         public async Task<HttpResponseMessage> DeleteUser(string id)
         {
             var user = await UsersManager.FindByIdAsync(id);

@@ -12,7 +12,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import UserModel from './models/usermodel';
+import UsersModel from './models/usersmodel';
 
 @Injectable()
 export class HttpFacade {
@@ -22,21 +22,9 @@ export class HttpFacade {
     this._http = http;
   }
 
-  postData(obj: UserModel) {
-    const body = JSON.stringify(obj);
-    let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
-    return this._http.post('/api/Admin/AddUser', body, { headers: headers })
-                     .map((resp: Response) => resp.json())
-                     .catch((error: any) => { return Observable.throw(error); });
-  }
-
-  /**
-   * Sends HTTP-request to server for list of users.
-   * @return {Observable<UserModel[]>} observable array with users. 
-   */
-  getUsersList(): Observable<UserModel[]> {
+  getUsersList(): Observable<UsersModel> {
     return this._http.get('/api/Admin/GetUsers')
-                     .map((resp: Response) => resp.json())
+                     .map((resp: Response) => { return new UsersModel(resp.json()); } )
                      .catch((error: any) => { return Observable.throw(error); });
   }
 

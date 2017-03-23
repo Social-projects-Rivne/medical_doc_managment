@@ -222,6 +222,7 @@
     <TypeScriptCompile Include="app\models\positionmodel.ts" />
     <TypeScriptCompile Include="app\models\rolemodel.ts" />
     <TypeScriptCompile Include="app\models\usermodel.ts" />
+    <TypeScriptCompile Include="app\models\usersmodel.ts" />
     <TypeScriptCompile Include="app\user-add\http.service.ts" />
     <TypeScriptCompile Include="app\user-add\user-add.component.ts" />
     <TypeScriptCompile Include="app\user-add\user.ts" />

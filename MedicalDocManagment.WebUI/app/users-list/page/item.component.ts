@@ -22,7 +22,7 @@ export default class ItemComponent {
   @Input() user: UserModel;
 
   constructor() {
-    this.user = new UserModel();
+    this.user = new UserModel(null);
   }
 }
 

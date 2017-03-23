@@ -9,7 +9,7 @@ import { HttpFacade } from '../http.facade';
 
 import PageComponent from './page/page.component';
 import PaginationComponent from './pagination.component';
-import UserModel from '../models/usermodel';
+import UsersModel from '../models/usersmodel';
 
 @Component({
   moduleId: module.id,
@@ -23,19 +23,19 @@ import UserModel from '../models/usermodel';
  * Class, which implements users list feature.
  */
 export class UsersListComponent {
-  users: UserModel[];
+  users: UsersModel;
 
   private _httpFacade: HttpFacade;
 
   constructor(httpFacade: HttpFacade) {
     this._httpFacade = httpFacade;
-    this.users = [];
+    this.users = new UsersModel(null);
     this.updateUsersList();
   }
 
   updateUsersList(): void {
     this._httpFacade.getUsersList()
-      .subscribe((data: UserModel[]) => { this.users = data; });
+      .subscribe((data: UsersModel) => { this.users = data; });
   }
 }
 

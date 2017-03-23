@@ -2,7 +2,7 @@
 import { Response } from '@angular/http';
 
 import ItemComponent from './item.component';
-import UserModel from '../../models/usermodel';
+import UsersModel from '../../models/usersmodel';
 
 @Component({
   moduleId: module.id,
@@ -12,10 +12,10 @@ import UserModel from '../../models/usermodel';
 })
 
 export default class PageComponent {
-  @Input() users: UserModel[];
+  @Input() users: UsersModel;
 
   constructor() {
-    this.users = [];
+    this.users = new UsersModel(null);
   }
 }
 
