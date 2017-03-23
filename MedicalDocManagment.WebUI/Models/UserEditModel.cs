@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Attributes;
+using MedicalDocManagment.UsersDAL.Entities;
 using MedicalDocManagment.WebUI.Models.Validators;
 
 namespace MedicalDocManagment.WebUI.Models
@@ -10,7 +11,8 @@ namespace MedicalDocManagment.WebUI.Models
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string LastName { get; set; }
-        public string Position { get; set; }
+        //TODO create DTO than remove useless namespace
+        public Position Position { get; set; }
         public bool IsActive { get; set; }
     }
 }
