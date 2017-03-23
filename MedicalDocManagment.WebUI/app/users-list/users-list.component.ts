@@ -5,8 +5,8 @@
 import { Component } from '@angular/core';
 import { Response } from '@angular/http';
 
-import { PageComponent } from './page/page.component';
-import { PaginationComponent } from './pagination.component';
+import PageComponent from './page/page.component';
+import PaginationComponent from './pagination.component';
 import UserModel from '../models/usermodel';
 
 @Component({

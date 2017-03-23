@@ -12,6 +12,6 @@ import UserModel from '../../models/usermodel'
 /**
  * Class, which implements list of actions on item from list of users.
  */
-export class ItemActionListComponent {
+export default class ItemActionListComponent {
 }
 

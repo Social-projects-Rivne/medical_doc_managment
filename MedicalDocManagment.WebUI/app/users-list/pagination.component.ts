@@ -10,6 +10,6 @@ import { Response } from '@angular/http';
 /**
  * Class, which implements pagination of list of users.
  */
-export class PaginationComponent {
+export default class PaginationComponent {
 }
 

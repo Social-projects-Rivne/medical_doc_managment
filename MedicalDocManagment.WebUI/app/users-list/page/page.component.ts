@@ -2,7 +2,7 @@
 import { Response } from '@angular/http';
 
 import { HttpFacade } from '../../http.facade';
-import { ItemComponent } from './item.component';
+import ItemComponent from './item.component';
 import UserModel from '../../models/usermodel';
 
 @Component({
@@ -13,7 +13,7 @@ import UserModel from '../../models/usermodel';
   providers: [HttpFacade]
 })
 
-export class PageComponent {
+export default class PageComponent {
   private _users: UserModel[];
   private _httpFacade: HttpFacade;
 
