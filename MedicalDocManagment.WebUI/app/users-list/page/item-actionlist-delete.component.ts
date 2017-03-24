@@ -25,7 +25,11 @@ export default class ItemActionListDeleteComponent {
   }
 
   clicked(): void {
-    this._httpFacade.deleteUser(this.user);
+    this._httpFacade.deleteUser(this.user)
+                    .subscribe((result: boolean) => { 
+                      if (result) this.user.isActive = false;                   
+                    });
+    
   }
 }
 

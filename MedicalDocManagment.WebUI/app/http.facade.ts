@@ -23,10 +23,10 @@ export class HttpFacade {
     this._http = http;
   }
 
-  deleteUser(user: UserModel): void {
-    console.log('Trying to delete user with id ' + user.id);
-    this._http.delete('/api/Admin/DeleteUser?id=' + user.id)
-              .subscribe((ok) => { console.log(); });
+  deleteUser(user: UserModel): Observable<boolean> {
+    return this._http.delete('/api/Admin/DeleteUser?id=' + user.id)
+                     .map((resp: Response) => { return resp.ok; })
+                     .catch((error: any) => { return Observable.throw(error); });
   }
 
   getUsersList(): Observable<UsersModel> {

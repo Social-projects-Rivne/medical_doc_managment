@@ -13,9 +13,12 @@ namespace MedicalDocManagment.UsersDAL
             
             var users = fixture.Build<User>()
                                .CreateMany(10);
-                               
+
+            int userCnt = 0;
             foreach (var user in users)
             {
+                user.UserName = "User" + ++userCnt;
+
                 user.Position = new Position { Name = "Position" };
                 context.Users.Add(user);
             }

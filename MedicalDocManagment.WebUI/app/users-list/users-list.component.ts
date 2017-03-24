@@ -1,8 +1,4 @@
-﻿/**
- * @fileoverview This file defines UsersListComponent — component, which implements users list feature.
- * @author andriy_katsubo@ukr.net (Andriy Katsubo)
- */
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { Response } from '@angular/http';
 
 import { HttpFacade } from '../http.facade';
@@ -35,7 +31,7 @@ export class UsersListComponent {
 
   updateUsersList(): void {
     this._httpFacade.getUsersList()
-      .subscribe((data: UsersModel) => { this.users = data; });
+                    .subscribe((data: UsersModel) => { this.users = data; });
   }
 }
 

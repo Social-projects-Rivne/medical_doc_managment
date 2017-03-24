@@ -11,14 +11,7 @@ import UserModel from '../../models/usermodel'
   styleUrls: ['views/item.component.css'],
 })
 
-/**
- * Class, which implements item from list of users.
- */
 export default class ItemComponent {
-  /**
-   * Property which receives data about user from users list.
-   * @type {UserModel}
-   */
   @Input() user: UserModel;
 
   constructor() {
