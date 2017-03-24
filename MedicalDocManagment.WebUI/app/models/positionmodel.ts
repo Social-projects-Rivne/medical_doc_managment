@@ -1,20 +1,17 @@
-﻿/**
- * @fileoverview This file defines Position model, which represents position of the user.
- * @author andriy_katsubo@ukr.net (Andriy Katsubo)
- */
-
-/**
- * Class, which represents data model for position of the user.
- */
-export default class PositionModel {
-  /**
-   * Unique identifier of position.
-   * @type {string}
-   */
+﻿export default class PositionModel {
   id: string;
-  /**
-   * Text, which defines position.
-   * @type {string}
-   */
-  position: string;
+  name: string;
+
+  constructor(jsonobject) {
+    if (jsonobject)
+    {
+      this.id = jsonobject.Id;
+      this.name = jsonobject.Name;
+    }
+    else
+    {
+      this.id = null;
+      this.name = null;
+    }
+  }
 }

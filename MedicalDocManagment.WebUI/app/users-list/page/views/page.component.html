@@ -1,6 +1,4 @@
-﻿<h3>Список користувачів</h3>
-
-<table>
+﻿<table>
     <tr>
         <th>Ім'я користувача</th>
         <th>Аватар</th>
@@ -9,7 +7,5 @@
         <th>Роль</th>
         <th>Дії над користувачем</th>
     </tr>
-    <tr *ngFor="let user of _users" usersList-Item [user]="user"></tr>
+    <tr *ngFor="let user of users" item [user]="user"></tr>
 </table>
-
-<usersList-Pagination></usersList-Pagination>
