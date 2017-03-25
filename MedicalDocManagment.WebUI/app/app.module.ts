@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { UsersListModule } from './users-list/users-list.module';
 import { UserAddComponent } from './user-add/user-add.component';
 
-
 @NgModule({
   imports: [
     BrowserModule,

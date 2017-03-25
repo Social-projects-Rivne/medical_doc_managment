@@ -50,7 +50,11 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
 
             var user = UserHelpers.ConvertUserModelToUser(userModel);
             user.IsActive = true;
-
+            Position newPosition = _GetPositionById(userModel.Position.Id);
+            if (newPosition != null)
+            {
+                user.Position = newPosition;
+            }
             var result = await UsersManager.CreateAsync(user, userModel.Password);
             var errorResult = GetErrorResult(result);
 

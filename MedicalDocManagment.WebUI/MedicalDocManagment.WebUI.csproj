@@ -154,7 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\.gitignore" />
-    <Content Include="app\user-add\user-add.component.html" />
+    <Content Include="app\user-add\views\user-add.component.html" />
     <Content Include="app\users-list\page\views\page.component.html" />
     <Content Include="app\users-list\views\users-list.component.css" />
     <Content Include="app\views\app.component.html" />
@@ -230,7 +230,7 @@
     <TypeScriptCompile Include="app\models\rolemodel.ts" />
     <TypeScriptCompile Include="app\models\usermodel.ts" />
     <TypeScriptCompile Include="app\models\usersmodel.ts" />
-    <TypeScriptCompile Include="app\user-add\http.service.ts" />
+    <TypeScriptCompile Include="app\user-add\user.service.ts" />
     <TypeScriptCompile Include="app\user-add\user-add.component.ts" />
     <TypeScriptCompile Include="app\user-add\user.ts" />
     <TypeScriptCompile Include="app\users-list\users-list.module.ts" />
