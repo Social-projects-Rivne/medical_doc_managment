@@ -164,6 +164,7 @@
     <Content Include="app\users-list\views\pagination.component.html" />
     <Content Include="app\users-list\page\views\page.component.css" />
     <Content Include="app\users-list\views\users-list.component.html" />
+    <Content Include="app\views\users-search-form.component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -239,6 +240,7 @@
     <TypeScriptCompile Include="app\users-list\page\page.component.ts" />
     <TypeScriptCompile Include="app\users-list\pagination.component.ts" />
     <TypeScriptCompile Include="app\users-list\users-list.component.ts" />
+    <TypeScriptCompile Include="app\users-search-form.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

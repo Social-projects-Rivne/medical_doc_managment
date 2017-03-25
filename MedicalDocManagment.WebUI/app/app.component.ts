@@ -1,8 +1,4 @@
-﻿/**
- * @fileoverview This file defines AppComponent — root component of front-end side of application.
- * @author Rv-023.Net
- */
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 
 @Component({
   moduleId: module.id,

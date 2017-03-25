@@ -1,15 +1,12 @@
-﻿/**
- * @fileoverview This file defines AppModule — root module of front-end side of application.
- * @author Rv-023.Net
- */
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { UsersListModule } from './users-list/users-list.module';
 import { UserAddComponent } from './user-add/user-add.component';
+import { UsersListModule } from './users-list/users-list.module';
+import { UsersSearchFormComponent } from './users-search-form.component';
 
 
 @NgModule({
@@ -21,7 +18,8 @@ import { UserAddComponent } from './user-add/user-add.component';
   ],
   declarations: [
     AppComponent,
-    UserAddComponent
+    UserAddComponent,
+    UsersSearchFormComponent
   ],
   bootstrap: [AppComponent]
 })
