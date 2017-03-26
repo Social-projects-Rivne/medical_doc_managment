@@ -3,7 +3,7 @@ using Ploeh.AutoFixture;
 
 using MedicalDocManagment.UsersDAL.Entities;
 
-namespace MedicalDocManagment.UsersDAL
+namespace MedicalDocManagment.UsersDAL.Initializer
 {
     public class UsersDbInitializer : DropCreateDatabaseAlways<UsersContext>
     {
@@ -14,13 +14,17 @@ namespace MedicalDocManagment.UsersDAL
             var users = fixture.Build<User>()
                                .CreateMany(10);
 
-            int userCnt = 0;
+            int userCounter = 1;
+            int positionCounter = 1;                  
             foreach (var user in users)
             {
-                user.UserName = "User" + ++userCnt;
-
-                user.Position = new Position { Name = "Position" };
+                user.Position = new Position { Name = InitializerHelpers.GeneratePositionName(positionCounter) };
+                user.UserName = InitializerHelpers.GenerateUserName(userCounter);
+                user.Email = InitializerHelpers.GenerateEmail(userCounter);
                 context.Users.Add(user);
+
+                userCounter++;
+                positionCounter++;
             }
         }
     }

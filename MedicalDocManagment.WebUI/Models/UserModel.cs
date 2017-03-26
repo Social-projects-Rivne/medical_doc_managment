@@ -14,6 +14,6 @@ namespace MedicalDocManagment.WebUI.Models
         public string SecondName { get; set; }
         public string LastName { get; set; }
         //TODO create DTO than remove useless namespace
-        public Position Position { get; set; }
+        //public Position Position { get; set; }
     }
 }
