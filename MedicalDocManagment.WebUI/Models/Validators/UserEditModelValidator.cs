@@ -12,7 +12,8 @@ namespace MedicalDocManagment.WebUI.Models.Validators
                 RuleFor(user => user.SecondName).Matches(@"[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}");
                 RuleFor(user => user.LastName).Matches(@"[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}");
             });
-            RuleFor(user => user.Position).NotEmpty();
+            //TODO fix this validaton
+            //RuleFor(user => user.Position).NotEmpty();
         }
     }
 }
