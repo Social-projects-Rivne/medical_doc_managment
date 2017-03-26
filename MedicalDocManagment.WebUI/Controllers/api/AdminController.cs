@@ -49,10 +49,8 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             }
 
             var user = UserHelpers.ConvertUserModelToUser(userModel);
-            //TODO remove this
-            user.PositionId = 1;
+            user.PositionId = userModel.PositionId;
             user.IsActive = true;
-
             var result = await UsersManager.CreateAsync(user, userModel.Password);
             var errorResult = GetErrorResult(result);
 
@@ -143,7 +141,8 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             var positions = _GetPositions();
             if (positions.Any())
             {
-                return Ok(positions);
+                //TODO fix this using AutoMapper
+                return Ok(positions.Select(p => new { p.PositionId, p.Name}).ToList());
             }
 
             return NotFound();
