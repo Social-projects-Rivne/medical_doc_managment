@@ -1,10 +1,10 @@
-﻿using MedicalDocManagment.UsersDAL;
+﻿using MedicalDocManagment.UsersDAL.Entities;
 using MedicalDocManagment.WebUI.Models;
 
 namespace MedicalDocManagment.WebUI.Helpers
 {
     public static class UserHelpers
-    {
+    {   //TODO fix this helper
         public static User ConvertUserModelToUser(UserModel userModel)
         {
             return new User
@@ -14,7 +14,7 @@ namespace MedicalDocManagment.WebUI.Helpers
                 FirstName = userModel.FirstName,
                 SecondName = userModel.SecondName,
                 LastName = userModel.LastName,
-                Position = userModel.Position
+                //Position = userModel.Position
             };
         }
     }
