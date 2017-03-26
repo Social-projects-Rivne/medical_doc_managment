@@ -1,11 +1,11 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, Input } from '@angular/core';
 import { Response } from '@angular/http';
 
 import { HttpFacade } from '../http.facade';
 
 import PageComponent from './page/page.component';
 import PaginationComponent from './pagination.component';
-import UsersModel from '../models/usersmodel';
+import UsersModel from '../models/users.model';
 
 @Component({
   moduleId: module.id,
@@ -15,21 +15,17 @@ import UsersModel from '../models/usersmodel';
   providers: [HttpFacade]
 })
 
-/**
- * Class, which implements users list feature.
- */
 export class UsersListComponent {
-  users: UsersModel;
+  @Input() users: UsersModel;
 
   private _httpFacade: HttpFacade;
 
   constructor(httpFacade: HttpFacade) {
     this._httpFacade = httpFacade;
     this.users = new UsersModel(null);
-    this.updateUsersList();
   }
 
-  updateUsersList(): void {
+  getUsersFromServer(): void {
     this._httpFacade.getUsersList()
       .subscribe((data: UsersModel) => { this.users = data; });
   }

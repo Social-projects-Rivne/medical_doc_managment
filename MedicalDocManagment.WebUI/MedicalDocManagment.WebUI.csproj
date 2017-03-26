@@ -227,10 +227,11 @@
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\http.facade.ts" />
     <TypeScriptCompile Include="app\main.ts" />
-    <TypeScriptCompile Include="app\models\positionmodel.ts" />
-    <TypeScriptCompile Include="app\models\rolemodel.ts" />
-    <TypeScriptCompile Include="app\models\usermodel.ts" />
-    <TypeScriptCompile Include="app\models\usersmodel.ts" />
+    <TypeScriptCompile Include="app\models\position.model.ts" />
+    <TypeScriptCompile Include="app\models\role.model.ts" />
+    <TypeScriptCompile Include="app\models\user-search.model.ts" />
+    <TypeScriptCompile Include="app\models\user.model.ts" />
+    <TypeScriptCompile Include="app\models\users.model.ts" />
     <TypeScriptCompile Include="app\user-add\http.service.ts" />
     <TypeScriptCompile Include="app\user-add\user-add.component.ts" />
     <TypeScriptCompile Include="app\user-add\user.ts" />

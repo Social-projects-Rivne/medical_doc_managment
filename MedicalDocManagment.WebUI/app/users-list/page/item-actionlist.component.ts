@@ -1,7 +1,7 @@
 ﻿import { Component, Input } from '@angular/core';
 import { Response } from '@angular/http';
 
-import UserModel from '../../models/usermodel'
+import UserModel from '../../models/user.model'
 
 @Component({
   moduleId: module.id,
