@@ -49,6 +49,8 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             }
 
             var user = UserHelpers.ConvertUserModelToUser(userModel);
+            //TODO remove this
+            user.PositionId = 1;
             user.IsActive = true;
 
             var result = await UsersManager.CreateAsync(user, userModel.Password);
@@ -69,7 +71,7 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
                 return NotFound();
             }
 
-            newPosition = _GetPositionById(userEditModel.Position.Id);
+            newPosition = _GetPositionById(userEditModel.Position.PositionId);
 
             if (newPosition != null)
             {
@@ -175,7 +177,7 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             Position position = null;
             using (var usersContext = new UsersContext())
             {
-                position = usersContext.Positions.FirstOrDefault(p => p.Id == id);
+                position = usersContext.Positions.FirstOrDefault(p => p.PositionId == id);
             }
 
             return position;
