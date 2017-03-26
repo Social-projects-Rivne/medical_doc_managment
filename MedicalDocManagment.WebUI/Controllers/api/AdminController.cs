@@ -107,6 +107,37 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
         }
 
+        [HttpGet]
+        public async Task<IHttpActionResult> GetUserByName(string userName)
+        {
+            var user = await UsersManager.FindByNameAsync(userName);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> GetUserByEmail(string email)
+        {
+            var user = await UsersManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+        [HttpGet]
+        public List<User> GetUsersByPosition(int positionId)
+        {
+            return UsersManager.Users.Where(user => user.PositionId == positionId).ToList();
+        }
+
+
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {
             if (result == null)
