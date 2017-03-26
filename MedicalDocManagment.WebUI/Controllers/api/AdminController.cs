@@ -132,11 +132,43 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
         }
 
         [HttpGet]
-        public List<User> GetUsersByPosition(int positionId)
+        public IHttpActionResult GetUsersByPosition(int positionId)
         {
-            return UsersManager.Users.Where(user => user.PositionId == positionId).ToList();
+            var users = UsersManager.Users.Where(user => user.PositionId == positionId).ToList();
+
+            if (!users.Any())
+            {
+                return NotFound();
+            }
+
+            return  Ok(users);
         }
 
+        [HttpGet]
+        public IHttpActionResult GetUsersByPosition(string positionName)
+        {
+            var users = UsersManager.Users.Where(user => user.Position.Name == positionName).ToList();
+
+            if (!users.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(users);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetUsersByStatus(bool userStatus)
+        {
+            var users = UsersManager.Users.Where(user => user.IsActive == userStatus).ToList();
+
+            if (!users.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(users);
+        }
 
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {
