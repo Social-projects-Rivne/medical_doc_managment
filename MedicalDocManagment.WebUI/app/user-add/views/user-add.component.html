@@ -49,10 +49,10 @@
     </div>
     <div class="form-group">
         <label for="position">Position</label>
-        <select name="position" id="position" [(ngModel)]="user.position" class="form-control" 
+        <select name="position" id="position" [(ngModel)]="user.positionId" class="form-control" 
                 required #position="ngModel">
-            <option *ngFor="let position of positions" [ngValue]="position">
-                {{position.Id}}.{{position.Name}}
+            <option *ngFor="let position of positions" [ngValue]="position.PositionId">
+                {{position.Name}}
             </option>
         </select>
         <div [hidden]="position.valid || position.untouched" class="alert alert-danger">
