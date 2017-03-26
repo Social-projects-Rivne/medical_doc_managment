@@ -17,6 +17,9 @@ namespace MedicalDocManagment.WebUI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             FluentValidationModelValidatorProvider.Configure();
+
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
         }
     }
 }
