@@ -236,6 +236,9 @@ FakesAssemblies/
 .ntvs_analysis.dat
 node_modules/
 
+#Distribution files
+dist/
+
 # Typescript v1 declaration files
 typings/
 
