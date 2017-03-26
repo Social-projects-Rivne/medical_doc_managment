@@ -135,6 +135,15 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             return BadRequest(ModelState);
         }
 
+        [HttpGet]
+        public IHttpActionResult SearchForUser(UserModel user)
+        {
+            // WARNING this code is just mock-up, it was copied from GetUsers()
+            // it should be reviewed after implementing feature "Implement method for 
+            //     searching user in the system"
+            return Ok(UsersManager.Users.ToList());
+        }
+
         #region Position's methods
 
         [HttpGet]

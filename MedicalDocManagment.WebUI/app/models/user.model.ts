@@ -1,5 +1,5 @@
-﻿import PositionModel from './positionmodel';
-import RoleModel from './rolemodel';
+﻿import PositionModel from './position.model';
+import RoleModel from './role.model';
 
 export default class UserModel {
   id: number;
@@ -16,9 +16,9 @@ export default class UserModel {
       this.id = jsonobject.Id;
       this.username = jsonobject.UserName;
       this.email = jsonobject.Email;
-      this.avatar = jsonobject.AserName;
+      this.avatar = jsonobject.Avatar;
       this.position = new PositionModel(jsonobject.Position);
-      this.role = jsonobject.Role;
+      this.role = new RoleModel(jsonobject.Role);
       this.isActive = jsonobject.IsActive;
     }
     else
@@ -27,8 +27,8 @@ export default class UserModel {
       this.username = null;
       this.email = null;
       this.avatar = null;
-      this.position = null;
-      this.role = null;
+      this.position = new PositionModel(null);
+      this.role = new RoleModel(null);
       this.isActive = null;
     }
   }

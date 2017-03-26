@@ -164,6 +164,7 @@
     <Content Include="app\users-list\views\pagination.component.html" />
     <Content Include="app\users-list\page\views\page.component.css" />
     <Content Include="app\users-list\views\users-list.component.html" />
+    <Content Include="app\views\users-search-form.component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -226,10 +227,11 @@
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\http.facade.ts" />
     <TypeScriptCompile Include="app\main.ts" />
-    <TypeScriptCompile Include="app\models\positionmodel.ts" />
-    <TypeScriptCompile Include="app\models\rolemodel.ts" />
-    <TypeScriptCompile Include="app\models\usermodel.ts" />
-    <TypeScriptCompile Include="app\models\usersmodel.ts" />
+    <TypeScriptCompile Include="app\models\position.model.ts" />
+    <TypeScriptCompile Include="app\models\role.model.ts" />
+    <TypeScriptCompile Include="app\models\user-search.model.ts" />
+    <TypeScriptCompile Include="app\models\user.model.ts" />
+    <TypeScriptCompile Include="app\models\users.model.ts" />
     <TypeScriptCompile Include="app\user-add\http.service.ts" />
     <TypeScriptCompile Include="app\user-add\user-add.component.ts" />
     <TypeScriptCompile Include="app\user-add\user.ts" />
@@ -239,6 +241,7 @@
     <TypeScriptCompile Include="app\users-list\page\page.component.ts" />
     <TypeScriptCompile Include="app\users-list\pagination.component.ts" />
     <TypeScriptCompile Include="app\users-list\users-list.component.ts" />
+    <TypeScriptCompile Include="app\users-search-form.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

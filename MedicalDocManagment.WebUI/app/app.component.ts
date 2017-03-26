@@ -1,8 +1,6 @@
-﻿/**
- * @fileoverview This file defines AppComponent — root component of front-end side of application.
- * @author Rv-023.Net
- */
-import { Component } from '@angular/core';
+﻿import { Component, ViewChild, ElementRef } from '@angular/core';
+
+import { UsersListComponent } from './users-list/users-list.component';
 
 @Component({
   moduleId: module.id,
@@ -10,4 +8,10 @@ import { Component } from '@angular/core';
   templateUrl: 'views/app.component.html'
 })
 export class AppComponent {
+  @ViewChild('usersList') usersList: UsersListComponent;
+
+
+  ngOnInit() {
+    this.usersList.getUsersFromServer();
+  }
 }
