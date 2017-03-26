@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Position.cs" />
+    <Compile Include="Initializer\InitializerHelpers.cs" />
     <Compile Include="Migrations\201703222034117_Add_positions_table.cs" />
     <Compile Include="Migrations\201703222034117_Add_positions_table.Designer.cs">
       <DependentUpon>201703222034117_Add_positions_table.cs</DependentUpon>
@@ -102,7 +103,7 @@
     <Compile Include="UsersContext.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UsersDbInitializer.cs" />
+    <Compile Include="Initializer\UsersDbInitializer.cs" />
     <Compile Include="UsersManager.cs" />
   </ItemGroup>
   <ItemGroup>

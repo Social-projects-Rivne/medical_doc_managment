@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 
 using MedicalDocManagment.UsersDAL.Entities;
+using MedicalDocManagment.UsersDAL.Initializer;
 
 namespace MedicalDocManagment.UsersDAL
 {
