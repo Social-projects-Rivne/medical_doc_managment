@@ -75,6 +75,13 @@ gulp.task('copy-min-css', function () {
             .pipe(gulp.dest('./dist/fonts'))
     });
 });
+gulp.task("copy-ng2-pagination", () => {
+    gulp.src([
+        'ng2-pagination/**'
+    ], {
+        cwd: "./node_modules/**"
+    }).pipe(gulp.dest("./dist/lib/npmlibs"));
+});
 
-gulp.task('default', ['copy-js', 'copy-css']);
+gulp.task('default', ['copy-js', 'copy-css', 'copy-ng2-pagination']);
 gulp.task('minify', ['copy-min-js', 'copy-min-css']);

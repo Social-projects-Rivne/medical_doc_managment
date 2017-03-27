@@ -109,6 +109,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -136,9 +140,6 @@
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -155,6 +156,7 @@
   <ItemGroup>
     <Content Include="app\.gitignore" />
     <Content Include="app\user-add\views\user-add.component.html" />
+    <Content Include="app\users-list-paginate\users-list-paginate.component.html" />
     <Content Include="app\users-list\page\views\page.component.html" />
     <Content Include="app\users-list\views\users-list.component.css" />
     <Content Include="app\views\app.component.html" />
@@ -189,6 +191,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\PagedResultHelper.cs" />
+    <Compile Include="Helpers\PagingInfo.cs" />
     <Compile Include="Helpers\UserHelpers.cs" />
     <Compile Include="Models\UserEditModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -226,15 +230,16 @@
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\models\user-search.model.ts" />
+    <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\user-add\user.service.ts" />
     <TypeScriptCompile Include="app\admin.service.ts" />
-    <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\models\position.model.ts" />
     <TypeScriptCompile Include="app\models\role.model.ts" />
     <TypeScriptCompile Include="app\models\user.model.ts" />
     <TypeScriptCompile Include="app\models\users.model.ts" />
     <TypeScriptCompile Include="app\user-add\user-add.component.ts" />
     <TypeScriptCompile Include="app\user-add\user.ts" />
+    <TypeScriptCompile Include="app\users-list-paginate\users-list-paginate.component.ts" />
     <TypeScriptCompile Include="app\users-list\users-list.module.ts" />
     <TypeScriptCompile Include="app\users-list\page\item-actionlist.component.ts" />
     <TypeScriptCompile Include="app\users-list\page\item.component.ts" />

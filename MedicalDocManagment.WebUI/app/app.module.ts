@@ -7,18 +7,22 @@ import { AppComponent } from './app.component';
 import { UserAddComponent } from './user-add/user-add.component';
 import { UsersListModule } from './users-list/users-list.module';
 import { UsersSearchFormComponent } from './users-search-form.component';
+import { UsersListPaginateComponent } from './users-list-paginate/users-list-paginate.component';
+import {Ng2PaginationModule} from 'ng2-pagination';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    UsersListModule
+    UsersListModule,
+    Ng2PaginationModule
   ],
   declarations: [
     AppComponent,
     UserAddComponent,
-    UsersSearchFormComponent
+    UsersSearchFormComponent,
+    UsersListPaginateComponent
   ],
   bootstrap: [AppComponent]
 })

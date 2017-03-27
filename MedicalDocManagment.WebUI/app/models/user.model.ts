@@ -10,7 +10,7 @@ export default class UserModel {
   role: RoleModel;
   isActive: boolean;
 
-  constructor(jsonobject=null) {
+  constructor(jsonobject?) {
     if (jsonobject)
     {
       this.id = jsonobject.Id;

@@ -2,7 +2,7 @@
   id: string;
   name: string;
 
-  constructor(jsonobject=null) {
+  constructor(jsonobject?) {
     if (jsonobject)
     {
       this.id = jsonobject.Id;

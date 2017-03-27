@@ -2,7 +2,8 @@
     System.config({
         paths: {
             // псевдоним для пути к модулям
-            'npm:': 'node_modules/'
+            'npm:': 'node_modules/',
+            'dist': 'dist/'
         },
         // указываем загрузчику System, где искать модули
         map: {
@@ -20,7 +21,8 @@
             '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
             // остальные пакеты
             'rxjs': 'npm:rxjs',
-            'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
+            'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
+            'ng2-pagination': 'dist/lib/npmlibs/ng2-pagination/dist'
         },
         // пакеты, которые указывают загрузчику System, как загружать файлы без имени и расширения
         packages: {
@@ -30,7 +32,9 @@
             },
             rxjs: {
                 defaultExtension: 'js'
-            }
+            },
+            'ng2-pagination': { main: 'ng2-pagination.js', defaultExtension: 'js' }
         }
     });
+    if (global.filterSystemConfig) { global.filterSystemConfig(config); }
 })(this);
