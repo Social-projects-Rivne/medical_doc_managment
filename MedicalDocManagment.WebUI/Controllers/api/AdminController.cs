@@ -49,10 +49,8 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             }
 
             var user = UserHelpers.ConvertUserModelToUser(userModel);
-            //TODO remove this
-            user.PositionId = 1;
+            user.PositionId = userModel.PositionId;
             user.IsActive = true;
-
             var result = await UsersManager.CreateAsync(user, userModel.Password);
             var errorResult = GetErrorResult(result);
 
@@ -109,6 +107,69 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
         }
 
+        [HttpGet]
+        public async Task<IHttpActionResult> GetUserByName(string userName)
+        {
+            var user = await UsersManager.FindByNameAsync(userName);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> GetUserByEmail(string email)
+        {
+            var user = await UsersManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetUsersByPosition(int positionId)
+        {
+            var users = UsersManager.Users.Where(user => user.PositionId == positionId).ToList();
+
+            if (!users.Any())
+            {
+                return NotFound();
+            }
+
+            return  Ok(users);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetUsersByPosition(string positionName)
+        {
+            var users = UsersManager.Users.Where(user => user.Position.Name == positionName).ToList();
+
+            if (!users.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(users);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetUsersByStatus(bool userStatus)
+        {
+            var users = UsersManager.Users.Where(user => user.IsActive == userStatus).ToList();
+
+            if (!users.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(users);
+        }
+
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {
             if (result == null)
@@ -135,15 +196,6 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             return BadRequest(ModelState);
         }
 
-        [HttpGet]
-        public IHttpActionResult SearchForUser(UserModel user)
-        {
-            // WARNING this code is just mock-up, it was copied from GetUsers()
-            // it should be reviewed after implementing feature "Implement method for 
-            //     searching user in the system"
-            return Ok(UsersManager.Users.ToList());
-        }
-
         #region Position's methods
 
         [HttpGet]
@@ -152,7 +204,8 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             var positions = _GetPositions();
             if (positions.Any())
             {
-                return Ok(positions);
+                //TODO fix this using AutoMapper
+                return Ok(positions.Select(p => new { p.PositionId, p.Name}).ToList());
             }
 
             return NotFound();

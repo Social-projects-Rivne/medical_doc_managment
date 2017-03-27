@@ -8,7 +8,6 @@ import { UserAddComponent } from './user-add/user-add.component';
 import { UsersListModule } from './users-list/users-list.module';
 import { UsersSearchFormComponent } from './users-search-form.component';
 
-
 @NgModule({
   imports: [
     BrowserModule,

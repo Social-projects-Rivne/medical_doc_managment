@@ -1,17 +1,26 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { HttpService} from './http.service';
+import { UserService} from './user.service';
 import {User} from './user';
+import PositionModel from '../models/position.model';
 
 @Component({
     selector: 'app-user-add',
-    templateUrl: 'app/user-add/user-add.component.html',
-    providers: [HttpService]
+    templateUrl: 'app/user-add/views/user-add.component.html',
+    providers: [UserService]
 })
-export class UserAddComponent {
+export class UserAddComponent implements OnInit {
     user: User = new User();
-    constructor(private httpService: HttpService) { }
+    positions: PositionModel[];
+    constructor(private userService: UserService) {}
+    ngOnInit() {
+        this.updatePositionsList();
+    }
     submit() {
-        this.httpService.postData(this.user)
+        this.userService.postData(this.user)
             .subscribe((data) => { console.log(data) });
+    }
+    updatePositionsList(): void {
+        this.userService.getPositionsList()
+            .subscribe((data: PositionModel[]) => { this.positions = data;});
     }
 }

@@ -1,7 +1,7 @@
 ﻿import { Component, Input } from '@angular/core';
 import { Response } from '@angular/http';
 
-import { HttpFacade } from '../http.facade';
+import { AdminHttpFacade } from '../admin-http.facade';
 
 import PageComponent from './page/page.component';
 import PaginationComponent from './pagination.component';
@@ -12,21 +12,21 @@ import UsersModel from '../models/users.model';
   selector: 'usersList',
   templateUrl: 'views/users-list.component.html',
   styleUrls: ['views/users-list.component.css'],
-  providers: [HttpFacade]
+  providers: [AdminHttpFacade]
 })
 
 export class UsersListComponent {
   @Input() users: UsersModel;
 
-  private _httpFacade: HttpFacade;
+  private _adminHttpFacade: AdminHttpFacade;
 
-  constructor(httpFacade: HttpFacade) {
-    this._httpFacade = httpFacade;
+  constructor(adminHttpFacade: AdminHttpFacade) {
+    this._adminHttpFacade = adminHttpFacade;
     this.users = new UsersModel(null);
   }
 
   getUsersFromServer(): void {
-    this._httpFacade.getUsersList()
+    this._adminHttpFacade.getUsersList()
       .subscribe((data: UsersModel) => { this.users = data; });
   }
 }

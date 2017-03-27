@@ -1,4 +1,4 @@
-﻿import { Component, ViewChild, ElementRef } from '@angular/core';
+﻿import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { UsersListComponent } from './users-list/users-list.component';
 
@@ -7,7 +7,7 @@ import { UsersListComponent } from './users-list/users-list.component';
   selector: 'my-app',
   templateUrl: 'views/app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild('usersList') usersList: UsersListComponent;
 
 
