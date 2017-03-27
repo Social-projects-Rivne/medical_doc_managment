@@ -227,7 +227,7 @@
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\models\user-search.model.ts" />
     <TypeScriptCompile Include="app\user-add\user.service.ts" />
-    <TypeScriptCompile Include="app\admin-http.facade.ts" />
+    <TypeScriptCompile Include="app\admin.service.ts" />
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\models\position.model.ts" />
     <TypeScriptCompile Include="app\models\role.model.ts" />

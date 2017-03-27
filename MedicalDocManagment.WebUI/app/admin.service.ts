@@ -11,7 +11,7 @@ import UserModel from './models/user.model';
 import UsersModel from './models/users.model';
 
 @Injectable()
-export class AdminHttpFacade {
+export class AdminService {
   private _http: Http;
 
   constructor(http: Http) {

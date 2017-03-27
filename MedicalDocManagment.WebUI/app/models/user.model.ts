@@ -10,7 +10,7 @@ export default class UserModel {
   role: RoleModel;
   isActive: boolean;
 
-  constructor(jsonobject) {
+  constructor(jsonobject=null) {
     if (jsonobject)
     {
       this.id = jsonobject.Id;
@@ -27,8 +27,8 @@ export default class UserModel {
       this.username = null;
       this.email = null;
       this.avatar = null;
-      this.position = new PositionModel(null);
-      this.role = new RoleModel(null);
+      this.position = new PositionModel();
+      this.role = new RoleModel();
       this.isActive = null;
     }
   }

@@ -2,7 +2,7 @@
 import { NgForm } from '@angular/forms';
 import { Response } from '@angular/http';
 
-import { AdminHttpFacade } from './admin-http.facade';
+import { AdminService } from './admin.service';
 import UserModel from './models/user.model';
 import UsersModel from './models/users.model';
 import UserSearchModel from './models/user-search.model';
@@ -12,7 +12,7 @@ import { UsersSearchOptionsEnum } from './users-search-options.enum';
   moduleId: module.id,
   selector: 'users-search-Form',
   templateUrl: 'views/users-search-form.component.html',
-  providers: [AdminHttpFacade]
+  providers: [AdminService]
 })
 
 export class UsersSearchFormComponent {
@@ -21,13 +21,13 @@ export class UsersSearchFormComponent {
 
   private _isErrorOnSearching: boolean;
   private _isSearching: boolean;
-  private _adminHttpFacade: AdminHttpFacade;
+  private _adminService: AdminService;
   private _lastErrorMessage: string;
   private _searchOption: UsersSearchOptionsEnum;
   private _searchResult: UsersModel;
   private  _userToSearchFor: UserSearchModel;
 
-  constructor(adminHttpFacade: AdminHttpFacade) {
+  constructor(adminService: AdminService) {
     this._isErrorOnSearching = false;
     this._isSearching = false;
     this._lastErrorMessage = '';
@@ -35,7 +35,7 @@ export class UsersSearchFormComponent {
     this._searchOption = UsersSearchOptionsEnum.byUsername;
     this._userToSearchFor = new UserSearchModel();
 
-    this._adminHttpFacade = adminHttpFacade;
+    this._adminService = adminService;
   }
 
   search(): void {
@@ -62,7 +62,7 @@ export class UsersSearchFormComponent {
   }
 
   private _searchByPositionName(): void {
-    this._adminHttpFacade.searchUsersByPositionName(this._userToSearchFor.positionName)
+    this._adminService.searchUsersByPositionName(this._userToSearchFor.positionName)
       .subscribe((data: UsersModel) => {
         this._searchResult = data;
         this._isSearching = false;
@@ -71,7 +71,7 @@ export class UsersSearchFormComponent {
   }
 
   private _searchByStatus(): void {
-    this._adminHttpFacade.searchUsersByStatus(this._userToSearchFor.isActive)
+    this._adminService.searchUsersByStatus(this._userToSearchFor.isActive)
       .subscribe((data: UsersModel) => {
         this._searchResult = data;
         this._isSearching = false;
@@ -80,7 +80,7 @@ export class UsersSearchFormComponent {
   }
 
   private _searchByUsername(): void {
-    this._adminHttpFacade.searchUserByUsername(this._userToSearchFor.username)
+    this._adminService.searchUserByUsername(this._userToSearchFor.username)
       .subscribe((result: UserModel) => {
         this._searchResult = new UsersModel(null);
         this._searchResult.push(result);
