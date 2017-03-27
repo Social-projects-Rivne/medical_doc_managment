@@ -12,6 +12,8 @@ namespace MedicalDocManagment.UsersDAL.Initializer
             var fixture = new Fixture();
             
             var users = fixture.Build<User>()
+                               .Without(user => user.Position)
+                               .Without(user => user.PositionId)
                                .CreateMany(10);
 
             int userCounter = 1;

@@ -5,5 +5,5 @@
     firstName: string;
     secondName: string;
     lastName: string;
-    position: string;
+    positionId: number;
 }
