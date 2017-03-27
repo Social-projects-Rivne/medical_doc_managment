@@ -19,8 +19,8 @@ namespace MedicalDocManagment.WebUI.Helpers
                 PageSize = pageSize,
                 TotalRecordCount = totalRecordCount,
                 PageCount = totalRecordCount > 0
-                          ? (int)Math.Ceiling(totalRecordCount / (double)pageSize)
-                          : 0
+                                             ? (int)Math.Ceiling(totalRecordCount / (double)pageSize)
+                                             : 0
             };
         }
     }

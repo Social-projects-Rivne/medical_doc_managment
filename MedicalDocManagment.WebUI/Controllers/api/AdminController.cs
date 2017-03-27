@@ -36,10 +36,10 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             int skip = (pageNumber - 1) * pageSize;
             int total = UsersManager.Users.Count();
             var users = UsersManager.Users
-                      .OrderBy(c => c.Id)
-                      .Skip(skip)
-                      .Take(pageSize)
-                      .ToList();
+                                    .OrderBy(c => c.Id)
+                                    .Skip(skip)
+                                    .Take(pageSize)
+                                    .ToList();
 
             return Ok(new PagedResultHelper<User>(users, pageNumber, pageSize, total));
         }
