@@ -1,17 +1,15 @@
 ﻿export default class PositionModel {
-  id: string;
-  name: string;
+    id: number;
+    name: string;
 
-  constructor(jsonobject) {
-    if (jsonobject)
-    {
-      this.id = jsonobject.Id;
-      this.name = jsonobject.Name;
+    constructor(jsonobject?) {
+        if (jsonobject) {
+            this.id = jsonobject.Id;
+            this.name = jsonobject.Name;
+        }
+        else {
+            this.id = null;
+            this.name = null;
+        }
     }
-    else
-    {
-      this.id = null;
-      this.name = null;
-    }
-  }
 }

@@ -3,7 +3,7 @@
 import UserModel from '../models/usermodel';
 
 export default class UsersModel extends Array<UserModel> {
-  constructor(jsonobject) {
+  constructor(jsonobject?) {
     super();
     if (jsonobject)
     {
