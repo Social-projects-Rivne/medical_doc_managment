@@ -2,13 +2,12 @@
  * @fileoverview This file defines UsersListComponent — component, which implements users list feature.
  * @author andriy_katsubo@ukr.net (Andriy Katsubo)
  */
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
-
+import { Observable } from 'rxjs/Observable';
 import { HttpFacade } from '../http.facade';
 
 import PageComponent from './page/page.component';
-import PaginationComponent from './pagination.component';
 import UsersModel from '../models/usersmodel';
 
 @Component({
@@ -23,19 +22,31 @@ import UsersModel from '../models/usersmodel';
  * Class, which implements users list feature.
  */
 export class UsersListComponent {
-  users: UsersModel;
+  users: Observable<UsersModel>;
+  page: number = 1;
+  pageSize: number = 5;
+  total: number;
 
   private _httpFacade: HttpFacade;
 
   constructor(httpFacade: HttpFacade) {
     this._httpFacade = httpFacade;
-    this.users = new UsersModel(null);
-    this.updateUsersList();
   }
-
-  updateUsersList(): void {
-    this._httpFacade.getUsersList()
-      .subscribe((data: UsersModel) => { this.users = data; });
+  ngOnInit() {
+      this.getPage(1,this.pageSize);
+  }
+ 
+  onPageChange(page) {
+      this.getPage(page, this.pageSize);
+  }
+  getPage(page: number, pageSize: number) {
+      this.users = this._httpFacade.getUsersListPaged(page, pageSize)
+                       .do(data => {
+                           this.page = data.PageNumber;
+                           this.pageSize = data.PageSize;
+                           this.total = data.TotalRecordCount;
+                       })
+                       .map(data => { return data.Users;});
   }
 }
 
