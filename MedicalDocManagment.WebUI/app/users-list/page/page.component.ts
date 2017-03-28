@@ -8,19 +8,23 @@ import UsersModel from '../../models/usersmodel';
     moduleId: module.id,
     selector: 'page',
     templateUrl: 'views/page.component.html',
-    styleUrls: ['views/page.component.css']
+    styleUrls: ['views/page.component.css'],
 })
-
 export default class PageComponent {
     @Input() users: UsersModel;
+    @Input() page: number;
+    @Input() pageSize: number;
+    @Input() total: number;
     @Output() onUsersListEdit = new EventEmitter<string>();
 
+    @Output() onPageChange = new EventEmitter<number>();
     constructor() {
-        this.users = new UsersModel(null);
+        //this.users = new UsersModel(null);
     }
-
+    changePage(page: number) {
+        this.onPageChange.emit(page);
+    }
     onPageEdit(id: string) {
         this.onUsersListEdit.emit(id);
     }
-
 }

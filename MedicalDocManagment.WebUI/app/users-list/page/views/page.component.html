@@ -7,5 +7,6 @@
         <th>Роль</th>
         <th>Дії над користувачем</th>
     </tr>
-    <tr *ngFor="let user of users" item (onPageEdit)="onPageEdit($event)" [user]="user"></tr>
+    <tr *ngFor="let user of users | async | paginate: { id: 'server', itemsPerPage: pageSize, currentPage: page, totalItems: total }" item (onPageEdit)="onPageEdit($event)" [user]="user" ></tr>
 </table>
+<pagination-controls (pageChange)="changePage($event)" id="server"></pagination-controls>

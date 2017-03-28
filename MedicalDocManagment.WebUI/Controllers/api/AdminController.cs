@@ -6,8 +6,8 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Net.Http;
-using System.Net;
+using AutoMapper;
+
 
 using MedicalDocManagment.UsersDAL;
 using MedicalDocManagment.WebUI.Helpers;
@@ -15,27 +15,39 @@ using MedicalDocManagment.WebUI.Models;
 using System.Collections.Generic;
 using MedicalDocManagment.UsersDAL.Entities;
 using System.Text;
+using MedicalDocManagment.UsersDAL.Repositories;
+using MedicalDocManagment.UsersDAL.Repositories.Abstract;
 
 namespace MedicalDocManagment.WebUI.Controllers.Api
 {
     public class AdminController : ApiController
     {
-        private UsersManager UsersManager => HttpContext.Current
-                                                        .GetOwinContext()
-                                                        .GetUserManager<UsersManager>();
+        private readonly UsersManager _usersManager;
+        private readonly UsersContext _context;
+        private readonly IPositionRepository _positionRepository;
+
+        public AdminController()
+        {
+            _usersManager = HttpContext.Current
+                                       .GetOwinContext()
+                                       .GetUserManager<UsersManager>();
+
+            _context = new UsersContext();
+            _positionRepository = new PositionRepository(_context);
+        }
 
         [HttpGet]
         public IHttpActionResult GetUsers()
         {
-            return Ok(UsersManager.Users.ToList());
+            return Ok(_usersManager.Users.ToList());
         }
 
         [HttpGet]
         public IHttpActionResult GetPaged(int pageNumber = 1, int pageSize = 20)
         {
             int skip = (pageNumber - 1) * pageSize;
-            int total = UsersManager.Users.Count();
-            var users = UsersManager.Users
+            int total = _usersManager.Users.Count();
+            var users = _usersManager.Users
                                     .OrderBy(c => c.Id)
                                     .Skip(skip)
                                     .Take(pageSize)
@@ -47,7 +59,7 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
         [HttpGet]
         public async Task<IHttpActionResult> GetUser(string id)
         {
-            var user = await UsersManager.FindByIdAsync(id.ToString());
+            var user = await _usersManager.FindByIdAsync(id.ToString());
 
             if (user == null)
             {
@@ -68,7 +80,7 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             var user = UserHelpers.ConvertUserModelToUser(userModel);
             user.PositionId = userModel.PositionId;
             user.IsActive = true;
-            var result = await UsersManager.CreateAsync(user, userModel.Password);
+            var result = await _usersManager.CreateAsync(user, userModel.Password);
             var errorResult = GetErrorResult(result);
 
             return errorResult ?? Ok(result);
@@ -78,7 +90,7 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
         [HttpPut]
         public async Task<HttpResponseMessage> EditUser(string id, UserEditModel userEditModel)
         {
-            var user = await UsersManager.FindByIdAsync(id);
+            var user = await _usersManager.FindByIdAsync(userEditModel.Id);
 
             if (user == null)
             {
@@ -93,9 +105,9 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
             user.SecondName = userEditModel.SecondName;
             user.IsActive = userEditModel.IsActive;
 
-            var identityResult = await UsersManager.UpdateAsync(user);
+            var result = await _usersManager.UpdateAsync(user);
 
-            var identityErrors = _getErrorIdentityResult(identityResult);
+            var identityErrors = _getErrorIdentityResult(result);
 
             if (identityErrors != null)
             {
@@ -131,7 +143,7 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteUser(string id)
         {
-            var user = await UsersManager.FindByIdAsync(id);
+            var user = await _usersManager.FindByIdAsync(id);
             if (user != null)
             {
                 if (!user.IsActive)
@@ -139,7 +151,7 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, new HttpError("User already deleted."));
                 }
                 user.IsActive = false;
-                var result = await UsersManager.UpdateAsync(user);
+                var result = await _usersManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, "User successfully deleted.");
@@ -152,7 +164,7 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
         [HttpGet]
         public async Task<IHttpActionResult> GetUserByName(string userName)
         {
-            var user = await UsersManager.FindByNameAsync(userName);
+            var user = await _usersManager.FindByNameAsync(userName);
             if (user == null)
             {
                 return NotFound();
@@ -164,7 +176,7 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
         [HttpGet]
         public async Task<IHttpActionResult> GetUserByEmail(string email)
         {
-            var user = await UsersManager.FindByEmailAsync(email);
+            var user = await _usersManager.FindByEmailAsync(email);
             if (user == null)
             {
                 return NotFound();
@@ -176,20 +188,20 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetUsersByPosition(int positionId)
         {
-            var users = UsersManager.Users.Where(user => user.PositionId == positionId).ToList();
+            var users = _usersManager.Users.Where(user => user.PositionId == positionId).ToList();
 
             if (!users.Any())
             {
                 return NotFound();
             }
 
-            return  Ok(users);
+            return Ok(users);
         }
 
         [HttpGet]
         public IHttpActionResult GetUsersByPosition(string positionName)
         {
-            var users = UsersManager.Users.Where(user => user.Position.Name == positionName).ToList();
+            var users = _usersManager.Users.Where(user => user.Position.Name == positionName).ToList();
 
             if (!users.Any())
             {
@@ -202,7 +214,7 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetUsersByStatus(bool userStatus)
         {
-            var users = UsersManager.Users.Where(user => user.IsActive == userStatus).ToList();
+            var users = _usersManager.Users.Where(user => user.IsActive == userStatus).ToList();
 
             if (!users.Any())
             {
@@ -243,11 +255,13 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetPositions()
         {
-            var positions = _GetPositions();
+            Mapper.Initialize(config => config.CreateMap<Position, PositionModel>());
+
+            var positions = Mapper.Map<IList<Position>, List<PositionModel>>(_positionRepository.Get().ToList());
+
             if (positions.Any())
             {
-                //TODO fix this using AutoMapper
-                return Ok(positions.Select(p => new { p.PositionId, p.Name}).ToList());
+                return Ok(positions);
             }
 
             return NotFound();
@@ -256,7 +270,9 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetPosition(int id)
         {
-            var position = _GetPositionById(id);
+            Mapper.Initialize(config => config.CreateMap<Position, PositionModel>());
+            var position = Mapper.Map<Position, PositionModel>(_positionRepository.Get(p => p.PositionId == id)
+                                                                                  .FirstOrDefault());
             if (position != null)
             {
                 return Ok(position);
@@ -264,30 +280,6 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
 
             return NotFound();
         }
-
-        private List<Position> _GetPositions()
-        {
-            List<Position> positions = null;
-            using (var usersContext = new UsersContext())
-            {
-                positions = usersContext.Positions.ToList();
-            }
-
-            return positions;
-        }
-
-        private Position _GetPositionById(int id)
-        {
-            Position position = null;
-            using (var usersContext = new UsersContext())
-            {
-                position = usersContext.Positions.FirstOrDefault(p => p.PositionId == id);
-            }
-
-            return position;
-        }
-
         #endregion
-
     }
 }

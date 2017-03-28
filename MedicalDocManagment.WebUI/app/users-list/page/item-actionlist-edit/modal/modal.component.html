@@ -5,6 +5,9 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
+                <p>Редагування Користувача</p>
+            </div>
+            <div class="modal-body">
                 <form class="form" (ngSubmit)="submit()" #userEditForm="ngForm">
                     <div class="form-group">
                         <label for="username">UserName</label>
@@ -49,8 +52,8 @@
                     <div class="form-group">
                         <label for="position">Position</label>
                         <select name="position" id="position" [(ngModel)]="user.positionId" class="form-control"
-                                required #position="ngModel" >
-                            <option *ngFor="let position of positions" [ngValue]="position.PositionId" >
+                                required #position="ngModel">
+                            <option *ngFor="let position of positions" [ngValue]="position.PositionId">
                                 {{ position.Name }}
                             </option>
                         </select>
@@ -63,9 +66,6 @@
                     </div>
                 </form>
 
-            </div>
-            <div class="modal-body">
-                <p>Some text in the modal.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

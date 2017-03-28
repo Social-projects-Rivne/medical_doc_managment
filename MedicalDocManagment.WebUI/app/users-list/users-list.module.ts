@@ -9,18 +9,17 @@ import ItemActionListEditButton from './page/item-actionlist-edit/button/button.
 import ItemActionListEditModal from './page/item-actionlist-edit/modal/modal.component';
 import UsersListPageItemActionListComponent from './page/item-actionlist.component';
 import UsersListPageItemComponent from './page/item.component';
-import UsersListPaginationComponent from './pagination.component';
+import { Ng2PaginationModule } from 'ng2-pagination';
 
 @NgModule({
-    imports: [CommonModule, FormsModule, HttpModule],
+    imports: [CommonModule, FormsModule, HttpModule, Ng2PaginationModule],
     declarations: [
         UsersListComponent,
         UsersListPageComponent,
         ItemActionListEditButton,
         ItemActionListEditModal,
         UsersListPageItemActionListComponent,
-        UsersListPageItemComponent,
-        UsersListPaginationComponent
+        UsersListPageItemComponent
     ],
     exports: [UsersListComponent]
 })

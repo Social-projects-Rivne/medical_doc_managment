@@ -108,6 +108,10 @@
       <DependentUpon>201703261622066_Add_constraint_for_position_name.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repositories\Abstract\IGenericRepository.cs" />
+    <Compile Include="Repositories\Abstract\IPositionRepository.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\PositionRepository.cs" />
     <Compile Include="UsersContext.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

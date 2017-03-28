@@ -15,6 +15,7 @@ import 'rxjs/add/observable/throw';
 import UserModel from './models/usermodel';
 import UsersModel from './models/usersmodel';
 import PositionModel from './models/positionmodel';
+import PagedResponseModel from './models/paged-response-model';
 
 @Injectable()
 export class HttpFacade {
@@ -41,8 +42,8 @@ export class HttpFacade {
 
     getUserById(id: string): Observable<UserModel> {
         return this._http.get('/api/admin/getuser?id=' + id)
-                .map((resp: Response) => { return new UserModel(resp.json()); })
-                .catch((error: any) => { return Observable.throw(error); })
+            .map((resp: Response) => { return new UserModel(resp.json()); })
+            .catch((error: any) => { return Observable.throw(error); })
     }
 
     getUsersList(): Observable<UsersModel> {
@@ -51,4 +52,17 @@ export class HttpFacade {
             .catch((error: any) => { return Observable.throw(error); });
     }
 
+    getUsersListPaged(page: number, pageSize: number): Observable<PagedResponseModel> {
+        return this._http.get("api/admin/getpaged?pageNumber=" + page + "&pageSize=" + pageSize)
+            .map((resp: Response) => {
+                let pagedResponse: PagedResponseModel = new PagedResponseModel();
+                pagedResponse.PageCount = resp.json().Paging.PageCount;
+                pagedResponse.PageNumber = resp.json().Paging.PageNumber;
+                pagedResponse.PageSize = resp.json().Paging.PageSize;
+                pagedResponse.TotalRecordCount = resp.json().Paging.TotalRecordCount;
+                pagedResponse.Users = new UsersModel(resp.json().Data);
+                return pagedResponse;
+            })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
 }
