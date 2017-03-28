@@ -26,19 +26,25 @@ export class AdminService {
 
   searchUsersByPositionName(positionName: string): Observable<UsersModel> {
     return this._http.get('/api/Admin/GetUsersByPosition?positionName=' + positionName)
-                     .map((resp: Response) => { return new UsersModel(resp.json()); })
+                     .map((resp: Response) => {
+                       return ((resp.text()) ? new UsersModel(resp.json()) : null);
+                     })
                      .catch((error: any) => { return Observable.throw(error); });
   }
 
   searchUsersByStatus(status: boolean): Observable<UsersModel> {
     return this._http.get('/api/Admin/GetUsersByStatus?userStatus=' + status)
-                     .map((resp: Response) => { return new UsersModel(resp.json()); })
+                     .map((resp: Response) => {
+                       return ((resp.text()) ? new UsersModel(resp.json()) : null);
+                     })
                      .catch((error: any) => { return Observable.throw(error); });
   }
 
   searchUserByUsername(username: string): Observable<UserModel> {
     return this._http.get('/api/Admin/GetUserByName?userName=' + username)
-                     .map((resp: Response) => { return new UserModel(resp.json()); })
+                     .map((resp: Response) => {
+                       return ((resp.text()) ? new UserModel(resp.json()) : null);
+                     })
                      .catch((error: any) => { return Observable.throw(error); });
   }
 }

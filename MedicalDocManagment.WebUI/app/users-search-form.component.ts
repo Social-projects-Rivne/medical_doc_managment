@@ -20,11 +20,13 @@ export class UsersSearchFormComponent {
   UsersSearchOptionsEnum = UsersSearchOptionsEnum;
 
   private _isErrorOnSearching: boolean;
+  private _isNotFound: boolean;
   private _isSearching: boolean;
   private _adminService: AdminService;
   private _lastErrorMessage: string;
   private _searchOption: UsersSearchOptionsEnum;
   private _searchResult: UsersModel;
+  private _triedToSearch: boolean;
   private  _userToSearchFor: UserSearchModel;
 
   constructor(adminService: AdminService) {
@@ -33,15 +35,17 @@ export class UsersSearchFormComponent {
     this._lastErrorMessage = '';
     this._searchResult = null;
     this._searchOption = UsersSearchOptionsEnum.byUsername;
+    this._triedToSearch = false;
     this._userToSearchFor = new UserSearchModel();
 
     this._adminService = adminService;
   }
 
   search(): void {
-    this._isSearching = true;
     this._isErrorOnSearching = false;
+    this._isSearching = true;
     this._searchResult = null;
+    this._triedToSearch = true;
     switch (this._searchOption) {
       case UsersSearchOptionsEnum.byPositionName:
         this._searchByPositionName();
@@ -63,30 +67,32 @@ export class UsersSearchFormComponent {
 
   private _searchByPositionName(): void {
     this._adminService.searchUsersByPositionName(this._userToSearchFor.positionName)
-      .subscribe((data: UsersModel) => {
-        this._searchResult = data;
-        this._isSearching = false;
-      },
-        error => { this._handleSearchError(error); });
+                      .subscribe((data: UsersModel) => {
+                        this._searchResult = data;
+                        this._isSearching = false;
+                      },
+                                 (error:any) => { this._handleSearchError(error); });
   }
 
   private _searchByStatus(): void {
     this._adminService.searchUsersByStatus(this._userToSearchFor.isActive)
-      .subscribe((data: UsersModel) => {
-        this._searchResult = data;
-        this._isSearching = false;
-      },
-        error => { this._handleSearchError(error); });
+                      .subscribe((data: UsersModel) => {
+                        this._searchResult = data;
+                        this._isSearching = false;
+                      },
+                                 (error: any) => { this._handleSearchError(error); });
   }
 
   private _searchByUsername(): void {
     this._adminService.searchUserByUsername(this._userToSearchFor.username)
-      .subscribe((result: UserModel) => {
-        this._searchResult = new UsersModel(null);
-        this._searchResult.push(result);
-        this._isSearching = false;
-      },
-      error => { this._handleSearchError(error); });
+                      .subscribe((result: UserModel) => {
+                        if (result) {
+                          this._searchResult = new UsersModel(null);
+                          this._searchResult.push(result);
+                        }
+                        this._isSearching = false;
+                      },
+                                 (error: any) => { this._handleSearchError(error); });
   }
 }
 

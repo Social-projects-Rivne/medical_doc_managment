@@ -6,8 +6,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Net.Http;
-using System.Net;
 
 using MedicalDocManagment.UsersDAL;
 using MedicalDocManagment.WebUI.Helpers;

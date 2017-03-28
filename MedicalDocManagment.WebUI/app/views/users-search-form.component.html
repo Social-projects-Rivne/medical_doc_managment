@@ -66,8 +66,11 @@
             {{_lastErrorMessage}}
         </div>
     </div>
-    <div class="form-group" *ngIf="_searchResult">
+    <div class="form-group" *ngIf="_triedToSearch && !_isSearching && _searchResult">
         <h4>Результат пошуку</h4>
         <usersList [users]="_searchResult"></usersList>
+    </div>
+    <div class="alert alert-info" *ngIf="_triedToSearch && !_isSearching && !_searchResult ">
+        <h4>По Вашому запиту нічого не знайдено.</h4>
     </div>
 </form>
