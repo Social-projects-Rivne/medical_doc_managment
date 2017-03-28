@@ -12,20 +12,43 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+import UserModel from './models/usermodel';
 import UsersModel from './models/usersmodel';
+import PositionModel from './models/positionmodel';
 
 @Injectable()
 export class HttpFacade {
-  private _http: Http;
+    private _http: Http;
 
-  constructor(http: Http) {
-    this._http = http;
-  }
+    constructor(http: Http) {
+        this._http = http;
+    }
 
-  getUsersList(): Observable<UsersModel> {
-    return this._http.get('/api/Admin/GetUsers')
-                     .map((resp: Response) => { return new UsersModel(resp.json()); } )
-                     .catch((error: any) => { return Observable.throw(error); });
-  }
+    updateUser(user: UserModel) {
+        const jsonBody = JSON.stringify(user);
+        let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+
+        return this._http.put('/api/admin/edituser/' + user.id, jsonBody, { headers })
+            .map((resp: Response) => { return resp; })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    getPositionsList(): Observable<PositionModel[]> {
+        return this._http.get('/api/Admin/GetPositions')
+            .map((resp: Response) => resp.json())
+            .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    getUserById(id: string): Observable<UserModel> {
+        return this._http.get('/api/admin/getuser?id=' + id)
+                .map((resp: Response) => { return new UserModel(resp.json()); })
+                .catch((error: any) => { return Observable.throw(error); })
+    }
+
+    getUsersList(): Observable<UsersModel> {
+        return this._http.get('/api/Admin/GetUsers')
+            .map((resp: Response) => { return new UsersModel(resp.json()); })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
 
 }

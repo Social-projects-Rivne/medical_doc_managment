@@ -7,5 +7,5 @@
         <th>Роль</th>
         <th>Дії над користувачем</th>
     </tr>
-    <tr *ngFor="let user of users" item [user]="user"></tr>
+    <tr *ngFor="let user of users" item (onPageEdit)="onPageEdit($event)" [user]="user"></tr>
 </table>
