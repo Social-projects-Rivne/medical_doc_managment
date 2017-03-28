@@ -163,7 +163,6 @@
     <Content Include="app\users-list\page\views\item-actionlist.component.html" />
     <Content Include="app\users-list\page\views\item.component.css" />
     <Content Include="app\users-list\page\views\item.component.html" />
-    <Content Include="app\users-list\views\pagination.component.html" />
     <Content Include="app\users-list\page\views\page.component.css" />
     <Content Include="app\users-list\views\users-list.component.html" />
     <Content Include="Content\bootstrap.css" />
@@ -243,7 +242,6 @@
     <TypeScriptCompile Include="app\users-list\page\item-actionlist.component.ts" />
     <TypeScriptCompile Include="app\users-list\page\item.component.ts" />
     <TypeScriptCompile Include="app\users-list\page\page.component.ts" />
-    <TypeScriptCompile Include="app\users-list\pagination.component.ts" />
     <TypeScriptCompile Include="app\users-list\users-list.component.ts" />
   </ItemGroup>
   <PropertyGroup>

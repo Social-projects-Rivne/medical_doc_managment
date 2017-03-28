@@ -13,6 +13,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import UsersModel from './models/usersmodel';
+import PagedResponseModel from './models/paged-response-model';
 
 @Injectable()
 export class HttpFacade {
@@ -27,5 +28,17 @@ export class HttpFacade {
                      .map((resp: Response) => { return new UsersModel(resp.json()); } )
                      .catch((error: any) => { return Observable.throw(error); });
   }
-
+  getUsersListPaged(page: number, pageSize: number): Observable<PagedResponseModel> {
+      return this._http.get("api/admin/getpaged?pageNumber=" + page + "&pageSize=" + pageSize)
+                       .map((resp: Response) => {
+                           let pagedResponse: PagedResponseModel = new PagedResponseModel();
+                           pagedResponse.PageCount = resp.json().Paging.PageCount;
+                           pagedResponse.PageNumber = resp.json().Paging.PageNumber;
+                           pagedResponse.PageSize = resp.json().Paging.PageSize;
+                           pagedResponse.TotalRecordCount = resp.json().Paging.TotalRecordCount;
+                           pagedResponse.Users = new UsersModel(resp.json().Data);
+                           return pagedResponse;
+                       })
+                       .catch((error: any) => { return Observable.throw(error); });
+    }
 }
