@@ -8,17 +8,16 @@ import UsersListPageComponent from './page/page.component';
 import UsersListPageItemActionListDeleteComponent from './page/item-actionlist-delete.component';
 import UsersListPageItemActionListComponent from './page/item-actionlist.component';
 import UsersListPageItemComponent from './page/item.component';
-import UsersListPaginationComponent from './pagination.component';
+import {Ng2PaginationModule} from 'ng2-pagination';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, HttpModule],
+    imports: [CommonModule, FormsModule, HttpModule, Ng2PaginationModule],
   declarations: [
     UsersListComponent,
     UsersListPageComponent,
     UsersListPageItemActionListDeleteComponent,
     UsersListPageItemActionListComponent,
     UsersListPageItemComponent,
-    UsersListPaginationComponent
   ],
   exports: [UsersListComponent]
 })
