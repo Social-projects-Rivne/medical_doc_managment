@@ -7,8 +7,7 @@ import UserModel from '../../models/usermodel'
 @Component({
   moduleId: module.id,
   selector: '[item]',
-  templateUrl: 'views/item.component.html',
-  styleUrls: ['views/item.component.css'],
+  templateUrl: 'views/item.component.html'
 })
 
 export default class ItemComponent {

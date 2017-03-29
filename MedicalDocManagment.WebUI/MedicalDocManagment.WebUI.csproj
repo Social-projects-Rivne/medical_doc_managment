@@ -163,16 +163,10 @@
     <Content Include="app\user-add\views\user-add.component.html" />
     <Content Include="app\users-list-paginate\users-list-paginate.component.html" />
     <Content Include="app\users-list\page\views\page.component.html" />
-    <Content Include="app\users-list\views\users-list.component.css" />
     <Content Include="app\views\app.component.html" />
     <Content Include="app\users-list\page\views\item-actionlist.component.html" />
-    <Content Include="app\users-list\page\views\item.component.css" />
     <Content Include="app\users-list\page\views\item.component.html" />
-    <Content Include="app\users-list\page\views\page.component.css" />
     <Content Include="app\users-list\views\users-list.component.html" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />

@@ -10,7 +10,6 @@ import UsersModel from '../models/usersmodel';
   moduleId: module.id,
   selector: 'usersList',
   templateUrl: 'views/users-list.component.html',
-  styleUrls: ['views/users-list.component.css'],
   providers: [HttpFacade]
 })
 
