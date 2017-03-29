@@ -22,7 +22,8 @@
             // остальные пакеты
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-            'ng2-pagination': 'dist/lib/npmlibs/ng2-pagination/dist'
+            'ng2-pagination': 'dist/lib/npmlibs/ng2-pagination/dist',
+            'angular2-notifications': 'node_modules/angular2-notifications'
         },
         // пакеты, которые указывают загрузчику System, как загружать файлы без имени и расширения
         packages: {
@@ -33,7 +34,8 @@
             rxjs: {
                 defaultExtension: 'js'
             },
-            'ng2-pagination': { main: 'ng2-pagination.js', defaultExtension: 'js' }
+            'ng2-pagination': { main: 'ng2-pagination.js', defaultExtension: 'js' },
+            'angular2-notifications': { main: 'components.js', defaultExtension: 'js' }
         }
     });
     if (global.filterSystemConfig) { global.filterSystemConfig(config); }
