@@ -85,6 +85,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -112,10 +113,12 @@
       <DependentUpon>201703291900391_Add_constraints_for_users_table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Repositories\Abstract\IGenericRepository.cs" />
-    <Compile Include="Repositories\Abstract\IPositionRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IGenericRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IPositionRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Repositories\PositionRepository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="UsersContext.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
