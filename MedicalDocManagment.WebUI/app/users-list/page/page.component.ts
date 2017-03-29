@@ -8,6 +8,7 @@ import UsersModel from '../../models/usersmodel';
   moduleId: module.id,
   selector: 'page',
   templateUrl: 'views/page.component.html',
+  styleUrls: ['views/page.component.css']
 })
 
 export default class PageComponent {
