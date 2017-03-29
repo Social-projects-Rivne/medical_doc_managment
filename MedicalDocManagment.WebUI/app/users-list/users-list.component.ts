@@ -40,11 +40,11 @@ export class UsersListComponent {
   getPage(page: number, pageSize: number) {
       this.users = this._httpFacade.getUsersListPaged(page, pageSize)
                        .do(data => {
-                           this.page = data.PageNumber;
-                           this.pageSize = data.PageSize;
-                           this.total = data.TotalRecordCount;
+                           this.page = data.pageNumber;
+                           this.pageSize = data.pageSize;
+                           this.total = data.totalRecordCount;
                        })
-                       .map(data => { return data.Users;});
+                       .map(data => { return data.users;});
   }
 }
 
