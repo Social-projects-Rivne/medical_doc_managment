@@ -107,6 +107,10 @@
     <Compile Include="Migrations\201703261622066_Add_constraint_for_position_name.Designer.cs">
       <DependentUpon>201703261622066_Add_constraint_for_position_name.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703291900391_Add_constraints_for_users_table.cs" />
+    <Compile Include="Migrations\201703291900391_Add_constraints_for_users_table.Designer.cs">
+      <DependentUpon>201703291900391_Add_constraints_for_users_table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Abstract\IGenericRepository.cs" />
     <Compile Include="Repositories\Abstract\IPositionRepository.cs" />
@@ -131,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703261622066_Add_constraint_for_position_name.resx">
       <DependentUpon>201703261622066_Add_constraint_for_position_name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703291900391_Add_constraints_for_users_table.resx">
+      <DependentUpon>201703291900391_Add_constraints_for_users_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

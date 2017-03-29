@@ -23,6 +23,7 @@ namespace MedicalDocManagment.UsersDAL.Initializer
                 user.Position = new Position { Name = InitializerHelpers.GeneratePositionName(positionCounter) };
                 user.UserName = InitializerHelpers.GenerateUserName(userCounter);
                 user.Email = InitializerHelpers.GenerateEmail(userCounter);
+
                 context.Users.Add(user);
 
                 userCounter++;
