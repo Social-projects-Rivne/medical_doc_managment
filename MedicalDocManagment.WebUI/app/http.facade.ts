@@ -12,6 +12,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+import UserModel from './models/usermodel';
 import UsersModel from './models/usersmodel';
 import PagedResponseModel from './models/paged-response-model';
 
@@ -21,6 +22,12 @@ export class HttpFacade {
 
   constructor(http: Http) {
     this._http = http;
+  }
+
+  deleteUser(user: UserModel): Observable<boolean> {
+    return this._http.delete('/api/Admin/DeleteUser?id=' + user.id)
+                     .map((resp: Response) => { return resp.ok; })
+                     .catch((error: any) => { return Observable.throw(error); });
   }
 
   getUsersList(): Observable<UsersModel> {

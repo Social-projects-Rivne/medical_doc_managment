@@ -1,7 +1,3 @@
-﻿/**
- * @fileoverview This file defines UsersListComponent — component, which implements users list feature.
- * @author andriy_katsubo@ukr.net (Andriy Katsubo)
- */
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -18,9 +14,6 @@ import UsersModel from '../models/usersmodel';
   providers: [HttpFacade]
 })
 
-/**
- * Class, which implements users list feature.
- */
 export class UsersListComponent {
   users: Observable<UsersModel>;
   page: number = 1;
@@ -32,6 +25,11 @@ export class UsersListComponent {
   constructor(httpFacade: HttpFacade) {
     this._httpFacade = httpFacade;
   }
+
+  updateUsersList(): void {
+    this.users = this._httpFacade.getUsersList();
+  }
+
   ngOnInit() {
       this.getPage(1,this.pageSize);
   }

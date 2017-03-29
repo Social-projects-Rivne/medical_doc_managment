@@ -2,7 +2,7 @@
 import RoleModel from './rolemodel';
 
 export default class UserModel {
-  id: number;
+  id: string;
   username: string;
   email: string;
   avatar: string;
