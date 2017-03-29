@@ -18,34 +18,35 @@ import PagedResponseModel from './models/paged-response-model';
 
 @Injectable()
 export class HttpFacade {
-  private _http: Http;
+    private _http: Http;
 
-  constructor(http: Http) {
-    this._http = http;
-  }
+    constructor(http: Http) {
+        this._http = http;
+    }
 
-  deleteUser(user: UserModel): Observable<boolean> {
-    return this._http.delete('/api/Admin/DeleteUser?id=' + user.id)
-                     .map((resp: Response) => { return resp.ok; })
-                     .catch((error: any) => { return Observable.throw(error); });
-  }
+    deleteUser(user: UserModel): Observable<boolean> {
+        return this._http.delete('/api/Admin/DeleteUser?id=' + user.id)
+                         .map((resp: Response) => { return resp.ok; })
+                         .catch((error: any) => { return Observable.throw(error); });
+    }
 
-  getUsersList(): Observable<UsersModel> {
-    return this._http.get('/api/Admin/GetUsers')
-                     .map((resp: Response) => { return new UsersModel(resp.json()); } )
-                     .catch((error: any) => { return Observable.throw(error); });
-  }
-  getUsersListPaged(page: number, pageSize: number): Observable<PagedResponseModel> {
-      return this._http.get("api/admin/getpaged?pageNumber=" + page + "&pageSize=" + pageSize)
-                       .map((resp: Response) => {
-                           let pagedResponse: PagedResponseModel = new PagedResponseModel();
-                           pagedResponse.PageCount = resp.json().Paging.PageCount;
-                           pagedResponse.PageNumber = resp.json().Paging.PageNumber;
-                           pagedResponse.PageSize = resp.json().Paging.PageSize;
-                           pagedResponse.TotalRecordCount = resp.json().Paging.TotalRecordCount;
-                           pagedResponse.Users = new UsersModel(resp.json().Data);
-                           return pagedResponse;
-                       })
-                       .catch((error: any) => { return Observable.throw(error); });
+    getUsersList(): Observable<UsersModel> {
+        return this._http.get('/api/Admin/GetUsers')
+                   .map((resp: Response) => { return new UsersModel(resp.json()); })
+                   .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    getUsersListPaged(page: number, pageSize: number): Observable<PagedResponseModel> {
+        return this._http.get("api/admin/getpaged?pageNumber=" + page + "&pageSize=" + pageSize)
+                         .map((resp: Response) => {
+                             let pagedResponse: PagedResponseModel = new PagedResponseModel();
+                             pagedResponse.pageCount = resp.json().paging.pageCount;
+                             pagedResponse.pageNumber = resp.json().paging.pageNumber;
+                             pagedResponse.pageSize = resp.json().paging.pageSize;
+                             pagedResponse.totalRecordCount = resp.json().paging.totalRecordCount;
+                             pagedResponse.users = new UsersModel(resp.json().data);
+                             return pagedResponse;
+                         })
+                         .catch((error: any) => { return Observable.throw(error); });
     }
 }
