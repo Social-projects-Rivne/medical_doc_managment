@@ -1,7 +1,3 @@
-﻿/**
- * @fileoverview This file defines UsersListComponent — component, which implements users list feature.
- * @author andriy_katsubo@ukr.net (Andriy Katsubo)
- */
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -19,16 +15,12 @@ import UserModel from '../models/usersmodel';
     providers: [HttpFacade]
 })
 
-/**
- * Class, which implements users list feature.
- */
 export class UsersListComponent {
     users: Observable<UsersModel>;
     userForEdit: UserModel;
     page: number = 1;
     pageSize: number = 5;
     total: number;
-
     private _httpFacade: HttpFacade;
 
     constructor(httpFacade: HttpFacade) {
@@ -49,15 +41,18 @@ export class UsersListComponent {
         this.getPage(page, this.pageSize);
     }
 
-    getPage(page: number, pageSize: number) {
-        this.users = this._httpFacade.getUsersListPaged(page, pageSize)
-            .do(data => {
-                this.page = data.PageNumber;
-                this.pageSize = data.PageSize;
-                this.total = data.TotalRecordCount;
-            })
-            .map(data => { return data.Users; });
+    updateUsersList(): void {
+        this.users = this._httpFacade.getUsersList();
     }
 
+    getPage(page: number, pageSize: number) {
+        this.users = this._httpFacade.getUsersListPaged(page, pageSize)
+                            .do(data => {
+                                this.page = data.pageNumber;
+                                this.pageSize = data.pageSize;
+                                this.total = data.totalRecordCount;
+                            })
+                            .map(data => { return data.users; });
+    }
 }
 

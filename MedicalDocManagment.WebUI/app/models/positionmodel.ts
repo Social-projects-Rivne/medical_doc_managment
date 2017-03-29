@@ -4,8 +4,8 @@
 
     constructor(jsonobject?) {
         if (jsonobject) {
-            this.id = jsonobject.Id;
-            this.name = jsonobject.Name;
+            this.id = jsonobject.positionId;
+            this.name = jsonobject.name;
         }
         else {
             this.id = null;

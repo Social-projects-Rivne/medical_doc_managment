@@ -159,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\.gitignore" />
+    <Content Include="app\users-list\page\views\item-actionlist-delete.component.html" />
     <Content Include="app\user-add\views\user-add.component.html" />
     <Content Include="app\users-list-paginate\users-list-paginate.component.html" />
     <Content Include="app\users-list\page\item-actionlist-edit\button\button.component.html" />
@@ -237,7 +238,6 @@
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\http.facade.ts" />
     <TypeScriptCompile Include="app\main.ts" />
-    <TypeScriptCompile Include="app\models\paged-response-model.ts" />
     <TypeScriptCompile Include="app\models\positionmodel.ts" />
     <TypeScriptCompile Include="app\models\rolemodel.ts" />
     <TypeScriptCompile Include="app\models\usermodel.ts" />
@@ -245,6 +245,7 @@
     <TypeScriptCompile Include="app\user-add\user.service.ts" />
     <TypeScriptCompile Include="app\user-add\user-add.component.ts" />
     <TypeScriptCompile Include="app\user-add\user.ts" />
+    <TypeScriptCompile Include="app\users-list\page\item-actionlist-delete.component.ts" />
     <TypeScriptCompile Include="app\users-list-paginate\users-list-paginate.component.ts" />
     <TypeScriptCompile Include="app\users-list\page\item-actionlist-edit\button\button.component.ts" />
     <TypeScriptCompile Include="app\users-list\users-list.module.ts" />

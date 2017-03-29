@@ -11,9 +11,6 @@ import UserModel from '../../models/usermodel'
     styleUrls: ['views/item.component.css'],
 })
 
-/**
- * Class, which implements item from list of users.
- */
 export default class ItemComponent {
     /**
      * Property which receives data about user from users list.
@@ -22,9 +19,7 @@ export default class ItemComponent {
     @Input() user: UserModel;
     @Output() onPageEdit = new EventEmitter<string>();
 
-    constructor() {
-        //this.user = new UserModel(null);
-    }
+    constructor() { }
 
     onItemEdit(id: string) {
         this.onPageEdit.emit(id);

@@ -1,4 +1,4 @@
 ﻿export default class RoleModel {
-  id: number;
-  role: string;
+    id: number;
+    role: string;
 }

@@ -7,6 +7,7 @@ import { UsersListComponent } from './users-list.component';
 import UsersListPageComponent from './page/page.component';
 import ItemActionListEditButton from './page/item-actionlist-edit/button/button.component';
 import ItemActionListEditModal from './page/item-actionlist-edit/modal/modal.component';
+import UsersListPageItemActionListDeleteComponent from './page/item-actionlist-delete.component';
 import UsersListPageItemActionListComponent from './page/item-actionlist.component';
 import UsersListPageItemComponent from './page/item.component';
 import { Ng2PaginationModule } from 'ng2-pagination';
@@ -19,7 +20,8 @@ import { Ng2PaginationModule } from 'ng2-pagination';
         ItemActionListEditButton,
         ItemActionListEditModal,
         UsersListPageItemActionListComponent,
-        UsersListPageItemComponent
+        UsersListPageItemComponent,
+        UsersListPageItemActionListDeleteComponent,
     ],
     exports: [UsersListComponent]
 })
