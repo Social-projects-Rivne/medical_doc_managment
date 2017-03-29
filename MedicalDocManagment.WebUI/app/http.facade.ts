@@ -14,6 +14,7 @@ import 'rxjs/add/observable/throw';
 
 import UserModel from './models/usermodel';
 import UsersModel from './models/usersmodel';
+import PositionModel from './models/positionmodel';
 import PagedResponseModel from './models/paged-response-model';
 
 @Injectable()
@@ -24,6 +25,27 @@ export class HttpFacade {
         this._http = http;
     }
 
+    updateUser(user: UserModel) {
+        const jsonBody = JSON.stringify(user);
+        let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+
+        return this._http.put('/api/admin/edituser/' + user.id, jsonBody, { headers })
+                         .map((resp: Response) => { return resp; })
+                         .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    getPositionsList(): Observable<PositionModel[]> {
+        return this._http.get('/api/Admin/GetPositions')
+                         .map((resp: Response) => resp.json())
+                         .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    getUserById(id: string): Observable<UserModel> {
+        return this._http.get('/api/admin/getuser?id=' + id)
+                         .map((resp: Response) => { return new UserModel(resp.json()); })
+                         .catch((error: any) => { return Observable.throw(error); })
+    }
+
     deleteUser(user: UserModel): Observable<boolean> {
         return this._http.delete('/api/Admin/DeleteUser?id=' + user.id)
                          .map((resp: Response) => { return resp.ok; })
@@ -32,8 +54,8 @@ export class HttpFacade {
 
     getUsersList(): Observable<UsersModel> {
         return this._http.get('/api/Admin/GetUsers')
-                   .map((resp: Response) => { return new UsersModel(resp.json()); })
-                   .catch((error: any) => { return Observable.throw(error); });
+                         .map((resp: Response) => { return new UsersModel(resp.json()); })
+                         .catch((error: any) => { return Observable.throw(error); });
     }
 
     getUsersListPaged(page: number, pageSize: number): Observable<PagedResponseModel> {

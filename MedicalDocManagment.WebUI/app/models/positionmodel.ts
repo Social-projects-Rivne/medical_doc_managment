@@ -1,5 +1,5 @@
 ﻿export default class PositionModel {
-    id: string;
+    id: number;
     name: string;
 
     constructor(jsonobject?) {

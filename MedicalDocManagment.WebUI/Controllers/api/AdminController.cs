@@ -14,9 +14,9 @@ using MedicalDocManagment.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Models;
 using System.Collections.Generic;
 using MedicalDocManagment.UsersDAL.Entities;
+using System.Text;
 using MedicalDocManagment.UsersDAL.Repositories;
 using MedicalDocManagment.UsersDAL.Repositories.Abstract;
-
 
 namespace MedicalDocManagment.WebUI.Controllers.Api
 {
@@ -88,23 +88,18 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
 
 
         [HttpPut]
-        public async Task<IHttpActionResult> EditUser(UserEditModel userEditModel)
+        public async Task<HttpResponseMessage> EditUser(string id, UserEditModel userEditModel)
         {
             var user = await _usersManager.FindByIdAsync(userEditModel.Id);
-            Position newPosition = null;
 
             if (user == null)
             {
-                return NotFound();
+                return Request.CreateResponse(HttpStatusCode.NotFound, $"User wasn't found with ID {id}.");
             }
 
-            //newPosition = _GetPositionById(userEditModel.Position.PositionId);
-
-            if (newPosition != null)
-            {
-                user.Position = newPosition;
-            }
-
+            user.PositionId = userEditModel.PositionId;
+            user.UserName = userEditModel.UserName;
+            user.Email = userEditModel.Email;
             user.FirstName = userEditModel.FirstName;
             user.LastName = userEditModel.LastName;
             user.SecondName = userEditModel.SecondName;
@@ -112,7 +107,37 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
 
             var result = await _usersManager.UpdateAsync(user);
 
-            return Ok(result);
+            var identityErrors = _getErrorIdentityResult(result);
+
+            if (identityErrors != null)
+            {
+                return identityErrors;
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        private HttpResponseMessage _getErrorIdentityResult(IdentityResult result)
+        {
+
+            if (result == null)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Error occured on the server");
+            }
+
+            if (result.Errors.Any())
+            {
+                StringBuilder errorsReport = new StringBuilder();
+
+                foreach (var error in result.Errors)
+                {
+                    errorsReport.Append(error + "; ");
+                }
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, errorsReport.ToString());
+            }
+
+            return null;
         }
 
         [HttpDelete]
@@ -170,7 +195,7 @@ namespace MedicalDocManagment.WebUI.Controllers.Api
                 return NotFound();
             }
 
-            return  Ok(users);
+            return Ok(users);
         }
 
         [HttpGet]

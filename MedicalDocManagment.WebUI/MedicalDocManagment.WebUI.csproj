@@ -162,6 +162,8 @@
     <Content Include="app\users-list\page\views\item-actionlist-delete.component.html" />
     <Content Include="app\user-add\views\user-add.component.html" />
     <Content Include="app\users-list-paginate\users-list-paginate.component.html" />
+    <Content Include="app\users-list\page\item-actionlist-edit\button\button.component.html" />
+    <Content Include="app\users-list\page\item-actionlist-edit\modal\modal.component.html" />
     <Content Include="app\users-list\page\views\page.component.html" />
     <Content Include="app\users-list\views\users-list.component.css" />
     <Content Include="app\views\app.component.html" />
@@ -187,6 +189,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -244,6 +247,7 @@
     <TypeScriptCompile Include="app\user-add\user.ts" />
     <TypeScriptCompile Include="app\users-list\page\item-actionlist-delete.component.ts" />
     <TypeScriptCompile Include="app\users-list-paginate\users-list-paginate.component.ts" />
+    <TypeScriptCompile Include="app\users-list\page\item-actionlist-edit\button\button.component.ts" />
     <TypeScriptCompile Include="app\users-list\users-list.module.ts" />
     <TypeScriptCompile Include="app\users-list\page\item-actionlist.component.ts" />
     <TypeScriptCompile Include="app\users-list\page\item.component.ts" />
