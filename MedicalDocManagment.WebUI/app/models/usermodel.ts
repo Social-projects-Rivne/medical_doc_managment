@@ -3,7 +3,7 @@ import RoleModel from './rolemodel';
 
 export default class UserModel {
   id: string;
-  username: string;
+  userName: string;
   email: string;
   avatar: string;
   position: PositionModel;
@@ -14,7 +14,7 @@ export default class UserModel {
     if (jsonobject)
     {
       this.id = jsonobject.Id;
-      this.username = jsonobject.UserName;
+      this.userName = jsonobject.UserName;
       this.email = jsonobject.Email;
       this.avatar = jsonobject.AserName;
       this.position = new PositionModel(jsonobject.Position);
@@ -24,7 +24,7 @@ export default class UserModel {
     else
     {
       this.id = null;
-      this.username = null;
+      this.userName = null;
       this.email = null;
       this.avatar = null;
       this.position = null;
