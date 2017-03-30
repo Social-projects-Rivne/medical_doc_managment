@@ -1,5 +1,5 @@
 ﻿using MedicalDocManagment.UsersDAL.Entities;
-using MedicalDocManagment.UsersDAL.Repositories.Abstract;
+using MedicalDocManagment.UsersDAL.Repositories.Interfaces;
 
 namespace MedicalDocManagment.UsersDAL.Repositories
 {

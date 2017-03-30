@@ -4,8 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
-
-using MedicalDocManagment.UsersDAL.Repositories.Abstract;
+using MedicalDocManagment.UsersDAL.Repositories.Interfaces;
 
 namespace MedicalDocManagment.UsersDAL.Repositories
 {

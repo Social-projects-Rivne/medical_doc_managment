@@ -5,21 +5,25 @@ import { HttpModule } from '@angular/http';
 
 import { UsersListComponent } from './users-list.component';
 import UsersListPageComponent from './page/page.component';
+import ItemActionListEditButton from './page/item-actionlist-edit/button/button.component';
+import ItemActionListEditModal from './page/item-actionlist-edit/modal/modal.component';
 import UsersListPageItemActionListDeleteComponent from './page/item-actionlist-delete.component';
 import UsersListPageItemActionListComponent from './page/item-actionlist.component';
 import UsersListPageItemComponent from './page/item.component';
-import {Ng2PaginationModule} from 'ng2-pagination';
+import { Ng2PaginationModule } from 'ng2-pagination';
 
 @NgModule({
     imports: [CommonModule, FormsModule, HttpModule, Ng2PaginationModule],
-  declarations: [
-    UsersListComponent,
-    UsersListPageComponent,
-    UsersListPageItemActionListDeleteComponent,
-    UsersListPageItemActionListComponent,
-    UsersListPageItemComponent,
-  ],
-  exports: [UsersListComponent]
+    declarations: [
+        UsersListComponent,
+        UsersListPageComponent,
+        ItemActionListEditButton,
+        ItemActionListEditModal,
+        UsersListPageItemActionListComponent,
+        UsersListPageItemComponent,
+        UsersListPageItemActionListDeleteComponent,
+    ],
+    exports: [UsersListComponent]
 })
 export class UsersListModule {
 }
