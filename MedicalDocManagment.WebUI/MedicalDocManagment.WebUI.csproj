@@ -164,18 +164,21 @@
     <Content Include="app\users-list-paginate\users-list-paginate.component.html" />
     <Content Include="app\users-list\page\item-actionlist-edit\button\button.component.html" />
     <Content Include="app\users-list\page\item-actionlist-edit\modal\modal.component.html" />
+    <Content Include="app\users-list\page\views\item.component.css" />
+    <Content Include="app\users-list\page\views\page.component.css" />
+    <Content Include="app\users-list\page\item-actionlist-edit\button\button.component.html" />
+    <Content Include="app\users-list\page\item-actionlist-edit\modal\modal.component.html" />
     <Content Include="app\users-list\page\views\page.component.html" />
     <Content Include="app\users-list\views\users-list-without-pagination.component.html" />
     <Content Include="app\users-list\views\users-list.component.css" />
     <Content Include="app\views\app.component.html" />
     <Content Include="app\users-list\page\views\item-actionlist.component.html" />
-    <Content Include="app\users-list\page\views\item.component.css" />
     <Content Include="app\users-list\page\views\item.component.html" />
+    <Content Include="app\users-list\page\views\page.component.css" />
     <Content Include="app\users-list\page\views\page.component.css" />
     <Content Include="app\users-list\views\users-list.component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
@@ -188,11 +191,13 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Content\Site.css" />
     <Content Include="systemjs.config.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\models\user-search.model.ts" />
+    <TypeScriptCompile Include="app\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
     <TypeScriptCompile Include="app\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />

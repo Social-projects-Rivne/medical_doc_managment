@@ -70,8 +70,8 @@ export class UsersSearchFormComponent {
   private _searchByPositionName(): void {
     this._httpFacade.searchUsersByPositionName(this._userToSearchFor.positionName)
                     .subscribe((data: UsersModel) => {
-                      this._searchResult = Observable.of(data);
-                      this._isSearching = false;
+                        this._searchResult = data ? Observable.of(data) : null;
+                        this._isSearching = false;
                     },
                                (error:any) => { this._handleSearchError(error); });
   }
@@ -79,8 +79,8 @@ export class UsersSearchFormComponent {
   private _searchByStatus(): void {
     this._httpFacade.searchUsersByStatus(this._userToSearchFor.isActive)
                     .subscribe((data: UsersModel) => {
-                      this._searchResult = Observable.of(data);
-                      this._isSearching = false;
+                        this._searchResult = data ? Observable.of(data) : null;
+                        this._isSearching = false;
                     },
                                (error: any) => { this._handleSearchError(error); });
   }

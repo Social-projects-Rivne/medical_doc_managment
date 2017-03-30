@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { HttpFacade } from '../http.facade';
@@ -16,7 +16,7 @@ import UserModel from '../models/usersmodel';
 })
 
 export class UsersListComponent {
-    @Input() users: Observable<UsersModel>;
+    users: Observable<UsersModel>;
     userForEdit: UserModel;
     page: number = 1;
     pageSize: number = 5;
