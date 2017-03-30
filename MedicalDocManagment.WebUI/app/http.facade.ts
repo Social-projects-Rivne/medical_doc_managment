@@ -1,9 +1,4 @@
-﻿/**
- * @fileoverview This file defines HttpFacade — component, which provides interaction between
- *     front-end side and back-end side via HTTP requests.   
- * @author Rv-023.Net
- */
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Response, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -30,8 +25,59 @@ export class HttpFacade {
         let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
 
         return this._http.put('/api/admin/edituser/' + user.id, jsonBody, { headers })
-                         .map((resp: Response) => { return resp; })
-                         .catch((error: any) => { return Observable.throw(error); });
+            .map((resp: Response) => { return resp; })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    searchUsersByPositionName(positionName: string): Observable<UsersModel> {
+      return this._http.get('/api/Admin/GetUsersByPosition?positionName=' + positionName)
+                       .map((resp: Response) => {
+                           return ((resp.text()) ? new UsersModel(resp.json()) : null);
+                       })
+                       .catch((error: any) => {
+                           if (error instanceof Response) {
+                               if (error.status == 404) {
+                                   return Observable.of(null);
+                               }
+                           }
+                           else {
+                               return Observable.throw(error);
+                           }
+                       });
+    }
+
+    searchUsersByStatus(status: boolean): Observable<UsersModel> {
+      return this._http.get('/api/Admin/GetUsersByStatus?userStatus=' + status)
+                       .map((resp: Response) => {
+                           return ((resp.text()) ? new UsersModel(resp.json()) : null);
+                       })
+                       .catch((error: any) => {
+                           if (error instanceof Response) {
+                               if (error.status == 404) {
+                                   return Observable.of(null);
+                               }
+                           }
+                           else {
+                               return Observable.throw(error);
+                           }
+                       });
+    }
+
+    searchUserByUsername(username: string): Observable<UserModel> {
+      return this._http.get('/api/Admin/GetUserByName?userName=' + username)
+                       .map((resp: Response) => {
+                           return ((resp.text()) ? new UserModel(resp.json()) : null);
+                       })
+                       .catch((error: any) => {
+                           if (error instanceof Response) {
+                               if (error.status == 404) {
+                                   return Observable.of(null);
+                               }
+                           }
+                           else {
+                               return Observable.throw(error);
+                           }
+                       });
     }
 
     getPositionsList(): Observable<PositionModel[]> {

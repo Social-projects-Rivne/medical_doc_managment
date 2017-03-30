@@ -1,18 +1,16 @@
-﻿/**
- * @fileoverview This file defines AppModule — root module of front-end side of application.
- * @author Rv-023.Net
- */
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { UsersListModule } from './users-list/users-list.module';
 import { UserAddComponent } from './user-add/user-add.component';
+import { UsersListModule } from './users-list/users-list.module';
 import { UsersListPaginateComponent } from './users-list-paginate/users-list-paginate.component';
-import {Ng2PaginationModule} from 'ng2-pagination';
-import {SimpleNotificationsModule, PushNotificationsModule} from 'angular2-notifications';
+import { UsersSearchFormComponent } from './users-search/users-search-form.component';
+import { Ng2PaginationModule } from 'ng2-pagination';
+import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -26,7 +24,8 @@ import {SimpleNotificationsModule, PushNotificationsModule} from 'angular2-notif
   declarations: [
     AppComponent,
     UserAddComponent,
-    UsersListPaginateComponent
+    UsersListPaginateComponent,
+    UsersSearchFormComponent
   ],
   bootstrap: [AppComponent]
 })
