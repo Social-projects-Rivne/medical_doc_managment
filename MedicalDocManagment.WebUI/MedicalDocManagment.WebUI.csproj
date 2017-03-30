@@ -45,6 +45,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -155,18 +159,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\.gitignore" />
+    <Content Include="app\users-list\page\views\item-actionlist-delete.component.html" />
     <Content Include="app\user-add\views\user-add.component.html" />
     <Content Include="app\users-list-paginate\users-list-paginate.component.html" />
+    <Content Include="app\users-list\page\item-actionlist-edit\button\button.component.html" />
+    <Content Include="app\users-list\page\item-actionlist-edit\modal\modal.component.html" />
     <Content Include="app\users-list\page\views\page.component.html" />
+    <Content Include="app\users-list\views\users-list-without-pagination.component.html" />
     <Content Include="app\users-list\views\users-list.component.css" />
     <Content Include="app\views\app.component.html" />
     <Content Include="app\users-list\page\views\item-actionlist.component.html" />
     <Content Include="app\users-list\page\views\item.component.css" />
     <Content Include="app\users-list\page\views\item.component.html" />
-    <Content Include="app\users-list\views\pagination.component.html" />
     <Content Include="app\users-list\page\views\page.component.css" />
     <Content Include="app\users-list\views\users-list.component.html" />
-    <Content Include="app\views\users-search-form.component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -176,6 +182,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="package.json" />
+    <Content Include="app\users-search\views\users-search-form.component.html" />
+    <Content Include="app\users-list\page\views\page-without-pagination.component.html" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -184,21 +192,28 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\models\user-search.model.ts" />
+    <TypeScriptCompile Include="app\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\Api\AdminController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\PagedResultHelper.cs" />
     <Compile Include="Helpers\PagingInfo.cs" />
     <Compile Include="Helpers\UserHelpers.cs" />
+    <Compile Include="Models\PositionModel.cs" />
     <Compile Include="Models\UserEditModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\Validators\UserEditModelValidator.cs" />
     <Compile Include="Models\Validators\UserModelValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <TypeScriptCompile Include="app\users-list\page\page-without-pagination.component.ts" />
+    <TypeScriptCompile Include="app\users-list\users-list-without-pagination.component.ts" />
+    <TypeScriptCompile Include="app\users-search\users-search-form.component.ts" />
+    <TypeScriptCompile Include="app\users-search\users-search-options.enum.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -229,25 +244,23 @@
   <ItemGroup>
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
-    <TypeScriptCompile Include="app\models\user-search.model.ts" />
+    <TypeScriptCompile Include="app\http.facade.ts" />
     <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\models\positionmodel.ts" />
+    <TypeScriptCompile Include="app\models\rolemodel.ts" />
+    <TypeScriptCompile Include="app\models\usermodel.ts" />
+    <TypeScriptCompile Include="app\models\usersmodel.ts" />
     <TypeScriptCompile Include="app\user-add\user.service.ts" />
-    <TypeScriptCompile Include="app\admin.service.ts" />
-    <TypeScriptCompile Include="app\models\position.model.ts" />
-    <TypeScriptCompile Include="app\models\role.model.ts" />
-    <TypeScriptCompile Include="app\models\user.model.ts" />
-    <TypeScriptCompile Include="app\models\users.model.ts" />
     <TypeScriptCompile Include="app\user-add\user-add.component.ts" />
     <TypeScriptCompile Include="app\user-add\user.ts" />
+    <TypeScriptCompile Include="app\users-list\page\item-actionlist-delete.component.ts" />
     <TypeScriptCompile Include="app\users-list-paginate\users-list-paginate.component.ts" />
+    <TypeScriptCompile Include="app\users-list\page\item-actionlist-edit\button\button.component.ts" />
     <TypeScriptCompile Include="app\users-list\users-list.module.ts" />
     <TypeScriptCompile Include="app\users-list\page\item-actionlist.component.ts" />
     <TypeScriptCompile Include="app\users-list\page\item.component.ts" />
     <TypeScriptCompile Include="app\users-list\page\page.component.ts" />
-    <TypeScriptCompile Include="app\users-list\pagination.component.ts" />
     <TypeScriptCompile Include="app\users-list\users-list.component.ts" />
-    <TypeScriptCompile Include="app\users-search-form.component.ts" />
-    <TypeScriptCompile Include="app\users-search-options.enum.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -2,7 +2,7 @@
 import {Http} from '@angular/http';
 import {Response, Headers, URLSearchParams} from '@angular/http';
 import {User} from './user';
-import PositionModel from '../models/position.model';
+import PositionModel from '../models/positionmodel';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';

@@ -1,18 +1,20 @@
 ﻿import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 import { Response } from '@angular/http';
+import 'rxjs/add/observable/of';
 
-import { AdminService } from './admin.service';
-import UserModel from './models/user.model';
-import UsersModel from './models/users.model';
-import UserSearchModel from './models/user-search.model';
+import { HttpFacade } from '../http.facade';
+import UserModel from '../models/usermodel';
+import UsersModel from '../models/usersmodel';
+import UserSearchModel from '../models/user-search.model';
 import { UsersSearchOptionsEnum } from './users-search-options.enum';
 
 @Component({
   moduleId: module.id,
-  selector: 'users-search-Form',
+  selector: 'users-search-form',
   templateUrl: 'views/users-search-form.component.html',
-  providers: [AdminService]
+  providers: [HttpFacade]
 })
 
 export class UsersSearchFormComponent {
@@ -22,14 +24,14 @@ export class UsersSearchFormComponent {
   private _isErrorOnSearching: boolean;
   private _isNotFound: boolean;
   private _isSearching: boolean;
-  private _adminService: AdminService;
+  private _httpFacade: HttpFacade;
   private _lastErrorMessage: string;
   private _searchOption: UsersSearchOptionsEnum;
-  private _searchResult: UsersModel;
+  private _searchResult: Observable<UsersModel>;
   private _triedToSearch: boolean;
   private  _userToSearchFor: UserSearchModel;
 
-  constructor(adminService: AdminService) {
+  constructor(httpFacade: HttpFacade) {
     this._isErrorOnSearching = false;
     this._isSearching = false;
     this._lastErrorMessage = '';
@@ -38,7 +40,7 @@ export class UsersSearchFormComponent {
     this._triedToSearch = false;
     this._userToSearchFor = new UserSearchModel();
 
-    this._adminService = adminService;
+    this._httpFacade = httpFacade;
   }
 
   search(): void {
@@ -66,33 +68,34 @@ export class UsersSearchFormComponent {
   }
 
   private _searchByPositionName(): void {
-    this._adminService.searchUsersByPositionName(this._userToSearchFor.positionName)
-                      .subscribe((data: UsersModel) => {
-                        this._searchResult = data;
-                        this._isSearching = false;
-                      },
-                                 (error:any) => { this._handleSearchError(error); });
+    this._httpFacade.searchUsersByPositionName(this._userToSearchFor.positionName)
+                    .subscribe((data: UsersModel) => {
+                      this._searchResult = Observable.of(data);
+                      this._isSearching = false;
+                    },
+                               (error:any) => { this._handleSearchError(error); });
   }
 
   private _searchByStatus(): void {
-    this._adminService.searchUsersByStatus(this._userToSearchFor.isActive)
-                      .subscribe((data: UsersModel) => {
-                        this._searchResult = data;
-                        this._isSearching = false;
-                      },
-                                 (error: any) => { this._handleSearchError(error); });
+    this._httpFacade.searchUsersByStatus(this._userToSearchFor.isActive)
+                    .subscribe((data: UsersModel) => {
+                      this._searchResult = Observable.of(data);
+                      this._isSearching = false;
+                    },
+                               (error: any) => { this._handleSearchError(error); });
   }
 
   private _searchByUsername(): void {
-    this._adminService.searchUserByUsername(this._userToSearchFor.username)
-                      .subscribe((result: UserModel) => {
-                        if (result) {
-                          this._searchResult = new UsersModel(null);
-                          this._searchResult.push(result);
-                        }
-                        this._isSearching = false;
-                      },
-                                 (error: any) => { this._handleSearchError(error); });
+    this._httpFacade.searchUserByUsername(this._userToSearchFor.username)
+                    .subscribe((result: UserModel) => {
+                      if (result) {
+                        let users: UsersModel = new UsersModel();
+                        users.push(result);
+                        this._searchResult = Observable.of(users);
+                      }
+                      this._isSearching = false;
+                    },
+                               (error: any) => { this._handleSearchError(error); });
   }
 }
 

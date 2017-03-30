@@ -6,9 +6,10 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { UserAddComponent } from './user-add/user-add.component';
 import { UsersListModule } from './users-list/users-list.module';
-import { UsersSearchFormComponent } from './users-search-form.component';
 import { UsersListPaginateComponent } from './users-list-paginate/users-list-paginate.component';
-import {Ng2PaginationModule} from 'ng2-pagination';
+import { UsersSearchFormComponent } from './users-search/users-search-form.component';
+import { Ng2PaginationModule } from 'ng2-pagination';
+import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
 
 @NgModule({
   imports: [
@@ -16,13 +17,15 @@ import {Ng2PaginationModule} from 'ng2-pagination';
     FormsModule,
     HttpModule,
     UsersListModule,
-    Ng2PaginationModule
+    Ng2PaginationModule,
+    SimpleNotificationsModule,
+    PushNotificationsModule
   ],
   declarations: [
     AppComponent,
     UserAddComponent,
-    UsersSearchFormComponent,
-    UsersListPaginateComponent
+    UsersListPaginateComponent,
+    UsersSearchFormComponent
   ],
   bootstrap: [AppComponent]
 })

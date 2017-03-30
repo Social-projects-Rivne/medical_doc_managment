@@ -2,21 +2,21 @@
 <form class="form" (ngSubmit)="search(searchForm)">
     <div class="form-group">
         <label class="radio-inline" for="searchByName">
-            <input type="radio" name="optradio" id="searchByUsername" 
+            <input type="radio" name="optradio" id="searchByUsername"
                    [value]="UsersSearchOptionsEnum.byUsername"
                    [(ngModel)]="_searchOption" #searchByUsername="ngModel" />
             Пошук по імені користувача
         </label>
         <label class="radio-inline" for="searchByPositionName">
-            <input type="radio" name="optradio" id="searchByPositionName" 
+            <input type="radio" name="optradio" id="searchByPositionName"
                    [value]="UsersSearchOptionsEnum.byPositionName" [(ngModel)]="_searchOption"
-                   #searchByPositionName="ngModel"/>
+                   #searchByPositionName="ngModel" />
             Пошук по назві посади
         </label>
         <label class="radio-inline" for="searchByStatus">
-            <input type="radio" name="optradio" id="searchByStatus" 
+            <input type="radio" name="optradio" id="searchByStatus"
                    [value]="UsersSearchOptionsEnum.byStatus" [(ngModel)]="_searchOption"
-                   #searchByStatus="ngModel"/>
+                   #searchByStatus="ngModel" />
             Пошук по статусу
         </label>
     </div>
@@ -43,14 +43,14 @@
             </label>
         </div>
     </div>
-    <div *ngIf="!_userToSearchFor.username && !_userToSearchFor.positionName 
+    <div *ngIf="!_userToSearchFor.username && !_userToSearchFor.positionName
              && _searchOption!=UsersSearchOptionsEnum.byStatus"
          class="alert alert-danger">
         Введіть значення у поле.
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-default"
-                [disabled]="!_userToSearchFor.username && !_userToSearchFor.positionName 
+                [disabled]="!_userToSearchFor.username && !_userToSearchFor.positionName
                     && _searchOption!=UsersSearchOptionsEnum.byStatus"
                 *ngIf="!_isSearching">
             Знайти
@@ -66,11 +66,13 @@
             {{_lastErrorMessage}}
         </div>
     </div>
-    <div class="form-group" *ngIf="_triedToSearch && !_isSearching && _searchResult">
+    <div class="form-group" *ngIf="_triedToSearch && !_isSearching && !_isErrorOnSearching
+         && _searchResult">
         <h4>Результат пошуку</h4>
-        <usersList [users]="_searchResult"></usersList>
+        <users-list-without-pagination [users]="_searchResult"></users-list-without-pagination>
     </div>
-    <div class="alert alert-info" *ngIf="_triedToSearch && !_isSearching && !_searchResult ">
+    <div class="alert alert-info" *ngIf="_triedToSearch && !_isSearching  && !_isErrorOnSearching
+         && !_searchResult ">
         <h4>По Вашому запиту нічого не знайдено.</h4>
     </div>
 </form>
