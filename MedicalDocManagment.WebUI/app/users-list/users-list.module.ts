@@ -9,7 +9,7 @@ import UsersListPageComponent from './page/page.component';
 import UsersListPageWithoutPaginationComponent from './page/page-without-pagination.component';
 import ItemActionListEditButton from './page/item-actionlist-edit/button/button.component';
 import ItemActionListEditModal from './page/item-actionlist-edit/modal/modal.component';
-import UsersListPageItemActionListDeleteComponent from './page/item-actionlist-delete.component';
+import UsersListPageItemActionListDeleteComponent from './page/item-actionlist-delete/delete.component';
 import UsersListPageItemActionListComponent from './page/item-actionlist.component';
 import UsersListPageItemComponent from './page/item.component';
 import { Ng2PaginationModule } from 'ng2-pagination';

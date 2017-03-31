@@ -1,20 +1,17 @@
 ﻿import { Component, Input } from '@angular/core';
 import { Response } from '@angular/http';
 
-import UserModel from '../../models/usermodel'
-import { HttpFacade } from '../../http.facade';
+import UserModel from '../../../models/usermodel'
+import { HttpFacade } from '../../../http.facade';
 
 @Component({
   moduleId: module.id,
   selector: 'item-ActionList-Delete',
-  templateUrl: 'views/item-actionlist-delete.component.html',
+  templateUrl: 'delete.component.html',
   providers: [HttpFacade]
 })
 
-/**
- * Class, which implements list of actions on item from list of users.
- */
-export default class ItemActionListDeleteComponent {
+export default class DeleteComponent {
   @Input() user: UserModel;
 
   private _httpFacade: HttpFacade;
@@ -24,7 +21,7 @@ export default class ItemActionListDeleteComponent {
     this._httpFacade = httpFacade;
   }
 
-  clicked(): void {
+  onConfirmedDelete(): void {
     this._httpFacade.deleteUser(this.user)
                     .subscribe((result: boolean) => { 
                       if (result) this.user.isActive = false;                   
