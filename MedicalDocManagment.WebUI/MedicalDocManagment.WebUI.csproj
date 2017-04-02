@@ -216,6 +216,7 @@
     <Compile Include="Models\Validators\UserModelValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <TypeScriptCompile Include="app\users-list\page\page-without-pagination.component.ts" />
+    <TypeScriptCompile Include="app\users-list\services\item-actionlist-notification.service.ts" />
     <TypeScriptCompile Include="app\users-list\users-list-without-pagination.component.ts" />
     <TypeScriptCompile Include="app\users-search\users-search-form.component.ts" />
     <TypeScriptCompile Include="app\users-search\users-search-options.enum.ts" />
