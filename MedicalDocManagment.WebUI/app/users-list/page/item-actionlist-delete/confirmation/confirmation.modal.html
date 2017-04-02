@@ -1,0 +1,22 @@
+﻿<!-- Modal -->
+<div id="userDeleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Видалення користувача</h4>
+            </div>
+            <div class="modal-body">
+                Підтвердіть видалення користувача з іменем {{user.userName}}.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"
+                        (click)="onYes()">Так
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ні</button>
+            </div>
+        </div>
+
+    </div>
+</div>

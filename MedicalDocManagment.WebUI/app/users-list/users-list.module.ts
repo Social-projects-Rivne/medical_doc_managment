@@ -13,6 +13,9 @@ import UsersListPageItemActionListEditConfirmationModal from
     './page/item-actionlist-edit/modal/confirmation/confirmation.modal';
 import UsersListPageItemActionListDeleteComponent from './page/item-actionlist-delete.component';
 import UsersListPageItemActionListComponent from './page/item-actionlist.component';
+import UsersListPageItemActionListDeleteComponent from './page/item-actionlist-delete/delete.component';
+import UsersListPageItemActionListDeleteConfirmationModal from
+    './page/item-actionlist-delete/confirmation/confirmation.modal';
 import UsersListPageItemComponent from './page/item.component';
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
@@ -31,6 +34,7 @@ import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-not
         UsersListPageItemActionListComponent,
         UsersListPageItemComponent,
         UsersListPageItemActionListDeleteComponent,
+        UsersListPageItemActionListDeleteConfirmationModal
     ],
     exports: [UsersListComponent, UsersListWithoutPaginationComponent]
 })
