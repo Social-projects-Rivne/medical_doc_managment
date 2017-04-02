@@ -9,15 +9,20 @@ import UsersListPageComponent from './page/page.component';
 import UsersListPageWithoutPaginationComponent from './page/page-without-pagination.component';
 import ItemActionListEditButton from './page/item-actionlist-edit/button/button.component';
 import ItemActionListEditModal from './page/item-actionlist-edit/modal/modal.component';
+import UsersListPageItemActionListEditConfirmationModal from
+    './page/item-actionlist-edit/modal/confirmation/confirmation.modal';
+import UsersListPageItemActionListDeleteComponent from './page/item-actionlist-delete.component';
 import UsersListPageItemActionListComponent from './page/item-actionlist.component';
 import UsersListPageItemActionListDeleteComponent from './page/item-actionlist-delete/delete.component';
 import UsersListPageItemActionListDeleteConfirmationModal from
     './page/item-actionlist-delete/confirmation/confirmation.modal';
 import UsersListPageItemComponent from './page/item.component';
 import { Ng2PaginationModule } from 'ng2-pagination';
+import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
 
 @NgModule({
-    imports: [CommonModule, FormsModule, HttpModule, Ng2PaginationModule],
+    imports: [CommonModule, FormsModule, HttpModule, Ng2PaginationModule, SimpleNotificationsModule,
+              PushNotificationsModule],
     declarations: [
         UsersListComponent,
         UsersListWithoutPaginationComponent,
@@ -25,6 +30,7 @@ import { Ng2PaginationModule } from 'ng2-pagination';
         UsersListPageWithoutPaginationComponent,
         ItemActionListEditButton,
         ItemActionListEditModal,
+        UsersListPageItemActionListEditConfirmationModal,
         UsersListPageItemActionListComponent,
         UsersListPageItemComponent,
         UsersListPageItemActionListDeleteComponent,
