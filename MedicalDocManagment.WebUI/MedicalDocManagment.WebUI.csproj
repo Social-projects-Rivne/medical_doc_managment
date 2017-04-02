@@ -159,11 +159,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\.gitignore" />
+    <Content Include="app\users-list\page\item-actionlist-edit\modal\confirmation\confirmation.modal.html" />
     <Content Include="app\users-list\page\views\item-actionlist-delete.component.html" />
     <Content Include="app\user-add\views\user-add.component.html" />
     <Content Include="app\users-list-paginate\users-list-paginate.component.html" />
     <Content Include="app\users-list\page\item-actionlist-edit\button\button.component.html" />
-    <Content Include="app\users-list\page\item-actionlist-edit\modal\modal.component.html" />
     <Content Include="app\users-list\page\views\item.component.css" />
     <Content Include="app\users-list\page\views\page.component.css" />
     <Content Include="app\users-list\page\item-actionlist-edit\button\button.component.html" />
@@ -197,7 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\models\user-search.model.ts" />
-    <TypeScriptCompile Include="app\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
+    <TypeScriptCompile Include="app\users-list\page\item-actionlist-edit\modal\confirmation\confirmation.modal.ts" />
     <TypeScriptCompile Include="app\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
