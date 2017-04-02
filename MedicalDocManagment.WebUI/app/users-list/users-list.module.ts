@@ -11,7 +11,6 @@ import ItemActionListEditButton from './page/item-actionlist-edit/button/button.
 import ItemActionListEditModal from './page/item-actionlist-edit/modal/modal.component';
 import UsersListPageItemActionListEditConfirmationModal from
     './page/item-actionlist-edit/modal/confirmation/confirmation.modal';
-import UsersListPageItemActionListDeleteComponent from './page/item-actionlist-delete.component';
 import UsersListPageItemActionListComponent from './page/item-actionlist.component';
 import UsersListPageItemActionListDeleteComponent from './page/item-actionlist-delete/delete.component';
 import UsersListPageItemActionListDeleteConfirmationModal from
