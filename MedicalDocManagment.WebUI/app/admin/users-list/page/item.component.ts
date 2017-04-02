@@ -2,7 +2,7 @@
 import { Response } from '@angular/http';
 
 import ItemActionListComponent from './item-actionlist.component';
-import UserModel from '../../models/usermodel'
+import UserModel from '../../../models/usermodel'
 
 @Component({
     moduleId: module.id,

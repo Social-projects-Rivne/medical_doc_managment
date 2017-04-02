@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { HttpFacade } from '../http.facade';
+import { HttpFacade } from '../../http.facade';
 
 import PageComponent from './page/page.component';
-import UsersModel from '../models/usersmodel';
-import UserModel from '../models/usersmodel';
+import UsersModel from '../../models/usersmodel';
+import UserModel from '../../models/usersmodel';
 import {NotificationsService, SimpleNotificationsComponent} from 'angular2-notifications';
 import {ItemActionListNotificationService} from './services/item-actionlist-notification.service'
 import { Subscription }   from 'rxjs/Subscription';

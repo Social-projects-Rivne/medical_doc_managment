@@ -3,10 +3,10 @@ import { Http } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do'
-import UserModel from '../models/usermodel';
+import UserModel from '../../models/usermodel';
 @Component({
     selector: 'app-users-list-paginate',
-    templateUrl: 'app/users-list-paginate/users-list-paginate.component.html',
+    templateUrl: 'app/admin/users-list-paginate/users-list-paginate.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersListPaginateComponent implements OnInit {

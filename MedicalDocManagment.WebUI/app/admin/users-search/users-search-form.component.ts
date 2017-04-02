@@ -4,10 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import { Response } from '@angular/http';
 import 'rxjs/add/observable/of';
 
-import { HttpFacade } from '../http.facade';
-import UserModel from '../models/usermodel';
-import UsersModel from '../models/usersmodel';
-import UserSearchModel from '../models/user-search.model';
+import { HttpFacade } from '../../http.facade';
+import UserModel from '../../models/usermodel';
+import UsersModel from '../../models/usersmodel';
+import UserSearchModel from '../../models/user-search.model';
 import { UsersSearchOptionsEnum } from './users-search-options.enum';
 
 @Component({

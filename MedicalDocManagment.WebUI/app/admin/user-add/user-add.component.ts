@@ -1,12 +1,12 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { UserService} from './user.service';
 import {User} from './user';
-import PositionModel from '../models/positionmodel';
+import PositionModel from '../../models/positionmodel';
 import {NotificationsService, SimpleNotificationsComponent} from 'angular2-notifications';
 
 @Component({
     selector: 'app-user-add',
-    templateUrl: 'app/user-add/views/user-add.component.html',
+    templateUrl: 'app/admin/user-add/views/user-add.component.html',
     providers: [UserService, NotificationsService]
 })
 export class UserAddComponent implements OnInit {

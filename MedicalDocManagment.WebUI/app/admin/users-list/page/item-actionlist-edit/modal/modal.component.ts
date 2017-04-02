@@ -1,9 +1,9 @@
 ﻿import { Component, Input, OnInit } from '@angular/core';
 
-import { HttpFacade } from "../../../../http.facade";
+import { HttpFacade } from "../../../../../http.facade";
 
-import UserModel from "../../../../models/usermodel";
-import PositionModel from '../../../../models/positionmodel';
+import UserModel from "../../../../../models/usermodel";
+import PositionModel from '../../../../../models/positionmodel';
 
 @Component({
     moduleId: module.id,

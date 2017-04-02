@@ -1,6 +1,6 @@
 ﻿import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import UserModel from '../../../../models/usermodel'
+import UserModel from '../../../../../models/usermodel'
 
 @Component({
     moduleId: module.id,

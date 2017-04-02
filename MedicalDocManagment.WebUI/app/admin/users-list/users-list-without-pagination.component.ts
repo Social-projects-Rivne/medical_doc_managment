@@ -1,11 +1,11 @@
 ﻿import { Component, Input, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { HttpFacade } from '../http.facade';
+import { HttpFacade } from '../../http.facade';
 
 import PageWithoutPaginationComponent from './page/page-without-pagination.component';
-import UsersModel from '../models/usersmodel';
-import UserModel from '../models/usermodel';
+import UsersModel from '../../models/usersmodel';
+import UserModel from '../../models/usermodel';
 
 @Component({
   moduleId: module.id,

@@ -2,7 +2,7 @@
 import { Response } from '@angular/http';
 
 import ItemComponent from './item.component';
-import UsersModel from '../../models/usersmodel';
+import UsersModel from '../../../models/usersmodel';
 
 @Component({
   moduleId: module.id,
