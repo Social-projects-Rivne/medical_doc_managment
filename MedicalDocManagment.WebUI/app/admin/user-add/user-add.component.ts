@@ -6,7 +6,7 @@ import {NotificationsService, SimpleNotificationsComponent} from 'angular2-notif
 
 @Component({
     selector: 'app-user-add',
-    templateUrl: 'app/user-add/views/user-add.component.html',
+    templateUrl: 'app/admin/user-add/views/user-add.component.html',
     providers: [UserService, NotificationsService]
 })
 export class UserAddComponent implements OnInit {
