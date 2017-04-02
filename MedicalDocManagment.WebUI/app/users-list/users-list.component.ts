@@ -56,10 +56,10 @@ export class UsersListComponent {
         this.notificationSubscription = this.itemNotificationService.notificationAdded$.subscribe(
             (type:string) => {
                 if (type == "deleteSuccess") {
-                    this._service.success("Успіх", "Успішно видалено користувача");
+                    this._service.success("РЈСЃРїС–С…", "РЈСЃРїС–С€РЅРѕ РІРёРґР°Р»РµРЅРѕ РєРѕСЂРёСЃС‚СѓРІР°С‡Р°");
                 }
                 else if (type == "deleteError") {
-                    this._service.error("Помилка", "Відбулась помилка при видаленні користувача");
+                    this._service.error("РџРѕРјРёР»РєР°", "Р’С–РґР±СѓР»Р°СЃСЏ РїРѕРјРёР»РєР° РїСЂРё РІРёРґР°Р»РµРЅРЅС– РєРѕСЂРёСЃС‚СѓРІР°С‡Р°");
                 }
             });
     }
