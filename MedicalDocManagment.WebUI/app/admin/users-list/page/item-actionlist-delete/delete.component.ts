@@ -1,8 +1,8 @@
 ﻿import { Component, Input } from '@angular/core';
 import { Response } from '@angular/http';
 
-import UserModel from '../../../../models/usermodel'
-import { HttpFacade } from '../../../../http.facade';
+import UserModel from '../../../models/usermodel'
+import { HttpFacade } from '../../../http.facade';
 import { ItemActionListNotificationService }
     from '../../services/item-actionlist-notification.service'
 
