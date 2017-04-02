@@ -8,7 +8,7 @@
                 <p>Редагування Користувача</p>
             </div>
             <div class="modal-body">
-                <form class="form" (ngSubmit)="submit()" #userEditForm="ngForm">
+                <form class="form" #userEditForm="ngForm">
                     <div class="form-group">
                         <label for="username">UserName</label>
                         <input type="text" class="form-control" id="username" name="username" [(ngModel)]="user.userName"
@@ -62,7 +62,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button [disabled]="userEditForm.form.invalid" class="btn btn-default" type="submit">Save</button>
+                        <button [disabled]="userEditForm.form.invalid" class="btn btn-default" 
+                                type="submit" data-toggle="modal" 
+                                data-target="#userEditConfirmationModal">
+                            Save
+                        </button>
+                        <div edit-confirmation (onConfirmedEdit)="submit()"></div>
                     </div>
                 </form>
 
