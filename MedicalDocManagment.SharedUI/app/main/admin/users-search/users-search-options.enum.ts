@@ -1,1 +1,0 @@
-﻿export enum UsersSearchOptionsEnum { byUsername, byPositionName, byStatus }
