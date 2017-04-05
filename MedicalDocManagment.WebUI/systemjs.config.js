@@ -7,10 +7,8 @@
         },
         // указываем загрузчику System, где искать модули
         map: {
-            // locations of Angular applications
-            login_app: 'app/core',
-            admin_app: 'app/admin',
-            main_app: 'app/main',
+            // locations of Angular application
+            app: 'app/',
             // пакеты angular
             '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
             '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
@@ -29,16 +27,8 @@
         },
         // пакеты, которые указывают загрузчику System, как загружать файлы без имени и расширения
         packages: {
-            login_app: {
-                main: './login-app.js',
-                defaultExtension: 'js'
-            },
-            admin_app: {
-                main: './admin-app.js',
-                defaultExtension: 'js'
-            },
-            main_app:{
-                main: './main-app.js',
+            app: {
+                main: './main.js',
                 defaultExtension: 'js'
             },
             rxjs: {

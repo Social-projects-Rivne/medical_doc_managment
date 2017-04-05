@@ -31,13 +31,21 @@
     <script src="systemjs.config.js"></script>-->
 
     <script>
-        System.import('login_app').catch(function (err) { console.error(err); });
+        System.import('app').catch(function (err) { console.error(err); });
     </script>
     <!-- Angular2 Code -->
 </head>
 <body>
     <div class="container-fluid">
-        <login-app-component>Завантаження...</login-app-component>
+        <div class="row">
+            <login-app-component>Завантаження сторінки для входу в систему...</login-app-component>
+        </div>
+        <div class="row">
+            <admin-app-component>Завантаження сторінки адміністратора...</admin-app-component>
+        </div>
+        <div class="row">
+            <main-app-component>Завантаження головної сторінки...</main-app-component>
+        </div>
     </div>
 </body>
 </html>

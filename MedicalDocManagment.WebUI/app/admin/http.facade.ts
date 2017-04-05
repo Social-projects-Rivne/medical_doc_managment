@@ -11,26 +11,29 @@ import UserModel from './models/usermodel';
 import UsersModel from './models/usersmodel';
 import PositionModel from './models/positionmodel';
 import PagedResponseModel from './models/paged-response-model';
+import { AuthenticationService } from '../core/login/authentication.service';
 
 @Injectable()
 export class HttpFacade {
     private _http: Http;
+    private headers: Headers;
 
-    constructor(http: Http) {
+    constructor(http: Http, private authenticationService: AuthenticationService) {
         this._http = http;
+        this.headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+        this.headers.append('Authorization', 'Bearer ' + authenticationService.token);
     }
 
     updateUser(user: UserModel) {
         const jsonBody = JSON.stringify(user);
-        let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
-
+        let headers = this.headers;
         return this._http.put('/api/admin/edituser/' + user.id, jsonBody, { headers })
             .map((resp: Response) => { return resp; })
             .catch((error: any) => { return Observable.throw(error); });
     }
-
     searchUsersByPositionName(positionName: string): Observable<UsersModel> {
-      return this._http.get('/api/Admin/GetUsersByPosition?positionName=' + positionName)
+        let headers = this.headers;
+        return this._http.get('/api/Admin/GetUsersByPosition?positionName=' + positionName, { headers })
                        .map((resp: Response) => {
                            return ((resp.text()) ? new UsersModel(resp.json()) : null);
                        })
@@ -47,7 +50,8 @@ export class HttpFacade {
     }
 
     searchUsersByStatus(status: boolean): Observable<UsersModel> {
-      return this._http.get('/api/Admin/GetUsersByStatus?userStatus=' + status)
+        let headers = this.headers;
+        return this._http.get('/api/Admin/GetUsersByStatus?userStatus=' + status, { headers })
                        .map((resp: Response) => {
                            return ((resp.text()) ? new UsersModel(resp.json()) : null);
                        })
@@ -64,7 +68,8 @@ export class HttpFacade {
     }
 
     searchUserByUsername(username: string): Observable<UserModel> {
-      return this._http.get('/api/Admin/GetUserByName?userName=' + username)
+        let headers = this.headers;
+        return this._http.get('/api/Admin/GetUserByName?userName=' + username, { headers })
                        .map((resp: Response) => {
                            return ((resp.text()) ? new UserModel(resp.json()) : null);
                        })
@@ -81,31 +86,42 @@ export class HttpFacade {
     }
 
     getPositionsList(): Observable<PositionModel[]> {
-        return this._http.get('/api/Admin/GetPositions')
+        let headers = this.headers;
+        return this._http.get('/api/Admin/GetPositions', { headers })
                          .map((resp: Response) => resp.json())
                          .catch((error: any) => { return Observable.throw(error); });
     }
 
     getUserById(id: string): Observable<UserModel> {
-        return this._http.get('/api/admin/getuser?id=' + id)
+        let headers = this.headers;
+        return this._http.get('/api/admin/getuser?id=' + id, { headers })
                          .map((resp: Response) => { return new UserModel(resp.json()); })
                          .catch((error: any) => { return Observable.throw(error); })
     }
 
     deleteUser(user: UserModel): Observable<boolean> {
-        return this._http.delete('/api/Admin/DeleteUser?id=' + user.id)
+        let headers = this.headers;
+        return this._http.delete('/api/Admin/DeleteUser?id=' + user.id, { headers })
                          .map((resp: Response) => { return resp.ok; })
                          .catch((error: any) => { return Observable.throw(error); });
     }
 
     getUsersList(): Observable<UsersModel> {
-        return this._http.get('/api/Admin/GetUsers')
+        let headers = this.headers;
+        return this._http.get('/api/Admin/GetUsers', { headers })
                          .map((resp: Response) => { return new UsersModel(resp.json()); })
                          .catch((error: any) => { return Observable.throw(error); });
     }
 
     getUsersListPaged(page: number, pageSize: number): Observable<PagedResponseModel> {
-        return this._http.get("api/admin/getpaged?pageNumber=" + page + "&pageSize=" + pageSize)
+       // let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+        
+        //let tokenInFacade = JSON.parse(localStorage.getItem('currentUser')).token;
+        //console.log(tokenInFacade);
+       // headers.append('Authorization', 'Bearer ' + tokenInFacade);
+        //headers.append('Authorization', `Bearer ${authToken}`);
+        let headers = this.headers;
+        return this._http.get("api/admin/getpaged?pageNumber=" + page + "&pageSize=" + pageSize, { headers })
                          .map((resp: Response) => {
                              let pagedResponse: PagedResponseModel = new PagedResponseModel();
                              pagedResponse.pageCount = resp.json().paging.pageCount;
