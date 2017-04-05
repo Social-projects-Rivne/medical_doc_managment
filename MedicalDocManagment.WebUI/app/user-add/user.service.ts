@@ -9,22 +9,29 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw'
 
+import { AuthenticationService } from '../login/authentication.service';
+
 
 @Injectable()
 export class UserService {
+    private headers: Headers;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private authenticationService: AuthenticationService) {
+        this.headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+        this.headers.append('Authorization', 'Bearer ' + authenticationService.token);
+    }
 
     postData(obj: User) {
         const body = JSON.stringify(obj);
-        let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+        let headers = this.headers;
         return this.http.post('/api/Admin/AddUser', body, { headers: headers })
                         .map((resp: Response) => resp.json())
                         .catch((error: any) => { return Observable.throw(error); });
     }
     getPositionsList(): Observable<PositionModel[]> {
-        return this.http.get('/api/Admin/GetPositions')
-            .map((resp: Response) => resp.json())
-            .catch((error: any) => { return Observable.throw(error); });
+        let headers = this.headers;
+        return this.http.get('/api/Admin/GetPositions', { headers: headers })
+                        .map((resp: Response) => resp.json())
+                        .catch((error: any) => { return Observable.throw(error); });
     }
 }
