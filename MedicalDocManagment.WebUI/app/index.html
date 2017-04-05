@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link href="./dist/css/bootstrap.css" rel="stylesheet" />    
+     
+    <base href="/">
+    <link href="./dist/css/bootstrap.css" rel="stylesheet" />
     <script src="./dist/js/jquery.js"></script>
     <script src="./dist/js/bootstrap.js"></script>
-    
-    <base href="/">
+
     <script src="./dist/js/system.js"></script>
     <script src="./dist/js/rx.js"></script>
     <script src="./dist/js/typescript.js"></script>
@@ -31,13 +31,21 @@
     <script src="systemjs.config.js"></script>-->
 
     <script>
-    System.import('app').catch(function(err){ console.error(err); });
+        System.import('app').catch(function (err) { console.error(err); });
     </script>
     <!-- Angular2 Code -->
 </head>
 <body>
     <div class="container-fluid">
-        <my-app>Загрузка...</my-app>
+        <div class="row">
+            <login-app-component>Завантаження сторінки для входу в систему...</login-app-component>
+        </div>
+        <div class="row">
+            <admin-app-component>Завантаження сторінки адміністратора...</admin-app-component>
+        </div>
+        <div class="row">
+            <main-app-component>Завантаження головної сторінки...</main-app-component>
+        </div>
     </div>
 </body>
 </html>

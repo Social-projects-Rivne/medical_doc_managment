@@ -7,8 +7,8 @@
         },
         // указываем загрузчику System, где искать модули
         map: {
-            // наше приложение будет находиться в папке app
-            app: 'app',
+            // locations of Angular application
+            app: 'app/',
             // пакеты angular
             '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
             '@angular/common': 'npm:@angular/common/bundles/common.umd.js',

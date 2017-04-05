@@ -5,8 +5,9 @@ import PositionModel from '../models/positionmodel';
 import {NotificationsService, SimpleNotificationsComponent} from 'angular2-notifications';
 
 @Component({
+    moduleId: module.id,
     selector: 'app-user-add',
-    templateUrl: 'app/user-add/views/user-add.component.html',
+    templateUrl: 'views/user-add.component.html',
     providers: [UserService, NotificationsService]
 })
 export class UserAddComponent implements OnInit {

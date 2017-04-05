@@ -167,39 +167,42 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\.gitignore" />
-    <Content Include="app\home\home.component.html" />
-    <Content Include="app\login\login.component.html" />
-    <Content Include="app\users-list\page\item-actionlist-delete\confirmation\confirmation.modal.html" />
-    <Content Include="app\users-list\page\item-actionlist-delete\delete.component.html" />
-    <Content Include="app\users-list\page\views\item-actionlist-delete.component.html" />
-    <Content Include="app\users-list\page\item-actionlist-edit\modal\confirmation\confirmation.modal.html" />
-    <Content Include="app\users-list\page\views\item-actionlist-delete.component.html" />
-    <Content Include="app\user-add\views\user-add.component.html" />
-    <Content Include="app\users-list-paginate\users-list-paginate.component.html" />
-    <Content Include="app\users-list\page\item-actionlist-edit\modal\modal.component.html" />
-    <Content Include="app\users-list\page\item-actionlist-edit\button\button.component.html" />
-    <Content Include="app\users-list\page\item-actionlist-edit\modal\modal.component.html" />
-    <Content Include="app\users-list\page\item-actionlist-edit\button\button.component.html" />
-    <Content Include="app\users-list\page\views\item.component.css" />
-    <Content Include="app\users-list\page\item-actionlist-edit\button\button.component.html" />
-    <Content Include="app\users-list\page\views\page.component.html" />
-    <Content Include="app\users-list\views\users-list-without-pagination.component.html" />
-    <Content Include="app\users-list\views\users-list.component.css" />
-    <Content Include="app\views\app.component.html" />
-    <Content Include="app\users-list\page\views\item-actionlist.component.html" />
-    <Content Include="app\users-list\page\views\item.component.html" />
-    <Content Include="app\users-list\page\views\page.component.css" />
-    <Content Include="app\users-list\views\users-list.component.html" />
+    <Content Include="app\admin\users-list\page\item-actionlist-delete\confirmation\confirmation.modal.html" />
+    <Content Include="app\admin\users-list\page\item-actionlist-delete\delete.component.html" />
+    <Content Include="app\admin\users-list\page\views\item-actionlist-delete.component.html" />
+    <Content Include="app\admin\users-list\page\item-actionlist-edit\modal\confirmation\confirmation.modal.html" />
+    <Content Include="app\admin\users-list\page\views\item-actionlist-delete.component.html" />
+    <Content Include="app\admin\user-add\views\user-add.component.html" />
+    <Content Include="app\admin\users-list-paginate\users-list-paginate.component.html" />
+    <Content Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.html" />
+    <Content Include="app\admin\users-list\page\item-actionlist-edit\button\button.component.html" />
+    <Content Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.html" />
+    <Content Include="app\admin\users-list\page\item-actionlist-edit\button\button.component.html" />
+    <Content Include="app\admin\users-list\page\views\item.component.css" />
+    <Content Include="app\admin\users-list\page\item-actionlist-edit\button\button.component.html" />
+    <Content Include="app\admin\users-list\page\views\page.component.html" />
+    <Content Include="app\admin\users-list\views\users-list-without-pagination.component.html" />
+    <Content Include="app\admin\users-list\views\users-list.component.css" />
+    <Content Include="app\admin\admin-app.component.html" />
+    <Content Include="app\admin\users-list\page\views\item-actionlist.component.html" />
+    <Content Include="app\admin\users-list\page\views\item.component.html" />
+    <Content Include="app\admin\users-list\page\views\page.component.css" />
+    <Content Include="app\admin\users-list\views\users-list.component.html" />
+    <Content Include="app\main\main-app.component.html" />
+    <Content Include="app\admin\home\home.component.html" />
+    <Content Include="app\core\login\login.component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="index.html" />
+    <Content Include="gulpfile.js" />
+    <Content Include="app\index.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="package.json" />
-    <Content Include="app\users-search\views\users-search-form.component.html" />
-    <Content Include="app\users-list\page\views\page-without-pagination.component.html" />
+    <Content Include="app\admin\users-search\views\users-search-form.component.html" />
+    <Content Include="app\admin\users-list\page\views\page-without-pagination.component.html" />
+    <Content Include="app\core\login-app.component.html" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -209,17 +212,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\core\login-app.routing.ts" />
+    <TypeScriptCompile Include="app\core\login-app.module.ts" />
+    <TypeScriptCompile Include="app\admin\models\user-search.model.ts" />
+    <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-delete\confirmation\confirmation.modal.ts" />
+    <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
+    <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\confirmation\confirmation.modal.ts" />
+    <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
-    <TypeScriptCompile Include="app\app.routing.ts" />
-    <TypeScriptCompile Include="app\guards\auth.guard.ts" />
-    <TypeScriptCompile Include="app\home\home.component.ts" />
-    <TypeScriptCompile Include="app\login\authentication.service.ts" />
-    <TypeScriptCompile Include="app\login\login.component.ts" />
-    <TypeScriptCompile Include="app\models\user-search.model.ts" />
-    <TypeScriptCompile Include="app\users-list\page\item-actionlist-delete\confirmation\confirmation.modal.ts" />
-    <TypeScriptCompile Include="app\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
-    <TypeScriptCompile Include="app\users-list\page\item-actionlist-edit\modal\confirmation\confirmation.modal.ts" />
-    <TypeScriptCompile Include="app\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
+    <TypeScriptCompile Include="app\admin\admin-app.routing.ts" />
+    <TypeScriptCompile Include="app\core\login-app.component.ts" />
+    <TypeScriptCompile Include="app\shared\guards\auth.guard.ts" />
+    <TypeScriptCompile Include="app\admin\home\home.component.ts" />
+    <TypeScriptCompile Include="app\core\login\authentication.service.ts" />
+    <TypeScriptCompile Include="app\core\login\login.component.ts" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -236,11 +242,14 @@
     <Compile Include="Models\Validators\UserEditModelValidator.cs" />
     <Compile Include="Models\Validators\UserModelValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <TypeScriptCompile Include="app\users-list\page\page-without-pagination.component.ts" />
-    <TypeScriptCompile Include="app\users-list\services\item-actionlist-notification.service.ts" />
-    <TypeScriptCompile Include="app\users-list\users-list-without-pagination.component.ts" />
-    <TypeScriptCompile Include="app\users-search\users-search-form.component.ts" />
-    <TypeScriptCompile Include="app\users-search\users-search-options.enum.ts" />
+    <TypeScriptCompile Include="app\admin\users-list\page\page-without-pagination.component.ts" />
+    <TypeScriptCompile Include="app\admin\users-list\services\item-actionlist-notification.service.ts" />
+    <TypeScriptCompile Include="app\admin\users-list\users-list-without-pagination.component.ts" />
+    <TypeScriptCompile Include="app\admin\users-search\users-search-form.component.ts" />
+    <TypeScriptCompile Include="app\admin\users-search\users-search-options.enum.ts" />
+    <TypeScriptCompile Include="app\main\main-app.module.ts" />
+    <TypeScriptCompile Include="app\main\main-app.component.ts" />
+    <TypeScriptCompile Include="app\main.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -269,25 +278,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\app.component.ts" />
-    <TypeScriptCompile Include="app\app.module.ts" />
-    <TypeScriptCompile Include="app\http.facade.ts" />
-    <TypeScriptCompile Include="app\main.ts" />
-    <TypeScriptCompile Include="app\models\positionmodel.ts" />
-    <TypeScriptCompile Include="app\models\rolemodel.ts" />
-    <TypeScriptCompile Include="app\models\usermodel.ts" />
-    <TypeScriptCompile Include="app\models\usersmodel.ts" />
-    <TypeScriptCompile Include="app\user-add\user.service.ts" />
-    <TypeScriptCompile Include="app\user-add\user-add.component.ts" />
-    <TypeScriptCompile Include="app\user-add\user.ts" />
-    <TypeScriptCompile Include="app\users-list\page\item-actionlist-delete\delete.component.ts" />
-    <TypeScriptCompile Include="app\users-list-paginate\users-list-paginate.component.ts" />
-    <TypeScriptCompile Include="app\users-list\page\item-actionlist-edit\button\button.component.ts" />
-    <TypeScriptCompile Include="app\users-list\users-list.module.ts" />
-    <TypeScriptCompile Include="app\users-list\page\item-actionlist.component.ts" />
-    <TypeScriptCompile Include="app\users-list\page\item.component.ts" />
-    <TypeScriptCompile Include="app\users-list\page\page.component.ts" />
-    <TypeScriptCompile Include="app\users-list\users-list.component.ts" />
+    <TypeScriptCompile Include="app\admin\admin-app.component.ts" />
+    <TypeScriptCompile Include="app\admin\admin-app.module.ts" />
+    <TypeScriptCompile Include="app\admin\http.facade.ts" />
+    <TypeScriptCompile Include="app\admin\models\positionmodel.ts" />
+    <TypeScriptCompile Include="app\admin\models\rolemodel.ts" />
+    <TypeScriptCompile Include="app\admin\models\usermodel.ts" />
+    <TypeScriptCompile Include="app\admin\models\usersmodel.ts" />
+    <TypeScriptCompile Include="app\admin\user-add\user.service.ts" />
+    <TypeScriptCompile Include="app\admin\user-add\user-add.component.ts" />
+    <TypeScriptCompile Include="app\admin\user-add\user.ts" />
+    <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-delete\delete.component.ts" />
+    <TypeScriptCompile Include="app\admin\users-list-paginate\users-list-paginate.component.ts" />
+    <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\button\button.component.ts" />
+    <TypeScriptCompile Include="app\admin\users-list\users-list.module.ts" />
+    <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist.component.ts" />
+    <TypeScriptCompile Include="app\admin\users-list\page\item.component.ts" />
+    <TypeScriptCompile Include="app\admin\users-list\page\page.component.ts" />
+    <TypeScriptCompile Include="app\admin\users-list\users-list.component.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
