@@ -4,9 +4,11 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do'
 import UserModel from '../models/usermodel';
+
 @Component({
+    moduleId: module.id,
     selector: 'app-users-list-paginate',
-    templateUrl: 'app/users-list-paginate/users-list-paginate.component.html',
+    templateUrl: 'users-list-paginate.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersListPaginateComponent implements OnInit {

@@ -11,7 +11,7 @@ import UserModel from './models/usermodel';
 import UsersModel from './models/usersmodel';
 import PositionModel from './models/positionmodel';
 import PagedResponseModel from './models/paged-response-model';
-import { AuthenticationService } from './login/authentication.service';
+import { AuthenticationService } from '../core/login/authentication.service';
 
 @Injectable()
 export class HttpFacade {
