@@ -25,21 +25,22 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loading = true;
-        this.authenticationService.login(this.model.email, this.model.password)
+        this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(result => {
                 if (result === true) {
                     // login successful
+                    //TODO fix routing
                     this.router.navigate(['/']);
                 } else {
                     // login failed
-                    this.error = 'Помилка аутентифікації, неправильна електронна пошта або пароль';
+                    this.error = 'Помилка аутентифікації, неправильне імʼя користувача або пароль';
                     this.loading = false;
                     this.authenticationService.logout();
                 }
             },
             error => {
                 console.log(error);
-                this.error = 'Помилка аутентифікації, неправильна електронна пошта або пароль';
+                this.error = 'Помилка аутентифікації, неправильне імʼя користувача або пароль';
                 this.loading = false;
                 this.authenticationService.logout();
             });

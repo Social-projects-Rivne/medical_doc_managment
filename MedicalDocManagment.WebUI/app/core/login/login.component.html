@@ -7,13 +7,13 @@
                 <div class="panel-body">
                     <form accept-charset="UTF-8" role="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
                         <fieldset>
-                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                                 <div style="margin-bottom: 10px" class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                    <input id="login-email" type="text" class="form-control" name="email" value="" placeholder="Електронна пошта"
-                                           [(ngModel)]="model.email" #email="ngModel" required pattern="[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="Імʼя користувача"
+                                           [(ngModel)]="model.username" #username="ngModel" required pattern="[a-zA-Z0-9]{3,60}">
                                 </div>
-                                <div *ngIf="f.submitted && !email.valid" class="help-block">Недійсна електронна адреса</div>
+                                <div *ngIf="f.submitted && !username.valid" class="help-block">Неправильне імʼя користувача</div>
                             </div>
 
                             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
@@ -23,11 +23,6 @@
                                            [(ngModel)]="model.password" #password="ngModel" required pattern="[A-Za-z0-9!@#$%^&amp;*'&gt;&lt;?.,&quot;()+-_~`{}|]{6,100}">
                                 </div>
                                 <div *ngIf="f.submitted && !password.valid" class="help-block">Неправильний пароль</div>
-                            </div>
-                            <div style="text-align: center;" class="checkbox">
-                                <label>
-                                    <input name="remember" type="checkbox" value="Remember me"> Запам'ятати мене
-                                </label>
                             </div>
                             <input [disabled]="loading" class="btn btn-lg btn-success btn-block" type="submit" value="Увійти">
                         </fieldset>
