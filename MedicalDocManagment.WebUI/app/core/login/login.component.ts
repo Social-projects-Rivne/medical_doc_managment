@@ -6,8 +6,7 @@ import { AuthenticationService } from './authentication.service';
 @Component({
     selector: 'app-login',
     moduleId: module.id,
-    templateUrl: 'login.component.html',
-    providers: [AuthenticationService]
+    templateUrl: 'login.component.html'
 })
 
 export class LoginComponent implements OnInit {
@@ -30,16 +29,18 @@ export class LoginComponent implements OnInit {
             .subscribe(result => {
                 if (result === true) {
                     // login successful
+                    //TODO fix routing
                     this.router.navigate(['/']);
                 } else {
                     // login failed
-                    this.error = 'Username or password is incorrect';
+                    this.error = 'Помилка аутентифікації, неправильне імʼя користувача або пароль';
                     this.loading = false;
                     this.authenticationService.logout();
                 }
             },
             error => {
-                this.error = 'Error';
+                console.log(error);
+                this.error = 'Помилка аутентифікації, неправильне імʼя користувача або пароль';
                 this.loading = false;
                 this.authenticationService.logout();
             });
