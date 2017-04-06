@@ -17,11 +17,14 @@ var js = [
     './node_modules/systemjs/dist/system.js',
     './node_modules/rxjs/bundles/Rx.js',
     './node_modules/typescript/lib/typescript.js',
-    './node_modules/jquery/dist/jquery.js'
+    './node_modules/jquery/dist/jquery.js',
+    './node_modules/mdbootstrap/js/mdb.js',
+    './node_modules/tether/dist/js/tether.js'
 ];
 
 var css = [
-    './node_modules/bootstrap/dist/css/bootstrap.css'
+    './node_modules/bootstrap/dist/css/bootstrap.css',
+    './node_modules/mdbootstrap/css/mdb.css'
 ];
 
 var fonts = [
@@ -83,5 +86,13 @@ gulp.task("copy-ng2-pagination", () => {
     }).pipe(gulp.dest("./dist/lib/npmlibs"));
 });
 
-gulp.task('default', ['copy-js', 'copy-css', 'copy-ng2-pagination']);
+gulp.task('copy-mdbootstrap', () => {
+    gulp.src([
+        '**/*'
+    ], {
+        cwd: './node_modules/mdbootstrap/font/**'
+    }).pipe(gulp.dest('./dist/font'));
+});
+
+gulp.task('default', ['copy-js', 'copy-css', 'copy-ng2-pagination','copy-mdbootstrap']);
 gulp.task('minify', ['copy-min-js', 'copy-min-css']);

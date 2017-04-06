@@ -203,6 +203,7 @@
     <Content Include="app\admin\users-search\views\users-search-form.component.html" />
     <Content Include="app\admin\users-list\page\views\page-without-pagination.component.html" />
     <Content Include="app\core\login-app.component.html" />
+    <Content Include="app\main\child-card-add-parent.component.html" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -222,6 +223,9 @@
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
     <TypeScriptCompile Include="app\admin\admin-app.routing.ts" />
     <TypeScriptCompile Include="app\core\login-app.component.ts" />
+    <TypeScriptCompile Include="app\main\child-card-add-parent.component.ts" />
+    <TypeScriptCompile Include="app\main\main-http.facade.ts" />
+    <TypeScriptCompile Include="app\main\models\parent.model.ts" />
     <TypeScriptCompile Include="app\shared\guards\auth.guard.ts" />
     <TypeScriptCompile Include="app\admin\home\home.component.ts" />
     <TypeScriptCompile Include="app\core\login\authentication.service.ts" />
