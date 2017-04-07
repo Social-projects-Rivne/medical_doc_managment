@@ -24,7 +24,8 @@ var js = [
 
 var css = [
     './node_modules/bootstrap/dist/css/bootstrap.css',
-    './node_modules/mdbootstrap/css/mdb.css'
+    './node_modules/mdbootstrap/css/mdb.css',
+    './node_modules/tether/dist/css/*.*'
 ];
 
 var fonts = [

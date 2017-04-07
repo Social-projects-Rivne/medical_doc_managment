@@ -3,12 +3,12 @@ import { Http } from '@angular/http';
 import { Response, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/observable/of';
 
 import ParentModel from './models/parent.model';
-import { AuthenticationService } from '../core/login/authentication.service';
+import { AuthenticationService } from '../shared/authentication.service';
 
 @Injectable()
 export class MainHttpFacade {
@@ -26,13 +26,18 @@ export class MainHttpFacade {
      * @param {ParentModel} parent Contains data about parent to add
      * @return {Observable<ParentModel>} Model, which contains added data of parent.
      */
-    addParent(parent:ParentModel): Observable<ParentModel> {
-        let body:string = JSON.stringify(parent);
-        let headers = this.headers;
-        return this._http.post('/api/main/AddParent', body, { headers: headers })
-            .map((resp: Response) => {
-                Observable.of(new ParentModel(resp.json()));
-            })
-            .catch((error: any) => { return Observable.throw(error); });
+    addParent(parent: ParentModel): Observable<ParentModel> {
+        // next code is mock-up
+        parent.id = 'sdfs';
+        return Observable.of(parent);
+        // end of mock-up
+
+        //let body:string = JSON.stringify(parent);
+        //let headers = this.headers;
+        //return this._http.post('/api/main/AddParent', body, { headers: headers })
+        //    .map((resp: Response) => {
+        //        Observable.of(new ParentModel(resp.json()));
+        //    })
+        //    .catch((error: any) => { return Observable.throw(error); });
     }
 }

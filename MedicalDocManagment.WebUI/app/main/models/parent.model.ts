@@ -1,8 +1,8 @@
 ﻿export default class ParentModel {
-    id: number;
+    id: string;
     f_name: string;
     s_name: string;
-    e_name: string;
+    l_name: string;
     work: string;
     phone: string;
 

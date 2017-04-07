@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\.gitignore" />
+    <Content Include="app\admin\index.html" />
     <Content Include="app\admin\users-list\page\item-actionlist-delete\confirmation\confirmation.modal.html" />
     <Content Include="app\admin\users-list\page\item-actionlist-delete\delete.component.html" />
     <Content Include="app\admin\users-list\page\views\item-actionlist-delete.component.html" />
@@ -188,6 +189,8 @@
     <Content Include="app\admin\users-list\page\views\item.component.html" />
     <Content Include="app\admin\users-list\page\views\page.component.css" />
     <Content Include="app\admin\users-list\views\users-list.component.html" />
+    <Content Include="app\core\index.html" />
+    <Content Include="app\main\index.html" />
     <Content Include="app\main\main-app.component.html" />
     <Content Include="app\admin\home\home.component.html" />
     <Content Include="app\core\login\login.component.html" />
@@ -196,7 +199,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
-    <Content Include="app\index.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="package.json" />
@@ -223,12 +225,16 @@
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
     <TypeScriptCompile Include="app\admin\admin-app.routing.ts" />
     <TypeScriptCompile Include="app\core\login-app.component.ts" />
+    <TypeScriptCompile Include="app\core\login\authentication.service.ts" />
+    <TypeScriptCompile Include="app\main\main-app.routing.ts" />
     <TypeScriptCompile Include="app\main\child-card-add-parent.component.ts" />
     <TypeScriptCompile Include="app\main\main-http.facade.ts" />
     <TypeScriptCompile Include="app\main\models\parent.model.ts" />
+    <TypeScriptCompile Include="app\core\main.ts" />
+    <TypeScriptCompile Include="app\main\main.ts" />
     <TypeScriptCompile Include="app\shared\guards\auth.guard.ts" />
     <TypeScriptCompile Include="app\admin\home\home.component.ts" />
-    <TypeScriptCompile Include="app\core\login\authentication.service.ts" />
+    <TypeScriptCompile Include="app\shared\authentication.service.ts" />
     <TypeScriptCompile Include="app\core\login\login.component.ts" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
@@ -253,7 +259,7 @@
     <TypeScriptCompile Include="app\admin\users-search\users-search-options.enum.ts" />
     <TypeScriptCompile Include="app\main\main-app.module.ts" />
     <TypeScriptCompile Include="app\main\main-app.component.ts" />
-    <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\admin\main.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
