@@ -27,17 +27,12 @@ export class MainHttpFacade {
      * @return {Observable<ParentModel>} Model, which contains added data of parent.
      */
     addParent(parent: ParentModel): Observable<ParentModel> {
-        // next code is mock-up
-        parent.id = 'sdfs';
-        return Observable.of(parent);
-        // end of mock-up
-
-        //let body:string = JSON.stringify(parent);
-        //let headers = this.headers;
-        //return this._http.post('/api/main/AddParent', body, { headers: headers })
-        //    .map((resp: Response) => {
-        //        Observable.of(new ParentModel(resp.json()));
-        //    })
-        //    .catch((error: any) => { return Observable.throw(error); });
+        let body:string = JSON.stringify(parent);
+        let headers = this.headers;
+        return this._http.post('/api/main/AddParent', body, { headers: headers })
+            .map((resp: Response) => {
+                Observable.of(new ParentModel(resp.json()));
+            })
+            .catch((error: any) => { return Observable.throw(error); });
     }
 }
