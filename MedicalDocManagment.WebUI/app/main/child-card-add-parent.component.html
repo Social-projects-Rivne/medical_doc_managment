@@ -1,0 +1,80 @@
+﻿<div id="childCardAddParentModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Додати одного з батьків</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form">
+                    <div class="form-group">
+                        <label class="control-label" for="f_name">Ім'я</label>
+                        <input type="text" class="form-control" id="f_name" name="f_name"
+                               [(ngModel)]="_parent.f_name" />
+                        <div *ngIf="!_parent.f_name || !(_parent.f_name.trim().length)" 
+                             class="alert alert-danger">
+                            Введіть ім'я.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="s_name">По-батькові</label>
+                        <input type="text" class="form-control" id="s_name" name="s_name"
+                               [(ngModel)]="_parent.s_name" />
+                        <div *ngIf="!_parent.s_name || !(_parent.s_name.trim().length)" 
+                             class="alert alert-danger">
+                            Введіть по-батькові.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="l_name">Прізвище</label>
+                        <input type="text" class="form-control" id="l_name" name="l_name"
+                               [(ngModel)]="_parent.l_name" />
+                        <div *ngIf="!_parent.l_name  || !(_parent.l_name.trim().length)" 
+                             class="alert alert-danger">
+                            Введіть прізвище.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="work">Місце роботи</label>
+                        <input type="text" class="form-control" id="work" name="work"
+                               [(ngModel)]="_parent.work" />
+                        <div *ngIf="!_parent.work || !(_parent.work.trim().length)" 
+                             class="alert alert-danger">
+                            Введіть місце роботи.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="phone">Телефон</label>
+                        <input type="text" class="form-control" id="phone" name="phone"
+                               [(ngModel)]="_parent.phone" />
+                        <div *ngIf="!_parent.phone || !(_parent.phone.trim().length)"
+                             class="alert alert-danger">
+                            Введіть телефон.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="progress" *ngIf="_isAdding">
+                            <div class="progress-bar progress-bar-info progress-bar-striped active"
+                                 role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"
+                                 style="width:100%">
+                                Додавання одного з батьків...
+                            </div>
+                        </div>
+                        <div *ngIf="_isErrorOnAdding" class="alert alert-danger">
+                            Помилка при додаванні одного з батьків:
+                            {{_lastErrorMessage}}
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="_onAdd()"
+                        [disabled]="!_isValid()">
+                    Додати
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Відміна</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,9 +11,8 @@
             admin_app: 'app/admin',
             login_app: 'app/core',
             main_app: 'app/main',
-            // all_apps have written, so files from other folders can be loaded without
-            //     specification of extension
-            all_apps: 'app/',
+            // for app search in folder app
+            'app': 'app',
             // пакеты angular
             '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
             '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
@@ -44,9 +43,7 @@
                 main: './main.js',
                 defaultExtension: 'js'
             },
-            all_apps: {
-                defaultExtension: 'js'
-            },
+            'app': { defaultExtension: 'js', },
             rxjs: {
                 defaultExtension: 'js'
             },
