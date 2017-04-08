@@ -1,5 +1,5 @@
 ﻿<button class="btn btn-info btn-sm" data-toggle="modal"
-        data-target="#userDeleteModal">
+        [attr.data-target]="'#userDeleteModal'+user.id">
     Видалити
 </button>
 <div delete-confirmation [user]="user" (onConfirmedDelete)="onConfirmedDelete()"></div>
