@@ -1,5 +1,6 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/platform-browser';
 
 import { AuthenticationService } from './authentication.service';
 
@@ -8,7 +9,7 @@ import { AuthenticationService } from './authentication.service';
     moduleId: module.id,
     templateUrl: 'login.component.html'
 })
-
+@Injectable()
 export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private authenticationService: AuthenticationService) { }
+        private authenticationService: AuthenticationService,
+        @Inject(DOCUMENT) private document: any) { }
 
     ngOnInit() {
         // reset login status
@@ -29,8 +31,9 @@ export class LoginComponent implements OnInit {
             .subscribe(result => {
                 if (result === true) {
                     // login successful
-                    //TODO fix routing
-                    this.router.navigate(['/']);
+                    //TODO fix routing after fixing roles
+                    this.document.location.href = "/app/admin/index.html";
+
                 } else {
                     // login failed
                     this.error = 'Помилка аутентифікації, неправильне імʼя користувача або пароль';
