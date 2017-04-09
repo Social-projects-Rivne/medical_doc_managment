@@ -1,6 +1,6 @@
 ﻿<button class="btn btn-info" [routerLink]="['/add']">Додати користувача</button>
 <button class="btn btn-info" [routerLink]="['/search']">Знайти користувача</button>
-<button class="btn btn-warning" [routerLink]="['/login']">Logout</button>
+<button class="btn btn-warning" (click)="logout($event)">Logout</button>
 <usersList>Завантажується список користувачів...</usersList>
 
 
