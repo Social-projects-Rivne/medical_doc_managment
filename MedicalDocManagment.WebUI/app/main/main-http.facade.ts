@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/of';
 
+import ChildrenCardsModel from './models/children-cards.model';
 import ParentModel from './models/parent.model';
 import { AuthenticationService } from '../shared/authentication.service';
 
@@ -33,6 +34,13 @@ export class MainHttpFacade {
             .map((resp: Response) => {
                 Observable.of(new ParentModel(resp.json()));
             })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    getChildrenCards(): Observable<ChildrenCardsModel> {
+        let headers = this.headers;
+        return this._http.get('/api/main/GetChildrenCards', { headers })
+            .map((resp: Response) => { return new ChildrenCardsModel(resp.json()); })
             .catch((error: any) => { return Observable.throw(error); });
     }
 }
