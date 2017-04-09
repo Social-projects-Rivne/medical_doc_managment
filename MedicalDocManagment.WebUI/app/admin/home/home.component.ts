@@ -1,20 +1,18 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
     moduleId: module.id,
     templateUrl: 'home.component.html',
 })
+@Injectable()
+export class HomeComponent {
 
-export class HomeComponent implements OnInit {
+    constructor(@Inject(DOCUMENT) private document: any) { }
 
-    constructor() { }
-
-    ngOnInit() {
-        // get users from secure api end point
-        //this.userService.getUsers()
-        //    .subscribe(users => {
-        //        this.users = users;
-        //    });
+    logout(event) {
+        event.preventDefault();
+        this.document.location.href = "/app/core/index.html";
     }
 
 }
