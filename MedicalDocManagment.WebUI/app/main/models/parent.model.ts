@@ -8,18 +8,20 @@
 
     constructor(jsonObject?) {
         if (jsonObject) {
-            for (var prop in ParentModel.prototype) {
-                if (jsonObject.hasOwnProperty(prop)) {
-                    this[prop] = jsonObject[prop];
-                }
-            }            
+            this.id = jsonObject.id;
+            this.f_name = jsonObject.f_name;
+            this.s_name = jsonObject.s_name;
+            this.l_name = jsonObject.l_name;
+            this.work = jsonObject.work;
+            this.phone = jsonObject.phone;
         }
         else {
-            // initializing of object by null values
-            for (var prop in ParentModel.prototype) {
-                this[prop] = null;
-            }
+            this.id = null;
+            this.f_name = null;
+            this.s_name = null;
+            this.l_name = null;
+            this.work = null;
+            this.phone = null;
         }
     }
 }
-    
