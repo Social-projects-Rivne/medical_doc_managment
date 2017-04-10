@@ -222,6 +222,7 @@
     <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
     <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\confirmation\confirmation.modal.ts" />
     <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
+    <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
     <TypeScriptCompile Include="app\admin\admin-app.routing.ts" />
     <TypeScriptCompile Include="app\core\login-app.component.ts" />
@@ -282,6 +283,10 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MedicalDocManagment.MainAppDAL\MedicalDocManagment.MainAppDAL.csproj">
+      <Project>{aba1a697-fd8d-46f7-a1dc-170db2e3b04e}</Project>
+      <Name>MedicalDocManagment.MainAppDAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MedicalDocManagment.UsersDAL\MedicalDocManagment.UsersDAL.csproj">
       <Project>{7b77ea9e-b651-4a0e-bb9c-c2f611872b02}</Project>
       <Name>MedicalDocManagment.UsersDAL</Name>
