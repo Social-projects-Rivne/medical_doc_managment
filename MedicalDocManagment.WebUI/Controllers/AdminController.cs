@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
 
-using MedicalDocManagment.UsersDAL.Entities;
-using MedicalDocManagment.UsersDAL.Repositories;
-using MedicalDocManagment.UsersDAL.Repositories.Interfaces;
 using MedicalDocManagment.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Models;
 using Microsoft.AspNet.Identity;
+using MedicalDocManagment.DAL.Enities;
+using MedicalDocManagment.DAL.Repository.Interfaces;
+using MedicalDocManagment.DAL.Repository;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -279,6 +279,30 @@ namespace MedicalDocManagment.WebUI.Controllers
 
             return NotFound();
         }
+        #endregion
+
+        #region Mkh's methods
+
+        [HttpGet]
+        public IHttpActionResult GetClassesMkh()
+        {
+            Mapper.Initialize(config => config.CreateMap<ClassMkh, ClassMkhModel>());
+
+            var classesMkh = Mapper.Map<IList<ClassMkh>, List<ClassMkhModel>>(_unitOfWork.ClassMkhRepository.Get().ToList());
+
+            return Ok(classesMkh);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetBlocksMkh()
+        {
+            Mapper.Initialize(config => config.CreateMap<BlockMkh, BlockMkhModel>());
+
+            var blocksMkh = Mapper.Map<IList<BlockMkh>, List<BlockMkhModel>>(_unitOfWork.BlockMkhRepository.Get().ToList());
+
+            return Ok(blocksMkh);
+        }
+
         #endregion
 
         protected override void Dispose(bool disposing)

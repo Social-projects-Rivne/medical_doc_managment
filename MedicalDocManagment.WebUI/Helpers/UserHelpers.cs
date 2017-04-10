@@ -1,4 +1,4 @@
-﻿using MedicalDocManagment.UsersDAL.Entities;
+﻿using MedicalDocManagment.DAL.Enities;
 using MedicalDocManagment.WebUI.Models;
 
 namespace MedicalDocManagment.WebUI.Helpers

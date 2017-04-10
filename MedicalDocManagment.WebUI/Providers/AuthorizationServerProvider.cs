@@ -1,15 +1,8 @@
 ﻿using Microsoft.Owin.Security.OAuth;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using MedicalDocManagment.UsersDAL.Repositories.Interfaces;
-using MedicalDocManagment.UsersDAL.Repositories;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Security.Claims;
-using MedicalDocManagment.UsersDAL;
-using Microsoft.AspNet.Identity.Owin;
+using MedicalDocManagment.DAL.Repository;
 
 namespace MedicalDocManagment.WebUI.Providers
 {
