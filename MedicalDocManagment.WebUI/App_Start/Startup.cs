@@ -1,6 +1,5 @@
 ﻿using Microsoft.Owin;
 using Owin;
-using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security.OAuth;
 using System;
 using MedicalDocManagment.WebUI.Providers;
@@ -14,7 +13,6 @@ namespace MedicalDocManagment
     {
         public void Configuration(IAppBuilder app)
         {
-            
             app.CreatePerOwinContext<Context>(Context.Create);
             app.CreatePerOwinContext<Context>(Context.Create);
             ConfigureOAuth(app);
@@ -38,7 +36,6 @@ namespace MedicalDocManagment
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-
         }
     }
 }
