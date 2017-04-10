@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import ChildrenCardsListModule from './children-cards-list/children-cards-list.module';
+
 import { AuthenticationService } from '../shared/authentication.service';
 import MainAppComponent from './main-app.component';
 import ChildCardAddParentComponent from './child-card-add-parent.component';
@@ -11,7 +13,8 @@ import ChildCardAddParentComponent from './child-card-add-parent.component';
     imports: [
         BrowserModule,
         FormsModule,
-        HttpModule
+        HttpModule,
+        ChildrenCardsListModule
     ],
     declarations: [
         MainAppComponent,
@@ -20,6 +23,8 @@ import ChildCardAddParentComponent from './child-card-add-parent.component';
     providers: [
         AuthenticationService
     ],
-    bootstrap: [MainAppComponent]
+    bootstrap: [
+        MainAppComponent
+    ]
 })
 export class MainAppModule { }
