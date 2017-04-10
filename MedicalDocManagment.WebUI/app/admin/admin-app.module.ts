@@ -14,6 +14,7 @@ import { routing } from './admin-app.routing';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { AuthenticationService } from '../core/login/authentication.service';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
     imports: [
@@ -31,7 +32,8 @@ import { AuthenticationService } from '../core/login/authentication.service';
         UserAddComponent,
         UsersListPaginateComponent,
         UsersSearchFormComponent,
-        HomeComponent
+        HomeComponent,
+        HeaderComponent
     ],
     providers: [
         AuthGuard,
