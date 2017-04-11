@@ -32,15 +32,18 @@ namespace MedicalDocManagment.MainAppDAL.Entities
         public string Address { get; set; }
 
         [Column("checkin")]
-        public string Checkin { get; set; }
+        public DateTime CheckIn { get; set; }
 
         [Column("checkout")]
-        public string Checkout { get; set; }
+        public DateTime CheckOut { get; set; }
 
         public Diagnosis Diagnosis { get; set; }
 
         [Column("prescription")]
         public string Prescription { get; set; }
+
+        [Column("directedby")]
+        public string DirectedBy { get; set; }
 
         public virtual ICollection<Parent> Parents { get; set; }
     }

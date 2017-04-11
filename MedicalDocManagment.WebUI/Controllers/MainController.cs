@@ -3,6 +3,7 @@ using System.Web.Http;
 
 using MedicalDocManagment.MainAppDAL.Entities;
 using MedicalDocManagment.MainAppDAL;
+using MedicalDocManagment.WebUI.Models;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -11,7 +12,7 @@ namespace MedicalDocManagment.WebUI.Controllers
         // TODO uncomment after implementing feauture
         //[Authorize]
         [HttpPost]
-        public IHttpActionResult AddPatient(ChildCard patientCard)
+        public IHttpActionResult AddPatient(AddPatientModel addPatientModel)
         {
             if (!ModelState.IsValid)
             {
