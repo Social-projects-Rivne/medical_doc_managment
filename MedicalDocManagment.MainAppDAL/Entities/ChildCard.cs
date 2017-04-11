@@ -35,9 +35,13 @@ namespace MedicalDocManagment.MainAppDAL.Entities
         public DateTime CheckIn { get; set; }
 
         [Column("checkout")]
-        public DateTime CheckOut { get; set; }
+        public DateTime? CheckOut { get; set; }
 
-        public Diagnosis Diagnosis { get; set; }
+        [Column("id_diagnose")]
+        public string DiagnosisId { get; set; }
+
+        [ForeignKey("DiagnosisId")]
+        public virtual Diagnosis Diagnosis { get; set; }
 
         [Column("prescription")]
         public string Prescription { get; set; }
@@ -45,6 +49,6 @@ namespace MedicalDocManagment.MainAppDAL.Entities
         [Column("directedby")]
         public string DirectedBy { get; set; }
 
-        public virtual ICollection<Parent> Parents { get; set; }
+        public virtual ICollection<ParentChildCard> ParentsChildren { get; set; }
     }
 }

@@ -8,8 +8,8 @@ using MedicalDocManagment.WebUI.Models;
 namespace MedicalDocManagment.WebUI.Controllers
 {
     public class MainController : ApiController
-    {
-        // TODO uncomment after implementing feauture
+    {       
+        // TODO uncomment when feature will be implemented
         //[Authorize]
         [HttpPost]
         public IHttpActionResult AddPatient(AddPatientModel addPatientModel)
@@ -21,10 +21,22 @@ namespace MedicalDocManagment.WebUI.Controllers
 
             MainAppContext mainAppContext = new MainAppContext();
 
+            ChildCard newChildCard = new ChildCard
+            {
+                L_Name = addPatientModel.L_Name,
+                F_Name = addPatientModel.F_Name,
+                S_Name = addPatientModel.S_Name,
+                Date = addPatientModel.Date,
+                CheckIn = addPatientModel.Checkin,
+                CheckOut = addPatientModel.Checkout,
+                DirectedBy = addPatientModel.DirectedBy
+            };
+            newChildCard.Diagnosis = mainAppContext.Diagnoses.Find(addPatientModel.DiagnosisCode);
+
             ChildCard result = null;
             try
-            { 
-                result = mainAppContext.ChildrenCards.Add(patientCard);
+            {
+                result = mainAppContext.ChildrenCards.Add(newChildCard);
                 mainAppContext.SaveChanges();
             }
             catch (Exception exception)

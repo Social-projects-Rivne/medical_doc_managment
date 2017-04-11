@@ -6,8 +6,10 @@ namespace MedicalDocManagment.MainAppDAL
 {
     public class MainAppContext : DbContext
     {
-        public DbSet<Parent> Parents { get; set; }
         public DbSet<ChildCard> ChildrenCards { get; set; }
+        public DbSet<Diagnosis> Diagnoses { get; set; }
+        public DbSet<Parent> Parents { get; set; }
+        public DbSet<ParentChildCard> ParentsChildrenCards { get; set; }
 
         static MainAppContext()
         {
@@ -15,18 +17,5 @@ namespace MedicalDocManagment.MainAppDAL
         }
 
         public MainAppContext() : base("UsersDb") { }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Parent>()
-                 .HasMany(parent => parent.ChildrenCards)
-                 .WithMany(childCard => childCard.Parents)
-                 .Map(parentChild =>
-                 {
-                     parentChild.MapLeftKey("id_parent");
-                     parentChild.MapRightKey("id_child");
-                     parentChild.ToTable("ParentChild");
-                 });
-        }
     }
 }

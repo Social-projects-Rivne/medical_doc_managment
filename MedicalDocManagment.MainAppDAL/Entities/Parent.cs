@@ -30,6 +30,6 @@ namespace MedicalDocManagment.MainAppDAL.Entities
         [Column("phone")]
         public string Phone { get; set; }
 
-        public virtual ICollection<ChildCard> ChildrenCards { get; set; }
+        public virtual ICollection<ParentChildCard> ParentsChildren { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace MedicalDocManagment.WebUI.Models
         public string S_Name { get; set; }        
         public DateTime Date { get; set; }
         public DateTime Checkin { get; set; }
-        public DateTime Checkout { get; set; }
+        public DateTime? Checkout { get; set; }
         public string DiagnosisCode { get; set; }
         public string DirectedBy { get; set; }
     }

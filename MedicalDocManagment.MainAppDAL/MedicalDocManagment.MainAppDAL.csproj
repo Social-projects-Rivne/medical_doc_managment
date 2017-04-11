@@ -63,6 +63,8 @@
     <Compile Include="Entities\ChildCard.cs" />
     <Compile Include="Entities\Diagnosis.cs" />
     <Compile Include="Entities\Parent.cs" />
+    <Compile Include="Entities\ParentChildCard.cs" />
+    <Compile Include="Initializer\MainAppDbFiller.cs" />
     <Compile Include="Initializer\MainAppInitializer.cs" />
     <Compile Include="MainAppContext.cs" />
   </ItemGroup>
