@@ -206,6 +206,7 @@
     <Content Include="app\admin\users-list\page\views\page-without-pagination.component.html" />
     <Content Include="app\core\login-app.component.html" />
     <Content Include="app\main\child-card-add-parent.component.html" />
+    <Content Include="app\admin\header\header.component.html" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -215,6 +216,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\admin\header\header.component.ts" />
     <TypeScriptCompile Include="app\core\login-app.routing.ts" />
     <TypeScriptCompile Include="app\core\login-app.module.ts" />
     <TypeScriptCompile Include="app\admin\models\user-search.model.ts" />
