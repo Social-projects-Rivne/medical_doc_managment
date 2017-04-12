@@ -206,8 +206,8 @@
     <Content Include="app\admin\users-list\page\views\page-without-pagination.component.html" />
     <Content Include="app\core\login-app.component.html" />
     <Content Include="app\main\child-card-add-parent.component.html" />
-    <Content Include="App_Data\src\blocks.json" />
     <Content Include="App_Data\src\classes.json" />
+    <Content Include="App_Data\src\blocks.json" />
     <Content Include="App_Data\src\diagnoses.json" />
     <Content Include="App_Data\src\nosologies.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
