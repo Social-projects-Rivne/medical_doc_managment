@@ -10,6 +10,7 @@ namespace MedicalDocManagment.DAL
         public DbSet<Position> Positions { get; set; }
         public DbSet<ClassMkh> ClassesMkh { get; set; }
         public DbSet<BlockMkh> BlocksMkh { get; set; }
+        public DbSet<NosologyMkh> NosologiesMkh { get; set; }
 
         static Context()
         {
