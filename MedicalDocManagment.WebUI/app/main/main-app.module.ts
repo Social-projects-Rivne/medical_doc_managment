@@ -6,8 +6,9 @@ import { HttpModule } from '@angular/http';
 import ChildrenCardsListModule from './children-cards-list/children-cards-list.module';
 
 import { AuthenticationService } from '../shared/authentication.service';
-import MainAppComponent from './main-app.component';
 import ChildCardAddParentComponent from './child-card-add-parent.component';
+import MainAppComponent from './main-app.component';
+import ViewPatientDataComponent from './view-patient-data/view-patient-data.component';
 
 @NgModule({
     imports: [
@@ -16,9 +17,10 @@ import ChildCardAddParentComponent from './child-card-add-parent.component';
         HttpModule,
         ChildrenCardsListModule
     ],
-    declarations: [
+    declarations: [        
+        ChildCardAddParentComponent,
         MainAppComponent,
-        ChildCardAddParentComponent
+        ViewPatientDataComponent
     ],
     providers: [
         AuthenticationService

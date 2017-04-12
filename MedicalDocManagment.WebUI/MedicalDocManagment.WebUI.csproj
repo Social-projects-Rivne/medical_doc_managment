@@ -207,6 +207,7 @@
     <Content Include="app\core\login-app.component.html" />
     <Content Include="app\main\child-card-add-parent.component.html" />
     <Content Include="app\admin\header\header.component.html" />
+    <Content Include="app\main\view-patient-data\view-patient-data.component.html" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -241,6 +242,8 @@
     <TypeScriptCompile Include="app\main\models\parent.model.ts" />
     <TypeScriptCompile Include="app\core\main.ts" />
     <TypeScriptCompile Include="app\main\main.ts" />
+    <TypeScriptCompile Include="app\main\models\view-patient-data.model.ts" />
+    <TypeScriptCompile Include="app\main\view-patient-data\view-patient-data.component.ts" />
     <TypeScriptCompile Include="app\shared\guards\auth.guard.ts" />
     <TypeScriptCompile Include="app\admin\home\home.component.ts" />
     <TypeScriptCompile Include="app\shared\authentication.service.ts" />
