@@ -1,11 +1,11 @@
 ﻿using System.Data.Entity;
 using Ploeh.AutoFixture;
 using MedicalDocManagment.DAL.Enities;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace MedicalDocManagment.DAL.Initializer
 {
-    public class DbInitializer : DropCreateDatabaseAlways<Context>
+    public class DbInitializer : DropCreateDatabaseIfModelChanges<Context>
     {
         protected override void Seed(Context context)
         {
@@ -29,24 +29,29 @@ namespace MedicalDocManagment.DAL.Initializer
                 userCounter++;
                 positionCounter++;
             }
-            var classesMkhList = InitializerHelpers.GetListMkhsObject(new List<ClassMkh>(), "classes");
-            foreach (var item in classesMkhList)
+
+            var listClassesMkh = InitializerHelpers.GetListClassesMkh();
+            var listBlocksMkh = InitializerHelpers.GetListBlocksMkh();
+            var listNosologiesMkh = InitializerHelpers.GetListNosologiesMkh();
+            var listDiagnosesMkh = InitializerHelpers.GetListDiagnosesMkh();
+
+            foreach (var classMkh in listClassesMkh)
             {
-                var existModel = context.ClassesMkh.Find(item.Id);
-                if (existModel == null)
+                classMkh.BlocksMkh = InitializerHelpers.GetListBlocksOfClass(classMkh, listBlocksMkh);
+
+                foreach (var block in classMkh.BlocksMkh)
                 {
-                    context.ClassesMkh.Add(item);
+                    block.NosologiesMkh = InitializerHelpers.GetListNosologiesOfBlock(block, listNosologiesMkh);
+
+                    foreach (var nosology in block.NosologiesMkh)
+                    {
+                        nosology.DiagnosesMkh = InitializerHelpers.GetListDiagnosesOfNosology(nosology, listDiagnosesMkh);
+                    }
                 }
             }
-            var blocksMkhList = InitializerHelpers.GetListMkhsObject(new List<BlockMkh>(), "blocks");
-            foreach (var item in blocksMkhList)
-            {
-                var existModel = context.BlocksMkh.Find(item.Id);
-                if (existModel == null)
-                {
-                    context.BlocksMkh.Add(item);
-                }
-            }
+
+            context.ClassesMkh.AddRange(listClassesMkh);
         }
+       
     }
 }
