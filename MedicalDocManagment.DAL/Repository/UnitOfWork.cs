@@ -15,6 +15,8 @@ namespace MedicalDocManagment.DAL.Repository
         private readonly Lazy<IPositionRepository> _positionRepository;
         private readonly Lazy<IClassMkhRepository> _classMkhRepository;
         private readonly Lazy<IBlockMkhRepository> _blockMkhRepository;
+        private readonly Lazy<INosologyMkhRepository> _nosologyRepository;
+        private readonly Lazy<IDiagnosisMkhRepository> _diagnosisMkhRepository;
         private readonly Lazy<UsersManager> _usersManager;
 
         public UnitOfWork()
@@ -24,6 +26,8 @@ namespace MedicalDocManagment.DAL.Repository
             _positionRepository = new Lazy<IPositionRepository>(() => new PositionRepository(_context));
             _classMkhRepository = new Lazy<IClassMkhRepository>(() => new ClassMkhRepository(_context));
             _blockMkhRepository = new Lazy<IBlockMkhRepository>(() => new BlockMkhRepository(_context));
+            _nosologyRepository = new Lazy<INosologyMkhRepository>(() => new NosologyMkhRepository(_context));
+            _diagnosisMkhRepository = new Lazy<IDiagnosisMkhRepository>(() => new DiagnosisMkhRepository(_context));
             _usersManager = new Lazy<UsersManager>(() => HttpContext.Current
                                                                     .GetOwinContext()
                                                                     .GetUserManager<UsersManager>());
@@ -32,6 +36,8 @@ namespace MedicalDocManagment.DAL.Repository
         public IPositionRepository PositionRepository => _positionRepository.Value;
         public IClassMkhRepository ClassMkhRepository => _classMkhRepository.Value;
         public IBlockMkhRepository BlockMkhRepository => _blockMkhRepository.Value;
+        public INosologyMkhRepository NosologyMkhRepository => _nosologyRepository.Value;
+        public IDiagnosisMkhRepository DiagnosisMkhRepository => _diagnosisMkhRepository.Value;
         public UsersManager UsersManager => _usersManager.Value;
 
         public void Dispose()

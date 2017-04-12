@@ -12,6 +12,8 @@ namespace MedicalDocManagment.DAL.Repository.Interfaces
         IPositionRepository PositionRepository { get; }
         IClassMkhRepository ClassMkhRepository { get; }
         IBlockMkhRepository BlockMkhRepository { get; }
+        INosologyMkhRepository NosologyMkhRepository { get; }
+        IDiagnosisMkhRepository DiagnosisMkhRepository { get; }
 
         UsersManager UsersManager { get; }
 
