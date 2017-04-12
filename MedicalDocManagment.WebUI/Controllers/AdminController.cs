@@ -286,21 +286,8 @@ namespace MedicalDocManagment.WebUI.Controllers
         [HttpGet]
         public IHttpActionResult GetClassesMkh()
         {
-            Mapper.Initialize(config => config.CreateMap<ClassMkh, ClassMkhModel>());
 
-            var classesMkh = Mapper.Map<IList<ClassMkh>, List<ClassMkhModel>>(_unitOfWork.ClassMkhRepository.Get().ToList());
-
-            return Ok(classesMkh);
-        }
-
-        [HttpGet]
-        public IHttpActionResult GetBlocksMkh()
-        {
-            Mapper.Initialize(config => config.CreateMap<BlockMkh, BlockMkhModel>());
-
-            var blocksMkh = Mapper.Map<IList<BlockMkh>, List<BlockMkhModel>>(_unitOfWork.BlockMkhRepository.Get().ToList());
-
-            return Ok(blocksMkh);
+            return Ok(_unitOfWork.ClassMkhRepository.Get().ToList());
         }
 
         #endregion
