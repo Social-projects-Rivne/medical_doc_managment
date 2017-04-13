@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedicalDocManagment.DAL.Enities
 {
+    [Table("NosologiesMkh")]
     public class NosologyMkh
     {
         [Key]

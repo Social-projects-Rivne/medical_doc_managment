@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedicalDocManagment.DAL.Enities
 {
+    [Table("DiagnosesMkh")]
     public class DiagnosisMkh
     {
         [Key]
