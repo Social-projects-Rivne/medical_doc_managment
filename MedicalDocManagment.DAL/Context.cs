@@ -18,7 +18,7 @@ namespace MedicalDocManagment.DAL
             Database.SetInitializer(new DbInitializer());
         }
 
-        public Context() : base("UsersDb") { }
+        public Context() : base("MedicalDocumentationDb") { }
 
         public static Context Create()
         {
