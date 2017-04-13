@@ -110,7 +110,6 @@ namespace MedicalDocManagment.DAL.Initializer
 
             string nosologySection = nosologyId;
 
-            //return nosologyId >= blockStart && nosologyId <= blockEnd
             return String.Compare(nosologySection, blockStart) >= 0 && String.Compare(nosologySection, blockEnd) <= 0;
         }
 
@@ -125,7 +124,6 @@ namespace MedicalDocManagment.DAL.Initializer
             string blockStart = blockRegex[0].Value;
             string blockEnd = blockRegex[1].Value;
 
-            //return blockStart >= classStart && blockEnd <= classEnd;
             return String.Compare(blockStart, classStart) >= 0 && String.Compare(blockEnd, classEnd) <= 0;
         }
 
@@ -134,21 +132,57 @@ namespace MedicalDocManagment.DAL.Initializer
             return (string)classMkh["l1"] + (string)classMkh["n1"] + "-" + (string)classMkh["l2"] + (string)classMkh["n2"];
         }
 
-        public static List<BlockMkh> GetListBlocksOfClass(ClassMkh classMkh, List<BlockMkh> listBlocksMkh) {
+        public static ICollection<BlockMkh> GetListBlocksOfClass(ClassMkh classMkh, ICollection<BlockMkh> listBlocksMkh) {
             var filteredList = listBlocksMkh.Where(block => InitializerHelpers.IsBlockInClassRange(classMkh.Id, block.Id)).ToList();
+
             return filteredList;
         }
 
-        public static List<NosologyMkh> GetListNosologiesOfBlock(BlockMkh block, List<NosologyMkh> listNosologiesMkh)
+        public static ICollection<NosologyMkh> GetListNosologiesOfBlock(BlockMkh block, ICollection<NosologyMkh> listNosologiesMkh)
         {
             var filteredList = listNosologiesMkh.Where(nosology =>InitializerHelpers.IsNosologyInBlockRange(block.Id, nosology.Id)).ToList();
+
             return filteredList;
         }
 
-        public static List<DiagnosisMkh> GetListDiagnosesOfNosology(NosologyMkh nosology, List<DiagnosisMkh> listDiagnosesMkh)
+        public static ICollection<DiagnosisMkh> GetListDiagnosesOfNosology(NosologyMkh nosology, ICollection<DiagnosisMkh> listDiagnosesMkh)
         {
             var filteredList = listDiagnosesMkh.Where(diagnosis => InitializerHelpers.IsDiagnosisInNosologyRange(nosology.Id, diagnosis.Id)).ToList();
+
             return filteredList;
+        }
+
+        public static ICollection<ClassMkh> FillClassesOfOtherMkhsModels(ICollection<ClassMkh> listClasses , ICollection<BlockMkh> listBlocks, ICollection<NosologyMkh> listNosologies, ICollection<DiagnosisMkh> listDiagnoses)
+        {
+
+            foreach (var classMkh in listClasses)
+            {
+                classMkh.BlocksMkh = InitializerHelpers.GetListBlocksOfClass(classMkh, listBlocks);
+                classMkh.BlocksMkh = InitializerHelpers.FillBlocksOFNosologies(classMkh.BlocksMkh, listNosologies, listDiagnoses);
+            }
+
+            return listClasses;
+        }
+
+        public static ICollection<BlockMkh> FillBlocksOFNosologies(ICollection<BlockMkh> listBlocks, ICollection<NosologyMkh> listNosologies, ICollection<DiagnosisMkh> listDiagnoses)
+        {
+            foreach (var block in listBlocks)
+            {
+                block.NosologiesMkh = InitializerHelpers.GetListNosologiesOfBlock(block, listNosologies);
+                block.NosologiesMkh = InitializerHelpers.FillNosologiesOfDiagnoses(block.NosologiesMkh, listDiagnoses);
+            }
+
+            return listBlocks;
+        }
+
+        public static ICollection<NosologyMkh> FillNosologiesOfDiagnoses(ICollection<NosologyMkh> listNosologies, ICollection<DiagnosisMkh> listDiagnoses)
+        {
+            foreach (var nosology in listNosologies)
+            {
+                nosology.DiagnosesMkh = InitializerHelpers.GetListDiagnosesOfNosology(nosology, listDiagnoses);
+            }
+
+            return listNosologies;
         }
 
     }

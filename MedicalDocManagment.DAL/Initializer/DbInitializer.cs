@@ -2,10 +2,11 @@
 using Ploeh.AutoFixture;
 using MedicalDocManagment.DAL.Enities;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace MedicalDocManagment.DAL.Initializer
 {
-    public class DbInitializer : DropCreateDatabaseIfModelChanges<Context>
+    public class DbInitializer : DropCreateDatabaseAlways<Context>
     {
         protected override void Seed(Context context)
         {
@@ -30,25 +31,12 @@ namespace MedicalDocManagment.DAL.Initializer
                 positionCounter++;
             }
 
-            var listClassesMkh = InitializerHelpers.GetListClassesMkh();
-            var listBlocksMkh = InitializerHelpers.GetListBlocksMkh();
-            var listNosologiesMkh = InitializerHelpers.GetListNosologiesMkh();
-            var listDiagnosesMkh = InitializerHelpers.GetListDiagnosesMkh();
+            ICollection<ClassMkh> listClassesMkh = InitializerHelpers.GetListClassesMkh();
+            ICollection<BlockMkh> listBlocksMkh = InitializerHelpers.GetListBlocksMkh();
+            ICollection<NosologyMkh> listNosologiesMkh = InitializerHelpers.GetListNosologiesMkh();
+            ICollection<DiagnosisMkh> listDiagnosesMkh = InitializerHelpers.GetListDiagnosesMkh();
 
-            foreach (var classMkh in listClassesMkh)
-            {
-                classMkh.BlocksMkh = InitializerHelpers.GetListBlocksOfClass(classMkh, listBlocksMkh);
-
-                foreach (var block in classMkh.BlocksMkh)
-                {
-                    block.NosologiesMkh = InitializerHelpers.GetListNosologiesOfBlock(block, listNosologiesMkh);
-
-                    foreach (var nosology in block.NosologiesMkh)
-                    {
-                        nosology.DiagnosesMkh = InitializerHelpers.GetListDiagnosesOfNosology(nosology, listDiagnosesMkh);
-                    }
-                }
-            }
+            listClassesMkh = InitializerHelpers.FillClassesOfOtherMkhsModels(listClassesMkh, listBlocksMkh, listNosologiesMkh, listDiagnosesMkh);
 
             context.ClassesMkh.AddRange(listClassesMkh);
         }

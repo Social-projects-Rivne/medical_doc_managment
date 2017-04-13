@@ -108,25 +108,9 @@
     <Compile Include="Migrations\201704101924589_Initial.Designer.cs">
       <DependentUpon>201704101924589_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704101933581_Add_ClassMkh_Table.cs" />
-    <Compile Include="Migrations\201704101933581_Add_ClassMkh_Table.Designer.cs">
-      <DependentUpon>201704101933581_Add_ClassMkh_Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704101955569_Add_BlockMkh_table_and_relationship.cs" />
-    <Compile Include="Migrations\201704101955569_Add_BlockMkh_table_and_relationship.Designer.cs">
-      <DependentUpon>201704101955569_Add_BlockMkh_table_and_relationship.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704120738458_Add_NosologyMkh_Table.cs" />
-    <Compile Include="Migrations\201704120738458_Add_NosologyMkh_Table.Designer.cs">
-      <DependentUpon>201704120738458_Add_NosologyMkh_Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704121610350_Add_DiagnosisMkh_Table.cs" />
-    <Compile Include="Migrations\201704121610350_Add_DiagnosisMkh_Table.Designer.cs">
-      <DependentUpon>201704121610350_Add_DiagnosisMkh_Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704121627228_Changed_DiagnosisMkh_Validation.cs" />
-    <Compile Include="Migrations\201704121627228_Changed_DiagnosisMkh_Validation.Designer.cs">
-      <DependentUpon>201704121627228_Changed_DiagnosisMkh_Validation.cs</DependentUpon>
+    <Compile Include="Migrations\201704131707566_Add_MKHs_Models.cs" />
+    <Compile Include="Migrations\201704131707566_Add_MKHs_Models.Designer.cs">
+      <DependentUpon>201704131707566_Add_MKHs_Models.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -149,20 +133,8 @@
     <EmbeddedResource Include="Migrations\201704101924589_Initial.resx">
       <DependentUpon>201704101924589_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704101933581_Add_ClassMkh_Table.resx">
-      <DependentUpon>201704101933581_Add_ClassMkh_Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704101955569_Add_BlockMkh_table_and_relationship.resx">
-      <DependentUpon>201704101955569_Add_BlockMkh_table_and_relationship.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704120738458_Add_NosologyMkh_Table.resx">
-      <DependentUpon>201704120738458_Add_NosologyMkh_Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704121610350_Add_DiagnosisMkh_Table.resx">
-      <DependentUpon>201704121610350_Add_DiagnosisMkh_Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704121627228_Changed_DiagnosisMkh_Validation.resx">
-      <DependentUpon>201704121627228_Changed_DiagnosisMkh_Validation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704131707566_Add_MKHs_Models.resx">
+      <DependentUpon>201704131707566_Add_MKHs_Models.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
