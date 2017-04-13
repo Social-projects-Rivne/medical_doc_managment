@@ -1,11 +1,9 @@
 ﻿using Microsoft.Owin;
 using Owin;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.AspNet.Identity;
-using MedicalDocManagment.UsersDAL;
 using Microsoft.Owin.Security.OAuth;
 using System;
 using MedicalDocManagment.WebUI.Providers;
+using MedicalDocManagment.DAL;
 
 [assembly: OwinStartup(typeof(MedicalDocManagment.Startup))]
 
@@ -15,9 +13,8 @@ namespace MedicalDocManagment
     {
         public void Configuration(IAppBuilder app)
         {
-            
-            app.CreatePerOwinContext<UsersContext>(UsersContext.Create);
-            app.CreatePerOwinContext<UsersManager>(UsersManager.Create);
+            app.CreatePerOwinContext<Context>(Context.Create);
+            app.CreatePerOwinContext<Context>(Context.Create);
             ConfigureOAuth(app);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             //app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -39,7 +36,6 @@ namespace MedicalDocManagment
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-
         }
     }
 }

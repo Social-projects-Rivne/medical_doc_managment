@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
 
-using MedicalDocManagment.UsersDAL.Entities;
-using MedicalDocManagment.UsersDAL.Repositories;
-using MedicalDocManagment.UsersDAL.Repositories.Interfaces;
 using MedicalDocManagment.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Models;
 using Microsoft.AspNet.Identity;
+using MedicalDocManagment.DAL.Enities;
+using MedicalDocManagment.DAL.Repository.Interfaces;
+using MedicalDocManagment.DAL.Repository;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -279,6 +279,17 @@ namespace MedicalDocManagment.WebUI.Controllers
 
             return NotFound();
         }
+        #endregion
+
+        #region Mkh's methods
+
+        [HttpGet]
+        public IHttpActionResult GetClassesMkh()
+        {
+
+            return Ok(_unitOfWork.ClassMkhRepository.Get().ToList());
+        }
+
         #endregion
 
         protected override void Dispose(bool disposing)
