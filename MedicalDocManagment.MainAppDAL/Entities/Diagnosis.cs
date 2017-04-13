@@ -8,11 +8,9 @@ namespace MedicalDocManagment.MainAppDAL.Entities
     public class Diagnosis
     {
         [Key]
-        [Column("id")]
         public string Id { get; set; }
 
         [Required]
-        [Column("name")]
         public string Name { get; set; }
     }
 }

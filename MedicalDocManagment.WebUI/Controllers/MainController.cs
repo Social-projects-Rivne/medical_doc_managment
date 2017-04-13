@@ -8,9 +8,8 @@ using MedicalDocManagment.WebUI.Models;
 namespace MedicalDocManagment.WebUI.Controllers
 {
     public class MainController : ApiController
-    {       
-        // TODO uncomment when feature will be implemented
-        //[Authorize]
+    {
+        [Authorize]
         [HttpPost]
         public IHttpActionResult AddPatient(AddPatientModel addPatientModel)
         {
@@ -23,9 +22,9 @@ namespace MedicalDocManagment.WebUI.Controllers
 
             ChildCard newChildCard = new ChildCard
             {
-                L_Name = addPatientModel.L_Name,
-                F_Name = addPatientModel.F_Name,
-                S_Name = addPatientModel.S_Name,
+                LastName = addPatientModel.LastName,
+                FirstName = addPatientModel.FirstName,
+                SecondName = addPatientModel.SecondName,
                 Date = addPatientModel.Date,
                 CheckIn = addPatientModel.Checkin,
                 CheckOut = addPatientModel.Checkout,
