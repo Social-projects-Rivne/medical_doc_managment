@@ -4,6 +4,7 @@ using Microsoft.Owin.Security.OAuth;
 using System;
 using MedicalDocManagment.WebUI.Providers;
 using MedicalDocManagment.DAL;
+using MedicalDocManagment.DAL.Manager;
 
 [assembly: OwinStartup(typeof(MedicalDocManagment.Startup))]
 
@@ -14,7 +15,7 @@ namespace MedicalDocManagment
         public void Configuration(IAppBuilder app)
         {
             app.CreatePerOwinContext<Context>(Context.Create);
-            app.CreatePerOwinContext<Context>(Context.Create);
+            app.CreatePerOwinContext<UsersManager>(UsersManager.Create);
             ConfigureOAuth(app);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             //app.UseCookieAuthentication(new CookieAuthenticationOptions
