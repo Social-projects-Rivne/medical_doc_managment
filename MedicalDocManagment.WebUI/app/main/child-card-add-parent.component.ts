@@ -34,9 +34,9 @@ export default class ChildCardAddParentComponent {
     }
 
     private _isValid(): boolean {
-        return (this._parent.f_name && (this._parent.f_name.trim().length > 0) &&
-                    this._parent.s_name && (this._parent.s_name.trim().length > 0) &&
-                    this._parent.l_name && (this._parent.l_name.trim().length > 0) &&
+        return (this._parent.f_Name && (this._parent.f_Name.trim().length > 0) &&
+                    this._parent.s_Name && (this._parent.s_Name.trim().length > 0) &&
+                    this._parent.l_Name && (this._parent.l_Name.trim().length > 0) &&
                     this._parent.work && (this._parent.work.trim().length > 0) &&
                     this._parent.phone && (this._parent.phone.trim().length > 0)
         );
