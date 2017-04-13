@@ -1,80 +1,68 @@
-﻿<div id="childCardAddParentModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>Додати одного з батьків</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form">
-                    <div class="form-group">
-                        <label class="control-label" for="f_Name">Ім'я</label>
-                        <input type="text" class="form-control" id="f_Name" name="f_Name"
-                               [(ngModel)]="_parent.f_Name" />
-                        <div *ngIf="!_parent.f_Name || !(_parent.f_Name.trim().length)" 
-                             class="alert alert-danger">
-                            Введіть ім'я.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="s_Name">По-батькові</label>
-                        <input type="text" class="form-control" id="s_Name" name="s_Name"
-                               [(ngModel)]="_parent.s_Name" />
-                        <div *ngIf="!_parent.s_Name || !(_parent.s_Name.trim().length)" 
-                             class="alert alert-danger">
-                            Введіть по-батькові.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="l_Name">Прізвище</label>
-                        <input type="text" class="form-control" id="l_Name" name="l_Name"
-                               [(ngModel)]="_parent.l_Name" />
-                        <div *ngIf="!_parent.l_Name  || !(_parent.l_Name.trim().length)" 
-                             class="alert alert-danger">
-                            Введіть прізвище.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="work">Місце роботи</label>
-                        <input type="text" class="form-control" id="work" name="work"
-                               [(ngModel)]="_parent.work" />
-                        <div *ngIf="!_parent.work || !(_parent.work.trim().length)" 
-                             class="alert alert-danger">
-                            Введіть місце роботи.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="phone">Телефон</label>
-                        <input type="text" class="form-control" id="phone" name="phone"
-                               [(ngModel)]="_parent.phone" />
-                        <div *ngIf="!_parent.phone || !(_parent.phone.trim().length)"
-                             class="alert alert-danger">
-                            Введіть телефон.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="progress" *ngIf="_isAdding">
-                            <div class="progress-bar progress-bar-info progress-bar-striped active"
-                                 role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"
-                                 style="width:100%">
-                                Додавання одного з батьків...
-                            </div>
-                        </div>
-                        <div *ngIf="_isErrorOnAdding" class="alert alert-danger">
-                            Помилка при додаванні одного з батьків:
-                            {{_lastErrorMessage}}
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" (click)="_onAdd()"
-                        [disabled]="!_isValid()">
-                    Додати
-                </button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Відміна</button>
+﻿<div class="container">
+    <form>
+        <h4>Додати одного з батьків</h4>
+        <div class="form-group">
+            <label class="control-label" for="firstName">Ім'я</label>
+            <input type="text" class="form-control" id="firstName" name="firstName"
+                   [(ngModel)]="_parent.firstName" />
+            <div *ngIf="!_parent.firstName || !(_parent.firstName.trim().length)"
+                 class="alert alert-danger">
+                Введіть ім'я.
             </div>
         </div>
-    </div>
+        <div class="form-group">
+            <label class="control-label" for="secondName">По-батькові</label>
+            <input type="text" class="form-control" id="secondName" name="secondName"
+                   [(ngModel)]="_parent.secondName" />
+            <div *ngIf="!_parent.secondName || !(_parent.secondName.trim().length)"
+                 class="alert alert-danger">
+                Введіть по-батькові.
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="lastName">Прізвище</label>
+            <input type="text" class="form-control" id="lastName" name="lastName"
+                   [(ngModel)]="_parent.lastName" />
+            <div *ngIf="!_parent.lastName  || !(_parent.lastName.trim().length)"
+                 class="alert alert-danger">
+                Введіть прізвище.
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="work">Місце роботи</label>
+            <input type="text" class="form-control" id="work" name="work"
+                   [(ngModel)]="_parent.work" />
+            <div *ngIf="!_parent.work || !(_parent.work.trim().length)"
+                 class="alert alert-danger">
+                Введіть місце роботи.
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="phone">Телефон</label>
+            <input type="text" class="form-control" id="phone" name="phone"
+                   [(ngModel)]="_parent.phone" />
+            <div *ngIf="!_parent.phone || !(_parent.phone.trim().length)"
+                 class="alert alert-danger">
+                Введіть телефон.
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="progress" *ngIf="_isAdding">
+                <div class="progress-bar progress-bar-info progress-bar-striped active"
+                     role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"
+                     style="width:100%">
+                    Додавання одного з батьків...
+                </div>
+            </div>
+            <div *ngIf="_isErrorOnAdding" class="alert alert-danger">
+                Помилка при додаванні одного з батьків:
+                {{_lastErrorMessage}}
+            </div>
+        </div>
+        <button type="button" class="btn btn-default" (click)="_onAdd()"
+                [disabled]="!_isValid()">
+            Додати
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Відміна</button>
+    </form>
 </div>

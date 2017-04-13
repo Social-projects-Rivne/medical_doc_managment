@@ -1,25 +1,25 @@
 ﻿export default class ParentModel {
     id: string;
-    f_Name: string;
-    s_Name: string;
-    l_Name: string;
+    firstName: string;
+    secondName: string;
+    lastName: string;
     work: string;
     phone: string;
 
     constructor(jsonObject?) {
         if (jsonObject) {
             this.id = jsonObject.id;
-            this.f_Name = jsonObject.f_Name;
-            this.s_Name = jsonObject.f_Name;
-            this.l_Name = jsonObject.f_Name;
+            this.firstName = jsonObject.firstName;
+            this.secondName = jsonObject.secondName;
+            this.lastName = jsonObject.lastName;
             this.work = jsonObject.work;
             this.phone = jsonObject.phone;
         }
         else {
             this.id = null;
-            this.f_Name = null;
-            this.f_Name = null;
-            this.f_Name = null;
+            this.firstName = null;
+            this.secondName = null;
+            this.lastName = null;
             this.work = null;
             this.phone = null;
         }

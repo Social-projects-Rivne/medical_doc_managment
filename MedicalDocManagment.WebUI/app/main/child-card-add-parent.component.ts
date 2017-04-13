@@ -34,11 +34,12 @@ export default class ChildCardAddParentComponent {
     }
 
     private _isValid(): boolean {
-        return (this._parent.f_Name && (this._parent.f_Name.trim().length > 0) &&
-                    this._parent.s_Name && (this._parent.s_Name.trim().length > 0) &&
-                    this._parent.l_Name && (this._parent.l_Name.trim().length > 0) &&
-                    this._parent.work && (this._parent.work.trim().length > 0) &&
-                    this._parent.phone && (this._parent.phone.trim().length > 0)
+        return (
+            this._parent.firstName && (this._parent.firstName.trim().length > 0) &&
+            this._parent.secondName && (this._parent.secondName.trim().length > 0) &&
+            this._parent.lastName && (this._parent.lastName.trim().length > 0) &&
+            this._parent.work && (this._parent.work.trim().length > 0) &&
+            this._parent.phone && (this._parent.phone.trim().length > 0)
         );
     }
 
@@ -49,7 +50,6 @@ export default class ChildCardAddParentComponent {
             .subscribe((result: ParentModel) => {
                 if (result) {
                     this._isAdding = false;                   
-                    jQuery('#childCardAddParentModal').modal('hide');
                     this.parentAdded.emit(result.id);
                 }
             },
