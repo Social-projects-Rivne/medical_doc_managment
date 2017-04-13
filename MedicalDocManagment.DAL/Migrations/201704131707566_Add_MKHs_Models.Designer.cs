@@ -7,13 +7,13 @@ namespace MedicalDocManagment.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class Add_ClassMkh_Table : IMigrationMetadata
+    public sealed partial class Add_MKHs_Models : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_ClassMkh_Table));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_MKHs_Models));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704101933581_Add_ClassMkh_Table"; }
+            get { return "201704131707566_Add_MKHs_Models"; }
         }
         
         string IMigrationMetadata.Source
