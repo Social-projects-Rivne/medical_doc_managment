@@ -226,6 +226,8 @@
     <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
     <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\confirmation\confirmation.modal.ts" />
     <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
+    <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Models\Main\AddPatientModel.cs" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
     <TypeScriptCompile Include="app\admin\admin-app.routing.ts" />
     <TypeScriptCompile Include="app\core\login-app.component.ts" />

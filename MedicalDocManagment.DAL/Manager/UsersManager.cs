@@ -1,4 +1,4 @@
-﻿using MedicalDocManagment.DAL.Enities;
+﻿using MedicalDocManagment.DAL.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;

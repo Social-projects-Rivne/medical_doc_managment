@@ -1,36 +1,20 @@
 ﻿using System.Data.Entity;
 using Ploeh.AutoFixture;
-using MedicalDocManagment.DAL.Enities;
-using System.Linq;
 using System.Collections.Generic;
+using MedicalDocManagment.DAL.Entities;
 
 namespace MedicalDocManagment.DAL.Initializer
 {
-    public class DbInitializer : DropCreateDatabaseIfModelChanges<Context>
+    public class DbInitializer : DropCreateDatabaseAlways<Context>
     {
         protected override void Seed(Context context)
         {
-            var fixture = new Fixture();
-
-            var users = fixture.Build<User>()
-                               .Without(user => user.Position)
-                               .Without(user => user.PositionId)
-                               .CreateMany(10);
-
-            int userCounter = 1;
-            int positionCounter = 1;
-            foreach (var user in users)
-            {
-                user.Position = new Position { Name = InitializerHelpers.GeneratePositionName(positionCounter) };
-                user.UserName = InitializerHelpers.GenerateUserName(userCounter);
-                user.Email = InitializerHelpers.GenerateEmail(userCounter);
-
+            var usersList = InitializerHelpers.FillingDbOfUsers();
+            foreach (var user in usersList) {
                 context.Users.Add(user);
-
-                userCounter++;
-                positionCounter++;
             }
 
+            #region Filling DB of MKH's data
             ICollection<ClassMkh> listClassesMkh = InitializerHelpers.GetListClassesMkh();
             ICollection<BlockMkh> listBlocksMkh = InitializerHelpers.GetListBlocksMkh();
             ICollection<NosologyMkh> listNosologiesMkh = InitializerHelpers.GetListNosologiesMkh();
@@ -39,6 +23,10 @@ namespace MedicalDocManagment.DAL.Initializer
             listClassesMkh = InitializerHelpers.FillClassesOfOtherMkhsModels(listClassesMkh, listBlocksMkh, listNosologiesMkh, listDiagnosesMkh);
 
             context.ClassesMkh.AddRange(listClassesMkh);
+            #endregion 
+
+            // Bug
+            //InitializerHelpers.FillChildCardDb(context);
         }
        
     }

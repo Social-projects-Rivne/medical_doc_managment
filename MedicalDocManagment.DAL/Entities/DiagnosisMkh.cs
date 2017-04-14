@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MedicalDocManagment.DAL.Enities
+namespace MedicalDocManagment.DAL.Entities
 {
     [Table("DiagnosesMkh")]
     public class DiagnosisMkh

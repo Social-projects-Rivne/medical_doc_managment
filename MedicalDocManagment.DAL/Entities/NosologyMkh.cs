@@ -2,19 +2,19 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MedicalDocManagment.DAL.Enities
+namespace MedicalDocManagment.DAL.Entities
 {
-    [Table("BlocksMkh")]
-    public class BlockMkh
+    [Table("NosologiesMkh")]
+    public class NosologyMkh
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
         [StringLength(200)]
         public string Name { get; set; }
-        public string ClassId { get; set; }
-        [ForeignKey("ClassId")]
-        public virtual ClassMkh ClassMkh { get; set; }
-        public virtual ICollection<NosologyMkh> NosologiesMkh { get; set; }
+        public string BlockId { get; set; }
+        [ForeignKey("BlockId")]
+        public virtual BlockMkh BlockMkh { get; set; }
+        public virtual ICollection<DiagnosisMkh> DiagnosesMkh { get; set; }
     }
 }

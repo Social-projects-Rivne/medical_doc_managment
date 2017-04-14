@@ -1,6 +1,7 @@
-﻿using MedicalDocManagment.DAL.Enities;
+﻿using MedicalDocManagment.DAL.Entities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Ploeh.AutoFixture;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,8 +12,8 @@ namespace MedicalDocManagment.DAL.Initializer
 {
     internal static class InitializerHelpers
     {
-        static string projectPath = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
-        static string mappedFolder = projectPath + @"\src\";
+        static readonly string ProjectPath = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
+        static readonly string MappedFolder = ProjectPath + @"\src\";
 
         public static string GenerateUserName(int userCounter)
         {
@@ -29,9 +30,33 @@ namespace MedicalDocManagment.DAL.Initializer
             return $"Position{positionCounter}";
         }
 
+        public static IEnumerable<User> FillingDbOfUsers()
+        {
+            var fixture = new Fixture();
+
+            var users = fixture.Build<User>()
+                               .Without(user => user.Position)
+                               .Without(user => user.PositionId)
+                               .CreateMany(10);
+
+            int userCounter = 1;
+            int positionCounter = 1;
+            foreach (var user in users)
+            {
+                user.Position = new Position { Name = InitializerHelpers.GeneratePositionName(positionCounter) };
+                user.UserName = InitializerHelpers.GenerateUserName(userCounter);
+                user.Email = InitializerHelpers.GenerateEmail(userCounter);
+
+                userCounter++;
+                positionCounter++;
+            }
+            return users;
+        }
+
+        #region MKH's function
         public static List<T> GetListMkhsObject<T>(List<T> list, string fileName)
         {
-            using (StreamReader file = File.OpenText(mappedFolder + $"{fileName}.json"))
+            using (StreamReader file = File.OpenText(MappedFolder + $"{fileName}.json"))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 list = (List<T>)serializer.Deserialize(file, typeof(List<T>));
@@ -41,7 +66,7 @@ namespace MedicalDocManagment.DAL.Initializer
 
         public static List<DiagnosisMkh> GetListDiagnosesMkh()
         {
-            string jsonDiasnosesText = File.ReadAllText(mappedFolder + "diagnoses.json");
+            string jsonDiasnosesText = File.ReadAllText(MappedFolder + "diagnoses.json");
             var diagnosisJson = JArray.Parse(jsonDiasnosesText);
             var listDiagnoses = diagnosisJson.Select(i => new DiagnosisMkh
             {
@@ -54,7 +79,7 @@ namespace MedicalDocManagment.DAL.Initializer
 
         public static List<NosologyMkh> GetListNosologiesMkh()
         {
-            string jsonNosologyText = File.ReadAllText(mappedFolder + "nosologies.json");
+            string jsonNosologyText = File.ReadAllText(MappedFolder + "nosologies.json");
             var nosologyJson = JArray.Parse(jsonNosologyText);
             var listNosologies = nosologyJson.Select(i => new NosologyMkh
             {
@@ -68,7 +93,7 @@ namespace MedicalDocManagment.DAL.Initializer
 
         public static List<BlockMkh> GetListBlocksMkh()
         {
-            string jsonBlockText = File.ReadAllText(mappedFolder + "blocks.json");
+            string jsonBlockText = File.ReadAllText(MappedFolder + "blocks.json");
             var blockJson = JArray.Parse(jsonBlockText);
             var listBlocks = blockJson.Select(i => new BlockMkh
             {
@@ -81,7 +106,7 @@ namespace MedicalDocManagment.DAL.Initializer
 
         public static List<ClassMkh> GetListClassesMkh()
         {
-            string jsonText = File.ReadAllText(mappedFolder + "classes.json");
+            string jsonText = File.ReadAllText(MappedFolder + "classes.json");
             var json = JArray.Parse(jsonText);
             var listClasses = json.Select(i => new ClassMkh
             {
@@ -132,7 +157,8 @@ namespace MedicalDocManagment.DAL.Initializer
             return (string)classMkh["l1"] + (string)classMkh["n1"] + "-" + (string)classMkh["l2"] + (string)classMkh["n2"];
         }
 
-        public static ICollection<BlockMkh> GetListBlocksOfClass(ClassMkh classMkh, ICollection<BlockMkh> listBlocksMkh) {
+        public static ICollection<BlockMkh> GetListBlocksOfClass(ClassMkh classMkh, ICollection<BlockMkh> listBlocksMkh)
+        {
             var filteredList = listBlocksMkh.Where(block => InitializerHelpers.IsBlockInClassRange(classMkh.Id, block.Id)).ToList();
 
             return filteredList;
@@ -140,7 +166,7 @@ namespace MedicalDocManagment.DAL.Initializer
 
         public static ICollection<NosologyMkh> GetListNosologiesOfBlock(BlockMkh block, ICollection<NosologyMkh> listNosologiesMkh)
         {
-            var filteredList = listNosologiesMkh.Where(nosology =>InitializerHelpers.IsNosologyInBlockRange(block.Id, nosology.Id)).ToList();
+            var filteredList = listNosologiesMkh.Where(nosology => InitializerHelpers.IsNosologyInBlockRange(block.Id, nosology.Id)).ToList();
 
             return filteredList;
         }
@@ -152,7 +178,7 @@ namespace MedicalDocManagment.DAL.Initializer
             return filteredList;
         }
 
-        public static ICollection<ClassMkh> FillClassesOfOtherMkhsModels(ICollection<ClassMkh> listClasses , ICollection<BlockMkh> listBlocks, ICollection<NosologyMkh> listNosologies, ICollection<DiagnosisMkh> listDiagnoses)
+        public static ICollection<ClassMkh> FillClassesOfOtherMkhsModels(ICollection<ClassMkh> listClasses, ICollection<BlockMkh> listBlocks, ICollection<NosologyMkh> listNosologies, ICollection<DiagnosisMkh> listDiagnoses)
         {
 
             foreach (var classMkh in listClasses)
@@ -184,6 +210,65 @@ namespace MedicalDocManagment.DAL.Initializer
 
             return listNosologies;
         }
+        #endregion
 
+        #region Children's Card region
+        public static void FillChildCardDb(Context context)
+        {
+            var childrenCards = CreateChildCards();
+            CreateDiagnosesForChildCards(childrenCards);
+            CreateParentsForSomeChildren(context, childrenCards);
+
+            context.ChildrenCards.AddRange(childrenCards);
+            context.SaveChanges();
+        }
+
+        private static IEnumerable<ChildCard> CreateChildCards()
+        {
+            Fixture fixture = new Fixture();
+
+            return fixture.Build<ChildCard>()
+                          .Without(childCard => childCard.ParentsChildren)
+                          .CreateMany(30);
+        }
+
+        private static void CreateDiagnosesForChildCards(IEnumerable<ChildCard> childrenCards)
+        {
+            var diagnosisId = 1;
+            foreach (ChildCard childCard in childrenCards)
+            {
+                childCard.Diagnosis.Id = "A" + (diagnosisId++).ToString();
+            }
+        }
+
+        private static void CreateParentsForSomeChildren(
+            Context context,
+            IEnumerable<ChildCard> childrenCards
+            )
+        {
+            var fixture = new Fixture();
+            // special variable for variating number of parents from 0 to 2
+            var parentsCount = 0;
+
+            foreach (ChildCard childCard in childrenCards)
+            {
+                IEnumerable<Parent> parents = fixture.Build<Parent>()
+                                                     .Without(parent => parent.ParentsChildren)
+                                                     .CreateMany(parentsCount).ToList();
+                foreach (Parent parent in parents)
+                {
+                    context.Parents.Add(parent);
+
+                    ParentChildCard parentChildCard = new ParentChildCard
+                    {
+                        ChildCard = childCard,
+                        Parent = parent
+                    };
+                    context.ParentsChildrenCards.Add(parentChildCard);
+                }
+                parentsCount = (++parentsCount) % 3;
+            }
+        }
+        #endregion
     }
 }

@@ -1,4 +1,4 @@
-﻿using MedicalDocManagment.DAL.Enities;
+﻿using MedicalDocManagment.DAL.Entities;
 using MedicalDocManagment.DAL.Repository.Interfaces;
 
 namespace MedicalDocManagment.DAL.Repository

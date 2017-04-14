@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MedicalDocManagment.DAL.Enities
+namespace MedicalDocManagment.DAL.Entities
 {
-    public class User : IdentityUser
+    public class Parent
     {
+        [Key]
+        public int Id { get; set; }
+
         [StringLength(100)]
         public string FirstName { get; set; }
 
@@ -14,11 +17,11 @@ namespace MedicalDocManagment.DAL.Enities
 
         [StringLength(100)]
         public string LastName { get; set; }
-        public bool IsActive { get; set; }
 
-        public int PositionId { get; set; }
+        public string Work { get; set; }
 
-        [ForeignKey("PositionId")]
-        public virtual Position Position { get; set; }
+        public string Phone { get; set; }
+
+        public virtual ICollection<ParentChildCard> ParentsChildren { get; set; }
     }
 }
