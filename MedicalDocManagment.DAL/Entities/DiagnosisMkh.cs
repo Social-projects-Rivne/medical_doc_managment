@@ -7,11 +7,14 @@ namespace MedicalDocManagment.DAL.Entities
     public class DiagnosisMkh
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
+
         [StringLength(300)]
+        [Column("DiagnosisName")]
         public string Name { get; set; }
+
         public string NosologyId { get; set; }
+
         [ForeignKey("NosologyId")]
         public NosologyMkh NosologyMkh { get; set; }
     }

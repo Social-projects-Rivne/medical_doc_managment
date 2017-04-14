@@ -8,10 +8,12 @@ namespace MedicalDocManagment.DAL.Entities
     public class ClassMkh
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
+
         [StringLength(200)]
+        [Column("ClassName")]
         public string Name { get; set; }
+
         public virtual ICollection<BlockMkh> BlocksMkh { get; set; }
     }
 }

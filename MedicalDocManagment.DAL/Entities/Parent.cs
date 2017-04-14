@@ -8,20 +8,20 @@ namespace MedicalDocManagment.DAL.Entities
     {
         [Key]
         public int Id { get; set; }
-
+        
         [StringLength(100)]
         public string FirstName { get; set; }
-
+        
         [StringLength(100)]
         public string SecondName { get; set; }
-
+        
         [StringLength(100)]
         public string LastName { get; set; }
-
+        
         public string Work { get; set; }
-
+        
         public string Phone { get; set; }
-
+        
         public virtual ICollection<ParentChildCard> ParentsChildren { get; set; }
     }
 }
