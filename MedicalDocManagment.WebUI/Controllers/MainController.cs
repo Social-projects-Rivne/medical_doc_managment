@@ -57,16 +57,5 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Ok(result);
         }
 
-        #region Mkh's methods
-
-        [HttpGet]
-        public IHttpActionResult GetClassesMkh()
-        {
-
-            return Ok(_unitOfWork.ClassMkhRepository.Get().ToList());
-        }
-
-        #endregion
-
     }
 }
