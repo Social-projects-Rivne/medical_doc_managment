@@ -48,8 +48,6 @@ namespace MedicalDocManagment.WebUI.Controllers
             {
                 result = context.ChildrenCards.Add(newChildCard);
                 context.SaveChanges();
-                result = context.ChildrenCards.Add(newChildCard);
-                context.SaveChanges();
             }
             catch (Exception exception)
             {
