@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Http;
 
 using MedicalDocManagment.DAL.Entities;
@@ -7,6 +6,7 @@ using MedicalDocManagment.DAL;
 using MedicalDocManagment.WebUI.Models;
 using MedicalDocManagment.DAL.Repository.Interfaces;
 using MedicalDocManagment.DAL.Repository;
+
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -48,6 +48,8 @@ namespace MedicalDocManagment.WebUI.Controllers
             {
                 result = context.ChildrenCards.Add(newChildCard);
                 context.SaveChanges();
+                result = context.ChildrenCards.Add(newChildCard);
+                context.SaveChanges();
             }
             catch (Exception exception)
             {
@@ -56,6 +58,5 @@ namespace MedicalDocManagment.WebUI.Controllers
 
             return Ok(result);
         }
-
     }
 }
