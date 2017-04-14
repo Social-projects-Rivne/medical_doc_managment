@@ -30,7 +30,7 @@ namespace MedicalDocManagment.DAL.Initializer
             return $"Position{positionCounter}";
         }
 
-        public static IEnumerable<User> FillingDbOfUsers()
+        public static void FillDbUsers(Context context)
         {
             var fixture = new Fixture();
 
@@ -43,85 +43,129 @@ namespace MedicalDocManagment.DAL.Initializer
             int positionCounter = 1;
             foreach (var user in users)
             {
-                user.Position = new Position { Name = InitializerHelpers.GeneratePositionName(positionCounter) };
-                user.UserName = InitializerHelpers.GenerateUserName(userCounter);
-                user.Email = InitializerHelpers.GenerateEmail(userCounter);
+                user.Position = new Position { Name = GeneratePositionName(positionCounter) };
+                user.UserName = GenerateUserName(userCounter);
+                user.Email = GenerateEmail(userCounter);
+
+                context.Users.Add(user);
 
                 userCounter++;
                 positionCounter++;
             }
-            return users;
+        }
+
+        public static void FillDbMkh(Context context)
+        {
+            var listClassesMkh = GetListClassesMkh();
+            var listBlocksMkh = GetListBlocksMkh();
+            var listNosologiesMkh = GetListNosologiesMkh();
+            var listDiagnosesMkh = GetListDiagnosesMkh();
+
+            listClassesMkh = FillClassesOfOtherMkhsModels(listClassesMkh, listBlocksMkh, listNosologiesMkh, listDiagnosesMkh);
+
+            context.ClassesMkh.AddRange(listClassesMkh);
         }
 
         #region MKH's function
-        public static List<T> GetListMkhsObject<T>(List<T> list, string fileName)
+
+        public static List<ClassMkh> FillClassesOfOtherMkhsModels(List<ClassMkh> listClasses,
+            List<BlockMkh> listBlocks,
+            List<NosologyMkh> listNosologies,
+            List<DiagnosisMkh> listDiagnoses)
         {
-            using (StreamReader file = File.OpenText(MappedFolder + $"{fileName}.json"))
+            foreach (var classMkh in listClasses)
             {
-                JsonSerializer serializer = new JsonSerializer();
-                list = (List<T>)serializer.Deserialize(file, typeof(List<T>));
+                classMkh.BlocksMkh = GetListBlocksOfClass(classMkh, listBlocks);
+                classMkh.BlocksMkh = FillBlocksOFNosologies(classMkh.BlocksMkh.ToList(), listNosologies, listDiagnoses);
             }
-            return list;
+
+            return listClasses;
+        }
+
+        public static List<BlockMkh> FillBlocksOFNosologies(List<BlockMkh> listBlocks,
+                                                            List<NosologyMkh> listNosologies,
+                                                            List<DiagnosisMkh> listDiagnoses)
+        {
+            foreach (var block in listBlocks)
+            {
+                block.NosologiesMkh = GetListNosologiesOfBlock(block, listNosologies);
+                block.NosologiesMkh = FillNosologiesOfDiagnoses(block.NosologiesMkh.ToList(), listDiagnoses);
+            }
+
+            return listBlocks;
+        }
+
+        public static List<NosologyMkh> FillNosologiesOfDiagnoses(List<NosologyMkh> listNosologies,
+                                                                  List<DiagnosisMkh> listDiagnoses)
+        {
+            foreach (var nosology in listNosologies)
+            {
+                nosology.DiagnosesMkh = GetListDiagnosesOfNosology(nosology, listDiagnoses);
+            }
+
+            return listNosologies;
         }
 
         public static List<DiagnosisMkh> GetListDiagnosesMkh()
         {
-            string jsonDiasnosesText = File.ReadAllText(MappedFolder + "diagnoses.json");
-            var diagnosisJson = JArray.Parse(jsonDiasnosesText);
-            var listDiagnoses = diagnosisJson.Select(i => new DiagnosisMkh
+            var diagnosesJson = ReadFileAsJArray("diagnoses.json");
+            var listDiagnoses = diagnosesJson.Select(diagnosis => new DiagnosisMkh
             {
-                Id = (string)i["l"] + (string)i["n1"] + "." + (string)i["n2"],
-                Name = (string)i["label"],
+                Id = GetIdForDiagnosis(diagnosis),
+                Name = (string)diagnosis["label"],
             })
-            .ToList();
+                                                                  .ToList();
             return listDiagnoses;
         }
 
         public static List<NosologyMkh> GetListNosologiesMkh()
         {
-            string jsonNosologyText = File.ReadAllText(MappedFolder + "nosologies.json");
-            var nosologyJson = JArray.Parse(jsonNosologyText);
-            var listNosologies = nosologyJson.Select(i => new NosologyMkh
+            var nosologiesJson = ReadFileAsJArray("nosologies.json");
+            var listNosologies = nosologiesJson.Select(nosology => new NosologyMkh
             {
-                Id = i["l"].ToString() + i["n1"].ToString(),
-                Name = i["label"].ToString(),
+                Id = nosology["l"].ToString() + nosology["n1"].ToString(),
+                Name = nosology["label"].ToString(),
             })
-              .ToList();
-
+                                                          .ToList();
             return listNosologies;
         }
 
         public static List<BlockMkh> GetListBlocksMkh()
         {
-            string jsonBlockText = File.ReadAllText(MappedFolder + "blocks.json");
-            var blockJson = JArray.Parse(jsonBlockText);
-            var listBlocks = blockJson.Select(i => new BlockMkh
+            var blocksJson = ReadFileAsJArray("blocks.json");
+            var listBlocks = blocksJson.Select(block => new BlockMkh
             {
-                Id = GetIdByJsonClassAndBlockMkh(i),
-                Name = (string)i["label"],
+                Id = GetIdClassAndBlockMkh(block),
+                Name = (string)block["label"],
             })
-            .ToList();
+                                                       .ToList();
             return listBlocks;
         }
 
         public static List<ClassMkh> GetListClassesMkh()
         {
-            string jsonText = File.ReadAllText(MappedFolder + "classes.json");
-            var json = JArray.Parse(jsonText);
-            var listClasses = json.Select(i => new ClassMkh
+            var classesJson = ReadFileAsJArray("classes.json");
+            var listClasses = classesJson.Select(classMkh => new ClassMkh
             {
-                Id = GetIdByJsonClassAndBlockMkh(i),
-                Name = (string)i["label"]
+                Id = GetIdClassAndBlockMkh(classMkh),
+                Name = (string)classMkh["label"]
             })
-            .ToList();
-
+                                                             .ToList();
             return listClasses;
+        }
+
+        private static JArray ReadFileAsJArray(string fileName)
+        {
+            var jsonText = File.ReadAllText(MappedFolder + fileName);
+            var jArrayObj = JArray.Parse(jsonText);
+
+            return jArrayObj;
         }
 
         public static bool IsDiagnosisInNosologyRange(string nosologyId, string diagnosisId)
         {
             var diagnosisRegex = Regex.Matches(diagnosisId, @"[A-Z]\d{2}");
-            string diagnosisStart = diagnosisRegex[0].Value;
+            var diagnosisStart = diagnosisRegex[0].Value;
 
             return String.Compare(nosologyId, diagnosisStart) == 0;
         }
@@ -129,86 +173,55 @@ namespace MedicalDocManagment.DAL.Initializer
         public static bool IsNosologyInBlockRange(string blockId, string nosologyId)
         {
             var blockRegex = Regex.Matches(blockId, @"[A-Z]\d{2}");
+            var blockStart = blockRegex[0].Value;
+            var blockEnd = blockRegex[1].Value;
+            var nosologySection = nosologyId;
 
-            string blockStart = blockRegex[0].Value;
-            string blockEnd = blockRegex[1].Value;
-
-            string nosologySection = nosologyId;
-
-            return String.Compare(nosologySection, blockStart) >= 0 && String.Compare(nosologySection, blockEnd) <= 0;
+            return String.Compare(nosologySection, blockStart) >= 0 &&
+                   String.Compare(nosologySection, blockEnd) <= 0;
         }
 
         public static bool IsBlockInClassRange(string classId, string blockId)
         {
             var classRegex = Regex.Matches(classId, @"[A-Z]\d{2}");
             var blockRegex = Regex.Matches(blockId, @"[A-Z]\d{2}");
-
-            string classStart = classRegex[0].Value;
-            string classEnd = classRegex[1].Value;
-
-            string blockStart = blockRegex[0].Value;
-            string blockEnd = blockRegex[1].Value;
+            var classStart = classRegex[0].Value;
+            var classEnd = classRegex[1].Value;
+            var blockStart = blockRegex[0].Value;
+            var blockEnd = blockRegex[1].Value;
 
             return String.Compare(blockStart, classStart) >= 0 && String.Compare(blockEnd, classEnd) <= 0;
         }
 
-        public static string GetIdByJsonClassAndBlockMkh(JToken classMkh)
+        public static string GetIdClassAndBlockMkh(JToken classOrBlock)
         {
-            return (string)classMkh["l1"] + (string)classMkh["n1"] + "-" + (string)classMkh["l2"] + (string)classMkh["n2"];
+            return (string)classOrBlock["l1"] + (string)classOrBlock["n1"] + "-" + (string)classOrBlock["l2"] + (string)classOrBlock["n2"];
         }
 
-        public static ICollection<BlockMkh> GetListBlocksOfClass(ClassMkh classMkh, ICollection<BlockMkh> listBlocksMkh)
+        private static string GetIdForDiagnosis(JToken diagnosis)
         {
-            var filteredList = listBlocksMkh.Where(block => InitializerHelpers.IsBlockInClassRange(classMkh.Id, block.Id)).ToList();
+            return (string)diagnosis["l"] + (string)diagnosis["n1"] + "." + (string)diagnosis["n2"];
+        }
+
+        public static List<BlockMkh> GetListBlocksOfClass(ClassMkh classMkh, List<BlockMkh> listBlocksMkh)
+        {
+            var filteredList = listBlocksMkh.Where(block => IsBlockInClassRange(classMkh.Id, block.Id))
+                                            .ToList();
+            return filteredList;
+        }
+
+        public static List<NosologyMkh> GetListNosologiesOfBlock(BlockMkh block, List<NosologyMkh> listNosologiesMkh)
+        {
+            var filteredList = listNosologiesMkh.Where(nosology => IsNosologyInBlockRange(block.Id, nosology.Id)).ToList();
 
             return filteredList;
         }
 
-        public static ICollection<NosologyMkh> GetListNosologiesOfBlock(BlockMkh block, ICollection<NosologyMkh> listNosologiesMkh)
+        public static List<DiagnosisMkh> GetListDiagnosesOfNosology(NosologyMkh nosology, List<DiagnosisMkh> listDiagnosesMkh)
         {
-            var filteredList = listNosologiesMkh.Where(nosology => InitializerHelpers.IsNosologyInBlockRange(block.Id, nosology.Id)).ToList();
+            var filteredList = listDiagnosesMkh.Where(diagnosis => IsDiagnosisInNosologyRange(nosology.Id, diagnosis.Id)).ToList();
 
             return filteredList;
-        }
-
-        public static ICollection<DiagnosisMkh> GetListDiagnosesOfNosology(NosologyMkh nosology, ICollection<DiagnosisMkh> listDiagnosesMkh)
-        {
-            var filteredList = listDiagnosesMkh.Where(diagnosis => InitializerHelpers.IsDiagnosisInNosologyRange(nosology.Id, diagnosis.Id)).ToList();
-
-            return filteredList;
-        }
-
-        public static ICollection<ClassMkh> FillClassesOfOtherMkhsModels(ICollection<ClassMkh> listClasses, ICollection<BlockMkh> listBlocks, ICollection<NosologyMkh> listNosologies, ICollection<DiagnosisMkh> listDiagnoses)
-        {
-
-            foreach (var classMkh in listClasses)
-            {
-                classMkh.BlocksMkh = InitializerHelpers.GetListBlocksOfClass(classMkh, listBlocks);
-                classMkh.BlocksMkh = InitializerHelpers.FillBlocksOFNosologies(classMkh.BlocksMkh, listNosologies, listDiagnoses);
-            }
-
-            return listClasses;
-        }
-
-        public static ICollection<BlockMkh> FillBlocksOFNosologies(ICollection<BlockMkh> listBlocks, ICollection<NosologyMkh> listNosologies, ICollection<DiagnosisMkh> listDiagnoses)
-        {
-            foreach (var block in listBlocks)
-            {
-                block.NosologiesMkh = InitializerHelpers.GetListNosologiesOfBlock(block, listNosologies);
-                block.NosologiesMkh = InitializerHelpers.FillNosologiesOfDiagnoses(block.NosologiesMkh, listDiagnoses);
-            }
-
-            return listBlocks;
-        }
-
-        public static ICollection<NosologyMkh> FillNosologiesOfDiagnoses(ICollection<NosologyMkh> listNosologies, ICollection<DiagnosisMkh> listDiagnoses)
-        {
-            foreach (var nosology in listNosologies)
-            {
-                nosology.DiagnosesMkh = InitializerHelpers.GetListDiagnosesOfNosology(nosology, listDiagnoses);
-            }
-
-            return listNosologies;
         }
         #endregion
 
@@ -269,6 +282,7 @@ namespace MedicalDocManagment.DAL.Initializer
                 parentsCount = (++parentsCount) % 3;
             }
         }
+
         #endregion
     }
 }
