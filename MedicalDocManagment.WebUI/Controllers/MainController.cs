@@ -1,14 +1,25 @@
 ﻿using System;
 using System.Web.Http;
 
-using MedicalDocManagment.MainAppDAL.Entities;
-using MedicalDocManagment.MainAppDAL;
+using MedicalDocManagment.DAL.Entities;
+using MedicalDocManagment.DAL;
 using MedicalDocManagment.WebUI.Models;
+using MedicalDocManagment.DAL.Repository.Interfaces;
+using MedicalDocManagment.DAL.Repository;
+
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
     public class MainController : ApiController
     {
+
+        private readonly IUnitOfWork _unitOfWork;
+
+        public MainController()
+        {
+            _unitOfWork = new UnitOfWork();
+        }
+
         [Authorize]
         [HttpPost]
         public IHttpActionResult AddPatient(AddPatientModel addPatientModel)
@@ -18,7 +29,7 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return BadRequest(ModelState);
             }
 
-            MainAppContext mainAppContext = new MainAppContext();
+            Context context = new Context();
 
             ChildCard newChildCard = new ChildCard
             {
@@ -30,13 +41,13 @@ namespace MedicalDocManagment.WebUI.Controllers
                 CheckOut = addPatientModel.Checkout,
                 DirectedBy = addPatientModel.DirectedBy
             };
-            newChildCard.Diagnosis = mainAppContext.Diagnoses.Find(addPatientModel.DiagnosisCode);
+            newChildCard.Diagnosis = context.DiagnosesMkh.Find(addPatientModel.DiagnosisCode);
 
             ChildCard result = null;
             try
             {
-                result = mainAppContext.ChildrenCards.Add(newChildCard);
-                mainAppContext.SaveChanges();
+                result = context.ChildrenCards.Add(newChildCard);
+                context.SaveChanges();
             }
             catch (Exception exception)
             {

@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { DatePickerModule } from 'ng2-datepicker';
 
 import ChildrenCardsListModule from './children-cards-list/children-cards-list.module';
 
@@ -15,6 +16,7 @@ import ViewPatientDataComponent from './view-patient-data/view-patient-data.comp
         BrowserModule,
         FormsModule,
         HttpModule,
+        DatePickerModule,
         ChildrenCardsListModule
     ],
     declarations: [        

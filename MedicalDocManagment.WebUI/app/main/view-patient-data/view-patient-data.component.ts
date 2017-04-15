@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Response } from '@angular/http';
 import 'rxjs/add/observable/of';
+import { DatePickerOptions, DateModel } from 'ng2-datepicker';
+import moment = require("moment");
 
 // TODO change from mockup after implementing feature
 //import { MainHttpFacade } from '../main-http.facade';
@@ -28,16 +30,24 @@ export default class ViewPatientDataComponent {
     private _searchResult: Observable<ChildrenCardsModel>;
     private _triedToSearch: boolean;
     private _patientToView: ViewPatientDataModel;
+    // TODO check next
+    date: DateModel;
+    options: DatePickerOptions;
 
     constructor(mainHttpFacade: MainHttpFacade) {
         this._isErrorOnSearching = false;
         this._isSearching = false;
         this._lastErrorMessage = '';
+        this._mainHttpFacade = mainHttpFacade;
         this._searchResult = null;
         this._triedToSearch = false;
         this._patientToView = new ViewPatientDataModel();
 
-        this._mainHttpFacade = mainHttpFacade;
+        this.options = {
+            autoApply: true, initialDate: new Date(2011, 11, 11), locale: 'uk', 
+            selectYearText: 'Натисніть для вибору року'
+        };
+        moment.locale('uk');
     }
 
     viewPatientData(): void {

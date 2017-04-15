@@ -1,5 +1,4 @@
 ﻿using FluentValidation.Attributes;
-using MedicalDocManagment.UsersDAL.Entities;
 using MedicalDocManagment.WebUI.Models.Validators;
 
 namespace MedicalDocManagment.WebUI.Models

@@ -27,7 +27,11 @@
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
             'ng2-pagination': 'dist/lib/npmlibs/ng2-pagination/dist',
-            'angular2-notifications': 'node_modules/angular2-notifications'
+            'angular2-notifications': 'node_modules/angular2-notifications',
+            'ng2-datepicker': 'dist/lib/npmlibs/ng2-datepicker/',
+            // added ng2-slimscroll and moment because it is used by ng2-datepicker
+            'ng2-slimscroll': 'dist/lib/npmlibs/ng2-slimscroll/',
+            'moment': 'dist/js/moment/'
         },
         // пакеты, которые указывают загрузчику System, как загружать файлы без имени и расширения
         packages: {
@@ -48,7 +52,10 @@
                 defaultExtension: 'js'
             },
             'ng2-pagination': { main: 'ng2-pagination.js', defaultExtension: 'js' },
-            'angular2-notifications': { main: 'components.js', defaultExtension: 'js' }
+            'angular2-notifications': { main: 'components.js', defaultExtension: 'js' },
+            'ng2-datepicker': { main: 'ng2-datepicker.module.js', defaultExtension: 'js' },
+            'ng2-slimscroll': { main: 'index.js', defaultExtension: 'js' },
+            'moment': { main: 'moment-with-locales.min.js', defaultExtension: 'js' }
         }
     });
     if (global.filterSystemConfig) { global.filterSystemConfig(config); }

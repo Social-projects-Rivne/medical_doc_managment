@@ -21,13 +21,17 @@
     "angular2-notifications": "^0.4.53",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "mdbootstrap": "^4.3.1",
+    "moment": "^2.18.1",
+    "ng2-datepicker": "^1.8.3",
     "ng2-pagination": "^2.0.1",
     "reflect-metadata": "^0.1.8",
-    "rxjs": "^5.0.0-beta.12",
+    "rxjs": "^5.3.0",
     "systemjs": "0.19.39",
     "tether": "^1.4.0",
+    "traceur": "^0.0.111",
     "zone.js": "^0.6.26"
   },
   "devDependencies": {

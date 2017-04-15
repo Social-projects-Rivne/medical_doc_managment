@@ -25,17 +25,17 @@ export class MainHttpFacade {
 
     getChildrenCards(): Observable<ChildrenCardsModel> {
         let childrenCardsJsonString: string = '[' +
-            '{ "id":"1", "f_name":"Іван", "s_name":"Петрович", "l_name":"Сидорчук",' +
-            '"date":"04.03.2001", "address":"м.Рівне, вул. ...", "checkin":"02.04.2017",' +
-            '"checkout":"16.04.2017", "diagnosis": {"id":"1","name":"сколіоз"},' +
+            '{ "id":"1", "firstName":"Іван", "secondName":"Петрович", "lastName":"Сидорчук",' +
+            '"date":"04.03.2001", "address":"м.Рівне, вул. ...", "checkIn":"02.04.2017",' +
+            '"checkOut":"16.04.2017", "diagnosis": {"id":"1","name":"сколіоз"},' +
             '"prescription":"лікування"},' +
-            '{ "id":"1", "f_name":"Іван", "s_name":"Петрович", "l_name":"Сидорчук",' +
-            '"date":"04.03.2001", "address":"м.Рівне, вул. ...", "checkin":"02.04.2017",' +
-            '"checkout":"16.04.2017", "diagnosis": {"id":"1","name":"сколіоз"},' +
+            '{ "id":"1", "firstName":"Іван", "secondName":"Петрович", "lastName":"Сидорчук",' +
+            '"date":"04.03.2001", "address":"м.Рівне, вул. ...", "checkIn":"02.04.2017",' +
+            '"checkOut":"16.04.2017", "diagnosis": {"id":"1","name":"сколіоз"},' +
             '"prescription":"лікування"},' +
-            '{ "id":"1", "f_name":"Іван", "s_name":"Петрович", "l_name":"Сидорчук",' +
-            '"date":"04.03.2001", "address":"м.Рівне, вул. ...", "checkin":"02.04.2017",' +
-            '"checkout":"16.04.2017", "diagnosis": {"id":"1","name":"сколіоз"},' +
+            '{ "id":"1", "firstName":"Іван", "secondName":"Петрович", "lastName":"Сидорчук",' +
+            '"date":"04.03.2001", "address":"м.Рівне, вул. ...", "checkIn":"02.04.2017",' +
+            '"checkOut":"16.04.2017", "diagnosis": {"id":"1","name":"сколіоз"},' +
             '"prescription":"лікування"}' +
             ']';
         return Observable.of(new ChildrenCardsModel(JSON.parse(childrenCardsJsonString)));

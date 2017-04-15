@@ -3,7 +3,8 @@
 var _      = require('lodash'),
     gulp   = require('gulp'),
     uglify = require('gulp-uglify'),
-    cssmin = require('gulp-cssmin');
+    cssmin = require('gulp-cssmin'),
+    rename = require('gulp-rename');
 
 var angularJs = [
     'node_modules/core-js/client/shim.min.js',
@@ -19,17 +20,21 @@ var js = [
     './node_modules/typescript/lib/typescript.js',
     './node_modules/jquery/dist/jquery.js',
     './node_modules/mdbootstrap/js/mdb.js',
-    './node_modules/tether/dist/js/tether.js'
+    './node_modules/tether/dist/js/tether.js',
+    './node_modules/traceur/bin/traceur.js'
 ];
 
 var css = [
     './node_modules/bootstrap/dist/css/bootstrap.css',
     './node_modules/mdbootstrap/css/mdb.css',
-    './node_modules/tether/dist/css/*.*'
+    './node_modules/tether/dist/css/*.*',
+    './node_modules/primeng/resources/primeng.min.css',
+    './node_modules/font-awesome/css/font-awesome.min.css'
 ];
 
 var fonts = [
-    './node_modules/bootstrap/dist/fonts/*.*'
+    './node_modules/bootstrap/dist/fonts/*.*',
+    './node_modules/font-awesome/fonts/*.*'
 ];
 
 gulp.task('copy-js', function() {
@@ -95,5 +100,35 @@ gulp.task('copy-mdbootstrap', () => {
     }).pipe(gulp.dest('./dist/font'));
 });
 
-gulp.task('default', ['copy-js', 'copy-css', 'copy-ng2-pagination','copy-mdbootstrap']);
+gulp.task('copy-ng2-datepicker', () => {
+    gulp.src([
+        '*'
+    ], {
+        cwd: './node_modules/ng2-datepicker/lib-dist'
+    }).pipe(gulp.dest('./dist/lib/npmlibs/ng2-datepicker'));
+});
+
+gulp.task('copy-ng2-slimscroll', () => {
+    gulp.src([
+        '*.*'
+    ], {
+        cwd: './node_modules/ng2-slimscroll/'
+    }).pipe(gulp.dest('./dist/lib/npmlibs/ng2-slimscroll'));
+    gulp.src([
+    '**/*'
+    ], {
+        cwd: './node_modules/ng2-slimscroll/src'
+    }).pipe(gulp.dest('./dist/lib/npmlibs/ng2-slimscroll/src'));
+});
+
+gulp.task('copy-moment', () => {
+    gulp.src([
+        '*.*'
+    ], {
+        cwd: './node_modules/moment/min'
+    }).pipe(gulp.dest('./dist/js/moment'));
+});
+
+gulp.task('default', ['copy-js', 'copy-css', 'copy-ng2-pagination', 'copy-mdbootstrap'
+    , 'copy-ng2-datepicker', 'copy-ng2-slimscroll', 'copy-moment']);
 gulp.task('minify', ['copy-min-js', 'copy-min-css']);
