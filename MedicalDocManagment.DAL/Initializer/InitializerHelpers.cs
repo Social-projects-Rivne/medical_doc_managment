@@ -225,7 +225,7 @@ namespace MedicalDocManagment.DAL.Initializer
         }
         #endregion
 
-        #region Children's Card region
+        #region Children cards
         public static void FillChildCardDb(Context context)
         {
             var childrenCards = CreateChildCards();
@@ -237,14 +237,14 @@ namespace MedicalDocManagment.DAL.Initializer
 
         private static IEnumerable<ChildCard> CreateChildCards()
         {
-            Fixture fixture = new Fixture();
+            var fixture = new Fixture();
 
-            var childCards=fixture.Build<ChildCard>()
+            var childCards = fixture.Build<ChildCard>()
                                   .Without(childCard => childCard.ParentsChildren)
                                   .Without(childCard => childCard.Diagnosis)
                                   .CreateMany(30);
 
-            foreach (ChildCard childCard in childCards)
+            foreach (var childCard in childCards)
             {
                 childCard.DiagnosisId = "A00.0";
             }
@@ -261,16 +261,16 @@ namespace MedicalDocManagment.DAL.Initializer
             // special variable for variating number of parents from 0 to 2
             var parentsCount = 0;
 
-            foreach (ChildCard childCard in childrenCards)
+            foreach (var childCard in childrenCards)
             {
-                IEnumerable<Parent> parents = fixture.Build<Parent>()
+                var parents = fixture.Build<Parent>()
                                                      .Without(parent => parent.ParentsChildren)
                                                      .CreateMany(parentsCount).ToList();
-                foreach (Parent parent in parents)
+                foreach (var parent in parents)
                 {
                     context.Parents.Add(parent);
 
-                    ParentChildCard parentChildCard = new ParentChildCard
+                    var parentChildCard = new ParentChildCard
                     {
                         ChildCard = childCard,
                         Parent = parent

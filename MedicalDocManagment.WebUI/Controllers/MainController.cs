@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Http;
 
 using MedicalDocManagment.DAL.Entities;
-using MedicalDocManagment.DAL;
 using MedicalDocManagment.WebUI.Models;
 using MedicalDocManagment.DAL.Repository.Interfaces;
 using MedicalDocManagment.DAL.Repository;
-
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -28,7 +27,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            ChildCard newChildCard = new ChildCard
+            var newChildCard = new ChildCard
             {
                 LastName = addPatientModel.LastName,
                 FirstName = addPatientModel.FirstName,
@@ -40,8 +39,9 @@ namespace MedicalDocManagment.WebUI.Controllers
             };
             try
             {
-                newChildCard.Diagnosis = _unitOfWork.DiagnosisMkhRepository.
-                    FindSingleByCode(addPatientModel.DiagnosisCode);
+                newChildCard.Diagnosis = _unitOfWork.DiagnosisMkhRepository
+                    .Get(diagnosisMkh => diagnosisMkh.Id == addPatientModel.DiagnosisCode)
+                    .Single();
 
                 _unitOfWork.ChildrenCardsRepository.Add(newChildCard);
                 _unitOfWork.Save();

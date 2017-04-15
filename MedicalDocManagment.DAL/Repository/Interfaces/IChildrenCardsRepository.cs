@@ -2,7 +2,7 @@
 
 namespace MedicalDocManagment.DAL.Repository.Interfaces
 {
-    public interface IDiagnosisMkhRepository : IGenericRepository<DiagnosisMkh>
+    public interface IChildrenCardsRepository : IGenericRepository<ChildCard>
     {
     }
 }

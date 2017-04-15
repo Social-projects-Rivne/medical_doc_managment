@@ -9,10 +9,5 @@ namespace MedicalDocManagment.DAL.Repository
         public DiagnosisMkhRepository(Context context) : base(context)
         {
         }
-
-        public DiagnosisMkh FindSingleByCode(string code)
-        {
-            return Get(diagnosisMkh => diagnosisMkh.Id == code).Single();
-        }
     }
 }
