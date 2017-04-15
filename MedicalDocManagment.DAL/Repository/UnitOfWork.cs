@@ -18,6 +18,7 @@ namespace MedicalDocManagment.DAL.Repository
         private readonly Lazy<INosologyMkhRepository> _nosologyRepository;
         private readonly Lazy<IDiagnosisMkhRepository> _diagnosisMkhRepository;
         private readonly Lazy<UsersManager> _usersManager;
+        private readonly Lazy<RolesManager> _rolesManager;
 
         public UnitOfWork()
         {
@@ -31,6 +32,9 @@ namespace MedicalDocManagment.DAL.Repository
             _usersManager = new Lazy<UsersManager>(() => HttpContext.Current
                                                                     .GetOwinContext()
                                                                     .GetUserManager<UsersManager>());
+            _rolesManager = new Lazy<RolesManager>(() => HttpContext.Current
+                                                                    .GetOwinContext()
+                                                                    .GetUserManager<RolesManager>());
         }
 
         public IPositionRepository PositionRepository => _positionRepository.Value;
@@ -39,6 +43,7 @@ namespace MedicalDocManagment.DAL.Repository
         public INosologyMkhRepository NosologyMkhRepository => _nosologyRepository.Value;
         public IDiagnosisMkhRepository DiagnosisMkhRepository => _diagnosisMkhRepository.Value;
         public UsersManager UsersManager => _usersManager.Value;
+        public RolesManager RolesManager => _rolesManager.Value;
 
         public void Dispose()
         {

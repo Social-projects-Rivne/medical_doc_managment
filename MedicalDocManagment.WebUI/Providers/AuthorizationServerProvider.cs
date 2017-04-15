@@ -3,6 +3,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Security.Claims;
 using MedicalDocManagment.DAL.Repository;
+using System.Collections.Generic;
+using MedicalDocManagment.DAL.Entities;
+using System.Linq;
+using Microsoft.Owin.Security;
 
 namespace MedicalDocManagment.WebUI.Providers
 {
@@ -12,14 +16,24 @@ namespace MedicalDocManagment.WebUI.Providers
         {
             context.Validated();
         }
+        public override Task TokenEndpoint(OAuthTokenEndpointContext context)
+        {
+            foreach (KeyValuePair<string, string> pair in context.Properties.Dictionary)
+            {
+                context.AdditionalResponseParameters.Add(new KeyValuePair<string, object>(pair.Key, pair.Value));
+            }
 
+            return Task.FromResult<object>(null);
+        }
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-            IdentityUser user;
+            User user;
+            ClaimsIdentity oAuthIdentity;
             using (var unitOfWork = new UnitOfWork())
             {
                 user = await unitOfWork.UsersManager.FindAsync(context.UserName, context.Password);
+                oAuthIdentity = await unitOfWork.UsersManager.CreateIdentityAsync(user, context.Options.AuthenticationType);
             }
             if (user == null)
             {
@@ -27,12 +41,21 @@ namespace MedicalDocManagment.WebUI.Providers
                 return;
             }
 
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
+            List<Claim> roles = oAuthIdentity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
+            AuthenticationProperties properties = CreateProperties(user.UserName, Newtonsoft.Json.JsonConvert.SerializeObject(roles.Select(x => x.Value)));
 
-            context.Validated(identity);
+            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
+            context.Validated(ticket);
 
+        }
+        public static AuthenticationProperties CreateProperties(string userName, string Roles)
+        {
+            IDictionary<string, string> data = new Dictionary<string, string>
+            {
+                { "userName", userName },
+                { "roles", Roles }
+            };
+            return new AuthenticationProperties(data);
         }
     }
 }

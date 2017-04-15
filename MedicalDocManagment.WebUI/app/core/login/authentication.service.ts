@@ -7,6 +7,8 @@ import 'rxjs/add/operator/map'
 export class AuthenticationService {
     public token: string;
     public username: string;
+    public roles: Array<string>;
+    public role: string;
     private grant_type:string = "password"
     constructor(private http: Http) {
         // set token if saved in local storage
@@ -14,6 +16,7 @@ export class AuthenticationService {
         console.log(currentUser);
         this.token = currentUser && currentUser.token;
         this.username = currentUser && currentUser.username;
+        this.role = currentUser && currentUser.role;
     }
 
     login(username: string, password: string): Observable<boolean> {
@@ -26,12 +29,14 @@ export class AuthenticationService {
                             console.log(response);
                             // login successful if there's a jwt token in the response
                             let token = response.json() && response.json().access_token;
+                            this.roles = new Array(response.json().roles.replace(/[\"\[\]]+/g, '').split(","));
+                            this.role = this.roles[0];
                             if (token) {
                                 // set token property
                                 this.token = token;
 
                                 // store username and jwt token in local storage to keep user logged in between page refreshes
-                                localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
+                                localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token, role: this.role}));
                                 // return true to indicate successful login
                                 return true;
                             } else {
