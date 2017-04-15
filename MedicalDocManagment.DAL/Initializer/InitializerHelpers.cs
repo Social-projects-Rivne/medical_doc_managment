@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.AspNet.Identity;
 
 namespace MedicalDocManagment.DAL.Initializer
 {
@@ -30,8 +31,25 @@ namespace MedicalDocManagment.DAL.Initializer
             return $"Position{positionCounter}";
         }
 
+        public static void AddAdminToDb(Context context)
+        {
+            var passwordHasher = new PasswordHasher();
+            const string adminPassword = "password";
+            var user = new User
+            {
+                UserName = "admin",
+                Email = "admin@mail.com",
+                PasswordHash = passwordHasher.HashPassword(adminPassword),
+                Position = new Position { Name = "admin"}
+            };
+
+            context.Users.Add(user);
+        }
+
         public static void FillDbUsers(Context context)
         {
+            AddAdminToDb(context);
+
             var fixture = new Fixture();
 
             var users = fixture.Build<User>()
