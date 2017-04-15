@@ -1,4 +1,5 @@
-﻿using MedicalDocManagment.DAL.Manager;
+﻿using MedicalDocManagment.DAL.Entities;
+using MedicalDocManagment.DAL.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace MedicalDocManagment.DAL.Repository.Interfaces
         IBlockMkhRepository BlockMkhRepository { get; }
         INosologyMkhRepository NosologyMkhRepository { get; }
         IDiagnosisMkhRepository DiagnosisMkhRepository { get; }
+        IGenericRepository<ChildCard> ChildrenCardsRepository { get; }
 
         UsersManager UsersManager { get; }
 

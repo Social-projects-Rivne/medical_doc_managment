@@ -1,4 +1,5 @@
-﻿using MedicalDocManagment.DAL.Manager;
+﻿using MedicalDocManagment.DAL.Entities;
+using MedicalDocManagment.DAL.Manager;
 using MedicalDocManagment.DAL.Repository.Interfaces;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -17,6 +18,7 @@ namespace MedicalDocManagment.DAL.Repository
         private readonly Lazy<IBlockMkhRepository> _blockMkhRepository;
         private readonly Lazy<INosologyMkhRepository> _nosologyRepository;
         private readonly Lazy<IDiagnosisMkhRepository> _diagnosisMkhRepository;
+        private readonly Lazy<IGenericRepository<ChildCard>> _childrenCardsRepository;
         private readonly Lazy<UsersManager> _usersManager;
 
         public UnitOfWork()
@@ -28,6 +30,7 @@ namespace MedicalDocManagment.DAL.Repository
             _blockMkhRepository = new Lazy<IBlockMkhRepository>(() => new BlockMkhRepository(_context));
             _nosologyRepository = new Lazy<INosologyMkhRepository>(() => new NosologyMkhRepository(_context));
             _diagnosisMkhRepository = new Lazy<IDiagnosisMkhRepository>(() => new DiagnosisMkhRepository(_context));
+            _childrenCardsRepository = new Lazy<IGenericRepository<ChildCard>>(() => new GenericRepository<ChildCard>(_context));
             _usersManager = new Lazy<UsersManager>(() => HttpContext.Current
                                                                     .GetOwinContext()
                                                                     .GetUserManager<UsersManager>());
@@ -38,6 +41,7 @@ namespace MedicalDocManagment.DAL.Repository
         public IBlockMkhRepository BlockMkhRepository => _blockMkhRepository.Value;
         public INosologyMkhRepository NosologyMkhRepository => _nosologyRepository.Value;
         public IDiagnosisMkhRepository DiagnosisMkhRepository => _diagnosisMkhRepository.Value;
+        public IGenericRepository<ChildCard> ChildrenCardsRepository => _childrenCardsRepository.Value;
         public UsersManager UsersManager => _usersManager.Value;
 
         public void Dispose()

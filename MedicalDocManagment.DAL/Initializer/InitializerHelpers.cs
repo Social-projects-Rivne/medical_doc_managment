@@ -229,7 +229,6 @@ namespace MedicalDocManagment.DAL.Initializer
         public static void FillChildCardDb(Context context)
         {
             var childrenCards = CreateChildCards();
-            CreateDiagnosesForChildCards(childrenCards);
             CreateParentsForSomeChildren(context, childrenCards);
 
             context.ChildrenCards.AddRange(childrenCards);
@@ -240,18 +239,17 @@ namespace MedicalDocManagment.DAL.Initializer
         {
             Fixture fixture = new Fixture();
 
-            return fixture.Build<ChildCard>()
-                          .Without(childCard => childCard.ParentsChildren)
-                          .CreateMany(30);
-        }
+            var childCards=fixture.Build<ChildCard>()
+                                  .Without(childCard => childCard.ParentsChildren)
+                                  .Without(childCard => childCard.Diagnosis)
+                                  .CreateMany(30);
 
-        private static void CreateDiagnosesForChildCards(IEnumerable<ChildCard> childrenCards)
-        {
-            var diagnosisId = 1;
-            foreach (ChildCard childCard in childrenCards)
+            foreach (ChildCard childCard in childCards)
             {
-                childCard.Diagnosis.Id = "A" + (diagnosisId++).ToString();
+                childCard.DiagnosisId = "A00.0";
             }
+
+            return childCards;
         }
 
         private static void CreateParentsForSomeChildren(

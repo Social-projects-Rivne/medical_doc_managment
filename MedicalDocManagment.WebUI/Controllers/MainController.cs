@@ -28,9 +28,6 @@ namespace MedicalDocManagment.WebUI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            Context context = new Context();
-
             ChildCard newChildCard = new ChildCard
             {
                 LastName = addPatientModel.LastName,
@@ -41,20 +38,20 @@ namespace MedicalDocManagment.WebUI.Controllers
                 CheckOut = addPatientModel.Checkout,
                 DirectedBy = addPatientModel.DirectedBy
             };
-            newChildCard.Diagnosis = context.DiagnosesMkh.Find(addPatientModel.DiagnosisCode);
-
-            ChildCard result = null;
             try
             {
-                result = context.ChildrenCards.Add(newChildCard);
-                context.SaveChanges();
+                newChildCard.Diagnosis = _unitOfWork.DiagnosisMkhRepository.
+                    FindSingleByCode(addPatientModel.DiagnosisCode);
+
+                _unitOfWork.ChildrenCardsRepository.Add(newChildCard);
+                _unitOfWork.Save();
             }
             catch (Exception exception)
             {
                 return InternalServerError(exception);
             }
 
-            return Ok(result);
+            return Ok(newChildCard);
         }
     }
 }
