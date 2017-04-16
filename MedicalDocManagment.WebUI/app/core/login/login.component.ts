@@ -31,8 +31,13 @@ export class LoginComponent implements OnInit {
             .subscribe(result => {
                 if (result === true) {
                     // login successful
-                    //TODO fix routing after fixing roles
-                    this.document.location.href = "/app/admin/index.html";
+                    if (this.authenticationService.role == "admin") {
+                        this.document.location.href = "/app/admin/index.html";
+                    }
+                    else if (this.authenticationService.role == "user") {
+                        this.document.location.href = "/app/main/index.html";
+                    }
+                    
 
                 } else {
                     // login failed

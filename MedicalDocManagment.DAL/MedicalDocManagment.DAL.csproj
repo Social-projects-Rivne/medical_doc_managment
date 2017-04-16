@@ -103,9 +103,11 @@
     <Compile Include="Entities\Parent.cs" />
     <Compile Include="Entities\ParentChildCard.cs" />
     <Compile Include="Entities\Position.cs" />
+    <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Initializer\DbInitializer.cs" />
     <Compile Include="Initializer\InitializerHelpers.cs" />
+    <Compile Include="Manager\RolesManager.cs" />
     <Compile Include="Manager\UsersManager.cs" />
     <Compile Include="Migrations\201704101924589_Initial.cs" />
     <Compile Include="Migrations\201704101924589_Initial.Designer.cs">
@@ -122,6 +124,10 @@
     <Compile Include="Migrations\201704141656345_Change_PropertiesName_For_MKH_Models.cs" />
     <Compile Include="Migrations\201704141656345_Change_PropertiesName_For_MKH_Models.Designer.cs">
       <DependentUpon>201704141656345_Change_PropertiesName_For_MKH_Models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704151818121_Add_roles.cs" />
+    <Compile Include="Migrations\201704151818121_Add_roles.Designer.cs">
+      <DependentUpon>201704151818121_Add_roles.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704141656345_Change_PropertiesName_For_MKH_Models.resx">
       <DependentUpon>201704141656345_Change_PropertiesName_For_MKH_Models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704151818121_Add_roles.resx">
+      <DependentUpon>201704151818121_Add_roles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
