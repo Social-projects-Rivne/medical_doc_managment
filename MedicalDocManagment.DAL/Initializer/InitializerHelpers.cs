@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.AspNet.Identity;
+using MedicalDocManagment.DAL.Repository;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MedicalDocManagment.DAL.Initializer
 {
@@ -30,14 +33,40 @@ namespace MedicalDocManagment.DAL.Initializer
             return $"Position{positionCounter}";
         }
 
+        public static void AddAdminToDb(UnitOfWork unitOfWork, Role roleAdmin)
+        {
+            var passwordHasher = new PasswordHasher();
+            const string adminPassword = "password";
+            var user = new User
+            {
+                UserName = "admin",
+                Email = "admin@mail.com",
+                PasswordHash = passwordHasher.HashPassword(adminPassword),
+                Position = new Position { Name = "admin"}
+            };
+            var result = unitOfWork.UsersManager.Create(user);
+            if (result.Succeeded)
+            {
+                unitOfWork.UsersManager.AddToRole(user.Id, roleAdmin.Name);
+            }
+            //context.Users.Add(user);
+        }
+
         public static void FillDbUsers(Context context)
         {
+            
             var fixture = new Fixture();
+            var unitOfWork = new UnitOfWork();
 
             var users = fixture.Build<User>()
                                .Without(user => user.Position)
                                .Without(user => user.PositionId)
                                .CreateMany(10);
+            var roleAdmin = new Role { Name = "admin" };
+            var roleUser = new Role { Name = "user" };
+            unitOfWork.RolesManager.Create(roleAdmin);
+            unitOfWork.RolesManager.Create(roleUser);
+            AddAdminToDb(unitOfWork,roleAdmin);
 
             int userCounter = 1;
             int positionCounter = 1;
@@ -46,12 +75,19 @@ namespace MedicalDocManagment.DAL.Initializer
                 user.Position = new Position { Name = GeneratePositionName(positionCounter) };
                 user.UserName = GenerateUserName(userCounter);
                 user.Email = GenerateEmail(userCounter);
-
-                context.Users.Add(user);
+                var result = unitOfWork.UsersManager.Create(user, $"password{userCounter}");
+                if (result.Succeeded)
+                {
+                        unitOfWork.UsersManager.AddToRole(user.Id, roleUser.Name);
+                }
+                //context.Users.Add(user);
 
                 userCounter++;
                 positionCounter++;
             }
+
+            
+
         }
 
         public static void FillDbMkh(Context context)
