@@ -18,7 +18,7 @@ namespace MedicalDocManagment.WebUI.Providers
         }
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
         {
-            foreach (KeyValuePair<string, string> pair in context.Properties.Dictionary)
+            foreach (var pair in context.Properties.Dictionary)
             {
                 context.AdditionalResponseParameters.Add(new KeyValuePair<string, object>(pair.Key, pair.Value));
             }
@@ -41,7 +41,7 @@ namespace MedicalDocManagment.WebUI.Providers
                 return;
             }
 
-            List<Claim> roles = oAuthIdentity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
+            var roles = oAuthIdentity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
             AuthenticationProperties properties = CreateProperties(user.UserName, Newtonsoft.Json.JsonConvert.SerializeObject(roles.Select(x => x.Value)));
 
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
@@ -50,7 +50,7 @@ namespace MedicalDocManagment.WebUI.Providers
         }
         public static AuthenticationProperties CreateProperties(string userName, string Roles)
         {
-            IDictionary<string, string> data = new Dictionary<string, string>
+            var data = new Dictionary<string, string>
             {
                 { "userName", userName },
                 { "roles", Roles }

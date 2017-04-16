@@ -18,7 +18,11 @@ export class AuthenticationService {
         this.username = currentUser && currentUser.username;
         this.role = currentUser && currentUser.role;
     }
-
+    getRolesArray(rolesInput: string): Array<string> {
+        let formattedRoles: any = rolesInput.replace(/[\"\[\]]+/g, '');
+        let outputRoles: Array<string> = new Array<string>(formattedRoles.split(","));
+        return outputRoles;
+    }
     login(username: string, password: string): Observable<boolean> {
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers });
@@ -29,7 +33,7 @@ export class AuthenticationService {
                             console.log(response);
                             // login successful if there's a jwt token in the response
                             let token = response.json() && response.json().access_token;
-                            this.roles = new Array(response.json().roles.replace(/[\"\[\]]+/g, '').split(","));
+                            this.roles = this.getRolesArray(response.json().roles);
                             this.role = this.roles[0];
                             if (token) {
                                 // set token property
