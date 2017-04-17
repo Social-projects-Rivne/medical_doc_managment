@@ -8,6 +8,7 @@ import ChildrenCardsListModule from './children-cards-list/children-cards-list.m
 import { AuthenticationService } from '../shared/authentication.service';
 import MainAppComponent from './main-app.component';
 import ChildCardAddParentComponent from './child-card-add-parent.component';
+import ChildrenCardAddComponent from './children-cards-list/add/children-card-add.component';
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import ChildCardAddParentComponent from './child-card-add-parent.component';
     ],
     declarations: [
         MainAppComponent,
-        ChildCardAddParentComponent
+        ChildCardAddParentComponent,
+        ChildrenCardAddComponent
     ],
     providers: [
         AuthenticationService
