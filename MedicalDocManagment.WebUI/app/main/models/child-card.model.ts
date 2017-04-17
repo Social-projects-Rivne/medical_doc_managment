@@ -5,10 +5,10 @@ export default class ChildCardModel {
     firstName: string;
     secondName: string;
     lastName: string;
-    date: string;
+    date: Date;
     address: string;
-    checkIn: string;
-    checkOut: string;
+    checkIn: Date;
+    checkOut: Date;
     diagnosis: DiagnosisModel;
     prescription: string;
 
@@ -18,10 +18,10 @@ export default class ChildCardModel {
             this.firstName = jsonObject.firstName;
             this.secondName = jsonObject.secondName;
             this.lastName = jsonObject.lastName;
-            this.date = jsonObject.date;
+            this.date = new Date(jsonObject.date);
             this.address = jsonObject.address;
-            this.checkIn = jsonObject.checkIn;
-            this.checkOut = jsonObject.checkOut;
+            this.checkIn = new Date(jsonObject.checkIn);
+            this.checkOut = new Date(jsonObject.checkOut);
             this.diagnosis = new DiagnosisModel(jsonObject.diagnosis);
             this.prescription = jsonObject.prescription;
         }
@@ -34,7 +34,7 @@ export default class ChildCardModel {
             this.address = null;
             this.checkIn = null;
             this.checkOut = null;
-            this.diagnosis = null;
+            this.diagnosis = new DiagnosisModel();
             this.prescription = null;
         }
     }
