@@ -1,5 +1,4 @@
 ﻿using MedicalDocManagment.DAL.Entities;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture;
 using System;
@@ -9,7 +8,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.AspNet.Identity;
 using MedicalDocManagment.DAL.Repository;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MedicalDocManagment.DAL.Initializer
 {
@@ -276,14 +274,10 @@ namespace MedicalDocManagment.DAL.Initializer
             var fixture = new Fixture();
 
             var childCards = fixture.Build<ChildCard>()
-                                  .Without(childCard => childCard.ParentsChildren)
-                                  .Without(childCard => childCard.Diagnosis)
-                                  .CreateMany(30);
-
-            foreach (var childCard in childCards)
-            {
-                childCard.DiagnosisId = "A00.0";
-            }
+                                    .Without(childCard => childCard.ParentsChildren)
+                                    .Without(childCard => childCard.DiagnosisId)
+                                    .Without(childCard => childCard.Diagnosis)
+                                    .CreateMany(30);
 
             return childCards;
         }

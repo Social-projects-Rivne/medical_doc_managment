@@ -229,7 +229,8 @@
     <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\confirmation\confirmation.modal.ts" />
     <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
     <Compile Include="Controllers\ChildCardsController.cs" />
-    <Compile Include="Models\Main\AddPatientModel.cs" />
+    <Compile Include="Helpers\AddPatientHelper.cs" />
+    <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
     <Compile Include="Models\Main\ClassMkhVM.cs" />
     <Compile Include="Models\Main\DiagnosisMkhVM.cs" />

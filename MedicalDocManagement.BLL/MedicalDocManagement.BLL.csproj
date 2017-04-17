@@ -53,8 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\BlockMkhDTO.cs" />
+    <Compile Include="DTO\ChildCardDTO.cs" />
     <Compile Include="DTO\DiagnosisMkhDTO.cs" />
     <Compile Include="DTO\NosologyMkhDTO.cs" />
+    <Compile Include="Helpers\ChildCardDTOHelper.cs" />
     <Compile Include="Services\Abstract\IChildCardsService.cs" />
     <Compile Include="Services\ChildCardsService.cs" />
     <Compile Include="DTO\ClassMkhDTO.cs" />

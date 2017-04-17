@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using AutoMapper;
+
 using MedicalDocManagement.BLL.DTO;
+using MedicalDocManagement.BLL.Helpers;
 using MedicalDocManagement.BLL.Services.Abstract;
 using MedicalDocManagment.DAL.Entities;
 using MedicalDocManagment.DAL.Repository;
@@ -78,6 +80,21 @@ namespace MedicalDocManagement.BLL.Services
             var mapper = config.CreateMapper();
 
             return mapper.Map<List<DiagnosisMkhDTO>>(relatedNosologiesMkh);
+        }
+
+        public ChildCardDTO AddChildCard(ChildCardDTO childCardDTO)
+        {
+            var childCard = ChildCardDTOHelper.DTOToEntity(childCardDTO);
+
+            if (!_unitOfWork.DiagnosisMkhRepository
+                           .Get(diagnosisMkh => diagnosisMkh.Id == childCard.DiagnosisId)
+                           .Any())
+                childCard.DiagnosisId = null;
+
+            _unitOfWork.ChildrenCardsRepository.Add(childCard);
+            _unitOfWork.Save();
+
+            return ChildCardDTOHelper.EntityToDTO(childCard);
         }
 
         public void Dispose()

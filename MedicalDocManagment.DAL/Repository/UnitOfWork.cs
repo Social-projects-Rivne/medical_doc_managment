@@ -1,5 +1,4 @@
-﻿using MedicalDocManagment.DAL.Entities;
-using MedicalDocManagment.DAL.Manager;
+﻿using MedicalDocManagment.DAL.Manager;
 using MedicalDocManagment.DAL.Repository.Interfaces;
 using Microsoft.AspNet.Identity.Owin;
 using System;

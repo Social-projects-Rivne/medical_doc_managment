@@ -11,5 +11,6 @@ namespace MedicalDocManagement.BLL.Services.Abstract
         List<BlockMkhDTO> GetRelatedBlocksMkh(string classMkhId);
         List<NosologyMkhDTO> GetRelatedNosologiesMkh(string blockMkhId);
         List<DiagnosisMkhDTO> GetRelatedDiagnosesMkh(string nosologyMkhId);
+        ChildCardDTO AddChildCard(ChildCardDTO childCardDTO);
     }
 }
