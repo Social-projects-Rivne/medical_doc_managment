@@ -7,8 +7,12 @@
         },
         // указываем загрузчику System, где искать модули
         map: {
-            // наше приложение будет находиться в папке app
-            app: 'app',
+            // locations of Angular applications
+            admin_app: 'app/admin',
+            login_app: 'app/core',
+            main_app: 'app/main',
+            // for app search in folder app
+            'app': 'app',
             // пакеты angular
             '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
             '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
@@ -27,10 +31,19 @@
         },
         // пакеты, которые указывают загрузчику System, как загружать файлы без имени и расширения
         packages: {
-            app: {
+            admin_app: {
                 main: './main.js',
                 defaultExtension: 'js'
             },
+            login_app: {
+                main: './main.js',
+                defaultExtension: 'js'
+            },
+            main_app: {
+                main: './main.js',
+                defaultExtension: 'js'
+            },
+            'app': { defaultExtension: 'js', },
             rxjs: {
                 defaultExtension: 'js'
             },

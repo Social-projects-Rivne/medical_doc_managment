@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
 
-using MedicalDocManagment.UsersDAL.Entities;
-using MedicalDocManagment.UsersDAL.Repositories;
-using MedicalDocManagment.UsersDAL.Repositories.Interfaces;
 using MedicalDocManagment.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Models;
 using Microsoft.AspNet.Identity;
+using MedicalDocManagment.DAL.Entities;
+using MedicalDocManagment.DAL.Repository.Interfaces;
+using MedicalDocManagment.DAL.Repository;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -25,12 +25,14 @@ namespace MedicalDocManagment.WebUI.Controllers
             _unitOfWork = new UnitOfWork();
         }
 
+        [Authorize]
         [HttpGet]
         public IHttpActionResult GetUsers()
         {
             return Ok(_unitOfWork.UsersManager.Users.ToList());
         }
 
+        [Authorize]
         [HttpGet]
         public IHttpActionResult GetPaged(int pageNumber = 1, int pageSize = 20)
         {
@@ -58,6 +60,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Ok(user);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IHttpActionResult> AddUser(UserModel userModel)
         {
@@ -70,12 +73,13 @@ namespace MedicalDocManagment.WebUI.Controllers
             user.PositionId = userModel.PositionId;
             user.IsActive = true;
             var result = await _unitOfWork.UsersManager.CreateAsync(user, userModel.Password);
+            _unitOfWork.UsersManager.AddToRole(user.Id, "user");
             var errorResult = GetErrorResult(result);
 
             return errorResult ?? Ok(result);
         }
 
-
+        [Authorize]
         [HttpPut]
         public async Task<HttpResponseMessage> EditUser(string id, UserEditModel userEditModel)
         {
@@ -129,6 +133,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             return null;
         }
 
+        [Authorize]
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteUser(string id)
         {
@@ -150,6 +155,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IHttpActionResult> GetUserByName(string userName)
         {
@@ -162,6 +168,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Ok(user);
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IHttpActionResult> GetUserByEmail(string email)
         {
@@ -174,6 +181,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Ok(user);
         }
 
+        [Authorize]
         [HttpGet]
         public IHttpActionResult GetUsersByPosition(int positionId)
         {
@@ -187,6 +195,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Ok(users);
         }
 
+        [Authorize]
         [HttpGet]
         public IHttpActionResult GetUsersByPosition(string positionName)
         {
@@ -200,6 +209,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Ok(users);
         }
 
+        [Authorize]
         [HttpGet]
         public IHttpActionResult GetUsersByStatus(bool userStatus)
         {
@@ -240,7 +250,7 @@ namespace MedicalDocManagment.WebUI.Controllers
         }
 
         #region Position's methods
-
+        [Authorize]
         [HttpGet]
         public IHttpActionResult GetPositions()
         {
@@ -256,6 +266,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             return NotFound();
         }
 
+        [Authorize]
         [HttpGet]
         public IHttpActionResult GetPosition(int id)
         {
