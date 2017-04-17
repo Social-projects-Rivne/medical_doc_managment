@@ -19,7 +19,7 @@
     "@angular/upgrade": "2.4.3",
     "angular-in-memory-web-api": "~0.1.13",
     "angular2-notifications": "^0.4.53",
-    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap": "3.3.7",
     "core-js": "^2.4.1",
     "jquery": "^3.2.1",
     "mdbootstrap": "^4.3.1",
