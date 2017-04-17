@@ -1,4 +1,4 @@
-<form class="form" (ngSubmit)="onCreate();" #childrensCardFormAdd="ngForm">
+<form class="form" (ngSubmit)="onCreate(); childrensCardFormAdd.reset()" #childrensCardFormAdd="ngForm">
     <div class="form-group">
         <label for="f_name">Ім'я</label>
         <input type="text" class="form-control" id="f_name" name="f_name" [(ngModel)]="childrensCard.f_name" #f_name="ngModel" required
@@ -56,10 +56,43 @@
         </div>
     </div>
     <div class="form-group">
+        <label for="class">Клас</label>
+        <select name="class" id="class" (change)="selectedClassChanged()" [(ngModel)]="selectedClass.id" class="form-control" required #class="ngModel">
+            <option *ngFor="let class of classes" [ngValue]="class.id">
+                {{class.id}}: {{class.name}}
+            </option>
+        </select>
+        <div [hidden]="class.valid || class.untouched" class="alert alert-danger">
+            Клас є обов'язковим!
+        </div>
+    </div>
+    <div *ngIf="selectedClass.id" class="form-group">
+        <label for="block">Блок</label>
+        <select name="block" id="block" (change)="selectedBlockChanged()" [(ngModel)]="selectedBlock.id" class="form-control" required #block="ngModel">
+            <option *ngFor="let block of blocks" [ngValue]="block.id">
+                {{block.id}}: {{block.name}}
+            </option>
+        </select>
+        <div [hidden]="block.valid || block.untouched" class="alert alert-danger">
+            Блок є обов'язковим!
+        </div>
+    </div>
+    <div *ngIf="selectedBlock.id" class="form-group">
+        <label for="nosology">Нозологія</label>
+        <select name="nosology" id="nosology" (change)="selectedNosologyChanged()" [(ngModel)]="selectedNosology.id" class="form-control" required #nosology="ngModel">
+            <option *ngFor="let nosology of nosologies" [ngValue]="nosology.id">
+                {{nosology.id}}: {{nosology.name}}
+            </option>
+        </select>
+        <div [hidden]="nosology.valid || nosology.untouched" class="alert alert-danger">
+            Нозологія є обов'язковим!
+        </div>
+    </div>
+    <div  *ngIf="selectedNosology.id"  class="form-group">
         <label for="diagnosis">Діагноз</label>
         <select name="diagnosis" id="diagnosis" [(ngModel)]="childrensCard.diagnosis.id" class="form-control" required #diagnosis="ngModel">
-            <option *ngFor="let diagnosis of diagnosisList" [ngValue]="diagnosis.id">
-                {{diagnosis.id}}          
+            <option *ngFor="let diagnosis of diagnoses" [ngValue]="diagnosis.id">
+                {{diagnosis.id}}: {{diagnosis.name}}
             </option>
         </select>
         <div [hidden]="diagnosis.valid || diagnosis.untouched" class="alert alert-danger">

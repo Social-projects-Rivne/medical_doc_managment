@@ -38,9 +38,24 @@ export class MainHttpFacade {
     }
 
     getChildrenCards(): Observable<ChildrenCardsModel> {
-        let headers = this.headers;
-        return this._http.get('/api/main/GetChildrenCards', { headers })
-            .map((resp: Response) => { return new ChildrenCardsModel(resp.json()); })
-            .catch((error: any) => { return Observable.throw(error); });
+        //let headers = this.headers;
+        //return this._http.get('/api/childcards/GetChildrenCards', { headers })
+        //    .map((resp: Response) => { return new ChildrenCardsModel(resp.json()); })
+        //    .catch((error: any) => { return Observable.throw(error); });
+        let childrenCardsJsonString: string = '[' +
+            '{ "id":"1", "firstName":"Іван", "secondName":"Петрович", "lastName":"Сидорчук",' +
+            '"date":"04.03.2001", "address":"м.Рівне, вул. ...", "checkIn":"02.04.2017",' +
+            '"checkOut":"16.04.2017", "diagnosis": {"id":"1","name":"сколіоз"},' +
+            '"prescription":"лікування"},' +
+            '{ "id":"1", "firstName":"Іван", "secondName":"Петрович", "lastName":"Сидорчук",' +
+            '"date":"04.03.2001", "address":"м.Рівне, вул. ...", "checkIn":"02.04.2017",' +
+            '"checkOut":"16.04.2017", "diagnosis": {"id":"1","name":"сколіоз"},' +
+            '"prescription":"лікування"},' +
+            '{ "id":"1", "firstName":"Іван", "secondName":"Петрович", "lastName":"Сидорчук",' +
+            '"date":"04.03.2001", "address":"м.Рівне, вул. ...", "checkIn":"02.04.2017",' +
+            '"checkOut":"16.04.2017", "diagnosis": {"id":"1","name":"сколіоз"},' +
+            '"prescription":"лікування"}' +
+            ']';
+        return Observable.of(new ChildrenCardsModel(JSON.parse(childrenCardsJsonString)));
     }
 }

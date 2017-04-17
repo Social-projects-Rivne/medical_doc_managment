@@ -14,7 +14,7 @@ export default class ChildCardModel {
 
     constructor(jsonObject?) {
         if (jsonObject) {
-            this.id = jsonObject.id;        
+            this.id = jsonObject.id;
             this.firstName = jsonObject.firstName;
             this.secondName = jsonObject.secondName;
             this.lastName = jsonObject.lastName;
@@ -38,4 +38,5 @@ export default class ChildCardModel {
             this.prescription = null;
         }
     }
+
 }
