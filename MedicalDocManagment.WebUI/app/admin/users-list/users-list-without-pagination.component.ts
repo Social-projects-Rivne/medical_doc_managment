@@ -2,6 +2,7 @@
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { HttpFacade } from '../http.facade';
+import {NotificationsService, SimpleNotificationsComponent} from 'angular2-notifications';
 
 import PageWithoutPaginationComponent from './page/page-without-pagination.component';
 import UsersModel from '../models/usersmodel';
@@ -11,7 +12,7 @@ import UserModel from '../models/usermodel';
   moduleId: module.id,
   selector: 'users-list-without-pagination',
   templateUrl: 'views/users-list-without-pagination.component.html',
-  providers: [HttpFacade]
+  providers: [HttpFacade, NotificationsService]
 })
 export default class UsersListWithoutPaginationComponent {
   @Input() users: Observable<UsersModel>;
