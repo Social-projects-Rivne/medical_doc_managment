@@ -16,6 +16,7 @@ namespace MedicalDocManagment
         {
             app.CreatePerOwinContext<Context>(Context.Create);
             app.CreatePerOwinContext<UsersManager>(UsersManager.Create);
+            app.CreatePerOwinContext<RolesManager>(RolesManager.Create);
             ConfigureOAuth(app);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             //app.UseCookieAuthentication(new CookieAuthenticationOptions

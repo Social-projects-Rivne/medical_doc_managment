@@ -30,7 +30,7 @@ export class MainHttpFacade {
     addParent(parent: ParentModel): Observable<ParentModel> {
         let body:string = JSON.stringify(parent);
         let headers = this.headers;
-        return this._http.post('/api/main/AddParent', body, { headers: headers })
+        return this._http.post('/api/childcards/addparent', body, { headers: headers })
             .map((resp: Response) => {
                 Observable.of(new ParentModel(resp.json()));
             })
@@ -39,7 +39,7 @@ export class MainHttpFacade {
 
     getChildrenCards(): Observable<ChildrenCardsModel> {
         let headers = this.headers;
-        return this._http.get('/api/main/GetChildrenCards', { headers })
+        return this._http.get('/api/childcards/GetChildrenCards', { headers })
             .map((resp: Response) => { return new ChildrenCardsModel(resp.json()); })
             .catch((error: any) => { return Observable.throw(error); });
     }

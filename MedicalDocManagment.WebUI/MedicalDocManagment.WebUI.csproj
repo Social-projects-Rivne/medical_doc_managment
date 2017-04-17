@@ -212,13 +212,16 @@
     <Content Include="App_Data\src\blocks.json" />
     <Content Include="App_Data\src\diagnoses.json" />
     <Content Include="App_Data\src\nosologies.json" />
+    <Content Include="app\main\view-patient-data\view-patient-data.component.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Content\Site.css" />
     <Content Include="systemjs.config.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\core\login-app.routing.ts" />
@@ -228,8 +231,12 @@
     <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
     <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\confirmation\confirmation.modal.ts" />
     <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
-    <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\ChildCardsController.cs" />
     <Compile Include="Models\Main\AddPatientModel.cs" />
+    <Compile Include="Models\Main\BlockMkhVM.cs" />
+    <Compile Include="Models\Main\ClassMkhVM.cs" />
+    <Compile Include="Models\Main\DiagnosisMkhVM.cs" />
+    <Compile Include="Models\Main\NosologyMkhVM.cs" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
     <TypeScriptCompile Include="app\admin\admin-app.routing.ts" />
     <TypeScriptCompile Include="app\core\login-app.component.ts" />
@@ -297,16 +304,6 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MedicalDocManagment.MainAppDAL\MedicalDocManagment.MainAppDAL.csproj">
-      <Project>{aba1a697-fd8d-46f7-a1dc-170db2e3b04e}</Project>
-      <Name>MedicalDocManagment.MainAppDAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MedicalDocManagment.UsersDAL\MedicalDocManagment.UsersDAL.csproj">
-      <Project>{7b77ea9e-b651-4a0e-bb9c-c2f611872b02}</Project>
-      <Name>MedicalDocManagment.UsersDAL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="app\admin\admin-app.component.ts" />
     <TypeScriptCompile Include="app\admin\admin-app.module.ts" />
     <TypeScriptCompile Include="app\admin\http.facade.ts" />
@@ -327,6 +324,10 @@
     <TypeScriptCompile Include="app\admin\users-list\users-list.component.ts" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MedicalDocManagement.BLL\MedicalDocManagement.BLL.csproj">
+      <Project>{34fc668e-d391-4fb8-ba59-731ce70f18a7}</Project>
+      <Name>MedicalDocManagement.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MedicalDocManagment.DAL\MedicalDocManagment.DAL.csproj">
       <Project>{0f99f474-b98c-4710-aa81-b9cc16ad04d0}</Project>
       <Name>MedicalDocManagment.DAL</Name>

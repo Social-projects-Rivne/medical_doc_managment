@@ -5,7 +5,7 @@ import ChildrenCardsListComponent from './children-cards-list/children-cards-lis
 @Component({
     moduleId: module.id,
     selector: 'main-app-component',
-    templateUrl: 'main-app.component.html'
+    templateUrl: 'main-app.component.html',
 })
 export default class MainAppComponent implements AfterViewInit {
     @ViewChild('childrenCardsList') private _childrenCardsList;

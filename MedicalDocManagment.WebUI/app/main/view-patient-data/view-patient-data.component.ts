@@ -18,7 +18,8 @@ import ViewPatientDataModel from '../models/view-patient-data.model';
     moduleId: module.id,
     selector: 'view-patient-data',
     templateUrl: 'view-patient-data.component.html',
-    providers: [MainHttpFacade]
+    providers: [MainHttpFacade],
+    styleUrls: ['view-patient-data.component.css']
 })
 
 export default class ViewPatientDataComponent {
@@ -44,8 +45,7 @@ export default class ViewPatientDataComponent {
         this._patientToView = new ViewPatientDataModel();
 
         this.options = {
-            autoApply: true, initialDate: new Date(2011, 11, 11), locale: 'uk', 
-            selectYearText: 'Натисніть для вибору року'
+            autoApply: true, locale: 'uk', selectYearText: 'Натисніть для вибору року'
         };
         moment.locale('uk');
     }

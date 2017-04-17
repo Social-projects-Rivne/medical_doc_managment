@@ -25,7 +25,8 @@
     </div>
     <div class="form-group">
         <label class="control-label" for="date">Дата народження</label>
-        <ng2-datepicker [options]="options" [(NgModel)]="data"></ng2-datepicker>
+        <ng2-datepicker [options]="options" [(ngModel)]="data" name="birthDate"
+                        class="danger" ></ng2-datepicker>
         <div *ngIf="!_patientToView.date" class="alert alert-danger">
             Введіть дату народження.
         </div>

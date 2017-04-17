@@ -4,7 +4,8 @@ var _      = require('lodash'),
     gulp   = require('gulp'),
     uglify = require('gulp-uglify'),
     cssmin = require('gulp-cssmin'),
-    rename = require('gulp-rename');
+    rename = require('gulp-rename'),
+    less   = require('gulp-less');
 
 var angularJs = [
     'node_modules/core-js/client/shim.min.js',
@@ -101,34 +102,28 @@ gulp.task('copy-mdbootstrap', () => {
 });
 
 gulp.task('copy-ng2-datepicker', () => {
-    gulp.src([
-        '*'
-    ], {
-        cwd: './node_modules/ng2-datepicker/lib-dist'
-    }).pipe(gulp.dest('./dist/lib/npmlibs/ng2-datepicker'));
+    gulp.src('*', { cwd: './node_modules/ng2-datepicker/lib-dist' })
+        .pipe(gulp.dest('./dist/lib/npmlibs/ng2-datepicker'));
 });
 
 gulp.task('copy-ng2-slimscroll', () => {
-    gulp.src([
-        '*.*'
-    ], {
-        cwd: './node_modules/ng2-slimscroll/'
-    }).pipe(gulp.dest('./dist/lib/npmlibs/ng2-slimscroll'));
-    gulp.src([
-    '**/*'
-    ], {
-        cwd: './node_modules/ng2-slimscroll/src'
-    }).pipe(gulp.dest('./dist/lib/npmlibs/ng2-slimscroll/src'));
+    gulp.src('*.*', { cwd: './node_modules/ng2-slimscroll/'})
+        .pipe(gulp.dest('./dist/lib/npmlibs/ng2-slimscroll'));
+    gulp.src('**/*', { cwd: './node_modules/ng2-slimscroll/src' })
+        .pipe(gulp.dest('./dist/lib/npmlibs/ng2-slimscroll/src'));
 });
 
 gulp.task('copy-moment', () => {
-    gulp.src([
-        '*.*'
-    ], {
-        cwd: './node_modules/moment/min'
-    }).pipe(gulp.dest('./dist/js/moment'));
+    gulp.src('*.*', { cwd: './node_modules/moment/min' })
+        .pipe(gulp.dest('./dist/js/moment'));
+});
+
+gulp.task('less', () => {
+    gulp.src('./app/**/*.less')
+        .pipe(less())
+        .pipe(gulp.dest('./app/'));
 });
 
 gulp.task('default', ['copy-js', 'copy-css', 'copy-ng2-pagination', 'copy-mdbootstrap'
-    , 'copy-ng2-datepicker', 'copy-ng2-slimscroll', 'copy-moment']);
+    , 'copy-ng2-datepicker', 'copy-ng2-slimscroll', 'copy-moment', 'less']);
 gulp.task('minify', ['copy-min-js', 'copy-min-css']);
