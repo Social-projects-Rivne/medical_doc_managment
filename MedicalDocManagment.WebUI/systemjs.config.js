@@ -31,7 +31,9 @@
             'ng2-datepicker': 'dist/lib/npmlibs/ng2-datepicker/',
             // added ng2-slimscroll and moment because it is used by ng2-datepicker
             'ng2-slimscroll': 'dist/lib/npmlibs/ng2-slimscroll/',
-            'moment': 'dist/js/moment/'
+            'moment': 'dist/js/moment/',
+            // mydatepicker
+            'mydatepicker': 'npm:mydatepicker'
         },
         // пакеты, которые указывают загрузчику System, как загружать файлы без имени и расширения
         packages: {
@@ -55,7 +57,8 @@
             'angular2-notifications': { main: 'components.js', defaultExtension: 'js' },
             'ng2-datepicker': { main: 'ng2-datepicker.module.js', defaultExtension: 'js' },
             'ng2-slimscroll': { main: 'index.js', defaultExtension: 'js' },
-            'moment': { main: 'moment-with-locales.min.js', defaultExtension: 'js' }
+            'moment': { main: 'moment-with-locales.min.js', defaultExtension: 'js' },
+            'mydatepicker': { main: 'index.js', defaultExtension: 'js' }
         }
     });
     if (global.filterSystemConfig) { global.filterSystemConfig(config); }

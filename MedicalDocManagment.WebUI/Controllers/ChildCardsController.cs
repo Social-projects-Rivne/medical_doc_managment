@@ -29,7 +29,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             _childCardsService = new ChildCardsService();
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public IHttpActionResult AddPatient(AddPatientModel addPatientModel)
         {
@@ -78,7 +78,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Ok(classesMkhVM);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public IHttpActionResult GetClassesMkh(string id)
         {
@@ -91,7 +91,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Ok(classMkhVM);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public IHttpActionResult GetBlocksMkh(string classMkhId)
         {
@@ -104,7 +104,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Ok(blocksMkhVM);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public IHttpActionResult GetNosologiesMkh(string blockMkhId)
         {
@@ -117,7 +117,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Ok(nosologiesMkhVM);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public IHttpActionResult GetDiagnosesMkh(string nosologyMkhId)
         {

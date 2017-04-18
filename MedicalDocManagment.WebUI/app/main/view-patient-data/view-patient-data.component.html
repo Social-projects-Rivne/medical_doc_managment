@@ -1,4 +1,4 @@
-﻿<form class="form">
+﻿<div class="container">
     <div class="form-group">
         <label class="control-label" for="l_Name">Прізвище</label>
         <input type="text" class="form-control" id="l_Name" name="l_Name"
@@ -24,9 +24,12 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label" for="date">Дата народження</label>
-        <ng2-datepicker [options]="options" [(ngModel)]="data" name="birthDate"
-                        class="danger" ></ng2-datepicker>
+        <label class="control-label" for="birthDate">Дата народження</label>
+        <form #myForm="ngForm" novalidate>
+            <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                            [locale]="ru" [(ngModel)]="_patientToView.date" 
+                            required></my-date-picker>
+        </form>
         <div *ngIf="!_patientToView.date" class="alert alert-danger">
             Введіть дату народження.
         </div>
@@ -58,4 +61,4 @@
          && !_searchResult ">
         <h4>По Вашому запиту нічого не знайдено.</h4>
     </div>
-</form>
+</div>

@@ -2,7 +2,7 @@
     f_Name: string;
     s_Name: string;
     l_Name: string;
-    date: string;
+    date: Date;
 
     constructor() {
         this.f_Name = null;
