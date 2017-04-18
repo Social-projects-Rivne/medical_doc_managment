@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -155,30 +157,44 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
         }
 
-        [Authorize]
-        [HttpGet]
-        public async Task<IHttpActionResult> GetUserByName(string userName)
+        //TODO create AdminService
+        private bool IsStringContainsSubString(string source, string subString)
         {
-            var user = await _unitOfWork.UsersManager.FindByNameAsync(userName);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(user);
+            const int NOT_FOUND_INDEX = -1;
+            
+            return source.IndexOf(subString, StringComparison.InvariantCultureIgnoreCase) != NOT_FOUND_INDEX;
         }
 
         [Authorize]
         [HttpGet]
-        public async Task<IHttpActionResult> GetUserByEmail(string email)
+        public IHttpActionResult GetUserByUserName(string userName)
         {
-            var user = await _unitOfWork.UsersManager.FindByEmailAsync(email);
-            if (user == null)
+            var users = _unitOfWork.UsersManager.Users
+                                                .Where(user => IsStringContainsSubString(user.UserName, userName))
+                                                .ToList();
+
+            if (!users.Any())
             {
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(users);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IHttpActionResult GetUserByEmail(string email)
+        {
+            var users = _unitOfWork.UsersManager.Users
+                                                .Where(user => IsStringContainsSubString(user.Email, email))
+                                                .ToList();
+
+            if (!users.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(users);
         }
 
         [Authorize]
@@ -199,7 +215,9 @@ namespace MedicalDocManagment.WebUI.Controllers
         [HttpGet]
         public IHttpActionResult GetUsersByPosition(string positionName)
         {
-            var users = _unitOfWork.UsersManager.Users.Where(user => user.Position.Name == positionName).ToList();
+            var users = _unitOfWork.UsersManager.Users
+                                                .Where(user => IsStringContainsSubString(user.Position.Name, positionName))
+                                                .ToList();
 
             if (!users.Any())
             {
