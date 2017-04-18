@@ -1,12 +1,10 @@
-﻿import 'rxjs/add/operator/map';
-
-import UserModel from '../models/usermodel';
+﻿import UserModel from '../models/usermodel';
 
 export default class UsersModel extends Array<UserModel> {
-    constructor(jsonobject?) {
+    constructor(jsonObject?) {
         super();
-        if (jsonobject) {
-            jsonobject.map((user) => { this.push(new UserModel(user)); });
+        if (jsonObject) {
+            jsonObject.forEach((user) => { this.push(new UserModel(user)); });
         }
     }
 }
