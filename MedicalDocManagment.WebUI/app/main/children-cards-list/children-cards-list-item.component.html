@@ -1,7 +1,7 @@
 ﻿<th>{{childCard.firstName}}</th>
 <th>{{childCard.secondName}}</th>
 <th>{{childCard.lastName}}</th>
-<th>{{childCard.date}}</th>
+<th>{{moment(childCard.date).format('dd.mm.yyyy')}}</th>
 <th>{{childCard.address}}</th>
 <th>{{childCard.checkIn}}</th>
 <th>{{childCard.checkOut}}</th>

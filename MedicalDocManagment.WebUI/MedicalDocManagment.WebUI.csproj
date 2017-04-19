@@ -213,7 +213,6 @@
     <Content Include="App_Data\src\blocks.json" />
     <Content Include="App_Data\src\diagnoses.json" />
     <Content Include="App_Data\src\nosologies.json" />
-    <Content Include="app\main\view-patient-data\view-patient-data.component.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -50,15 +50,15 @@ export class MainHttpFacade {
     {
         let childrenCardsJsonString: string = '[' +
             '{ "id":"1", "f_name":"Іван", "s_name":"Петрович", "l_name":"Сидорчук",' +
-            '"date":"04.03.2001", "address":"м.Рівне, вул. ...", "checkin":"02.04.2017",' +
+            '"date":"2001-04-30", "address":"м.Рівне, вул. ...", "checkin":"02.04.2017",' +
             '"checkout":"16.04.2017", "diagnosis": {"id":"1","name":"діагноз 1"},' +
             '"prescription":"лікування 1"},' +
             '{ "id":"1", "f_name":"Іван", "s_name":"Петрович", "l_name":"Сидорчук",' +
-            '"date":"04.03.2001", "address":"м.Рівне, вул. ...", "checkin":"02.04.2017",' +
+            '"date":"2001-04-30", "address":"м.Рівне, вул. ...", "checkin":"02.04.2017",' +
             '"checkout":"16.04.2017", "diagnosis": {"id":"2","name":"діагноз 2"},' +
             '"prescription":"лікування 2"},' +
             '{ "id":"1", "f_name":"Іван", "s_name":"Петрович", "l_name":"Сидорчук",' +
-            '"date":"04.03.2001", "address":"м.Рівне, вул. ...", "checkin":"02.04.2017",' +
+            '"date":"2001-04-30", "address":"м.Рівне, вул. ...", "checkin":"02.04.2017",' +
             '"checkout":"16.04.2017", "diagnosis": {"id":"3","name":"діагноз 3"},' +
             '"prescription":"лікування 3"}' +
             ']';

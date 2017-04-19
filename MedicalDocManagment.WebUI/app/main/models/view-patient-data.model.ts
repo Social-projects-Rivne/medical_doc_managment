@@ -1,13 +1,13 @@
 ﻿export default class ViewPatientDataModel {
-    f_Name: string;
-    s_Name: string;
-    l_Name: string;
-    date: Date;
+    firstName: string;
+    secondName: string;
+    lastName: string;
+    birthDate: Date;
 
     constructor() {
-        this.f_Name = null;
-        this.s_Name = null;
-        this.l_Name = null;
-        this.date = null;
+        this.firstName = null;
+        this.secondName = null;
+        this.lastName = null;
+        this.birthDate = null;
     }
 }

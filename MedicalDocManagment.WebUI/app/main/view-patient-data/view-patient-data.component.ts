@@ -1,10 +1,9 @@
-﻿import { Component } from '@angular/core';
+﻿import { AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Response } from '@angular/http';
 import 'rxjs/add/observable/of';
-import { IMyOptions } from 'mydatepicker';
-import moment = require("moment");
+declare var $;
 
 // TODO change from mockup after implementing feature
 //import { MainHttpFacade } from '../main-http.facade';
@@ -18,18 +17,15 @@ import ViewPatientDataModel from '../models/view-patient-data.model';
     moduleId: module.id,
     selector: 'view-patient-data',
     templateUrl: 'view-patient-data.component.html',
-    providers: [MainHttpFacade],
-    styleUrls: ['view-patient-data.component.css']
+    providers: [MainHttpFacade]
 })
 
-export default class ViewPatientDataComponent {
-    private myDatePickerOptions: IMyOptions = {
-        // other options...
-        dateFormat: 'dd.mm.yyyy',
-    };
+export default class ViewPatientDataComponent implements AfterViewInit {
+    @ViewChild('birthDatePicker') _birthDatePicker: ElementRef;
+    private _birthDatePickerTouched: boolean;
     private _isErrorOnSearching: boolean;
     private _isNotFound: boolean;
-    private _isSearching: boolean;    
+    private _isSearching: boolean;
     private _lastErrorMessage: string;
     private _mainHttpFacade: MainHttpFacade;
     private _patientToView: ViewPatientDataModel;
@@ -37,9 +33,7 @@ export default class ViewPatientDataComponent {
     private _triedToSearch: boolean; 
 
     constructor(mainHttpFacade: MainHttpFacade) {
-        //this._datePickerOptions = {
-        //    autoApply: true, locale: 'uk', selectYearText: 'Натисніть для вибору року'
-        //};
+        this._birthDatePickerTouched = false;
         this._isErrorOnSearching = false;
         this._isSearching = false;
         this._lastErrorMessage = '';
@@ -47,9 +41,22 @@ export default class ViewPatientDataComponent {
         this._patientToView = new ViewPatientDataModel();
         this._searchResult = null;
         this._triedToSearch = false;
-
-        moment.locale('uk');
     }
+
+    ngAfterViewInit(): void {
+        $(this._birthDatePicker.nativeElement).datepicker({
+            autoclose: true,
+            language: 'uk'
+        });
+        $(this._birthDatePicker.nativeElement).on('changeDate', (e) => {
+            this._birthDatePickerTouched = true;
+            this._patientToView.birthDate = e.date;
+        });
+        $(this._birthDatePicker.nativeElement).on('clearDate', (e) => {
+            this._patientToView.birthDate = null;
+        });
+    }
+
 
     viewPatientData(): void {
         this._isErrorOnSearching = false;

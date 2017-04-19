@@ -29,7 +29,6 @@ var css = [
     './node_modules/bootstrap/dist/css/bootstrap.css',
     './node_modules/mdbootstrap/css/mdb.css',
     './node_modules/tether/dist/css/*.*',
-    './node_modules/primeng/resources/primeng.min.css',
     './node_modules/font-awesome/css/font-awesome.min.css'
 ];
 
@@ -101,29 +100,20 @@ gulp.task('copy-mdbootstrap', () => {
     }).pipe(gulp.dest('./dist/font'));
 });
 
-gulp.task('copy-ng2-datepicker', () => {
-    gulp.src('*', { cwd: './node_modules/ng2-datepicker/lib-dist' })
-        .pipe(gulp.dest('./dist/lib/npmlibs/ng2-datepicker'));
-});
-
-gulp.task('copy-ng2-slimscroll', () => {
-    gulp.src('*.*', { cwd: './node_modules/ng2-slimscroll/'})
-        .pipe(gulp.dest('./dist/lib/npmlibs/ng2-slimscroll'));
-    gulp.src('**/*', { cwd: './node_modules/ng2-slimscroll/src' })
-        .pipe(gulp.dest('./dist/lib/npmlibs/ng2-slimscroll/src'));
-});
-
 gulp.task('copy-moment', () => {
     gulp.src('*.*', { cwd: './node_modules/moment/min' })
         .pipe(gulp.dest('./dist/js/moment'));
 });
 
-gulp.task('less', () => {
-    gulp.src('./app/**/*.less')
-        .pipe(less())
-        .pipe(gulp.dest('./app/'));
+gulp.task('copy-bootstrap-datepicker', () => {
+    gulp.src('./node_modules/bootstrap-datepicker/dist/css/*')
+        .pipe(gulp.dest('./dist/css/bootstrap-datepicker/'));
+    gulp.src('./node_modules/bootstrap-datepicker/dist/js/*')
+        .pipe(gulp.dest('./dist/js/bootstrap-datepicker/'));
+    gulp.src('./node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.uk.min.js')
+        .pipe(gulp.dest('./dist/js/bootstrap-datepicker/'));
 });
 
 gulp.task('default', ['copy-js', 'copy-css', 'copy-ng2-pagination', 'copy-mdbootstrap'
-    , 'copy-ng2-datepicker', 'copy-ng2-slimscroll', 'copy-moment', 'less']);
+    , 'copy-moment','copy-bootstrap-datepicker']);
 gulp.task('minify', ['copy-min-js', 'copy-min-css']);
