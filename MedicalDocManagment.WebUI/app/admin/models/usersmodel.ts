@@ -1,6 +1,6 @@
 ﻿import 'rxjs/add/operator/map';
 
-import UserModel from '../models/usermodel';
+import UserModel from './usermodel';
 
 export default class UsersModel extends Array<UserModel> {
     constructor(jsonobject?) {

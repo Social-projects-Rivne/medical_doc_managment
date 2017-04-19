@@ -1,6 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Response, Headers, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -15,14 +14,17 @@ import NosologiesModel from "../models/nosologies.model";
 import DiagnosisModel from "../models/diagnosis.model";
 import DiagnosesModel from "../models/diagnoses.model";
 
+import { AuthenticationService } from '../../shared/authentication.service';
+
 @Injectable()
 export default class MkhsService {
     private _apiUrl: string = '/api/childcards';
     private _headers: Headers;
 
-    constructor(private _http: Http) {
+    constructor(private _http: Http, private authenticationService: AuthenticationService) {
         this._headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
-    }
+        this._headers.append('Authorization', 'Bearer ' + authenticationService.token);
+ }
 
     getClasses(): Observable<ClassesModel> {
         let headers = this._headers;
