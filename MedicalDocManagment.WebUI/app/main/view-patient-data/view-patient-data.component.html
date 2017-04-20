@@ -1,58 +1,70 @@
 ﻿<div class="container">
-    <form class="form">
+    <form class="form-horizontal">
         <div class="form-group">
-            <label class="control-label" for="lastName">Прізвище</label>
-            <input type="text" class="form-control" id="lastName" name="lastName"
-                   [(ngModel)]="_patientToView.lastName" #lastName="ngModel" />
+            <label class="control-label col-lg-offset-1 col-lg-2" for="lastName">Прізвище</label>
+            <div class="input-group col-lg-4">
+                <input type="text" class="form-control" id="lastName" name="lastName"
+                       [(ngModel)]="_patientToView.lastName" #lastName="ngModel" />
+            </div>
             <div *ngIf="!_patientToView.lastName && lastName.touched"
-                 class="alert alert-danger">
+                 class="alert alert-danger col-lg-offset-3 col-lg-4">
                 Введіть прізвище.
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" for="firstName">Ім'я</label>
-            <input type="text" class="form-control" id="firstName" name="firstName"
+            <label class="control-label col-lg-offset-1 col-lg-2" for="firstName">Ім'я</label>
+            <div class="input-group col-lg-4">
+                <input type="text" class="form-control" id="firstName" name="firstName"
                    [(ngModel)]="_patientToView.firstName" #firstName="ngModel" />
+            </div>
             <div *ngIf="!_patientToView.firstName && firstName.touched"
-                 class="alert alert-danger">
+                 class="alert alert-danger col-lg-offset-3 col-lg-4">
                 Введіть ім'я.
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" for="secondName">По-батькові</label>
-            <input type="text" class="form-control" id="secondName" name="secondName"
+            <label class="control-label col-lg-offset-1 col-lg-2" for="secondName">По-батькові</label>
+            <div class="input-group col-lg-4">
+                <input type="text" class="form-control" id="secondName" name="secondName"
                    [(ngModel)]="_patientToView.secondName" #secondName="ngModel" />
+            </div>
             <div *ngIf="!_patientToView.secondName && secondName.touched"
-                 class="alert alert-danger">
+                 class="alert alert-danger col-lg-offset-3 col-lg-4">
                 Введіть по-батькові.
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" for="birthDate">Дата народження</label>
-            <div class="input-group date" data-provide="datepicker" id="birthDatePicker"
-                 #birthDatePicker>
-                <input type="text" #birthDatePickerInput class="form-control">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
+            <label class="control-label col-lg-offset-1 col-lg-2" for="birthDate">Дата народження</label>
+            <div class="input-group col-lg-2">
+                <div class="input-group date" data-provide="datepicker" id="birthDatePicker"
+                     #birthDatePicker>
+                    <input type="text" #birthDatePickerInput class="form-control">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
                 </div>
             </div>
-            <div *ngIf="!_patientToView.birthDate && this._birthDatePickerTouched" 
-                 class="alert alert-danger">
-                Введіть дату народження.
+            <div *ngIf="!_patientToView.birthDate && this._birthDatePickerTouched"
+                     class="alert alert-danger col-lg-offset-3 col-lg-3">
+                    Введіть дату народження.
             </div>
         </div>
         <div class="form-group">
             <div class="row">
-                <button class="btn btn-default" (click)="viewPatientData()"
-                        [disabled]="!_patientToView.lastName || !_patientToView.firstName
-                        || !_patientToView.secondName || !_patientToView.birthDate"
-                        *ngIf="!_isSearching">
-                    Знайти
-                </button>
                 <div *ngIf="!_patientToView.lastName || !_patientToView.firstName
                      || !_patientToView.secondName || !_patientToView.birthDate"
-                     class="alert alert-danger">
+                     class="alert alert-danger col-lg-offset-3 col-lg-4">
                     Для пошуку введіть значення у всі поля.
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-offset-3">
+                    <button class="btn btn-primary" (click)="viewPatientData()"
+                            [disabled]="!_patientToView.lastName || !_patientToView.firstName
+                        || !_patientToView.secondName || !_patientToView.birthDate"
+                            *ngIf="!_isSearching">
+                        Знайти
+                    </button>
                 </div>
             </div>
             <div class="progress" *ngIf="_isSearching">

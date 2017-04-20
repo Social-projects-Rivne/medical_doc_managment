@@ -55,6 +55,9 @@ export default class ViewPatientDataComponent implements AfterViewInit {
         $(this._birthDatePicker.nativeElement).on('clearDate', (e) => {
             this._patientToView.birthDate = null;
         });
+        $(this._birthDatePicker.nativeElement).on('show', (e) => {
+            this._birthDatePickerTouched = true;
+        });
     }
 
 
