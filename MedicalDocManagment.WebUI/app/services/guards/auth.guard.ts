@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
             return true;
         }
         // not logged in so redirect to login page
-        this.document.location.href = "/app/core/index.html";
+        //this.document.location.href = "/app/login";
         //this.router.navigate(['/index.html']);
         return false;
     }

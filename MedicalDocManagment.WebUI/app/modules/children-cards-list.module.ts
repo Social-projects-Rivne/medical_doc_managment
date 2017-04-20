@@ -8,8 +8,8 @@ import ChildrenCardsListItemComponent from '../components/childrens-card/childre
 
 import CildrensCardService from '../services/children-card.service';
 
-import { AuthGuard } from '../../shared/guards/auth.guard';
-import { AuthenticationService } from '../../shared/authentication.service';
+import { AuthGuard } from '../services/guards/auth.guard';
+import { AuthenticationService } from '../services/authentication.service';
 
 @NgModule({
     imports: [

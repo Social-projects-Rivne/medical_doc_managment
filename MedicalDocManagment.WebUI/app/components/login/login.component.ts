@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
 
-import { AuthenticationService } from '../../../shared/authentication.service';
+import { AuthenticationService } from "../../services/authentication.service";
 
 @Component({
     selector: 'app-login',
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
                 if (result === true) {
                     // login successful
                     if (this.authenticationService.role == "admin") {
-                        this.document.location.href = "/app/admin/index.html";
+                        this.document.location.href = "/app/add";
                     }
                     else if (this.authenticationService.role == "user") {
                         this.document.location.href = "/app/main/index.html";

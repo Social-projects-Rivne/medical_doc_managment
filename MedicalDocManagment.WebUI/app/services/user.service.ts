@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw'
 
-import { AuthenticationService } from "../../shared/authentication.service";
+import { AuthenticationService } from './authentication.service';
 
 import { User } from '../models/user';
 import PositionModel from "../models/positionmodel";

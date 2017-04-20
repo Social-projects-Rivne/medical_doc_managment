@@ -9,7 +9,7 @@ import ChildCardModel from '../models/child-card.model';
 import ChildrenCardsModel from '../models/children-cards.model';
 import ParentModel from '../models/parent.model';
 
-import { AuthenticationService } from "../../shared/authentication.service";
+import { AuthenticationService } from "./authentication.service";
 
 @Injectable()
 export default class ChildrensCardService {

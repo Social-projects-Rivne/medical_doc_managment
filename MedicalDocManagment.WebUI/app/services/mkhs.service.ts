@@ -14,7 +14,7 @@ import NosologiesModel from "../models/nosologies.model";
 import DiagnosisModel from "../models/diagnosis.model";
 import DiagnosesModel from "../models/diagnoses.model";
 
-import { AuthenticationService } from '../../shared/authentication.service';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export default class MkhsService {

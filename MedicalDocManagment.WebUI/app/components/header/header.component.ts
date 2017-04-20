@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit, Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
-import { AuthenticationService } from "../../../shared/authentication.service";
+import { AuthenticationService } from "../../services/authentication.service";
 
 @Component({
     moduleId: module.id,
