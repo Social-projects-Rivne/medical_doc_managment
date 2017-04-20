@@ -13,29 +13,14 @@ export default class ChildCardModel {
     prescription: string;
 
     constructor(jsonObject?) {
-        if (jsonObject) {
-            this.id = jsonObject.id;
-            this.firstName = jsonObject.firstName;
-            this.secondName = jsonObject.secondName;
-            this.lastName = jsonObject.lastName;
-            this.date = new Date(jsonObject.date);
-            this.address = jsonObject.address;
-            this.checkIn = new Date(jsonObject.checkIn);
-            this.checkOut = new Date(jsonObject.checkOut);
-            this.diagnosis = new DiagnosisModel(jsonObject.diagnosis);
-            this.prescription = jsonObject.prescription;
-        }
-        else {
-            this.id = null;
-            this.firstName = null;
-            this.secondName = null;
-            this.lastName = null;
-            this.date = null;
-            this.address = null;
-            this.checkIn = null;
-            this.checkOut = null;
-            this.diagnosis = new DiagnosisModel();
+        this.id = this.firstName = this.secondName = this.lastName = this.date =
+            this.address = this.checkIn = this.checkOut = this.diagnosis =
             this.prescription = null;
+
+        if (jsonObject) {
+            for (var prop in this)
+                if (jsonObject.hasOwnProperty(prop))
+                    this[prop] = jsonObject[prop];
         }
     }
 
