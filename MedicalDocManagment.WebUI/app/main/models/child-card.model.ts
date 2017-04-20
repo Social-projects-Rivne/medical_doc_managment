@@ -5,37 +5,23 @@ export default class ChildCardModel {
     firstName: string;
     secondName: string;
     lastName: string;
-    date: string;
+    date: Date;
     address: string;
-    checkIn: string;
-    checkOut: string;
+    checkIn: Date;
+    checkOut: Date;
     diagnosis: DiagnosisModel;
     prescription: string;
 
     constructor(jsonObject?) {
-        if (jsonObject) {
-            this.id = jsonObject.id;        
-            this.firstName = jsonObject.firstName;
-            this.secondName = jsonObject.secondName;
-            this.lastName = jsonObject.lastName;
-            this.date = jsonObject.date;
-            this.address = jsonObject.address;
-            this.checkIn = jsonObject.checkIn;
-            this.checkOut = jsonObject.checkOut;
-            this.diagnosis = new DiagnosisModel(jsonObject.diagnosis);
-            this.prescription = jsonObject.prescription;
-        }
-        else {
-            this.id = null;
-            this.firstName = null;
-            this.secondName = null;
-            this.lastName = null;
-            this.date = null;
-            this.address = null;
-            this.checkIn = null;
-            this.checkOut = null;
-            this.diagnosis = null;
+        this.id = this.firstName = this.secondName = this.lastName = this.date =
+            this.address = this.checkIn = this.checkOut = this.diagnosis =
             this.prescription = null;
+
+        if (jsonObject) {
+            for (var prop in this)
+                if (jsonObject.hasOwnProperty(prop))
+                    this[prop] = jsonObject[prop];
         }
     }
+
 }

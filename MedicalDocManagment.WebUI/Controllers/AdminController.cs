@@ -73,6 +73,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             user.PositionId = userModel.PositionId;
             user.IsActive = true;
             var result = await _unitOfWork.UsersManager.CreateAsync(user, userModel.Password);
+            _unitOfWork.UsersManager.AddToRole(user.Id, "user");
             var errorResult = GetErrorResult(result);
 
             return errorResult ?? Ok(result);

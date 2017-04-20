@@ -1,12 +1,10 @@
-﻿import 'rxjs/add/operator/map';
-
-import ChildCardModel from './child-card.model';
+﻿import ChildCardModel from './child-card.model';
 
 export default class ChildrenCardsModel extends Array<ChildCardModel> {
-    constructor(jsonobject?) {
+    constructor(jsonObject?) {
         super();
-        if (jsonobject) {
-            jsonobject.map((elem) => { this.push(new ChildCardModel(elem)); });
+        if (jsonObject) {
+            jsonObject.forEach((elem) => { this.push(new ChildCardModel(elem)); });
         }
     }
 }

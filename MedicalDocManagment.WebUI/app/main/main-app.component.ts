@@ -3,7 +3,7 @@
 @Component({
     moduleId: module.id,
     selector: 'main-app-component',
-    templateUrl: 'main-app.component.html'
+    templateUrl: 'main-app.component.html',
 })
 export default class MainAppComponent {
 } 

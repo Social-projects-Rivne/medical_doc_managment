@@ -7,21 +7,13 @@
     phone: string;
 
     constructor(jsonObject?) {
-        if (jsonObject) {
-            this.id = jsonObject.id;
-            this.firstName = jsonObject.firstName;
-            this.secondName = jsonObject.secondName;
-            this.lastName = jsonObject.lastName;
-            this.work = jsonObject.work;
-            this.phone = jsonObject.phone;
-        }
-        else {
-            this.id = null;
-            this.firstName = null;
-            this.secondName = null;
-            this.lastName = null;
-            this.work = null;
+        this.id = this.firstName = this.secondName = this.lastName = this.work =
             this.phone = null;
+
+        if (jsonObject) {
+            for (var prop in this)
+                if (jsonObject.hasOwnProperty(prop))
+                    this[prop] = jsonObject[prop];
         }
     }
 }
