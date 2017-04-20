@@ -4,7 +4,7 @@ using MedicalDocManagment.WebUI.Models.Validators;
 namespace MedicalDocManagment.WebUI.Models
 {
     [Validator(typeof(UserModelValidator))]
-    public class UserModel
+    public class UserCreateModel
     {
         public string UserName { get; set; }
         public string Email { get; set; }
@@ -12,7 +12,6 @@ namespace MedicalDocManagment.WebUI.Models
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string LastName { get; set; }
-        //TODO create DTO than remove useless namespace
         public int PositionId { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace MedicalDocManagment.WebUI.Models.Validators
 {
-    public class UserModelValidator : AbstractValidator<UserModel>
+    public class UserModelValidator : AbstractValidator<UserCreateModel>
     {
         public UserModelValidator()
         {
