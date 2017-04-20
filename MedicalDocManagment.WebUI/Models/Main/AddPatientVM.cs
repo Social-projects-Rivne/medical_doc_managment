@@ -14,9 +14,9 @@ namespace MedicalDocManagment.WebUI.Models
         [Required(ErrorMessage = "Для додавання пацієнта необхідне його по-батькові.")]
         public string SecondName { get; set; }
 
-        public DateTime? Date { get; set; }
+        public DateTime Date { get; set; }
 
-        public DateTime? Checkin { get; set; }
+        public DateTime Checkin { get; set; }
         public DateTime? Checkout { get; set; }
         public string DiagnosisCode { get; set; }
         public string DirectedBy { get; set; }

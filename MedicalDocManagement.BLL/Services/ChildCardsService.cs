@@ -86,11 +86,6 @@ namespace MedicalDocManagement.BLL.Services
         {
             var childCard = ChildCardDTOHelper.DTOToEntity(childCardDTO);
 
-            if (!_unitOfWork.DiagnosisMkhRepository
-                           .Get(diagnosisMkh => diagnosisMkh.Id == childCard.DiagnosisId)
-                           .Any())
-                childCard.DiagnosisId = null;
-
             _unitOfWork.ChildrenCardsRepository.Add(childCard);
             _unitOfWork.Save();
 

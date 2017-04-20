@@ -20,11 +20,11 @@ namespace MedicalDocManagment.DAL.Entities
         [StringLength(100)]
         public string LastName { get; set; }
 
-        public DateTime? Date { get; set; }
+        public DateTime Date { get; set; }
 
         public string Address { get; set; }
 
-        public DateTime? CheckIn { get; set; }
+        public DateTime CheckIn { get; set; }
 
         public DateTime? CheckOut { get; set; }
 
