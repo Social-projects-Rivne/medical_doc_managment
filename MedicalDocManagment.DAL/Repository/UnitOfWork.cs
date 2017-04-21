@@ -17,6 +17,7 @@ namespace MedicalDocManagment.DAL.Repository
         private readonly Lazy<IBlockMkhRepository> _blockMkhRepository;
         private readonly Lazy<INosologyMkhRepository> _nosologyRepository;
         private readonly Lazy<IDiagnosisMkhRepository> _diagnosisMkhRepository;
+        private readonly Lazy<IChildrenCardsRepository> _childrenCardsRepository;
         private readonly Lazy<UsersManager> _usersManager;
         private readonly Lazy<RolesManager> _rolesManager;
 
@@ -29,6 +30,7 @@ namespace MedicalDocManagment.DAL.Repository
             _blockMkhRepository = new Lazy<IBlockMkhRepository>(() => new BlockMkhRepository(_context));
             _nosologyRepository = new Lazy<INosologyMkhRepository>(() => new NosologyMkhRepository(_context));
             _diagnosisMkhRepository = new Lazy<IDiagnosisMkhRepository>(() => new DiagnosisMkhRepository(_context));
+            _childrenCardsRepository = new Lazy<IChildrenCardsRepository>(() => new ChildrenCardsRepository(_context));
             _usersManager = new Lazy<UsersManager>(() => HttpContext.Current
                                                                     .GetOwinContext()
                                                                     .GetUserManager<UsersManager>());
@@ -42,6 +44,7 @@ namespace MedicalDocManagment.DAL.Repository
         public IBlockMkhRepository BlockMkhRepository => _blockMkhRepository.Value;
         public INosologyMkhRepository NosologyMkhRepository => _nosologyRepository.Value;
         public IDiagnosisMkhRepository DiagnosisMkhRepository => _diagnosisMkhRepository.Value;
+        public IChildrenCardsRepository ChildrenCardsRepository => _childrenCardsRepository.Value;
         public UsersManager UsersManager => _usersManager.Value;
         public RolesManager RolesManager => _rolesManager.Value;
 
