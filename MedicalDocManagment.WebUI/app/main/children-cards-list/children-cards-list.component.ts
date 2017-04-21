@@ -2,7 +2,6 @@
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { MainHttpFacade } from '../main-http.facade';
 import ChildrensCardService from '../services/children-card.service';
 
 import ChildrenCardsModel from '../models/children-cards.model';
@@ -11,23 +10,22 @@ import ChildrenCardsModel from '../models/children-cards.model';
     moduleId: module.id,
     selector: 'children-cards-list',
     templateUrl: 'children-cards-list.component.html',
-    providers: [MainHttpFacade, ChildrensCardService]
+    providers: [ChildrensCardService]
 })
 export default class ChildrenCardsListComponent{
     @Input() childrenCards: Observable<ChildrenCardsModel>; 
-    private _mainHttpFacade: MainHttpFacade;
+    private _childrensCardService: ChildrensCardService;
 
-    constructor(mainHttpFacade: MainHttpFacade, private _childrensCardService: ChildrensCardService) {
+    constructor(childrensCardService: ChildrensCardService) {
         this.childrenCards = null;
-        this._mainHttpFacade = mainHttpFacade;
+        this._childrensCardService = childrensCardService;
     }
     
     getChildrenCardsFromServer(): void {
-        this.childrenCards = this._mainHttpFacade.getChildrenCards();
+        this.childrenCards = this._childrensCardService.getChildrenCards();
     }
 
     updateUsersList(): void {
-        this.childrenCards = this._mainHttpFacade.getChildrenCards();
-        //this._childrensCardService.getChildrenCards().subscribe(childrenCards => this._childrenCards = childrenCards);
+        this.childrenCards = this._childrensCardService.getChildrenCards();
     }
 }

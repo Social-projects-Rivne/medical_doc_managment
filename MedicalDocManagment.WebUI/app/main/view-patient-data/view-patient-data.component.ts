@@ -5,7 +5,7 @@ import { Response } from '@angular/http';
 import 'rxjs/add/observable/of';
 declare var $;
 
-import { MainHttpFacade } from '../main-http.facade';
+import ChildrensCardService from '../services/children-card.service';
 
 import ChildCardModel from '../models/child-card.model';
 import ChildrenCardsModel from '../models/children-cards.model';
@@ -15,7 +15,7 @@ import ViewPatientDataModel from '../models/view-patient-data.model';
     moduleId: module.id,
     selector: 'view-patient-data',
     templateUrl: 'view-patient-data.component.html',
-    providers: [MainHttpFacade]
+    providers: [ChildrensCardService]
 })
 
 export default class ViewPatientDataComponent implements AfterViewInit {
@@ -25,17 +25,17 @@ export default class ViewPatientDataComponent implements AfterViewInit {
     private _isNotFound: boolean;
     private _isSearching: boolean;
     private _lastErrorMessage: string;
-    private _mainHttpFacade: MainHttpFacade;
+    private _childrensCardService: ChildrensCardService;
     private _patientToView: ViewPatientDataModel;
     private _searchResult: Observable<ChildrenCardsModel>;
     private _triedToSearch: boolean; 
 
-    constructor(mainHttpFacade: MainHttpFacade) {
+    constructor(childrensCardService: ChildrensCardService) {
         this._birthDatePickerTouched = false;
         this._isErrorOnSearching = false;
         this._isSearching = false;
         this._lastErrorMessage = '';
-        this._mainHttpFacade = mainHttpFacade;
+        this._childrensCardService = childrensCardService;
         this._patientToView = new ViewPatientDataModel();
         this._searchResult = null;
         this._triedToSearch = false;
@@ -65,12 +65,14 @@ export default class ViewPatientDataComponent implements AfterViewInit {
         this._searchResult = null;
         this._triedToSearch = true;
 
-        this._mainHttpFacade.viewPatientData(this._patientToView)
-            .subscribe((data: ChildrenCardsModel) => {
-                this._searchResult = data ? Observable.of(data) : null;
-                this._isSearching = false;
-            },
-            (error: any) => { this._handleSearchError(error); });
+        this._childrensCardService.viewPatientData(this._patientToView)
+                                  .subscribe((data: ChildrenCardsModel) => {
+                                      this._searchResult = data ?
+                                          (data.length ? Observable.of(data) : null)
+                                          : null;
+                                      this._isSearching = false;
+                                  },
+                                  (error: any) => { this._handleSearchError(error); });
     }
 
     private _handleSearchError(error: any) {

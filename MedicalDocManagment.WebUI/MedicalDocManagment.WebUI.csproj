@@ -233,11 +233,13 @@
     <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
     <Compile Include="Controllers\ChildCardsController.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />
+    <Compile Include="Helpers\ViewPatientDataHelper.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
     <Compile Include="Models\Main\ClassMkhVM.cs" />
     <Compile Include="Models\Main\DiagnosisMkhVM.cs" />
     <Compile Include="Models\Main\NosologyMkhVM.cs" />
+    <Compile Include="Models\Main\ViewPatientDataVM.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
     <TypeScriptCompile Include="app\admin\admin-app.routing.ts" />
@@ -248,8 +250,6 @@
     <TypeScriptCompile Include="app\main\children-cards-list\children-cards-list.module.ts" />
     <TypeScriptCompile Include="app\main\main-app.routing.ts" />
     <TypeScriptCompile Include="app\main\child-card-add-parent.component.ts" />
-    <TypeScriptCompile Include="app\main\main-http.facade.ts" />
-    <TypeScriptCompile Include="app\main\main-http-facade.mockup.ts" />
     <TypeScriptCompile Include="app\main\models\child-card.model.ts" />
     <TypeScriptCompile Include="app\main\models\children-cards.model.ts" />
     <TypeScriptCompile Include="app\main\models\diagnosis.model.ts" />
@@ -257,6 +257,8 @@
     <TypeScriptCompile Include="app\core\main.ts" />
     <TypeScriptCompile Include="app\main\main.ts" />
     <TypeScriptCompile Include="app\main\models\view-patient-data.model.ts" />
+    <TypeScriptCompile Include="app\main\services\children-card.service.ts" />
+    <TypeScriptCompile Include="app\main\services\mkhs.service.ts" />
     <TypeScriptCompile Include="app\main\view-patient-data\view-patient-data.component.ts" />
     <TypeScriptCompile Include="app\shared\guards\auth.guard.ts" />
     <TypeScriptCompile Include="app\admin\home\home.component.ts" />

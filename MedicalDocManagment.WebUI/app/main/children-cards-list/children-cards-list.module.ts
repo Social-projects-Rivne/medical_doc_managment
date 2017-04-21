@@ -6,7 +6,7 @@ import { MomentModule } from 'angular2-moment';
 
 import ChildrenCardsListComponent from './children-cards-list.component';
 import ChildrenCardsListItemComponent from './children-cards-list-item.component';
-import { MainHttpFacade } from '../main-http.facade';
+import ChildrensCardService from '../services/children-card.service';
 
 @NgModule({
     imports: [
@@ -19,7 +19,7 @@ import { MainHttpFacade } from '../main-http.facade';
         ChildrenCardsListComponent,
         ChildrenCardsListItemComponent
     ],
-    providers: [MainHttpFacade],
+    providers: [ChildrensCardService],
     exports: [ChildrenCardsListComponent]
 })
 export default class ChildrenCardsListModule {

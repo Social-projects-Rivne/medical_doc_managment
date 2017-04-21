@@ -19,8 +19,7 @@ var js = [
     './node_modules/rxjs/bundles/Rx.js',
     './node_modules/typescript/lib/typescript.js',
     './node_modules/jquery/dist/jquery.js',
-    './node_modules/tether/dist/js/tether.js',
-    './node_modules/traceur/bin/traceur.js'
+    './node_modules/tether/dist/js/tether.js'
 ];
 
 var css = [

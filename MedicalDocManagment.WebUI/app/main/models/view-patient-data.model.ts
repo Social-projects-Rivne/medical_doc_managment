@@ -5,9 +5,6 @@
     birthDate: Date;
 
     constructor() {
-        this.firstName = null;
-        this.secondName = null;
-        this.lastName = null;
-        this.birthDate = null;
+        this.firstName = this.secondName = this.lastName = this.birthDate = null;
     }
 }

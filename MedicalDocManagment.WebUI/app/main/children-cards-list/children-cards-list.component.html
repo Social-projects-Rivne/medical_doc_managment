@@ -14,8 +14,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let childCard of childrenCards | async" 
-                children-cards-list-item [childCard]="childCard">
+            <tr *ngFor="let childCard of childrenCards | async"
+                 children-cards-list-item [childCard]="childCard">
             </tr>
         </tbody>
     </table>

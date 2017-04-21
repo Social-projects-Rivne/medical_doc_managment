@@ -1,7 +1,7 @@
 ﻿import { Component, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { MainHttpFacade } from './main-http.facade';
+import ChildrensCardService from './services/children-card.service';
 import ParentModel from './models/parent.model';
 
 declare var jQuery: any;
@@ -10,7 +10,7 @@ declare var jQuery: any;
     moduleId: module.id,
     selector: 'child-card-add-parent',
     templateUrl: 'child-card-add-parent.component.html',
-    providers: [MainHttpFacade]
+    providers: [ChildrensCardService]
 })
 
 export default class ChildCardAddParentComponent {
@@ -19,17 +19,17 @@ export default class ChildCardAddParentComponent {
     private _isAdding: boolean;
     private _isErrorOnAdding: boolean;
     private _lastErrorMessage: string;
-    private _mainHttpFacade: MainHttpFacade;
+    private _childrensCardService: ChildrensCardService;
     private _parent: ParentModel;
 
 
-    constructor(mainHttpFacade: MainHttpFacade) {
+    constructor(childrensCardService: ChildrensCardService) {
         this.parentAdded = new EventEmitter<string>();
 
         this._isAdding = false;
         this._isErrorOnAdding = false;
         this._lastErrorMessage = null;
-        this._mainHttpFacade = mainHttpFacade;
+        this._childrensCardService = childrensCardService;
         this._parent = new ParentModel();
     }
 
@@ -46,18 +46,18 @@ export default class ChildCardAddParentComponent {
     private _onAdd(): void {
         this._isAdding = true;
         this._isErrorOnAdding = false;
-        this._mainHttpFacade.addParent(this._parent)
-            .subscribe((result: ParentModel) => {
-                if (result) {
-                    this._isAdding = false;                   
-                    this.parentAdded.emit(result.id);
-                }
-            },
-            (error: any) => {
-                this._isAdding = false;
-                this._isErrorOnAdding = true;
-                this._lastErrorMessage = error;
-            });
+        this._childrensCardService.addParent(this._parent)
+                                  .subscribe((result: ParentModel) => {
+                                      if (result) {
+                                          this._isAdding = false;                   
+                                          this.parentAdded.emit(result.id);
+                                      }
+                                  },
+                                  (error: any) => {
+                                      this._isAdding = false;
+                                      this._isErrorOnAdding = true;
+                                      this._lastErrorMessage = error;
+                                  });
     }
 }
 
