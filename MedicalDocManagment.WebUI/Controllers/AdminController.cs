@@ -29,27 +29,42 @@ namespace MedicalDocManagment.WebUI.Controllers
         [HttpGet]
         public IHttpActionResult GetUsers()
         {
-            return Ok(_unitOfWork.UsersManager.Users.ToList());
+            Mapper.Initialize(config => {
+                config.CreateMap<User, UserIndexModel>();
+                config.CreateMap<Position, PositionModel>();
+            });
+
+            var users = Mapper.Map<IList<User>, List<UserIndexModel>>(_unitOfWork.UsersManager.Users.ToList());
+            return Ok(users);
         }
 
         [Authorize]
         [HttpGet]
         public IHttpActionResult GetPaged(int pageNumber = 1, int pageSize = 20)
         {
+            Mapper.Initialize(config => {
+                config.CreateMap<User, UserIndexModel>();
+                config.CreateMap<Position, PositionModel>();
+            });
             int skip = (pageNumber - 1) * pageSize;
             int total = _unitOfWork.UsersManager.Users.Count();
-            var users = _unitOfWork.UsersManager.Users
-                                                .OrderBy(c => c.Id)
-                                                .Skip(skip)
-                                                .Take(pageSize)
-                                                .ToList();
+            var users = Mapper.Map<IList<User>, List<UserIndexModel>>(_unitOfWork.UsersManager.Users
+                                                                                              .OrderBy(c => c.Id)
+                                                                                              .Skip(skip)
+                                                                                              .Take(pageSize)
+                                                                                              .ToList());
 
-            return Ok(new PagedResultHelper<User>(users, pageNumber, pageSize, total));
+
+            return Ok(new PagedResultHelper<UserIndexModel>(users, pageNumber, pageSize, total));
         }
 
         [HttpGet]
         public async Task<IHttpActionResult> GetUser(string id)
         {
+            Mapper.Initialize(config => {
+                config.CreateMap<User, UserIndexModel>();
+                config.CreateMap<Position, PositionModel>();
+            });
             var user = await _unitOfWork.UsersManager.FindByIdAsync(id.ToString());
 
             if (user == null)
@@ -57,12 +72,12 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(Mapper.Map<User, UserIndexModel>(user));
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<IHttpActionResult> AddUser(UserModel userModel)
+        public async Task<IHttpActionResult> AddUser(UserCreateModel userModel)
         {
             if (!ModelState.IsValid)
             {
@@ -159,32 +174,44 @@ namespace MedicalDocManagment.WebUI.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetUserByName(string userName)
         {
+            Mapper.Initialize(config => {
+                config.CreateMap<User, UserIndexModel>();
+                config.CreateMap<Position, PositionModel>();
+            });
             var user = await _unitOfWork.UsersManager.FindByNameAsync(userName);
             if (user == null)
             {
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(Mapper.Map<User, UserIndexModel>(user));
         }
 
         [Authorize]
         [HttpGet]
         public async Task<IHttpActionResult> GetUserByEmail(string email)
         {
+            Mapper.Initialize(config => {
+                config.CreateMap<User, UserIndexModel>();
+                config.CreateMap<Position, PositionModel>();
+            });
             var user = await _unitOfWork.UsersManager.FindByEmailAsync(email);
             if (user == null)
             {
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(Mapper.Map<User, UserIndexModel>(user));
         }
 
         [Authorize]
         [HttpGet]
         public IHttpActionResult GetUsersByPosition(int positionId)
         {
+            Mapper.Initialize(config => {
+                config.CreateMap<User, UserIndexModel>();
+                config.CreateMap<Position, PositionModel>();
+            });
             var users = _unitOfWork.UsersManager.Users.Where(user => user.PositionId == positionId).ToList();
 
             if (!users.Any())
@@ -192,13 +219,17 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return NotFound();
             }
 
-            return Ok(users);
+            return Ok(Mapper.Map<IList<User>, List<UserIndexModel>>(users));
         }
 
         [Authorize]
         [HttpGet]
         public IHttpActionResult GetUsersByPosition(string positionName)
         {
+            Mapper.Initialize(config => {
+                config.CreateMap<User, UserIndexModel>();
+                config.CreateMap<Position, PositionModel>();
+            });
             var users = _unitOfWork.UsersManager.Users.Where(user => user.Position.Name == positionName).ToList();
 
             if (!users.Any())
@@ -206,13 +237,17 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return NotFound();
             }
 
-            return Ok(users);
+            return Ok(Mapper.Map<IList<User>, List<UserIndexModel>>(users));
         }
 
         [Authorize]
         [HttpGet]
         public IHttpActionResult GetUsersByStatus(bool userStatus)
         {
+            Mapper.Initialize(config => {
+                config.CreateMap<User, UserIndexModel>();
+                config.CreateMap<Position, PositionModel>();
+            });
             var users = _unitOfWork.UsersManager.Users.Where(user => user.IsActive == userStatus).ToList();
 
             if (!users.Any())
@@ -220,7 +255,7 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return NotFound();
             }
 
-            return Ok(users);
+            return Ok(Mapper.Map<IList<User>, List<UserIndexModel>>(users));
         }
 
         private IHttpActionResult GetErrorResult(IdentityResult result)

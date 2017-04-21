@@ -236,6 +236,7 @@
     <Compile Include="Models\Main\ClassMkhVM.cs" />
     <Compile Include="Models\Main\DiagnosisMkhVM.cs" />
     <Compile Include="Models\Main\NosologyMkhVM.cs" />
+    <Compile Include="Models\UserIndexModel.cs" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
     <TypeScriptCompile Include="app\admin\admin-app.routing.ts" />
     <TypeScriptCompile Include="app\core\login-app.component.ts" />
@@ -269,7 +270,7 @@
     <Compile Include="Helpers\UserHelpers.cs" />
     <Compile Include="Models\PositionModel.cs" />
     <Compile Include="Models\UserEditModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\UserCreateModel.cs" />
     <Compile Include="Models\Validators\UserEditModelValidator.cs" />
     <Compile Include="Models\Validators\UserModelValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
