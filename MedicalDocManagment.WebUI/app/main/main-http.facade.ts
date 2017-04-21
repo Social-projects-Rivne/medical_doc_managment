@@ -10,6 +10,7 @@ import 'rxjs/add/observable/of';
 import ChildrenCardsModel from './models/children-cards.model';
 import ParentModel from './models/parent.model';
 import { AuthenticationService } from '../shared/authentication.service';
+import ViewPatientDataModel from './models/view-patient-data.model';
 
 @Injectable()
 export class MainHttpFacade {
@@ -42,5 +43,18 @@ export class MainHttpFacade {
         return this._http.get('/api/childcards/GetChildrenCards', { headers })
             .map((resp: Response) => { return new ChildrenCardsModel(resp.json()); })
             .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    /**
+     * Method returns some patient data
+     * @param {ViewPatientDataModel} viewPatientDataModel Contains data about patient to view
+     * @return {Observable<ChildrenCardsModel>} Contains data about patients
+    */
+    viewPatientData(viewPatientDataModel: ViewPatientDataModel): Observable<ChildrenCardsModel> {
+        let headers = this.headers;
+        return this._http.get('/api/childcards/viewpatientdata?viewPatientDataModel=' +
+            JSON.stringify(viewPatientDataModel), { headers })
+                         .map((resp: Response) => { return new ChildrenCardsModel(resp.json()); })
+                         .catch((error: any) => { return Observable.throw(error); });
     }
 }

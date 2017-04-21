@@ -5,9 +5,7 @@ import { Response } from '@angular/http';
 import 'rxjs/add/observable/of';
 declare var $;
 
-// TODO change from mockup after implementing feature
-//import { MainHttpFacade } from '../main-http.facade';
-import { MainHttpFacade } from '../main-http-facade.mockup';
+import { MainHttpFacade } from '../main-http.facade';
 
 import ChildCardModel from '../models/child-card.model';
 import ChildrenCardsModel from '../models/children-cards.model';
