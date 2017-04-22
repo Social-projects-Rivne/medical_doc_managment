@@ -179,6 +179,8 @@
     <Content Include="app\admin\users-list\page\item-actionlist-edit\button\button.component.html" />
     <Content Include="app\admin\users-list\page\views\item.component.css" />
     <Content Include="app\admin\users-list\page\item-actionlist-edit\button\button.component.html" />
+    <Content Include="app\admin\users-list\page\views\page-header.component.css" />
+    <Content Include="app\admin\users-list\page\views\page-header.component.html" />
     <Content Include="app\admin\users-list\page\views\page.component.html" />
     <Content Include="app\admin\users-list\views\users-list-without-pagination.component.html" />
     <Content Include="app\admin\users-list\views\users-list.component.css" />
@@ -222,6 +224,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\admin\users-list\page\page-header.component.ts" />
     <TypeScriptCompile Include="app\core\login-app.routing.ts" />
     <TypeScriptCompile Include="app\core\login-app.module.ts" />
     <TypeScriptCompile Include="app\admin\models\user-search.model.ts" />

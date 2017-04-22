@@ -7,6 +7,7 @@ import { UsersListComponent } from './users-list.component';
 import UsersListWithoutPaginationComponent from './users-list-without-pagination.component';
 import UsersListPageComponent from './page/page.component';
 import UsersListPageWithoutPaginationComponent from './page/page-without-pagination.component';
+import UsersListPageHeaderComponent from './page/page-header.component';
 import ItemActionListEditButton from './page/item-actionlist-edit/button/button.component';
 import ItemActionListEditModal from './page/item-actionlist-edit/modal/modal.component';
 import UsersListPageItemActionListEditConfirmationModal from
@@ -28,6 +29,7 @@ import {ItemActionListNotificationService} from './services/item-actionlist-noti
         UsersListWithoutPaginationComponent,
         UsersListPageComponent,
         UsersListPageWithoutPaginationComponent,
+        UsersListPageHeaderComponent,
         ItemActionListEditButton,
         ItemActionListEditModal,
         UsersListPageItemActionListEditConfirmationModal,
