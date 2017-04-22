@@ -15,12 +15,14 @@ import ChildrenCardsListModule from "./children-cards-list.module";
 
 import { LoginAppComponent } from '../components/login-app.component';
 import { LoginComponent } from '../components/login/login.component';
-import { AdminAppComponent } from "../components/admin-app.component";
+import AdminAppComponent from "../components/admin-app.component";
 import { UserAddComponent } from "../components/user/user-add/user-add.component";
 import { UsersListPaginateComponent } from "../components/user/users-list/users-list-paginate/users-list-paginate.component";
 import { UsersSearchFormComponent } from "../components/user/users-search/users-search-form.component";
-import { HomeComponent } from "../components/home/home.component";
-import { HeaderComponent } from "../components/header/header.component";
+import { HomeAdminComponent } from "../components/home/admin/home-admin.component";
+import { HomeMainComponent } from "../components/home/main/home-main.component";
+import { HeaderAdminComponent } from "../components/header/admin/header-admin.component";
+import { HeaderMainComponent } from "../components/header/main/header-main.component";
 import MainAppComponent from '../components/main-app.component';
 import ChildCardAddParentComponent from "../components/childrens-card/parent/child-card-add-parent.component";
 import ChildrenCardAddComponent from "../components/childrens-card/children-cards-list/add/children-card-add.component";
@@ -35,7 +37,7 @@ import ChildrenCardAddComponent from "../components/childrens-card/children-card
         Ng2PaginationModule,
         SimpleNotificationsModule,
         PushNotificationsModule,
-           ChildrenCardsListModule
+        ChildrenCardsListModule
  ],
     declarations: [
         LoginAppComponent,
@@ -44,9 +46,11 @@ import ChildrenCardAddComponent from "../components/childrens-card/children-card
         UserAddComponent,
         UsersListPaginateComponent,
         UsersSearchFormComponent,
-        HomeComponent,
-        HeaderComponent,
-           MainAppComponent,
+        HomeAdminComponent,
+        HomeMainComponent,
+        HeaderAdminComponent,
+        HeaderMainComponent,
+        MainAppComponent,
         ChildCardAddParentComponent,
         ChildrenCardAddComponent
     ],
@@ -54,6 +58,6 @@ import ChildrenCardAddComponent from "../components/childrens-card/children-card
         AuthGuard,
         AuthenticationService
     ],
-    bootstrap: [LoginAppComponent, AdminAppComponent, MainAppComponent]
+    bootstrap: [LoginAppComponent]
 })
 export class AppModule { }

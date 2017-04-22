@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { Inject, Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Response, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -19,7 +19,7 @@ export class HttpFacade {
     private _http: Http;
     private headers: Headers;
 
-    constructor(http: Http, private authenticationService: AuthenticationService) {
+    constructor(http: Http, @Inject(AuthenticationService) private authenticationService: AuthenticationService) {
         this._http = http;
         this.headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
         this.headers.append('Authorization', 'Bearer ' + authenticationService.token);

@@ -172,8 +172,10 @@
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list.component.html" />
     <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.html" />
-    <Content Include="app\components\header\header.component.html" />
-    <Content Include="app\components\home\home.component.html" />
+    <Content Include="app\components\header\main\header-main.component.html" />
+    <Content Include="app\components\header\admin\header-admin.component.html" />
+    <Content Include="app\components\home\main\home-main.component.html" />
+    <Content Include="app\components\home\admin\home-admin.component.html" />
     <Content Include="app\components\login-app.component.html" />
     <Content Include="app\components\login\login.component.html" />
     <Content Include="app\components\main-app.component.html" />
@@ -263,8 +265,10 @@
     <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\parent\child-card-add-parent.component.ts" />
-    <TypeScriptCompile Include="app\components\header\header.component.ts" />
-    <TypeScriptCompile Include="app\components\home\home.component.ts" />
+    <TypeScriptCompile Include="app\components\header\main\header-main.component.ts" />
+    <TypeScriptCompile Include="app\components\header\admin\header-admin.component.ts" />
+    <TypeScriptCompile Include="app\components\home\main\home-main.component.ts" />
+    <TypeScriptCompile Include="app\components\home\admin\home-admin.component.ts" />
     <TypeScriptCompile Include="app\components\login-app.component.ts" />
     <TypeScriptCompile Include="app\components\login\login.component.ts" />
     <TypeScriptCompile Include="app\components\main-app.component.ts" />
@@ -326,6 +330,10 @@
       <Project>{0f99f474-b98c-4710-aa81-b9cc16ad04d0}</Project>
       <Name>MedicalDocManagment.DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\components\header-main\" />
+    <Folder Include="app\components\home-main\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

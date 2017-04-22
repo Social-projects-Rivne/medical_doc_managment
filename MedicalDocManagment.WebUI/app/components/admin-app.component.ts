@@ -5,5 +5,5 @@
   selector: 'admin-app-component',
   templateUrl: 'admin-app.component.html'
 })
-export class AdminAppComponent {
+export default class AdminAppComponent {
 }
