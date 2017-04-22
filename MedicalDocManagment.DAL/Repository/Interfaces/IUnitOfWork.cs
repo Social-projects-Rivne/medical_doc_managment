@@ -16,7 +16,9 @@ namespace MedicalDocManagment.DAL.Repository.Interfaces
         INosologyMkhRepository NosologyMkhRepository { get; }
         IDiagnosisMkhRepository DiagnosisMkhRepository { get; }
         IChildrenCardsRepository ChildrenCardsRepository { get; }
-
+        IParentRepository ParentRepository { get; }
+        IParentChildCardRepository ParentChildCardRepository { get; }
+        
         UsersManager UsersManager { get; }
 
         bool Save();

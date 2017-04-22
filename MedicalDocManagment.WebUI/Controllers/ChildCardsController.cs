@@ -11,6 +11,7 @@ using MedicalDocManagement.BLL.Services;
 using MedicalDocManagement.BLL.Services.Abstract;
 using MedicalDocManagment.WebUI.Models.Main;
 using MedicalDocManagement.WebUI.Helpers;
+using MedicalDocManagment.WebUI.Helpers;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -18,7 +19,7 @@ namespace MedicalDocManagment.WebUI.Controllers
     {
 
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IChildCardsService _childCardsService; 
+        private readonly IChildCardsService _childCardsService;
 
         public ChildCardsController()
         {
@@ -46,6 +47,36 @@ namespace MedicalDocManagment.WebUI.Controllers
             {
                 return InternalServerError(exception);
             }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IHttpActionResult AddParent(AddParentVM parentVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var newParentdDTO = ChildCardMapHelper.VMToDTO(parentVM);
+            var result = _childCardsService.AddParent(newParentdDTO);
+
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IHttpActionResult AddParentIntoChildCard(AddParentChildCardVM parentChildCardVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var parentChildCardDTO = ChildCardMapHelper.VMToDTO(parentChildCardVM);
+            var result = _childCardsService.AddParentIntoChildCard(parentChildCardDTO);
+
+            return Ok(result);
         }
 
         [HttpGet]

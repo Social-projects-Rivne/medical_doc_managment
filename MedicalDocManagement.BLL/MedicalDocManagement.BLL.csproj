@@ -56,6 +56,8 @@
     <Compile Include="DTO\ChildCardDTO.cs" />
     <Compile Include="DTO\DiagnosisMkhDTO.cs" />
     <Compile Include="DTO\NosologyMkhDTO.cs" />
+    <Compile Include="DTO\ParentChildCardDTO.cs" />
+    <Compile Include="DTO\ParentDTO.cs" />
     <Compile Include="Helpers\ChildCardDTOHelper.cs" />
     <Compile Include="Services\Abstract\IChildCardsService.cs" />
     <Compile Include="Services\ChildCardsService.cs" />

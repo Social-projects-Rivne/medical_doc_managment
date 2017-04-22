@@ -17,5 +17,29 @@ namespace MedicalDocManagement.BLL.Helpers
             Mapper.Initialize(cfg => cfg.CreateMap<ChildCard, ChildCardDTO>());
             return Mapper.Map<ChildCardDTO>(childCard);
         }
+
+        public static Parent DTOToEntity(ParentDTO parentDTO)
+        {
+            Mapper.Initialize(cfg => cfg.CreateMap<ParentDTO, Parent>());
+            return Mapper.Map<Parent>(parentDTO);
+        }
+
+        public static ParentDTO EntityToDTO(Parent parentDTO)
+        {
+            Mapper.Initialize(cfg => cfg.CreateMap<Parent, ParentDTO>());
+            return Mapper.Map<ParentDTO>(parentDTO);
+        }
+
+        public static ParentChildCard DTOToEntity(ParentChildCardDTO parentChildCardDTO)
+        {
+            Mapper.Initialize(cfg => cfg.CreateMap<ParentChildCardDTO, ParentChildCard>());
+            return Mapper.Map<ParentChildCard>(parentChildCardDTO);
+        }
+
+        public static ParentChildCardDTO EntityToDTO(ParentChildCard parentChildCard)
+        {
+            Mapper.Initialize(cfg => cfg.CreateMap<ParentChildCard, ParentChildCardDTO>());
+            return Mapper.Map<ParentChildCardDTO>(parentChildCard);
+        }
     }
 }
