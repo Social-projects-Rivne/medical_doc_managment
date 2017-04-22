@@ -1,4 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
+import { Inject } from '@angular/core';
 import { Http, Response, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -21,35 +22,35 @@ export default class MkhsService {
     private _apiUrl: string = '/api/childcards';
     private _headers: Headers;
 
-    constructor(private _http: Http, private authenticationService: AuthenticationService) {
+    constructor(private _http: Http, @Inject(AuthenticationService) private _authenticationService: AuthenticationService) {
         this._headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
-        this._headers.append('Authorization', 'Bearer ' + authenticationService.token);
- }
+        this._headers.append('Authorization', 'Bearer ' + this._authenticationService.token);
+    }
 
     getClasses(): Observable<ClassesModel> {
         let headers = this._headers;
-        return this._http.get(this._apiUrl+'/getclassesmkh', { headers })
+        return this._http.get(this._apiUrl + '/getclassesmkh', { headers })
             .map((resp: Response) => { return new ClassesModel(resp.json()); })
             .catch((error: any) => { return Observable.throw(error); });
     }
 
     getNosologiesByBlockId(blockId: string): Observable<NosologiesModel> {
         let headers = this._headers;
-        return this._http.get(this._apiUrl +'/getnosologiesmkh?blockMkhId=' + blockId, { headers })
+        return this._http.get(this._apiUrl + '/getnosologiesmkh?blockMkhId=' + blockId, { headers })
             .map((resp: Response) => { return new NosologiesModel(resp.json()); })
             .catch((error: any) => { return Observable.throw(error); });
     }
 
     getBlocksByClassId(classId: string): Observable<BlocksModel> {
         let headers = this._headers;
-        return this._http.get(this._apiUrl +'/getblocksmkh?classMkhId=' + classId, { headers })
+        return this._http.get(this._apiUrl + '/getblocksmkh?classMkhId=' + classId, { headers })
             .map((resp: Response) => { return new ClassesModel(resp.json()); })
             .catch((error: any) => { return Observable.throw(error); });
     }
 
     getDiagnosesByNosologyId(nosologyId: string): Observable<DiagnosesModel> {
         let headers = this._headers;
-        return this._http.get(this._apiUrl +'/getdiagnosesmkh?nosologyMkhId=' + nosologyId, { headers })
+        return this._http.get(this._apiUrl + '/getdiagnosesmkh?nosologyMkhId=' + nosologyId, { headers })
             .map((resp: Response) => { return new ClassesModel(resp.json()); })
             .catch((error: any) => { return Observable.throw(error); });
     }

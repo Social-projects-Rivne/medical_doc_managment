@@ -1,4 +1,5 @@
 ﻿import {Injectable} from '@angular/core';
+import {Inject} from '@angular/core';
 import {Http} from '@angular/http';
 import {Response, Headers, URLSearchParams} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
@@ -16,9 +17,9 @@ import PositionModel from "../models/positionmodel";
 export class UserService {
     private headers: Headers;
 
-    constructor(private http: Http, private authenticationService: AuthenticationService) {
+    constructor(private http: Http, @Inject(AuthenticationService) private _authenticationService: AuthenticationService) {
         this.headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
-        this.headers.append('Authorization', 'Bearer ' + authenticationService.token);
+        this.headers.append('Authorization', 'Bearer ' + this._authenticationService.token);
     }
 
     postData(obj: User) {
