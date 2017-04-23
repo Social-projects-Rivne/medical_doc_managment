@@ -1,6 +1,5 @@
 ﻿import { Component, OnInit, Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { DOCUMENT } from '@angular/platform-browser';
 
 import { AuthenticationService } from "../../services/authentication.service";
 
@@ -17,8 +16,7 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private router: Router,
-        @Inject(AuthenticationService) private authenticationService: AuthenticationService,
-        @Inject(DOCUMENT) private document: any) { }
+        @Inject(AuthenticationService) private authenticationService: AuthenticationService) { }
 
     ngOnInit() {
         this.navigateBasedOnRole();
