@@ -1,0 +1,25 @@
+﻿<div class="row">
+    <div class="form-group">
+        <label class="radio-inline col-xs-offset-1 col-xs-3" for="searchByName">
+            <input type="radio" name="optradio" id="searchByUsername"
+                   [value]="UsersSearchOptionsEnum.byUsername"
+                   [(ngModel)]="selectedOption" #searchByUsername="ngModel"
+                   [disabled]="disabled" />
+            Пошук по імені користувача
+        </label>
+        <label class="radio-inline col-xs-3" for="searchByPositionName">
+            <input type="radio" name="optradio" id="searchByPositionName"
+                   [value]="UsersSearchOptionsEnum.byPositionName" [(ngModel)]="selectedOption"
+                   #searchByPositionName="ngModel"
+                   [disabled]="disabled" />
+            Пошук по назві посади
+        </label>
+        <label class="radio-inline col-xs-3" for="searchByStatus">
+            <input type="radio" name="optradio" id="searchByStatus"
+                   [value]="UsersSearchOptionsEnum.byStatus" [(ngModel)]="selectedOption"
+                   #searchByStatus="ngModel"
+                   [disabled]="disabled" />
+            Пошук по статусу
+        </label>
+    </div>
+</div>

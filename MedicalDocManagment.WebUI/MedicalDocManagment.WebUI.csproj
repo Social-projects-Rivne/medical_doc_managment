@@ -189,6 +189,7 @@
     <Content Include="app\admin\users-list\page\views\item.component.html" />
     <Content Include="app\admin\users-list\page\views\page.component.css" />
     <Content Include="app\admin\users-list\views\users-list.component.html" />
+    <Content Include="app\admin\users-search\views\search-options.component.html" />
     <Content Include="app\core\index.html" />
     <Content Include="app\main\children-cards-list\children-cards-list.component.html" />
     <Content Include="app\main\children-cards-list\children-cards-list-item.component.html" />
@@ -225,6 +226,8 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\admin\users-list\page\page-header.component.ts" />
+    <TypeScriptCompile Include="app\admin\users-search\search-options.component.ts" />
+    <TypeScriptCompile Include="app\admin\users-search\users-search.module.ts" />
     <TypeScriptCompile Include="app\core\login-app.routing.ts" />
     <TypeScriptCompile Include="app\core\login-app.module.ts" />
     <TypeScriptCompile Include="app\admin\models\user-search.model.ts" />

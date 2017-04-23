@@ -7,7 +7,7 @@ import { AdminAppComponent } from './admin-app.component';
 import { UserAddComponent } from './user-add/user-add.component';
 import { UsersListModule } from './users-list/users-list.module';
 import { UsersListPaginateComponent } from './users-list-paginate/users-list-paginate.component';
-import { UsersSearchFormComponent } from './users-search/users-search-form.component';
+import UsersSearchModule from './users-search/users-search.module';
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
 import { routing } from './admin-app.routing';
@@ -22,6 +22,7 @@ import { HeaderComponent } from './header/header.component';
         FormsModule,
         HttpModule,
         UsersListModule,
+        UsersSearchModule,
         Ng2PaginationModule,
         SimpleNotificationsModule,
         PushNotificationsModule,
@@ -31,7 +32,6 @@ import { HeaderComponent } from './header/header.component';
         AdminAppComponent,
         UserAddComponent,
         UsersListPaginateComponent,
-        UsersSearchFormComponent,
         HomeComponent,
         HeaderComponent
     ],
