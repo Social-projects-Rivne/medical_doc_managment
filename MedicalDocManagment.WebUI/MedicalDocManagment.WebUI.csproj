@@ -222,11 +222,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ChildCardsController.cs" />
-    <Compile Include="Models\Main\AddPatientModel.cs" />
+    <Compile Include="Helpers\AddPatientHelper.cs" />
+    <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
     <Compile Include="Models\Main\ClassMkhVM.cs" />
     <Compile Include="Models\Main\DiagnosisMkhVM.cs" />
     <Compile Include="Models\Main\NosologyMkhVM.cs" />
+    <Compile Include="Models\UserIndexModel.cs" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
@@ -240,7 +242,7 @@
     <Compile Include="Helpers\UserHelpers.cs" />
     <Compile Include="Models\PositionModel.cs" />
     <Compile Include="Models\UserEditModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\UserCreateModel.cs" />
     <Compile Include="Models\Validators\UserEditModelValidator.cs" />
     <Compile Include="Models\Validators\UserModelValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -331,10 +333,7 @@
       <Name>MedicalDocManagment.DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="app\components\header-main\" />
-    <Folder Include="app\components\home-main\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

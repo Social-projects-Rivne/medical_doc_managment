@@ -95,13 +95,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
-    <Compile Include="Entities\BlockMkh.cs" />
-    <Compile Include="Entities\ChildCard.cs" />
-    <Compile Include="Entities\ClassMkh.cs" />
-    <Compile Include="Entities\DiagnosisMkh.cs" />
-    <Compile Include="Entities\NosologyMkh.cs" />
-    <Compile Include="Entities\Parent.cs" />
-    <Compile Include="Entities\ParentChildCard.cs" />
+    <Compile Include="Entities\Main\BlockMkh.cs" />
+    <Compile Include="Entities\Main\ChildCard.cs" />
+    <Compile Include="Entities\Main\ClassMkh.cs" />
+    <Compile Include="Entities\Main\DiagnosisMkh.cs" />
+    <Compile Include="Entities\Main\NosologyMkh.cs" />
+    <Compile Include="Entities\Main\Parent.cs" />
+    <Compile Include="Entities\Main\ParentChildCard.cs" />
     <Compile Include="Entities\Position.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
@@ -131,9 +131,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\BlockMkhRepository.cs" />
-    <Compile Include="Repository\ClassMkhRepository.cs" />
-    <Compile Include="Repository\DiagnosisMkhRepository.cs" />
+    <Compile Include="Repository\Interfaces\IChildrenCardsRepository.cs" />
+    <Compile Include="Repository\Main\BlockMkhRepository.cs" />
+    <Compile Include="Repository\Main\ChildrenCardsRepository.cs" />
+    <Compile Include="Repository\Main\ClassMkhRepository.cs" />
+    <Compile Include="Repository\Main\DiagnosisMkhRepository.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\Interfaces\IBlockMkhRepository.cs" />
     <Compile Include="Repository\Interfaces\IClassMkhRepository.cs" />
@@ -142,7 +144,7 @@
     <Compile Include="Repository\Interfaces\INosologyMkhRepository .cs" />
     <Compile Include="Repository\Interfaces\IPositionRepository.cs" />
     <Compile Include="Repository\Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Repository\NosologyMkhRepository.cs" />
+    <Compile Include="Repository\Main\NosologyMkhRepository.cs" />
     <Compile Include="Repository\PositionRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
   </ItemGroup>

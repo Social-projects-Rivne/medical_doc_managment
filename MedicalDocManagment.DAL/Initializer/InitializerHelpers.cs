@@ -1,5 +1,4 @@
 ﻿using MedicalDocManagment.DAL.Entities;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Ploeh.AutoFixture;
 using System;
@@ -9,7 +8,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.AspNet.Identity;
 using MedicalDocManagment.DAL.Repository;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MedicalDocManagment.DAL.Initializer
 {
@@ -261,11 +259,10 @@ namespace MedicalDocManagment.DAL.Initializer
         }
         #endregion
 
-        #region Children's Card region
+        #region Children cards
         public static void FillChildCardDb(Context context)
         {
             var childrenCards = CreateChildCards();
-            CreateDiagnosesForChildCards(childrenCards);
             CreateParentsForSomeChildren(context, childrenCards);
 
             context.ChildrenCards.AddRange(childrenCards);
@@ -274,20 +271,15 @@ namespace MedicalDocManagment.DAL.Initializer
 
         private static IEnumerable<ChildCard> CreateChildCards()
         {
-            Fixture fixture = new Fixture();
+            var fixture = new Fixture();
 
-            return fixture.Build<ChildCard>()
-                          .Without(childCard => childCard.ParentsChildren)
-                          .CreateMany(30);
-        }
+            var childCards = fixture.Build<ChildCard>()
+                                    .Without(childCard => childCard.ParentsChildren)
+                                    .Without(childCard => childCard.DiagnosisId)
+                                    .Without(childCard => childCard.Diagnosis)
+                                    .CreateMany(30);
 
-        private static void CreateDiagnosesForChildCards(IEnumerable<ChildCard> childrenCards)
-        {
-            var diagnosisId = 1;
-            foreach (ChildCard childCard in childrenCards)
-            {
-                childCard.Diagnosis.Id = "A" + (diagnosisId++).ToString();
-            }
+            return childCards;
         }
 
         private static void CreateParentsForSomeChildren(
@@ -299,16 +291,16 @@ namespace MedicalDocManagment.DAL.Initializer
             // special variable for variating number of parents from 0 to 2
             var parentsCount = 0;
 
-            foreach (ChildCard childCard in childrenCards)
+            foreach (var childCard in childrenCards)
             {
-                IEnumerable<Parent> parents = fixture.Build<Parent>()
+                var parents = fixture.Build<Parent>()
                                                      .Without(parent => parent.ParentsChildren)
                                                      .CreateMany(parentsCount).ToList();
-                foreach (Parent parent in parents)
+                foreach (var parent in parents)
                 {
                     context.Parents.Add(parent);
 
-                    ParentChildCard parentChildCard = new ParentChildCard
+                    var parentChildCard = new ParentChildCard
                     {
                         ChildCard = childCard,
                         Parent = parent

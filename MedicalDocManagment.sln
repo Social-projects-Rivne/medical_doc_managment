@@ -1,18 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalDocManagment.WebUI", "MedicalDocManagment.WebUI\MedicalDocManagment.WebUI.csproj", "{33EF8949-BC26-460F-9ACE-E0441A08CD50}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalDocManagment.DAL", "MedicalDocManagment.DAL\MedicalDocManagment.DAL.csproj", "{0F99F474-B98C-4710-AA81-B9CC16AD04D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalDocManagement.BLL", "MedicalDocManagement.BLL\MedicalDocManagement.BLL.csproj", "{34FC668E-D391-4FB8-BA59-731CE70F18A7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F36463BB-D8BB-496A-B60B-4D1024EC358F}"
-	ProjectSection(SolutionItems) = preProject
-		Performance1.psess = Performance1.psess
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

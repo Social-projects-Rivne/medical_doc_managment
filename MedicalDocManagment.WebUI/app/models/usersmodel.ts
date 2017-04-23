@@ -3,10 +3,10 @@
 import UserModel from './usermodel';
 
 export default class UsersModel extends Array<UserModel> {
-    constructor(jsonobject?) {
+    constructor(jsonObject?) {
         super();
-        if (jsonobject) {
-            jsonobject.map((user) => { this.push(new UserModel(user)); });
+        if (jsonObject) {
+            jsonObject.forEach((user) => { this.push(new UserModel(user)); });
         }
     }
 }
