@@ -1,12 +1,12 @@
 ﻿<nav class="navbar navbar-default navbar-static-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" [routerLink]="['']">MedicalDocManagement</a>
+            <a class="navbar-brand" [routerLink]="['/admin/home']">MedicalDocManagement</a>
         </div>
         <ul class="nav navbar-nav">
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['']">Головна сторінка</a></li>
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/add']">Додати користувача</a></li>
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/search']">Знайти користувача</a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/admin/home']">Головна сторінка</a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/admin/add']">Додати користувача</a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/admin/search']">Знайти користувача</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">

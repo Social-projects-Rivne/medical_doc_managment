@@ -2,9 +2,9 @@
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'home.component.html',
+    templateUrl: 'home-admin.component.html',
 })
-export class HomeComponent {
+export class HomeAdminComponent {
 
     constructor() { }
 }
