@@ -167,33 +167,36 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\.gitignore" />
-    <Content Include="app\admin\index.html" />
-    <Content Include="app\admin\users-list\page\item-actionlist-delete\confirmation\confirmation.modal.html" />
-    <Content Include="app\admin\users-list\page\item-actionlist-delete\delete.component.html" />
-    <Content Include="app\admin\users-list\page\item-actionlist-edit\modal\confirmation\confirmation.modal.html" />
-    <Content Include="app\admin\user-add\views\user-add.component.html" />
-    <Content Include="app\admin\users-list-paginate\users-list-paginate.component.html" />
-    <Content Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.html" />
-    <Content Include="app\admin\users-list\page\item-actionlist-edit\button\button.component.html" />
-    <Content Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.html" />
-    <Content Include="app\admin\users-list\page\item-actionlist-edit\button\button.component.html" />
-    <Content Include="app\admin\users-list\page\views\item.component.css" />
-    <Content Include="app\admin\users-list\page\item-actionlist-edit\button\button.component.html" />
-    <Content Include="app\admin\users-list\page\views\page.component.html" />
-    <Content Include="app\admin\users-list\views\users-list-without-pagination.component.html" />
-    <Content Include="app\admin\users-list\views\users-list.component.css" />
-    <Content Include="app\admin\admin-app.component.html" />
-    <Content Include="app\admin\users-list\page\views\item-actionlist.component.html" />
-    <Content Include="app\admin\users-list\page\views\item.component.html" />
-    <Content Include="app\admin\users-list\page\views\page.component.css" />
-    <Content Include="app\admin\users-list\views\users-list.component.html" />
-    <Content Include="app\core\index.html" />
-    <Content Include="app\main\children-cards-list\children-cards-list.component.html" />
-    <Content Include="app\main\children-cards-list\children-cards-list-item.component.html" />
-    <Content Include="app\main\index.html" />
-    <Content Include="app\main\main-app.component.html" />
-    <Content Include="app\admin\home\home.component.html" />
-    <Content Include="app\core\login\login.component.html" />
+    <Content Include="app\components\admin-app.component.html" />
+    <Content Include="app\components\childrens-card\children-cards-list\add\children-card-add.component.html" />
+    <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.html" />
+    <Content Include="app\components\childrens-card\children-cards-list\children-cards-list.component.html" />
+    <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.html" />
+    <Content Include="app\components\header\main\header-main.component.html" />
+    <Content Include="app\components\header\admin\header-admin.component.html" />
+    <Content Include="app\components\home\main\home-main.component.html" />
+    <Content Include="app\components\home\admin\home-admin.component.html" />
+    <Content Include="app\components\login-app.component.html" />
+    <Content Include="app\components\login\login.component.html" />
+    <Content Include="app\components\main-app.component.html" />
+    <Content Include="app\components\user\user-add\user-add.component.html" />
+    <Content Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist-delete\confirmation\confirmation.modal.html" />
+    <Content Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist-delete\delete.component.html" />
+    <Content Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist-edit\button\button.component.html" />
+    <Content Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist-edit\modal\confirmation\confirmation.modal.html" />
+    <Content Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist-edit\modal\modal.component.html" />
+    <Content Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist.component.html" />
+    <Content Include="app\components\user\users-list\page\item\item.component.css" />
+    <Content Include="app\components\user\users-list\page\item\item.component.html" />
+    <Content Include="app\components\user\users-list\page\page-without-pagination\page-without-pagination.component.html" />
+    <Content Include="app\components\user\users-list\page\page.component.css" />
+    <Content Include="app\components\user\users-list\page\page.component.html" />
+    <Content Include="app\components\user\users-list\users-list-paginate\users-list-paginate.component.html" />
+    <Content Include="app\components\user\users-list\users-list-without-pagination\users-list-without-pagination.component.html" />
+    <Content Include="app\components\user\users-list\users-list.component.css" />
+    <Content Include="app\components\user\users-list\users-list.component.html" />
+    <Content Include="app\components\user\users-search\users-search-form.component.html" />
+    <Content Include="app\index.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -203,10 +206,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="package.json" />
-    <Content Include="app\admin\users-search\views\users-search-form.component.html" />
-    <Content Include="app\admin\users-list\page\views\page-without-pagination.component.html" />
-    <Content Include="app\core\login-app.component.html" />
-    <Content Include="app\main\child-card-add-parent.component.html" />
     <Content Include="App_Data\src\classes.json" />
     <Content Include="App_Data\src\blocks.json" />
     <Content Include="App_Data\src\diagnoses.json" />
@@ -222,13 +221,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\core\login-app.routing.ts" />
-    <TypeScriptCompile Include="app\core\login-app.module.ts" />
-    <TypeScriptCompile Include="app\admin\models\user-search.model.ts" />
-    <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-delete\confirmation\confirmation.modal.ts" />
-    <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
-    <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\confirmation\confirmation.modal.ts" />
-    <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\modal\modal.component.ts" />
     <Compile Include="Controllers\ChildCardsController.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
@@ -238,26 +230,6 @@
     <Compile Include="Models\Main\NosologyMkhVM.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
-    <TypeScriptCompile Include="app\admin\admin-app.routing.ts" />
-    <TypeScriptCompile Include="app\core\login-app.component.ts" />
-    <TypeScriptCompile Include="app\core\login\authentication.service.ts" />
-    <TypeScriptCompile Include="app\main\children-cards-list\children-cards-list-item.component.ts" />
-    <TypeScriptCompile Include="app\main\children-cards-list\children-cards-list.component.ts" />
-    <TypeScriptCompile Include="app\main\children-cards-list\children-cards-list.module.ts" />
-    <TypeScriptCompile Include="app\main\main-app.routing.ts" />
-    <TypeScriptCompile Include="app\main\child-card-add-parent.component.ts" />
-    <TypeScriptCompile Include="app\main\main-http.facade.ts" />
-    <TypeScriptCompile Include="app\main\main-http-facade.mockup.ts" />
-    <TypeScriptCompile Include="app\main\models\child-card.model.ts" />
-    <TypeScriptCompile Include="app\main\models\children-cards.model.ts" />
-    <TypeScriptCompile Include="app\main\models\diagnosis.model.ts" />
-    <TypeScriptCompile Include="app\main\models\parent.model.ts" />
-    <TypeScriptCompile Include="app\core\main.ts" />
-    <TypeScriptCompile Include="app\main\main.ts" />
-    <TypeScriptCompile Include="app\shared\guards\auth.guard.ts" />
-    <TypeScriptCompile Include="app\admin\home\home.component.ts" />
-    <TypeScriptCompile Include="app\shared\authentication.service.ts" />
-    <TypeScriptCompile Include="app\core\login\login.component.ts" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -274,14 +246,6 @@
     <Compile Include="Models\Validators\UserEditModelValidator.cs" />
     <Compile Include="Models\Validators\UserModelValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <TypeScriptCompile Include="app\admin\users-list\page\page-without-pagination.component.ts" />
-    <TypeScriptCompile Include="app\admin\users-list\services\item-actionlist-notification.service.ts" />
-    <TypeScriptCompile Include="app\admin\users-list\users-list-without-pagination.component.ts" />
-    <TypeScriptCompile Include="app\admin\users-search\users-search-form.component.ts" />
-    <TypeScriptCompile Include="app\admin\users-search\users-search-options.enum.ts" />
-    <TypeScriptCompile Include="app\main\main-app.module.ts" />
-    <TypeScriptCompile Include="app\main\main-app.component.ts" />
-    <TypeScriptCompile Include="app\admin\main.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -297,29 +261,67 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <TypeScriptCompile Include="app\components\admin-app.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\add\children-card-add.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\parent\child-card-add-parent.component.ts" />
+    <TypeScriptCompile Include="app\components\header\main\header-main.component.ts" />
+    <TypeScriptCompile Include="app\components\header\admin\header-admin.component.ts" />
+    <TypeScriptCompile Include="app\components\home\main\home-main.component.ts" />
+    <TypeScriptCompile Include="app\components\home\admin\home-admin.component.ts" />
+    <TypeScriptCompile Include="app\components\login-app.component.ts" />
+    <TypeScriptCompile Include="app\components\login\login.component.ts" />
+    <TypeScriptCompile Include="app\components\main-app.component.ts" />
+    <TypeScriptCompile Include="app\components\user\user-add\user-add.component.ts" />
+    <TypeScriptCompile Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist-delete\confirmation\confirmation.modal.ts" />
+    <TypeScriptCompile Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist-delete\delete.component.ts" />
+    <TypeScriptCompile Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist-edit\button\button.component.ts" />
+    <TypeScriptCompile Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist-edit\modal\confirmation\confirmation.modal.ts" />
+    <TypeScriptCompile Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist-edit\modal\modal.component.ts" />
+    <TypeScriptCompile Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist.component.ts" />
+    <TypeScriptCompile Include="app\components\user\users-list\page\item\item.component.ts" />
+    <TypeScriptCompile Include="app\components\user\users-list\page\page-without-pagination\page-without-pagination.component.ts" />
+    <TypeScriptCompile Include="app\components\user\users-list\page\page.component.ts" />
+    <TypeScriptCompile Include="app\components\user\users-list\users-list-paginate\users-list-paginate.component.ts" />
+    <TypeScriptCompile Include="app\components\user\users-list\users-list-without-pagination\users-list-without-pagination.component.ts" />
+    <TypeScriptCompile Include="app\components\user\users-list\users-list.component.ts" />
+    <TypeScriptCompile Include="app\components\user\users-search\users-search-form.component.ts" />
+    <TypeScriptCompile Include="app\components\user\users-search\users-search-options.enum.ts" />
+    <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\models\block.model.ts" />
+    <TypeScriptCompile Include="app\models\blocks.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card.model.ts" />
+    <TypeScriptCompile Include="app\models\children-cards.model.ts" />
+    <TypeScriptCompile Include="app\models\class.model.ts" />
+    <TypeScriptCompile Include="app\models\classes.model.ts" />
+    <TypeScriptCompile Include="app\models\diagnoses.model.ts" />
+    <TypeScriptCompile Include="app\models\diagnosis.model.ts" />
+    <TypeScriptCompile Include="app\models\nosologies.model.ts" />
+    <TypeScriptCompile Include="app\models\nosology.model.ts" />
+    <TypeScriptCompile Include="app\models\paged-response-model.ts" />
+    <TypeScriptCompile Include="app\models\parent.model.ts" />
+    <TypeScriptCompile Include="app\models\positionmodel.ts" />
+    <TypeScriptCompile Include="app\models\rolemodel.ts" />
+    <TypeScriptCompile Include="app\models\user-search.model.ts" />
+    <TypeScriptCompile Include="app\models\user.ts" />
+    <TypeScriptCompile Include="app\models\usermodel.ts" />
+    <TypeScriptCompile Include="app\models\usersmodel.ts" />
+    <TypeScriptCompile Include="app\modules\app.module.ts" />
+    <TypeScriptCompile Include="app\modules\children-cards-list.module.ts" />
+    <TypeScriptCompile Include="app\modules\users-list.module.ts" />
+    <TypeScriptCompile Include="app\routes\app.routing.ts" />
+    <TypeScriptCompile Include="app\services\authentication.service.ts" />
+    <TypeScriptCompile Include="app\services\children-card.service.ts" />
+    <TypeScriptCompile Include="app\services\guards\auth.guard.ts" />
+    <TypeScriptCompile Include="app\services\http.facade.ts" />
+    <TypeScriptCompile Include="app\services\item-actionlist-notification.service.ts" />
+    <TypeScriptCompile Include="app\services\mkhs.service.ts" />
+    <TypeScriptCompile Include="app\services\user.service.ts" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\admin\admin-app.component.ts" />
-    <TypeScriptCompile Include="app\admin\admin-app.module.ts" />
-    <TypeScriptCompile Include="app\admin\http.facade.ts" />
-    <TypeScriptCompile Include="app\admin\models\positionmodel.ts" />
-    <TypeScriptCompile Include="app\admin\models\rolemodel.ts" />
-    <TypeScriptCompile Include="app\admin\models\usermodel.ts" />
-    <TypeScriptCompile Include="app\admin\models\usersmodel.ts" />
-    <TypeScriptCompile Include="app\admin\user-add\user.service.ts" />
-    <TypeScriptCompile Include="app\admin\user-add\user-add.component.ts" />
-    <TypeScriptCompile Include="app\admin\user-add\user.ts" />
-    <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-delete\delete.component.ts" />
-    <TypeScriptCompile Include="app\admin\users-list-paginate\users-list-paginate.component.ts" />
-    <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist-edit\button\button.component.ts" />
-    <TypeScriptCompile Include="app\admin\users-list\users-list.module.ts" />
-    <TypeScriptCompile Include="app\admin\users-list\page\item-actionlist.component.ts" />
-    <TypeScriptCompile Include="app\admin\users-list\page\item.component.ts" />
-    <TypeScriptCompile Include="app\admin\users-list\page\page.component.ts" />
-    <TypeScriptCompile Include="app\admin\users-list\users-list.component.ts" />
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MedicalDocManagement.BLL\MedicalDocManagement.BLL.csproj">
@@ -331,6 +333,7 @@
       <Name>MedicalDocManagment.DAL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
