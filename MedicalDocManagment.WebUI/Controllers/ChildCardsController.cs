@@ -111,5 +111,31 @@ namespace MedicalDocManagment.WebUI.Controllers
 
             return Ok(diagnosesMkhVM);
         }
+
+        [Authorize]
+        [HttpGet]
+        public IHttpActionResult ViewPatientData([FromUri]ViewPatientDataVM viewPatientDataVM)
+        {
+            if (viewPatientDataVM == null)
+            {
+                return BadRequest("No data about patient to view.");
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var сhildCardDTO = ViewPatientDataHelper.
+                ViewPatientDataVMToChildCardDTO(viewPatientDataVM);
+
+            try
+            {
+                var result = _childCardsService.FindChildCards(сhildCardDTO);
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
     }
 }

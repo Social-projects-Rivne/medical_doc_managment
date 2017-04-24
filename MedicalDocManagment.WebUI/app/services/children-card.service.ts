@@ -9,6 +9,8 @@ import 'rxjs/add/observable/throw';
 import ChildCardModel from '../models/child-card.model';
 import ChildrenCardsModel from '../models/children-cards.model';
 import ParentModel from '../models/parent.model';
+import ViewPatientDataModel from '../models/view-patient-data.model';
+
 import { AuthenticationService } from "./authentication.service";
 
 @Injectable()
@@ -48,9 +50,25 @@ export default class ChildrensCardService {
 
     getChildrenCards(): Observable<ChildrenCardsModel> {
         let headers = this._headers;
-        return this._http.get('/api/childcards/GetChildrenCards', { headers })
-           .map((resp: Response) => { return new ChildrenCardsModel(resp.json()); })
-           .catch((error: any) => { return Observable.throw(error); });
+        return this._http.get('/api/childcards/getchildrencards', { headers })
+                         .map((resp: Response) => { return new ChildrenCardsModel(resp.json()); })
+                         .catch((error: any) => { return Observable.throw(error); });
     }
 
+
+    /**
+     * Method returns some patient data
+     * @param {ViewPatientDataModel} viewPatientDataModel Contains data about patient to view
+     * @return {Observable<ChildrenCardsModel>} Contains data about patients
+    */
+    viewPatientData(viewPatientDataModel: ViewPatientDataModel): Observable<ChildrenCardsModel> {
+        let headers = this._headers;
+        return this._http.get('/api/childcards/viewPatientData?firstName=' +
+            viewPatientDataModel.firstName + "&&secondName=" +
+            viewPatientDataModel.secondName + "&&lastName=" +
+            viewPatientDataModel.lastName + "&&birthDate=" +
+            viewPatientDataModel.birthDate.toISOString(), { headers })
+            .map((resp: Response) => { return new ChildrenCardsModel(resp.json()); })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
 }

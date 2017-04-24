@@ -26,6 +26,7 @@ import { HeaderMainComponent } from "../components/header/main/header-main.compo
 import MainAppComponent from '../components/main-app.component';
 import ChildCardAddParentComponent from "../components/childrens-card/parent/child-card-add-parent.component";
 import ChildrenCardAddComponent from "../components/childrens-card/children-cards-list/add/children-card-add.component";
+import ViewPatientDataComponent from "../components/childrens-card/view-patient-data/view-patient-data.component";
 
 @NgModule({
     imports: [
@@ -38,7 +39,7 @@ import ChildrenCardAddComponent from "../components/childrens-card/children-card
         SimpleNotificationsModule,
         PushNotificationsModule,
         ChildrenCardsListModule
- ],
+    ],
     declarations: [
         LoginAppComponent,
         LoginComponent,
@@ -52,7 +53,8 @@ import ChildrenCardAddComponent from "../components/childrens-card/children-card
         HeaderMainComponent,
         MainAppComponent,
         ChildCardAddParentComponent,
-        ChildrenCardAddComponent
+        ChildrenCardAddComponent,
+        ViewPatientDataComponent
     ],
     providers: [
         AuthGuard,

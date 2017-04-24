@@ -2,11 +2,12 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { MomentModule } from 'angular2-moment';
 
 import ChildrenCardsListComponent from '../components/childrens-card/children-cards-list/children-cards-list.component';
 import ChildrenCardsListItemComponent from '../components/childrens-card/children-cards-list/children-cards-list-item.component';
 
-import CildrensCardService from '../services/children-card.service';
+import ChildrenCardService from '../services/children-card.service';
 
 import { AuthGuard } from '../services/guards/auth.guard';
 import { AuthenticationService } from '../services/authentication.service';
@@ -16,13 +17,14 @@ import { AuthenticationService } from '../services/authentication.service';
         CommonModule,
         FormsModule,
         HttpModule,
+        MomentModule
     ],
     declarations: [
         ChildrenCardsListComponent,
         ChildrenCardsListItemComponent
     ],
     providers: [
-        CildrensCardService,
+        ChildrenCardService,
         AuthGuard,
         AuthenticationService
     ],

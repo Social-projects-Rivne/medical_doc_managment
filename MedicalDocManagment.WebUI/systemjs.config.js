@@ -27,7 +27,9 @@
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
             'ng2-pagination': 'dist/lib/npmlibs/ng2-pagination/dist',
-            'angular2-notifications': 'node_modules/angular2-notifications'
+            'angular2-notifications': 'node_modules/angular2-notifications',
+            'moment': 'dist/js/moment/',
+            'angular2-moment':'dist/lib/npmlibs/angular2-moment'
         },
         // пакеты, которые указывают загрузчику System, как загружать файлы без имени и расширения
         packages: {
@@ -51,7 +53,9 @@
                 defaultExtension: 'js'
             },
             'ng2-pagination': { main: 'ng2-pagination.js', defaultExtension: 'js' },
-            'angular2-notifications': { main: 'components.js', defaultExtension: 'js' }
+            'angular2-notifications': { main: 'components.js', defaultExtension: 'js' },
+            'moment': { main: 'moment-with-locales.min.js', defaultExtension: 'js' },
+            'angular2-moment': { main: './index.js', defaultExtension: 'js'}
         }
     });
     if (global.filterSystemConfig) { global.filterSystemConfig(config); }
