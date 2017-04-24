@@ -105,6 +105,7 @@
     <Compile Include="Entities\Position.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Initializer\ChildrenCardsInitializerHelper.cs" />
     <Compile Include="Initializer\DbInitializer.cs" />
     <Compile Include="Initializer\InitializerHelpers.cs" />
     <Compile Include="Manager\RolesManager.cs" />
