@@ -8,9 +8,9 @@
         // указываем загрузчику System, где искать модули
         map: {
             // locations of Angular applications
-            admin_app: 'app/admin',
-            login_app: 'app/core',
-            main_app: 'app/main',
+            //admin_app: 'app/admin',
+            //login_app: 'app/core',
+            //main_app: 'app/main',
             // for app search in folder app
             'app': 'app',
             // пакеты angular
@@ -45,7 +45,10 @@
                 main: './main.js',
                 defaultExtension: 'js'
             },
-            'app': { defaultExtension: 'js', },
+            'app': {
+                defaultExtension: 'js',
+                main: './main.js',
+            },
             rxjs: {
                 defaultExtension: 'js'
             },
