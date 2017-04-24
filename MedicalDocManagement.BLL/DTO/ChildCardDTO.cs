@@ -15,5 +15,6 @@ namespace MedicalDocManagement.BLL.DTO
         public string DiagnosisId { get; set; }
         public string Prescription { get; set; }
         public string DirectedBy { get; set; }
+        public DiagnosisMkhDTO Diagnosis { get; set; }
     }
 }
