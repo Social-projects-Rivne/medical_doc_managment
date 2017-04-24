@@ -12,13 +12,13 @@ import { UsersListModule } from "./users-list.module";
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
 import ChildrenCardsListModule from "./children-cards-list.module";
+import UsersSearchModule from "./users-search.module";
 
 import { LoginAppComponent } from '../components/login-app.component';
 import { LoginComponent } from '../components/login/login.component';
 import AdminAppComponent from "../components/admin-app.component";
 import { UserAddComponent } from "../components/user/user-add/user-add.component";
 import { UsersListPaginateComponent } from "../components/user/users-list/users-list-paginate/users-list-paginate.component";
-import { UsersSearchFormComponent } from "../components/user/users-search/users-search-form.component";
 import { HomeAdminComponent } from "../components/home/admin/home-admin.component";
 import { HomeMainComponent } from "../components/home/main/home-main.component";
 import { HeaderAdminComponent } from "../components/header/admin/header-admin.component";
@@ -35,6 +35,7 @@ import ViewPatientDataComponent from "../components/childrens-card/view-patient-
         HttpModule,
         routing,
         UsersListModule,
+        UsersSearchModule,
         Ng2PaginationModule,
         SimpleNotificationsModule,
         PushNotificationsModule,
@@ -46,7 +47,6 @@ import ViewPatientDataComponent from "../components/childrens-card/view-patient-
         AdminAppComponent,
         UserAddComponent,
         UsersListPaginateComponent,
-        UsersSearchFormComponent,
         HomeAdminComponent,
         HomeMainComponent,
         HeaderAdminComponent,

@@ -213,6 +213,7 @@
     <Content Include="App_Data\src\blocks.json" />
     <Content Include="App_Data\src\diagnoses.json" />
     <Content Include="App_Data\src\nosologies.json" />
+    <Content Include="app\components\user\users-search\search-options.component.html" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -224,6 +225,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
+    <TypeScriptCompile Include="app\modules\users-search.module.ts" />
+    <TypeScriptCompile Include="app\core\login-app.routing.ts" />
+    <TypeScriptCompile Include="app\core\login-app.module.ts" />
     <Compile Include="Controllers\ChildCardsController.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />
     <Compile Include="Helpers\ViewPatientDataHelper.cs" />
