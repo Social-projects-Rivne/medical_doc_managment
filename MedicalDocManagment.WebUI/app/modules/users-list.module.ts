@@ -6,7 +6,8 @@ import { HttpModule } from '@angular/http';
 import { UsersListComponent } from '../components/user/users-list/users-list.component';
 import UsersListWithoutPaginationComponent from  '../components/user/users-list/users-list-without-pagination/users-list-without-pagination.component';
 import UsersListPageComponent from '../components/user/users-list/page/page.component';
-import UsersListPageWithoutPaginationComponent from  '../components/user/users-list/page/page-without-pagination/page-without-pagination.component';
+import UsersListPageWithoutPaginationComponent from '../components/user/users-list/page/page-without-pagination/page-without-pagination.component';
+import UsersListPageHeaderComponentComponent from '../components/user/users-list/page/page-header.component';
 import ItemActionListEditButton from '../components/user/users-list/page/item/item-actionlist/item-actionlist-edit/button/button.component';
 import ItemActionListEditModal from '../components/user/users-list/page/item/item-actionlist/item-actionlist-edit/modal/modal.component';
 import UsersListPageItemActionListEditConfirmationModal from '../components/user/users-list/page/item/item-actionlist/item-actionlist-edit/modal/confirmation/confirmation.modal';
@@ -32,6 +33,7 @@ import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-not
         UsersListWithoutPaginationComponent,
         UsersListPageComponent,
         UsersListPageWithoutPaginationComponent,
+        UsersListPageHeaderComponentComponent,
         ItemActionListEditButton,
         ItemActionListEditModal,
         UsersListPageItemActionListEditConfirmationModal,

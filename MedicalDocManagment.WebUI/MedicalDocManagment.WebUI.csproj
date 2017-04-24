@@ -188,6 +188,8 @@
     <Content Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist.component.html" />
     <Content Include="app\components\user\users-list\page\item\item.component.css" />
     <Content Include="app\components\user\users-list\page\item\item.component.html" />
+    <Content Include="app\components\user\users-list\page\page-header.component.css" />
+    <Content Include="app\components\user\users-list\page\page-header.component.html" />
     <Content Include="app\components\user\users-list\page\page-without-pagination\page-without-pagination.component.html" />
     <Content Include="app\components\user\users-list\page\page.component.css" />
     <Content Include="app\components\user\users-list\page\page.component.html" />
@@ -285,6 +287,7 @@
     <TypeScriptCompile Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist-edit\modal\modal.component.ts" />
     <TypeScriptCompile Include="app\components\user\users-list\page\item\item-actionlist\item-actionlist.component.ts" />
     <TypeScriptCompile Include="app\components\user\users-list\page\item\item.component.ts" />
+    <TypeScriptCompile Include="app\components\user\users-list\page\page-header.component.ts" />
     <TypeScriptCompile Include="app\components\user\users-list\page\page-without-pagination\page-without-pagination.component.ts" />
     <TypeScriptCompile Include="app\components\user\users-list\page\page.component.ts" />
     <TypeScriptCompile Include="app\components\user\users-list\users-list-paginate\users-list-paginate.component.ts" />
