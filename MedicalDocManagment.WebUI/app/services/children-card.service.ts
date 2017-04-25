@@ -24,8 +24,20 @@ export default class ChildrensCardService {
     }
     
     addChildrenCard(childCard: ChildCardModel): Observable<ChildCardModel> {
-        let body = JSON.stringify(childCard);
         let headers = this._headers;
+        let sendObj = {
+            lastName: childCard.lastName,
+            firstName: childCard.firstName,
+            secondName: childCard.secondName,
+            date: childCard.date,
+            checkin: childCard.checkIn,
+            checkout: childCard.checkOut,
+            address: childCard.address,
+            diagnosisCode: childCard.diagnosis.id,
+            prescription: childCard.prescription,
+            directedBy: childCard.prescription,
+        };
+        let body = JSON.stringify(sendObj);
 
         return this._http.post(this._apiUrl + '/addpatient', body, { headers })
                          .map((resp: Response) => new ChildCardModel(resp.json()))
