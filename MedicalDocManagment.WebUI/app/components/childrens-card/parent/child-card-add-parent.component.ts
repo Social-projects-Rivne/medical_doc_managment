@@ -1,29 +1,30 @@
 ﻿import { Component, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import CildrensCardService from "../../../services/children-card.service";
+import ChildrenCardService from "../../../services/children-card.service";
 import ParentModel from "../../../models/parent.model";
-
-declare var jQuery: any;
 
 @Component({
     moduleId: module.id,
     selector: 'child-card-add-parent',
     templateUrl: 'child-card-add-parent.component.html',
-    providers: [CildrensCardService]
+    providers: [ChildrenCardService],
+    styleUrls: ['child-card-add-parent.component.css']
 })
 
 export default class ChildCardAddParentComponent {
     @Output() parentAdded: EventEmitter<string>;
 
+    private _childrenCardService: ChildrenCardService;
     private _isAdding: boolean;
     private _isErrorOnAdding: boolean;
     private _lastErrorMessage: string;
     private _parent: ParentModel;
 
-    constructor(private _childsCardService: CildrensCardService) {
+    constructor(childrenCardService: ChildrenCardService) {
         this.parentAdded = new EventEmitter<string>();
 
+        this._childrenCardService = childrenCardService;
         this._isAdding = false;
         this._isErrorOnAdding = false;
         this._lastErrorMessage = null;
@@ -43,8 +44,11 @@ export default class ChildCardAddParentComponent {
     private _onAdd(): void {
         this._isAdding = true;
         this._isErrorOnAdding = false;
-        this._childsCardService.addParent(this._parent)
+        this._childrenCardService.addParent(this._parent)
             .subscribe((result: ParentModel) => {
+                // TODO remove console.log after fixing
+                console.log('.subscribe((result: ParentModel)');
+                console.log(result);
                 if (result) {
                     this._isAdding = false;                   
                     this.parentAdded.emit(result.id);
