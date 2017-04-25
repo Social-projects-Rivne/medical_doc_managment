@@ -1,9 +1,14 @@
-﻿<th>{{childCard.firstName}}</th>
-<th>{{childCard.secondName}}</th>
-<th>{{childCard.lastName}}</th>
-<th>{{childCard.date | amDateFormat:'DD.MM.YYYY'}}</th>
-<th>{{childCard.address}}</th>
-<th>{{childCard.checkIn | amDateFormat:'DD.MM.YYYY'}}</th>
-<th>{{childCard.checkOut | amDateFormat:'DD.MM.YYYY'}}</th>
-<th>{{childCard.diagnosis?.name}}</th>
-<th>{{childCard.prescription}}</th>
+﻿<div class="thumbnail">
+    <h4 class="text-center">
+        {{childCard.lastName}} {{childCard.firstName}} {{childCard.secondName}}
+    </h4>
+    <p>
+        <b>Дата народження:</b> {{childCard.date | amDateFormat:'DD.MM.YYYY'}} <br />
+        <b>Адреса:</b> {{childCard.address}} <br />
+        <b>Дата госпіталізації:</b> {{childCard.checkIn | amDateFormat:'DD.MM.YYYY'}} <br />
+        <span *ngIf="childCard.checkOut">
+            <b>Дата виписки:</b> {{childCard.checkOut | amDateFormat:'DD.MM.YYYY'}} <br />
+        </span>
+        <b>Діагноз:</b> {{childCard.diagnosis?.name}} <br />
+    </p>
+</div>
