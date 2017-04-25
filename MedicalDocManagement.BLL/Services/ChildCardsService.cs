@@ -111,6 +111,24 @@ namespace MedicalDocManagement.BLL.Services
 
             return parentChildCardDTO;
         }
+            
+        public List<ChildCardDTO> FindChildCards(ChildCardDTO childCardDTO)
+        {
+            var childCards = _unitOfWork.ChildrenCardsRepository
+                                        .Get
+                                        (
+                                            childCard =>
+                                                childCard.LastName == childCardDTO.LastName &&
+                                                childCard.FirstName == childCardDTO.FirstName &&
+                                                childCard.SecondName == childCardDTO.SecondName &&
+                                                childCard.Date == childCardDTO.Date
+                                        )
+                                        .AsNoTracking()
+                                        .AsEnumerable()
+                                        .ToList();
+
+            return ChildCardDTOHelper.EntitiesToDTO(childCards);
+        }
 
         public void Dispose()
         {
