@@ -5,8 +5,6 @@ namespace MedicalDocManagment.WebUI.Models.Main
 {
     public class AddParentVM
     {
-        public int Id { get; set; }
-
         [Required]
         [StringLength(100)]
         public string FirstName { get; set; }
