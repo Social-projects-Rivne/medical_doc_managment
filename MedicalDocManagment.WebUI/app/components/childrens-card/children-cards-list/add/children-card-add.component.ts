@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import ChildrensCardService from '../../../../services/children-card.service';
+import MkhsService from "../../../../services/mkhs.service";
 // import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
+
 import ChildCardModel from '../../../../models/child-card.model';
 import DiagnosisModel from "../../../../models/diagnosis.model";
 import DiagnosesModel from "../../../../models/diagnoses.model";
@@ -10,8 +13,6 @@ import BlockModel from '../../../../models/block.model';
 import BlocksModel from '../../../../models/blocks.model';
 import NosologyModel from "../../../../models/nosology.model";
 import NosologiesModel from "../../../../models/nosologies.model";
-import ChildrensCardService from '../../../../services/children-card.service';
-import MkhsService from "../../../../services/mkhs.service";
 
 @Component({
     moduleId: module.id,
@@ -21,10 +22,6 @@ import MkhsService from "../../../../services/mkhs.service";
 })
 export default class ChildrenCardAddComponent {
     childrensCard = new ChildCardModel();
-    limitDate = new Date();
-    isDatesErrorsVisible = false;
-    isCheckInErrorsVisible = false;
-    isCheckOutErrorsVisible = false;
     selectedClass = new ClassModel();
     classes: ClassesModel;
     selectedBlock = new BlockModel();
@@ -37,7 +34,6 @@ export default class ChildrenCardAddComponent {
     constructor(private _childrensCardService: ChildrensCardService
         // , private _notificationService: NotificationsService
         , private _mkhsService: MkhsService) {
-        this.limitDate.setDate(this.limitDate.getDate() + 1);
     }
 
     ngOnInit() {
@@ -60,8 +56,16 @@ export default class ChildrenCardAddComponent {
             .subscribe(blocks => this.blocks = blocks);
     }
 
-    onCreate() {
-        this._childrensCardService.addChildrenCard(this.childrensCard);
+    submit() {
+        this._childrensCardService.addChildrenCard(this.childrensCard)
+                                  .subscribe(
+                                      (data) => {
+                                          console.log(data);
+                                      },
+                                      (error) => {
+                                          console.log(error);
+                                      }
+                                  );
         // this._notificationService.success("Успіх", "Дитячу картку успішно додано");
     }
 
@@ -69,65 +73,21 @@ export default class ChildrenCardAddComponent {
         let miliseconds: number = target.valueAsNumber;
 
         this.childrensCard.date = this.getDateByMiliseconds(miliseconds);
-
-        this.isDatesErrorsVisible = this.isValidDate(this.childrensCard.date)
-            ? false
-            : true;
     }
 
     onCheckInChange(target: HTMLInputElement) {
         let miliseconds: number = target.valueAsNumber;
 
         this.childrensCard.checkIn = this.getDateByMiliseconds(miliseconds);
-
-        this.isCheckInErrorsVisible = this.isValidDate(this.childrensCard.checkIn)
-            ? false
-            : true;
     }
 
     onCheckOutChange(target: HTMLInputElement) {
         let miliseconds: number = target.valueAsNumber;
 
         this.childrensCard.checkOut = this.getDateByMiliseconds(miliseconds);
-
-        this.isCheckOutErrorsVisible = this.isValidDate(this.childrensCard.checkOut)
-            ? false
-            : true;
     }
 
     private getDateByMiliseconds(miliseconds: number) {
         return (miliseconds) ? new Date(miliseconds) : null;
     }
-
-    private isValidDate(date: Date) {
-        if (date != null && this.dateFirstMoreSecond(this.limitDate, date)) {
-
-            return true
-        }
-
-        return false;
-    }
-
-    private dateFirstMoreSecond(firstDate: Date, secondDate: Date): boolean {
-        if (firstDate.getFullYear() > secondDate.getFullYear()) {
-
-            return true;
-        }
-
-        if (firstDate.getFullYear() == secondDate.getFullYear() &&
-            firstDate.getMonth() > secondDate.getMonth()) {
-
-            return true;
-        }
-
-        if (firstDate.getFullYear() == secondDate.getFullYear() &&
-            firstDate.getMonth() == secondDate.getMonth() &&
-            firstDate.getDay() > secondDate.getDay()) {
-
-            return true;
-        }
-
-        return false;
-    }
-
 }
