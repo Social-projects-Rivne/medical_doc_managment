@@ -15,7 +15,7 @@ namespace MedicalDocManagment.WebUI.Models
         public string SecondName { get; set; }
 
         public DateTime Date { get; set; }
-
+        public string Address { get; set; }
         public DateTime Checkin { get; set; }
         public DateTime? Checkout { get; set; }
         public string DiagnosisCode { get; set; }
