@@ -12,7 +12,9 @@ namespace MedicalDocManagement.BLL.Services.Abstract
         List<NosologyMkhDTO> GetRelatedNosologiesMkh(string blockMkhId);
         List<DiagnosisMkhDTO> GetRelatedDiagnosesMkh(string nosologyMkhId);
 
-        ChildCardDTO AddChildCard(ChildCardDTO childCardDTO);
+        ChildCardDTO AddChildCard(ChildCardDTO childCardDTO)
+        ParentDTO AddParent(ParentDTO parentDTO);
+        ParentChildCardDTO AddParentIntoChildCard(ParentChildCardDTO parentChildCardDTO);
         List<ChildCardDTO> FindChildCards(ChildCardDTO childCardDTO);
     }
 }

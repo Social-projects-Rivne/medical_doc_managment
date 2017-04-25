@@ -231,12 +231,15 @@
     <TypeScriptCompile Include="app\core\login-app.module.ts" />
     <Compile Include="Controllers\ChildCardsController.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />
+    <Compile Include="Helpers\ChildCardMapHelper.cs" />
     <Compile Include="Helpers\ViewPatientDataHelper.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
     <Compile Include="Models\Main\ClassMkhVM.cs" />
     <Compile Include="Models\Main\DiagnosisMkhVM.cs" />
     <Compile Include="Models\Main\NosologyMkhVM.cs" />
+    <Compile Include="Models\Main\AddParentChildCardVM.cs" />
+    <Compile Include="Models\Main\AddParentVM.cs" />
     <Compile Include="Models\Main\ViewPatientDataVM.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />

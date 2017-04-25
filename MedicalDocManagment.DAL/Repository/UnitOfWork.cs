@@ -1,5 +1,6 @@
 ﻿using MedicalDocManagment.DAL.Manager;
 using MedicalDocManagment.DAL.Repository.Interfaces;
+using MedicalDocManagment.DAL.Repository.Main;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Web;
@@ -18,6 +19,8 @@ namespace MedicalDocManagment.DAL.Repository
         private readonly Lazy<INosologyMkhRepository> _nosologyRepository;
         private readonly Lazy<IDiagnosisMkhRepository> _diagnosisMkhRepository;
         private readonly Lazy<IChildrenCardsRepository> _childrenCardsRepository;
+        private readonly Lazy<IParentRepository> _parentRepository;
+        private readonly Lazy<IParentChildCardRepository> _parentChildCardRepository;
         private readonly Lazy<UsersManager> _usersManager;
         private readonly Lazy<RolesManager> _rolesManager;
 
@@ -31,6 +34,8 @@ namespace MedicalDocManagment.DAL.Repository
             _nosologyRepository = new Lazy<INosologyMkhRepository>(() => new NosologyMkhRepository(_context));
             _diagnosisMkhRepository = new Lazy<IDiagnosisMkhRepository>(() => new DiagnosisMkhRepository(_context));
             _childrenCardsRepository = new Lazy<IChildrenCardsRepository>(() => new ChildrenCardsRepository(_context));
+            _parentRepository = new Lazy<IParentRepository>(() => new ParentRepository(_context));
+            _parentChildCardRepository = new Lazy<IParentChildCardRepository>(() => new ParentChildCardRepository(_context));
             _usersManager = new Lazy<UsersManager>(() => HttpContext.Current
                                                                     .GetOwinContext()
                                                                     .GetUserManager<UsersManager>());
@@ -45,6 +50,8 @@ namespace MedicalDocManagment.DAL.Repository
         public INosologyMkhRepository NosologyMkhRepository => _nosologyRepository.Value;
         public IDiagnosisMkhRepository DiagnosisMkhRepository => _diagnosisMkhRepository.Value;
         public IChildrenCardsRepository ChildrenCardsRepository => _childrenCardsRepository.Value;
+        public IParentRepository ParentRepository => _parentRepository.Value;
+        public IParentChildCardRepository ParentChildCardRepository => _parentChildCardRepository.Value;
         public UsersManager UsersManager => _usersManager.Value;
         public RolesManager RolesManager => _rolesManager.Value;
 

@@ -92,6 +92,26 @@ namespace MedicalDocManagement.BLL.Services
             return ChildCardDTOHelper.EntityToDTO(childCard);
         }
 
+        public ParentDTO AddParent(ParentDTO parentDTO)
+        {
+            var parent = ChildCardDTOHelper.DTOToEntity(parentDTO);
+
+            _unitOfWork.ParentRepository.Add(parent);
+            _unitOfWork.Save();
+
+            return ChildCardDTOHelper.EntityToDTO(parent);
+        }
+
+        public ParentChildCardDTO AddParentIntoChildCard(ParentChildCardDTO parentChildCardDTO)
+        {
+            var parentChildCard = ChildCardDTOHelper.DTOToEntity(parentChildCardDTO);
+
+            _unitOfWork.ParentChildCardRepository.Add(parentChildCard);
+            _unitOfWork.Save();
+
+            return parentChildCardDTO;
+        }
+            
         public List<ChildCardDTO> FindChildCards(ChildCardDTO childCardDTO)
         {
             var childCards = _unitOfWork.ChildrenCardsRepository
