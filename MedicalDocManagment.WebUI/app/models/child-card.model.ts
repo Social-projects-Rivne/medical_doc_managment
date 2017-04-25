@@ -14,8 +14,9 @@ export default class ChildCardModel {
 
     constructor(jsonObject?) {
         this.id = this.firstName = this.secondName = this.lastName = this.date =
-            this.address = this.checkIn = this.checkOut = this.diagnosis =
-            this.prescription = null;
+            this.address = this.checkIn = this.checkOut = this.prescription = null;
+        this.diagnosis = new DiagnosisModel();
+
 
         if (jsonObject) {
             for (var prop in this)

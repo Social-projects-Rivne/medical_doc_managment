@@ -23,14 +23,13 @@ export default class ChildrensCardService {
         this._headers.append('Authorization', 'Bearer ' + this._authenticationService.token);
     }
     
-    addChildrenCard(childrensCard: ChildCardModel): boolean {
-        if (childrensCard) {
-            console.log(childrensCard);
+    addChildrenCard(childCard: ChildCardModel): Observable<ChildCardModel> {
+        let body = JSON.stringify(childCard);
+        let headers = this._headers;
 
-            return true;
-        }
-
-        return false;
+        return this._http.post(this._apiUrl + '/addpatient', body, { headers })
+                         .map((resp: Response) => new ChildCardModel(resp.json()))
+                         .catch((error: any) => { return Observable.throw(error); });
     }
 
     /**
