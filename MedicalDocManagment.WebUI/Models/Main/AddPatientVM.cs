@@ -11,7 +11,7 @@ namespace MedicalDocManagment.WebUI.Models
         [Required(ErrorMessage = "Для додавання пацієнта необхідне його ім'я.")]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Для додавання пацієнта необхідне його по-батькові.")]
+        [Required(ErrorMessage = "Для додавання пацієнта необхідне його по батькові.")]
         public string SecondName { get; set; }
 
         public DateTime Date { get; set; }
