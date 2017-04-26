@@ -23,14 +23,25 @@ export default class ChildrensCardService {
         this._headers.append('Authorization', 'Bearer ' + this._authenticationService.token);
     }
     
-    addChildrenCard(childrensCard: ChildCardModel): boolean {
-        if (childrensCard) {
-            console.log(childrensCard);
+    addChildrenCard(childCard: ChildCardModel): Observable<ChildCardModel> {
+        let headers = this._headers;
+        let sendObj = {
+            lastName: childCard.lastName,
+            firstName: childCard.firstName,
+            secondName: childCard.secondName,
+            date: childCard.date,
+            checkin: childCard.checkIn,
+            checkout: childCard.checkOut,
+            address: childCard.address,
+            diagnosisCode: childCard.diagnosis.id,
+            prescription: childCard.prescription,
+            directedBy: childCard.prescription,
+        };
+        let body = JSON.stringify(sendObj);
 
-            return true;
-        }
-
-        return false;
+        return this._http.post(this._apiUrl + '/addpatient', body, { headers })
+                         .map((resp: Response) => new ChildCardModel(resp.json()))
+                         .catch((error: any) => { return Observable.throw(error); });
     }
 
     /**
