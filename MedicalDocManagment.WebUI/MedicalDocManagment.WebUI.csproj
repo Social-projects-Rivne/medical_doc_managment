@@ -227,15 +227,15 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
+    <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
     <TypeScriptCompile Include="app\modules\users-search.module.ts" />
-    <TypeScriptCompile Include="app\core\login-app.routing.ts" />
-    <TypeScriptCompile Include="app\core\login-app.module.ts" />
     <Compile Include="Controllers\ChildCardsController.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />
     <Compile Include="Helpers\ChildCardMapHelper.cs" />
     <Compile Include="Helpers\ViewPatientDataHelper.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
+    <Compile Include="Models\Main\ChildCardVM.cs" />
     <Compile Include="Models\Main\ClassMkhVM.cs" />
     <Compile Include="Models\Main\DiagnosisMkhVM.cs" />
     <Compile Include="Models\Main\NosologyMkhVM.cs" />
@@ -330,6 +330,7 @@
     <TypeScriptCompile Include="app\modules\users-list.module.ts" />
     <TypeScriptCompile Include="app\routes\app.routing.ts" />
     <TypeScriptCompile Include="app\services\authentication.service.ts" />
+    <TypeScriptCompile Include="app\services\children-card-service.mockup.ts" />
     <TypeScriptCompile Include="app\services\children-card.service.ts" />
     <TypeScriptCompile Include="app\services\guards\auth.guard.ts" />
     <TypeScriptCompile Include="app\services\http.facade.ts" />

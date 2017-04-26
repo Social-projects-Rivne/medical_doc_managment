@@ -2,7 +2,7 @@
 
 namespace MedicalDocManagment.DAL.Initializer
 {
-    public class DbInitializer : DropCreateDatabaseAlways<Context>    
+    public class DbInitializer : DropCreateDatabaseAlways<Context>
     {
         protected override void Seed(Context context)
         {

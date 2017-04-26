@@ -28,6 +28,7 @@
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
             'ng2-pagination': 'dist/lib/npmlibs/ng2-pagination/dist',
             'angular2-notifications': 'node_modules/angular2-notifications',
+            'ngx-infinite-scroll':'node_modules/ngx-infinite-scroll',
             'moment': 'dist/js/moment/',
             'angular2-moment':'dist/lib/npmlibs/angular2-moment'
         },
@@ -55,7 +56,11 @@
             'ng2-pagination': { main: 'ng2-pagination.js', defaultExtension: 'js' },
             'angular2-notifications': { main: 'components.js', defaultExtension: 'js' },
             'moment': { main: 'moment-with-locales.min.js', defaultExtension: 'js' },
-            'angular2-moment': { main: './index.js', defaultExtension: 'js'}
+            'angular2-moment': { main: './index.js', defaultExtension: 'js' },
+            'ngx-infinite-scroll': {
+                main: 'bundles/ngx-infinite-scroll.umd.js',
+                defaultExtension: 'js'
+            }
         }
     });
     if (global.filterSystemConfig) { global.filterSystemConfig(config); }

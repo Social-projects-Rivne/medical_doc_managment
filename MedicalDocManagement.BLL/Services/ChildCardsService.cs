@@ -20,7 +20,33 @@ namespace MedicalDocManagement.BLL.Services
         {
             _unitOfWork = new UnitOfWork();
         }
-
+        public List<ChildCardDTO> GetChildrenCards()
+        {
+            var childrenCards = _unitOfWork.ChildrenCardsRepository
+                                           .Get()
+                                           .AsNoTracking()
+                                           .ToList();
+            return ChildCardDTOHelper.EntitiesToDTO(childrenCards);
+        }
+        public int GetChildrenCardsCount()
+        {
+            var count = _unitOfWork.ChildrenCardsRepository
+                                   .Get()
+                                   .Count();
+            return count;
+        }
+        public List<ChildCardDTO> GetChildrenCardsPaged(int pageNumber = 1, int pageSize = 20)
+        {
+            var skip = (pageNumber - 1) * pageSize;
+            var childrenCards = _unitOfWork.ChildrenCardsRepository
+                                           .Get()
+                                           .OrderBy(c => c.Id)
+                                           .Skip(skip)
+                                           .Take(pageSize)
+                                           .AsNoTracking()
+                                           .ToList();
+            return ChildCardDTOHelper.EntitiesToDTO(childrenCards);
+        }
         public List<ClassMkhDTO> GetClassesMkh()
         {
             var classesMkh = _unitOfWork.ClassMkhRepository

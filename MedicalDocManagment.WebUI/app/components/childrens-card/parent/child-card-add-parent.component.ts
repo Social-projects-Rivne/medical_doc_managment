@@ -41,7 +41,7 @@ export default class ChildCardAddParentComponent {
         );
     }
 
-    private _onAdd(): void {
+    private _onSave(): void {
         this._isAdding = true;
         this._isErrorOnAdding = false;
         this._childrenCardService.addParent(this._parent)

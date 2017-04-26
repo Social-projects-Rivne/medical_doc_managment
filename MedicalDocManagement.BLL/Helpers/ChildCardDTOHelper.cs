@@ -16,6 +16,7 @@ namespace MedicalDocManagement.BLL.Helpers
                 {
                     configuration.CreateMap<ChildCardDTO, ChildCard>();
                     configuration.CreateMap<ChildCard, ChildCardDTO>();
+                    configuration.CreateMap<DiagnosisMkhDTO, DiagnosisMkh>();
                     configuration.CreateMap<DiagnosisMkh, DiagnosisMkhDTO>();
                 }
             );
