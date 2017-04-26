@@ -11,15 +11,15 @@ namespace MedicalDocManagment.WebUI.Models.Validators
             {
                 RuleFor(patient => patient.FirstName)
                        .Matches(@"[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}")
-                       .WithMessage("Ім'я пацієнта написанне не кирилицею");
+                       .WithMessage("Ім'я пацієнта написане не кирилицею");
 
                 RuleFor(patient => patient.SecondName)
                        .Matches(@"[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}")
-                       .WithMessage("По батькові пацієнта написанне не кирилицею");
+                       .WithMessage("По батькові пацієнта написане не кирилицею");
 
                 RuleFor(patient => patient.LastName)
                        .Matches(@"[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}")
-                       .WithMessage("Прізвище пацієнта написанне не кирилицею");
+                       .WithMessage("Прізвище пацієнта написане не кирилицею");
 
                 RuleFor(patient => patient.LastName)
                        .NotNull()
