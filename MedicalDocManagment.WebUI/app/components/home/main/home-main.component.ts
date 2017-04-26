@@ -10,6 +10,9 @@ export class HomeMainComponent implements AfterViewInit {
     @ViewChild('childrenCardsList') private _childrenCardsList;
 
     ngAfterViewInit() {
-        this._childrenCardsList.getChildrenCardsFromServer();
+        //this._childrenCardsList.getChildrenCardsFromServer();
+        let initialPageNumber = 1;
+        let pageSize = this._childrenCardsList.pageSize;
+        this._childrenCardsList.getPage(initialPageNumber, pageSize);
     }
 }

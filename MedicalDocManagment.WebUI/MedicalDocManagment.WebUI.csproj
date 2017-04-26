@@ -226,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
+    <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
     <TypeScriptCompile Include="app\modules\users-search.module.ts" />
     <Compile Include="Controllers\ChildCardsController.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Helpers\ViewPatientDataHelper.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
+    <Compile Include="Models\Main\ChildCardVM.cs" />
     <Compile Include="Models\Main\ClassMkhVM.cs" />
     <Compile Include="Models\Main\DiagnosisMkhVM.cs" />
     <Compile Include="Models\Main\NosologyMkhVM.cs" />

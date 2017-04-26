@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MomentModule } from 'angular2-moment';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import ChildrenCardsListComponent from '../components/childrens-card/children-cards-list/children-cards-list.component';
 import ChildrenCardsListItemComponent from '../components/childrens-card/children-cards-list/children-cards-list-item.component';
@@ -17,7 +18,8 @@ import { AuthenticationService } from '../services/authentication.service';
         CommonModule,
         FormsModule,
         HttpModule,
-        MomentModule
+        MomentModule,
+        InfiniteScrollModule
     ],
     declarations: [
         ChildrenCardsListComponent,
