@@ -46,9 +46,6 @@ export default class ChildCardAddParentComponent {
         this._isErrorOnAdding = false;
         this._childrenCardService.addParent(this._parent)
             .subscribe((result: ParentModel) => {
-                // TODO remove console.log after fixing
-                console.log('.subscribe((result: ParentModel)');
-                console.log(result);
                 if (result) {
                     this._isAdding = false;                   
                     this.parentAdded.emit(result.id);
