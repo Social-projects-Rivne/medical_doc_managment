@@ -226,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
+    <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
     <TypeScriptCompile Include="app\modules\users-search.module.ts" />
     <Compile Include="Controllers\ChildCardsController.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />

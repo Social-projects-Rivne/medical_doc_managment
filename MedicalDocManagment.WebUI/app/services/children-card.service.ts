@@ -5,11 +5,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { Subject } from 'rxjs/Subject';
 
 import ChildCardModel from '../models/child-card.model';
 import ChildrenCardsModel from '../models/children-cards.model';
 import ParentModel from '../models/parent.model';
 import ViewPatientDataModel from '../models/view-patient-data.model';
+import ChildrenCardsPagedModel from '../models/children-cards-paged.model';
 
 import { AuthenticationService } from "./authentication.service";
 
@@ -17,10 +19,12 @@ import { AuthenticationService } from "./authentication.service";
 export default class ChildrensCardService {
     private _apiUrl: string = '/api/childcards';
     private _headers: Headers;
+    private _childrenCardsSubject: Subject<any>;
 
     constructor(private _http: Http, @Inject(AuthenticationService) private _authenticationService: AuthenticationService) {
         this._headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
         this._headers.append('Authorization', 'Bearer ' + this._authenticationService.token);
+        this._childrenCardsSubject = new Subject<any>();
     }
     
     addChildrenCard(childrensCard: ChildCardModel): boolean {
@@ -54,7 +58,29 @@ export default class ChildrensCardService {
                          .map((resp: Response) => { return new ChildrenCardsModel(resp.json()); })
                          .catch((error: any) => { return Observable.throw(error); });
     }
-
+    getChildrenCardsPaged(page: number, pageSize: number): void {
+        let headers = this._headers;
+        
+        this._http.get("api/childcards/getchildrencardspaged?pageNumber=" + page + "&pageSize=" + pageSize, { headers })
+            .map((resp: Response) => {
+                let pagedResponse: ChildrenCardsPagedModel = new ChildrenCardsPagedModel();
+                pagedResponse.pageCount = resp.json().paging.pageCount;
+                pagedResponse.pageNumber = resp.json().paging.pageNumber;
+                pagedResponse.pageSize = resp.json().paging.pageSize;
+                pagedResponse.totalRecordCount = resp.json().paging.totalRecordCount;
+                pagedResponse.childrenCards = new ChildrenCardsModel(resp.json().data);
+                return pagedResponse;
+            })
+            .catch((error: any) => {
+                return Observable.throw(error);
+            })
+            .subscribe(resp => {
+                this._childrenCardsSubject.next(resp);
+            });
+    }
+    get childrenCardsSubject() {
+        return this._childrenCardsSubject;
+    }
 
     /**
      * Method returns some patient data
