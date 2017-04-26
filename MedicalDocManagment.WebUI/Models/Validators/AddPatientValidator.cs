@@ -55,7 +55,7 @@ namespace MedicalDocManagment.WebUI.Models.Validators
 
             RuleFor(patient => patient.DiagnosisCode)
                    .Matches(@"[A-Z]\d{2}.\d")
-                   .WithMessage("Діагноз для пацієнта виставленно невірно");
+                   .WithMessage("Діагноз для пацієнта виставлено невірно");
         }
 
         private bool IsValidDate(DateTime date)
