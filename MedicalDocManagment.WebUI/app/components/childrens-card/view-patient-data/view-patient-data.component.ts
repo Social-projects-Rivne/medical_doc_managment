@@ -27,7 +27,7 @@ export default class ViewPatientDataComponent implements AfterViewInit {
     private _lastErrorMessage: string;
     private _childrensCardService: ChildrensCardService;
     private _patientToView: ViewPatientDataModel;
-    private _searchResult: Observable<ChildrenCardsModel>;
+    private _searchResult: ChildrenCardsModel;
     private _triedToSearch: boolean; 
 
     constructor(childrensCardService: ChildrensCardService) {
@@ -37,7 +37,7 @@ export default class ViewPatientDataComponent implements AfterViewInit {
         this._lastErrorMessage = '';
         this._childrensCardService = childrensCardService;
         this._patientToView = new ViewPatientDataModel();
-        this._searchResult = null;
+        this._searchResult = [];
         this._triedToSearch = false;
     }
 
@@ -62,14 +62,14 @@ export default class ViewPatientDataComponent implements AfterViewInit {
     viewPatientData(): void {
         this._isErrorOnSearching = false;
         this._isSearching = true;
-        this._searchResult = null;
+        this._searchResult = [];
         this._triedToSearch = true;
 
         this._childrensCardService.viewPatientData(this._patientToView)
                                   .subscribe((data: ChildrenCardsModel) => {
-                                      this._searchResult = data ?
-                                          (data.length ? Observable.of(data) : null)
-                                          : null;
+                                      if (data && data.length) {
+                                          this._searchResult = this._searchResult.concat(data);
+                                      }
                                       this._isSearching = false;
                                   },
                                   (error: any) => { this._handleSearchError(error); });

@@ -6,6 +6,7 @@ import { MomentModule } from 'angular2-moment';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import ChildrenCardsListComponent from '../components/childrens-card/children-cards-list/children-cards-list.component';
+import ChildrenCardsListWithoutLazyComponent from '../components/childrens-card/children-cards-list/children-cards-list-without-lazy.component';
 import ChildrenCardsListItemComponent from '../components/childrens-card/children-cards-list/children-cards-list-item.component';
 
 import ChildrenCardService from '../services/children-card.service';
@@ -23,6 +24,7 @@ import { AuthenticationService } from '../services/authentication.service';
     ],
     declarations: [
         ChildrenCardsListComponent,
+        ChildrenCardsListWithoutLazyComponent,
         ChildrenCardsListItemComponent
     ],
     providers: [
@@ -30,7 +32,7 @@ import { AuthenticationService } from '../services/authentication.service';
         AuthGuard,
         AuthenticationService
     ],
-    exports: [ChildrenCardsListComponent]
+    exports: [ChildrenCardsListComponent, ChildrenCardsListWithoutLazyComponent]
 })
 export default class ChildrenCardsListModule {
 }

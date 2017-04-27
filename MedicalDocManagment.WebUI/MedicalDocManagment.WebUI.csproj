@@ -170,6 +170,7 @@
     <Content Include="app\components\admin-app.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\add\children-card-add.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.html" />
+    <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list.component.html" />
     <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.html" />
     <Content Include="app\components\header\main\header-main.component.html" />
@@ -226,6 +227,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.ts" />
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
     <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
     <TypeScriptCompile Include="app\modules\users-search.module.ts" />
