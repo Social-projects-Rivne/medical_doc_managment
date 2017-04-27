@@ -1,6 +1,8 @@
 ﻿import { Component, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
+declare var jQuery: any;
+
 import ChildrenCardService from "../../../services/children-card.service";
 import ParentModel from "../../../models/parent.model";
 
@@ -49,6 +51,7 @@ export default class ChildCardAddParentComponent {
                 if (result) {
                     this._isAdding = false;                   
                     this.parentAdded.emit(result.id);
+                    jQuery('#childCardAddParentModal').modal('hide');
                 }
             },
             (error: any) => {
