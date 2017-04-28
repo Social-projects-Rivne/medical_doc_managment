@@ -43,6 +43,7 @@ namespace MedicalDocManagment.WebUI.Providers
 
             var roles = oAuthIdentity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
             AuthenticationProperties properties = CreateProperties(user.UserName, Newtonsoft.Json.JsonConvert.SerializeObject(roles.Select(x => x.Value)));
+            properties.Dictionary.Add("position", user.Position.Name);
 
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);

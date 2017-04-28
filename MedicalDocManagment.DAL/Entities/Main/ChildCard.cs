@@ -38,5 +38,9 @@ namespace MedicalDocManagment.DAL.Entities
         public string DirectedBy { get; set; }
 
         public virtual ICollection<ParentChildCard> ParentsChildren { get; set; }
+
+        // 2260 is the calculated number of characters that can fit into paper form
+        [StringLength(2260)]
+        public string PsychiatristsConclusion { get; set; }
     }
 }

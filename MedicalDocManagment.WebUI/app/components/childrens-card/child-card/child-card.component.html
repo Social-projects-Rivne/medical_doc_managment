@@ -1,0 +1,59 @@
+﻿<div class="container">
+    <div class="row" style="margin-bottom:2%;">
+        <h4 class="text-center">
+            {{_childCard.lastName}} {{_childCard.firstName}} {{_childCard.secondName}}
+        </h4>
+    </div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row">
+        <p>
+            <b>Дата народження:</b> {{_childCard.date | amDateFormat:'DD.MM.YYYY'}} <br />
+        </p>
+    </div>
+    <div class="row">
+        <p>
+            <b>Адреса:</b> {{_childCard.address}} <br />
+        </p>
+    </div>
+    <div class="row">
+        <p>
+            <b>Дата госпіталізації:</b> {{_childCard.checkIn | amDateFormat:'DD.MM.YYYY'}} <br />
+        </p>
+    </div>
+    <div class="row" *ngIf="_childCard.checkOut">
+        <p>
+            <b>Дата виписки:</b> {{_childCard.checkOut | amDateFormat:'DD.MM.YYYY'}} <br />
+        </p>
+    </div>
+    <div class="row" *ngIf="_childCard.diagnosis">
+        <p>
+            <b>Діагноз:</b> {{_childCard.diagnosis.name}} <br />
+        </p>
+    </div>
+    <div class="row" *ngIf="_childCard.directedBy">
+        <p>
+            <b>Ким направлений:</b> {{_childCard.directedBy}} <br />
+        </p>
+    </div>
+    <div class="row" *ngIf="_childCard.prescription">
+        <p>
+            <b>Призначення:</b> {{_childCard.prescription}} <br />
+        </p>
+    </div>
+    <div class="row">
+        <p *ngIf="_childCard.psychiatristsConclusion">
+            <b>Заключення психіатра:</b> {{_childCard.psychiatristsConclusion}} <br />
+        </p>
+        <span *ngIf="!_childCard.psychiatristsConclusion &&
+              this._currentUsersPositionName=='психіатр'">
+            <button class="btn btn-primary" data-toggle="modal"
+                    data-target="#psychiatristsConclusionFormModal">
+                Заповнити форму із заключенням
+            </button>
+            <psychiatrists-conclusion-form [childCardId]="_childCard.id"
+                                           (conclusionAdded)="_childCard.psychiatristsConclusion=$event">
+            </psychiatrists-conclusion-form>
+        </span>
+    </div>
+</div>

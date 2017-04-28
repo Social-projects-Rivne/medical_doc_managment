@@ -63,6 +63,10 @@ export default class ChildrensCardService {
             .catch((error: any) => { return Observable.throw(error); });
     }
 
+    get currentUsersPositionName(): string {
+        return this._authenticationService.position;
+    }
+
     getChildrenCards(): Observable<ChildrenCardsModel> {
         let headers = this._headers;
         return this._http.get('/api/childcards/getchildrencards', { headers })
@@ -107,5 +111,19 @@ export default class ChildrensCardService {
             viewPatientDataModel.birthDate.toISOString(), { headers })
             .map((resp: Response) => { return new ChildrenCardsModel(resp.json()); })
             .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    /**
+     * Method saves psychiatrist's conclusion to child card
+     * @param {string} childCardId Id of child card to save conclusion into
+     * @param {string} conclusion Contains conclusion to save
+     * @return {Observable<string>} Observable to saved conclusion by server
+    */
+    savePsychiatristsConclusion(childCardId : number, conclusion: string): Observable<string> {
+        let headers: Headers = this._headers;
+        return this._http.patch('/api/childcards/savePsychiatristsConclusion?childCardId=' +
+            childCardId, '"'+conclusion+'"', { headers })
+                         .map((resp: Response) => { return resp.text(); })
+                         .catch((error: any) => { return Observable.throw(error); });
     }
 }

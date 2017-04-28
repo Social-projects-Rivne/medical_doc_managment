@@ -201,5 +201,30 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return InternalServerError(exception);
             }
         }
+
+        [PsychiatristsOnlyAuthorization]
+        [HttpPatch]
+        public IHttpActionResult SavePsychiatristsConclusion(int childCardId,
+            [FromBody]string conclusion)
+        {
+            if (conclusion == null)
+            {
+                return BadRequest("No conclusion is supplied.");
+            }
+            if (conclusion.Length>2260)
+            {
+                return BadRequest("Conclusion is too long.");
+            }
+
+            try
+            {
+                var result = _childCardsService.AddPsychiatristsConclusion(childCardId, conclusion);
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
     }
 }

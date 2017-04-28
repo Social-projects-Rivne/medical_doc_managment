@@ -48,5 +48,10 @@ namespace MedicalDocManagment.DAL.Repository
         {
             dbset.Remove(entity);
         }
+
+        public void Update(T entity)
+        {
+            context.Entry(entity).State = EntityState.Modified;
+        }
     }
 }
