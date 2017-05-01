@@ -215,6 +215,7 @@
     <Content Include="App_Data\src\diagnoses.json" />
     <Content Include="App_Data\src\nosologies.json" />
     <Content Include="app\components\user\users-search\search-options.component.html" />
+    <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.css" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -58,7 +58,7 @@ export default class ChildrensCardService {
         let headers = this._headers;
         return this._http.post('/api/childcards/addparent', body, { headers: headers })
             .map((resp: Response) => {
-                Observable.of(new ParentModel(resp.json()));
+                return Observable.of(new ParentModel(resp.json()));
             })
             .catch((error: any) => { return Observable.throw(error); });
     }
