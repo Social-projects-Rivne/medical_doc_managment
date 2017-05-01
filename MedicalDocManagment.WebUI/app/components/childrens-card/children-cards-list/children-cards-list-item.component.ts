@@ -23,7 +23,7 @@ export default class ChildrenCardsListItemComponent {
     }
 
     openChildCard(): void {
-        this._mainAppService.currentUser = this.childCard;
-        this._router.navigateByUrl("/main/childcard");
+        this._mainAppService.currentCard = this.childCard;
+        this._router.navigateByUrl("/main/childCard");
     }
 }

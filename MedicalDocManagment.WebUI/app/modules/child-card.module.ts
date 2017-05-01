@@ -4,8 +4,9 @@ import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { MomentModule } from 'angular2-moment';
 
-import ChildCardComponent from '../components/childrens-card/child-card/child-card.component';
-import PsychiatristsConclusionFormComponent from '../components/childrens-card/child-card/psychiatrists-conclusion-form.component';
+import ChildCardMainPageComponent from '../components/childrens-card/child-card/main-page.component';
+import ChildCardPediatriciansExaminationComponent from '../components/childrens-card/child-card/pediatricians-examination.component';
+import ChildCardPsychiatristsConclusionFormComponent from '../components/childrens-card/child-card/psychiatrists-conclusion-form.component';
 
 import { AuthenticationService } from '../services/authentication.service';
 import { AuthGuard } from '../services/guards/auth.guard';
@@ -19,15 +20,15 @@ import ChildrenCardService from '../services/children-card.service';
         MomentModule
     ],
     declarations: [
-        ChildCardComponent,
-        PsychiatristsConclusionFormComponent
+        ChildCardMainPageComponent,
+        ChildCardPediatriciansExaminationComponent,
+        ChildCardPsychiatristsConclusionFormComponent
     ],
     providers: [
         AuthenticationService,
         AuthGuard,
         ChildrenCardService
-    ],
-    exports: [ChildCardComponent]
+    ]
 })
 export default class ChildCardModule {
 }
