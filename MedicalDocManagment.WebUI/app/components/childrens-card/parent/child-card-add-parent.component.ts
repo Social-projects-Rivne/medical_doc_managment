@@ -15,7 +15,7 @@ import ParentModel from "../../../models/parent.model";
 })
 
 export default class ChildCardAddParentComponent {
-    @Output() parentAdded: EventEmitter<string>;
+    @Output() parentAddedEvent: EventEmitter<ParentModel>;
 
     private _childrenCardService: ChildrenCardService;
     private _isAdding: boolean;
@@ -24,7 +24,7 @@ export default class ChildCardAddParentComponent {
     private _parent: ParentModel;
 
     constructor(childrenCardService: ChildrenCardService) {
-        this.parentAdded = new EventEmitter<string>();
+        this.parentAddedEvent = new EventEmitter<ParentModel>();
 
         this._childrenCardService = childrenCardService;
         this._isAdding = false;
@@ -47,10 +47,12 @@ export default class ChildCardAddParentComponent {
         this._isAdding = true;
         this._isErrorOnAdding = false;
         this._childrenCardService.addParent(this._parent)
-            .subscribe((result: ParentModel) => {
+            .subscribe((result: any) => {
                 if (result) {
-                    this._isAdding = false;                   
-                    this.parentAdded.emit(result.id);
+                    this._isAdding = false;
+                    // `result` has `ScalarObservable` type. It has `value` property, that contains Parent object from Controller
+                    let parent = new ParentModel(result.value);
+                    this.parentAddedEvent.emit(parent);
                     jQuery('#childCardAddParentModal').modal('hide');
                 }
             },
