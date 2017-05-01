@@ -19,5 +19,6 @@ namespace MedicalDocManagement.BLL.Services.Abstract
         int GetChildrenCardsCount();
         List<ChildCardDTO> GetChildrenCards();
         List<ChildCardDTO> GetChildrenCardsPaged(int pageNumber, int pageSize);
+        string AddPsychiatristsConclusion(int childCardId, string conclusion);
     }
 }

@@ -168,6 +168,8 @@
   <ItemGroup>
     <Content Include="app\.gitignore" />
     <Content Include="app\components\admin-app.component.html" />
+    <Content Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.html" />
+    <Content Include="app\components\childrens-card\child-card\child-card.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\add\children-card-add.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.html" />
@@ -227,11 +229,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\child-card.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.ts" />
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
     <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
+    <TypeScriptCompile Include="app\modules\child-card.module.ts" />
     <TypeScriptCompile Include="app\modules\users-search.module.ts" />
     <Compile Include="Controllers\ChildCardsController.cs" />
+    <Compile Include="Controllers\PsychiatristsOnlyAuthorization.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />
     <Compile Include="Helpers\ChildCardMapHelper.cs" />
     <Compile Include="Helpers\ViewPatientDataHelper.cs" />
@@ -337,6 +343,7 @@
     <TypeScriptCompile Include="app\services\guards\auth.guard.ts" />
     <TypeScriptCompile Include="app\services\http.facade.ts" />
     <TypeScriptCompile Include="app\services\item-actionlist-notification.service.ts" />
+    <TypeScriptCompile Include="app\services\main-app.service.ts" />
     <TypeScriptCompile Include="app\services\mkhs.service.ts" />
     <TypeScriptCompile Include="app\services\user.service.ts" />
   </ItemGroup>

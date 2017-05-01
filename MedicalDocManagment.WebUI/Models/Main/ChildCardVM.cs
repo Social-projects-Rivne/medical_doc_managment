@@ -19,5 +19,6 @@ namespace MedicalDocManagment.WebUI.Models.Main
         public string Prescription { get; set; }
         public string DirectedBy { get; set; }
         public DiagnosisMkhVM Diagnosis { get; set; }
+        public string PsychiatristsConclusion { get; set; }
     }
 }

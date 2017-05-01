@@ -55,6 +55,7 @@ export class AuthenticationService {
     public username: string;
     public roles: Array<string>;
     public role: string;
+    public position: string;
     private grant_type:string = "password"
     constructor(private http: Http) {
         // set token if saved in local storage
@@ -71,6 +72,7 @@ export class AuthenticationService {
         this.token = currentUser && currentUser.token;
         this.username = currentUser && currentUser.username;
         this.role = currentUser && currentUser.role;
+        this.position = currentUser && currentUser.position;
     }
     getRolesArray(rolesInput: string): Array<string> {
         let formattedRoles: any = rolesInput.replace(/[\"\[\]]+/g, '');
@@ -89,12 +91,16 @@ export class AuthenticationService {
                             let token = response.json() && response.json().access_token;
                             this.roles = this.getRolesArray(response.json().roles);
                             this.role = this.roles[0].toString();
+                            this.position = response.json()["position"];
                             if (token) {
                                 // set token property
                                 this.token = token;
 
                                 // store username and jwt token in local storage to keep user logged in between page refreshes
-                                localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token, role: this.role }));
+                                localStorage.setItem('currentUser', JSON.stringify({
+                                    username: username, token: token, role: this.role,
+                                    position: this.position
+                                }));
                                 this.getCredentialsFromLocalStorage();
                                 // return true to indicate successful login
                                 return true;
@@ -111,6 +117,7 @@ export class AuthenticationService {
         this.username = null;
         this.roles = null;
         this.role = null;
+        this.position = null;
         localStorage.removeItem('currentUser');
     }
 }

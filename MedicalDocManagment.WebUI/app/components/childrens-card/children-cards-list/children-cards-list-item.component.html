@@ -1,4 +1,4 @@
-﻿<div class="thumbnail">
+﻿<div class="thumbnail" (click)="openChildCard()">
     <h4 class="text-center">
         {{childCard.lastName}} {{childCard.firstName}} {{childCard.secondName}}
     </h4>
@@ -9,6 +9,8 @@
         <span *ngIf="childCard.checkOut">
             <b>Дата виписки:</b> {{childCard.checkOut | amDateFormat:'DD.MM.YYYY'}} <br />
         </span>
-        <b>Діагноз:</b> {{childCard.diagnosis?.name}} <br />
-    </p>
+        <span *ngIf="childCard.diagnosis">
+            <b>Діагноз:</b> {{childCard.diagnosis.name}} <br />
+        </span>
+</p>
 </div>

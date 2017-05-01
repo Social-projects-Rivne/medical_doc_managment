@@ -156,6 +156,18 @@ namespace MedicalDocManagement.BLL.Services
             return ChildCardDTOHelper.EntitiesToDTO(childCards);
         }
 
+        public string AddPsychiatristsConclusion(int childCardId, string conclusion)
+        {
+            var childCard = _unitOfWork.ChildrenCardsRepository
+                                       .Get(card => card.Id == childCardId)
+                                       .Single();
+            childCard.PsychiatristsConclusion = conclusion;
+            _unitOfWork.ChildrenCardsRepository.Update(childCard);
+            _unitOfWork.Save();
+
+            return childCard.PsychiatristsConclusion;
+        }
+
         public void Dispose()
         {
             _unitOfWork.Dispose();

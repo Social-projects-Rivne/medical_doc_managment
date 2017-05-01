@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.AspNet.Identity;
 using MedicalDocManagment.DAL.Repository;
+using MedicalDocManagment.DAL.Initializer.Helpers;
 
 namespace MedicalDocManagment.DAL.Initializer
 {
@@ -65,6 +66,7 @@ namespace MedicalDocManagment.DAL.Initializer
             unitOfWork.RolesManager.Create(roleAdmin);
             unitOfWork.RolesManager.Create(roleUser);
             AddAdminToDb(unitOfWork,roleAdmin);
+            DoctorsHelper.AddSomeDoctorsToDb(unitOfWork, roleUser);
 
             int userCounter = 1;
             int positionCounter = 1;
