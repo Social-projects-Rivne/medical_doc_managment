@@ -122,8 +122,8 @@ export default class ChildrensCardService {
     savePsychiatristsConclusion(childCardId : number, conclusion: string): Observable<string> {
         let headers: Headers = this._headers;
         return this._http.patch('/api/childcards/savePsychiatristsConclusion?childCardId=' +
-            childCardId, '"'+conclusion+'"', { headers })
-                         .map((resp: Response) => { return resp.text(); })
+            childCardId, '"' + conclusion + '"', { headers })
+                         .map((resp: Response) => { return JSON.parse(resp.text()); })
                          .catch((error: any) => { return Observable.throw(error); });
     }
 }
