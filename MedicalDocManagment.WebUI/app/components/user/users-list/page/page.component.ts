@@ -15,6 +15,7 @@ export default class PageComponent {
     @Input() page: number;
     @Input() pageSize: number;
     @Input() total: number;
+    @Input() loading: boolean;
     @Output() onUsersListEdit = new EventEmitter<string>();
 
     @Output() onPageChange = new EventEmitter<number>();
@@ -22,7 +23,9 @@ export default class PageComponent {
         //this.users = new UsersModel(null);
     }
     changePage(page: number) {
-        this.onPageChange.emit(page);
+        if (!this.loading) {
+            this.onPageChange.emit(page);
+        }
     }
     onPageEdit(id: string) {
         this.onUsersListEdit.emit(id);
