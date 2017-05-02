@@ -13,5 +13,6 @@ namespace MedicalDocManagment.DAL.Repository.Interfaces
         void Add(T entity);
         void AddOrUpdate(T entity);
         void Remove(T entity);
+        void Update(T entity);
     }
 }

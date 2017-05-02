@@ -24,6 +24,7 @@ export class UsersListComponent {
     page: number = 1;
     pageSize: number = 5;
     total: number;
+    loading: boolean;
     private _httpFacade: HttpFacade;
     notificationSubscription: Subscription;
     public notificationOptions = {
@@ -73,11 +74,13 @@ export class UsersListComponent {
     }
 
     getPage(page: number, pageSize: number) {
+        this.loading = true;
         this.users = this._httpFacade.getUsersListPaged(page, pageSize)
                             .do(data => {
                                 this.page = data.pageNumber;
                                 this.pageSize = data.pageSize;
                                 this.total = data.totalRecordCount;
+                                this.loading = false;
                             })
                             .map(data => { return data.users; });
     }

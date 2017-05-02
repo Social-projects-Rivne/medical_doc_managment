@@ -1,119 +1,127 @@
-<form class="form" (ngSubmit)="onCreate(); childrensCardFormAdd.reset()" #childrensCardFormAdd="ngForm">
-    <div class="form-group">
-        <label for="f_name">Ім'я</label>
-        <input type="text" class="form-control" id="f_name" name="f_name" [(ngModel)]="childrensCard.f_name" #f_name="ngModel" required
-            pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}" />
-        <div [hidden]="f_name.valid || f_name.untouched" class="alert alert-danger">
-            Ім'я є неправильним!
+<div class="container">
+    <form class="form" (ngSubmit)="submit(); childrensCardFormAdd.reset()" #childrensCardFormAdd="ngForm">
+        <div class="form-group">
+            <label for="firstName">Ім'я</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="childrensCard.firstName" #firstName="ngModel" required
+                   pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}" />
+            <div [hidden]="firstName.valid || firstName.untouched" class="alert alert-danger">
+                Ім'я є неправильним!
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="s_name">По батькові</label>
-        <input type="text" class="form-control" id="s_name" name="s_name" [(ngModel)]="childrensCard.s_name" #s_name="ngModel" pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"
-        />
-        <div [hidden]="s_name.valid || s_name.untouched" class="alert alert-danger">
-            По батькові є неправильне!
+        <div class="form-group">
+            <label for="secondName">По батькові</label>
+            <input type="text" class="form-control" id="secondName" name="secondName" [(ngModel)]="childrensCard.secondName" #secondName="ngModel"
+                   pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}" />
+            <div [hidden]="secondName.valid || secondName.untouched" class="alert alert-danger">
+                По батькові є неправильне!
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="l_name">Прізвище</label>
-        <input type="text" class="form-control" id="l_name" name="l_name" [(ngModel)]="childrensCard.l_name" #l_name="ngModel" required
-            pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}" />
-        <div [hidden]="l_name.valid || l_name.untouched" class="alert alert-danger">
-            Прізвище є неправильним!
+        <div class="form-group">
+            <label for="lastName">Прізвище</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="childrensCard.lastName" #lastName="ngModel" required
+                   pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}" />
+            <div [hidden]="lastName.valid || lastName.untouched" class="alert alert-danger">
+                Прізвище є неправильним!
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="date">Дата народження</label>
-        <input #date type="date" class="form-control" id="date" name="date" (change)="onDateChange($event.target)" [value]="childrensCard.date | date:'yyyy-MM-dd'"
-            required />
-        <div *ngIf="isDatesErrorsVisible" class="alert alert-danger">
-            Дата народження є неправильною!
+        <div class="form-group">
+            <label for="date">Дата народження</label>
+            <input #date type="date" class="form-control" id="date" name="date" (change)="onDateChange($event.target)" [value]="childrensCard.date | date:'yyyy-MM-dd'"
+                   required />
+            <div *ngIf="false" class="alert alert-danger">
+                Дата народження є неправильною!
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="address">Адреса</label>
-        <input type="text" class="form-control" id="address" name="address" [(ngModel)]="childrensCard.address" #address="ngModel"
-            required />
-        <div [hidden]="address.valid || address.untouched" class="alert alert-danger">
-            Адреса є неправильною!
+        <div class="form-group">
+            <label for="address">Адреса</label>
+            <input type="text" class="form-control" id="address" name="address" [(ngModel)]="childrensCard.address" #address="ngModel"
+                   required />
+            <div [hidden]="address.valid || address.untouched" class="alert alert-danger">
+                Адреса є неправильною!
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="checkin">Початок облікової дати</label>
-        <input #checkin type="date" class="form-control" id="checkin" name="checkin" (change)="onCheckInChange($event.target)" [value]="childrensCard.checkin | date:'yyyy-MM-dd'"
-            required />
-        <div *ngIf="isCheckInErrorsVisible" class="alert alert-danger">
-            Дата початоку обліку є неправильною!
+        <div class="form-group">
+            <label for="checkin">Початок облікової дати</label>
+            <input #checkin type="date" class="form-control" id="checkin" name="checkin" (change)="onCheckInChange($event.target)" [value]="childrensCard.checkin | date:'yyyy-MM-dd'"
+                   required />
+            <div *ngIf="false" class="alert alert-danger">
+                Дата початоку обліку є неправильною!
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="checkout">Кінець облікової дати (необов'язково)</label>
-        <input #checkout type="date" class="form-control" id="checkout" name="checkout" (change)="onCheckOutChange($event.target)"
-            [value]="childrensCard.checkout | date:'yyyy-MM-dd'" />
-        <div *ngIf="isCheckOutErrorsVisible" class="alert alert-danger">
-            Дата закінчення обліку є неправильною!
+        <div class="form-group">
+            <label for="checkout">Кінець облікової дати (необов'язково)</label>
+            <input #checkout type="date" class="form-control" id="checkout" name="checkout" (change)="onCheckOutChange($event.target)"
+                   [value]="childrensCard.checkout | date:'yyyy-MM-dd'" />
+            <div *ngIf="false" class="alert alert-danger">
+                Дата закінчення обліку є неправильною!
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="class">Клас</label>
-        <select name="class" id="class" (change)="selectedClassChanged()" [(ngModel)]="selectedClass.id" class="form-control" required #class="ngModel">
-            <option *ngFor="let class of classes" [ngValue]="class.id">
-                {{class.id}}: {{class.name}}
-            </option>
-        </select>
-        <div [hidden]="class.valid || class.untouched" class="alert alert-danger">
-            Клас є обов'язковим!
+        <div class="form-group">
+            <label for="class">Клас</label>
+            <select name="class" id="class" (change)="selectedClassChanged()" [(ngModel)]="selectedClass.id" class="form-control" required #class="ngModel">
+                <option *ngFor="let class of classes" [ngValue]="class.id">
+                    {{class.id}}: {{class.name}}
+                </option>
+            </select>
+            <div [hidden]="class.valid || class.untouched" class="alert alert-danger">
+                Клас є обов'язковим!
+            </div>
         </div>
-    </div>
-    <div *ngIf="selectedClass.id" class="form-group">
-        <label for="block">Блок</label>
-        <select name="block" id="block" (change)="selectedBlockChanged()" [(ngModel)]="selectedBlock.id" class="form-control" required #block="ngModel">
-            <option *ngFor="let block of blocks" [ngValue]="block.id">
-                {{block.id}}: {{block.name}}
-            </option>
-        </select>
-        <div [hidden]="block.valid || block.untouched" class="alert alert-danger">
-            Блок є обов'язковим!
+        <div *ngIf="selectedClass.id" class="form-group">
+            <label for="block">Блок</label>
+            <select name="block" id="block" (change)="selectedBlockChanged()" [(ngModel)]="selectedBlock.id" class="form-control" required #block="ngModel">
+                <option *ngFor="let block of blocks" [ngValue]="block.id">
+                    {{block.id}}: {{block.name}}
+                </option>
+            </select>
+            <div [hidden]="block.valid || block.untouched" class="alert alert-danger">
+                Блок є обов'язковим!
+            </div>
         </div>
-    </div>
-    <div *ngIf="selectedBlock.id" class="form-group">
-        <label for="nosology">Нозологія</label>
-        <select name="nosology" id="nosology" (change)="selectedNosologyChanged()" [(ngModel)]="selectedNosology.id" class="form-control" required #nosology="ngModel">
-            <option *ngFor="let nosology of nosologies" [ngValue]="nosology.id">
-                {{nosology.id}}: {{nosology.name}}
-            </option>
-        </select>
-        <div [hidden]="nosology.valid || nosology.untouched" class="alert alert-danger">
-            Нозологія є обов'язковим!
+        <div *ngIf="selectedBlock.id" class="form-group">
+            <label for="nosology">Нозологія</label>
+            <select name="nosology" id="nosology" (change)="selectedNosologyChanged()" [(ngModel)]="selectedNosology.id" class="form-control" required #nosology="ngModel">
+                <option *ngFor="let nosology of nosologies" [ngValue]="nosology.id">
+                    {{nosology.id}}: {{nosology.name}}
+                </option>
+            </select>
+            <div [hidden]="nosology.valid || nosology.untouched" class="alert alert-danger">
+                Нозологія є обов'язковим!
+            </div>
         </div>
-    </div>
-    <div  *ngIf="selectedNosology.id"  class="form-group">
-        <label for="diagnosis">Діагноз</label>
-        <select name="diagnosis" id="diagnosis" [(ngModel)]="childrensCard.diagnosis.id" class="form-control" required #diagnosis="ngModel">
-            <option *ngFor="let diagnosis of diagnoses" [ngValue]="diagnosis.id">
-                {{diagnosis.id}}: {{diagnosis.name}}
-            </option>
-        </select>
-        <div [hidden]="diagnosis.valid || diagnosis.untouched" class="alert alert-danger">
-            Діагноз є обов'язковим!
+        <div *ngIf="selectedNosology.id" class="form-group">
+            <label for="diagnosis">Діагноз</label>
+            <select name="diagnosis" id="diagnosis" [(ngModel)]="childrensCard.diagnosis.id" class="form-control" required #diagnosis="ngModel">
+                <option *ngFor="let diagnosis of diagnoses" [ngValue]="diagnosis.id">
+                    {{diagnosis.id}}: {{diagnosis.name}}
+                </option>
+            </select>
+            <div [hidden]="diagnosis.valid || diagnosis.untouched" class="alert alert-danger">
+                Діагноз є обов'язковим!
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="rescription">Призначення</label>
-        <textarea required class="form-control" name="rescription" id="rescription" cols="30" rows="10" [(ngModel)]="childrensCard.rescription"
-            #rescription="ngModel"></textarea>
-        <div [hidden]="rescription.valid || rescription.untouched" class="alert alert-danger">
-            Призначення є неправильним!
+        <div class="form-group">
+            <label for="prescription">Призначення</label>
+            <input type="text" class="form-control" id="prescription" name="prescription" [(ngModel)]="childrensCard.prescription" #prescription="ngModel"
+                   required />
+            <div [hidden]="prescription.valid || prescription.untouched" class="alert alert-danger">
+                Призначення є неправильним!
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="parents">Батьки</label>
-        <child-card-add-parent></child-card-add-parent>
-    </div>
-    <div class="form-group">
-        <button [disabled]="isDatesErrorsVisible || isCheckInErrorsVisible || isCheckOutErrorsVisible || childrensCardFormAdd.form.invalid"
-            class="btn btn-default" type="submit">Додати</button>
-    </div>
-</form>
+        <div class="form-group">
+            <label for="parents">Батьки</label>
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#childCardAddParentModal">
+                Додати батька
+            </button>
+            <child-card-add-parent></child-card-add-parent>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+                <button [disabled]="childrensCardFormAdd.form.invalid" class="btn btn-default" type="submit">Додати</button>
+            </div>
+        </div>
+        <simple-notifications [options]="notificationOptions"></simple-notifications>
+    </form>
+</div>
 <!--<button class="btn btn-info btn-sm" [routerLink]="['/']">Назад</button>-->

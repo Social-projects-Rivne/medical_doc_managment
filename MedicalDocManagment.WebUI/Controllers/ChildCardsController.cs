@@ -32,6 +32,39 @@ namespace MedicalDocManagment.WebUI.Controllers
         }
 
         [Authorize]
+        [HttpGet]
+        public IHttpActionResult GetChildrenCards()
+        {
+            var childrenCardsDTO = _childCardsService.GetChildrenCards();
+            var config = new MapperConfiguration(cfg => 
+            {
+                cfg.CreateMap<ChildCardDTO, ChildCardVM>();
+                cfg.CreateMap<DiagnosisMkhDTO, DiagnosisMkhVM>();
+            });
+            var mapper = config.CreateMapper();
+            var childrenCardsVM = mapper.Map<List<ChildCardVM>>(childrenCardsDTO);
+
+            return Ok(childrenCardsVM);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IHttpActionResult GetChildrenCardsPaged(int pageNumber = 1, int pageSize = 20)
+        {
+            var childrenCardsDTO = _childCardsService.GetChildrenCardsPaged(pageNumber, pageSize);
+            var total = _childCardsService.GetChildrenCardsCount();
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<ChildCardDTO, ChildCardVM>();
+                cfg.CreateMap<DiagnosisMkhDTO, DiagnosisMkhVM>();
+            });
+            var mapper = config.CreateMapper();
+            var childrenCardsVM = mapper.Map<List<ChildCardVM>>(childrenCardsDTO);
+
+            return Ok(new PagedResultHelper<ChildCardVM>(childrenCardsVM, pageNumber, pageSize, total));
+        }
+
+        [Authorize]
         [HttpPost]
         public HttpResponseMessage AddPatient(AddPatientVM addPatientVM)
         {
@@ -167,6 +200,31 @@ namespace MedicalDocManagment.WebUI.Controllers
             try
             {
                 var result = _childCardsService.FindChildCards(сhildCardDTO);
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
+
+        [PsychiatristsOnlyAuthorization]
+        [HttpPatch]
+        public IHttpActionResult SavePsychiatristsConclusion(int childCardId,
+            [FromBody]string conclusion)
+        {
+            if (conclusion == null)
+            {
+                return BadRequest("No conclusion is supplied.");
+            }
+            if (conclusion.Length>2260)
+            {
+                return BadRequest("Conclusion is too long.");
+            }
+
+            try
+            {
+                var result = _childCardsService.AddPsychiatristsConclusion(childCardId, conclusion);
                 return Ok(result);
             }
             catch (Exception exception)

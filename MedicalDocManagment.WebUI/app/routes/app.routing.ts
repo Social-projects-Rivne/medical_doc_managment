@@ -8,6 +8,7 @@ import { HomeAdminComponent } from "../components/home/admin/home-admin.componen
 import { HomeMainComponent } from "../components/home/main/home-main.component";
 import ChildCardAddComponent from "../components/childrens-card/children-cards-list/add/children-card-add.component";
 import ViewPatientDataComponent from "../components/childrens-card/view-patient-data/view-patient-data.component";
+import ChildCardComponent from "../components/childrens-card/child-card/child-card.component";
 import MainAppComponent from "../components/main-app.component";
 import AdminAppComponent from "../components/admin-app.component";
 
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeMainComponent },
             { path: 'add', component: ChildCardAddComponent },
-            { path: 'viewPatient', component: ViewPatientDataComponent }
+            { path: 'viewPatient', component: ViewPatientDataComponent },
+            { path: 'childcard', component: ChildCardComponent }
         ]
     },
     { path: '', redirectTo: 'login', pathMatch: 'full'},

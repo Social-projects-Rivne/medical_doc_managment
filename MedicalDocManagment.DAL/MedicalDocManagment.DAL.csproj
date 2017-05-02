@@ -105,9 +105,10 @@
     <Compile Include="Entities\Position.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Initializer\ChildrenCardsInitializerHelper.cs" />
+    <Compile Include="Initializer\Helpers\ChildrenCardsInitializerHelper.cs" />
     <Compile Include="Initializer\DbInitializer.cs" />
-    <Compile Include="Initializer\InitializerHelpers.cs" />
+    <Compile Include="Initializer\Helpers\DoctorsHelper.cs" />
+    <Compile Include="Initializer\Helpers\InitializerHelpers.cs" />
     <Compile Include="Manager\RolesManager.cs" />
     <Compile Include="Manager\UsersManager.cs" />
     <Compile Include="Migrations\201704101924589_Initial.cs" />
@@ -129,6 +130,10 @@
     <Compile Include="Migrations\201704151818121_Add_roles.cs" />
     <Compile Include="Migrations\201704151818121_Add_roles.Designer.cs">
       <DependentUpon>201704151818121_Add_roles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704281351040_Feature-fill_form_psychiatrist.cs" />
+    <Compile Include="Migrations\201704281351040_Feature-fill_form_psychiatrist.Designer.cs">
+      <DependentUpon>201704281351040_Feature-fill_form_psychiatrist.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -168,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704151818121_Add_roles.resx">
       <DependentUpon>201704151818121_Add_roles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704281351040_Feature-fill_form_psychiatrist.resx">
+      <DependentUpon>201704281351040_Feature-fill_form_psychiatrist.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

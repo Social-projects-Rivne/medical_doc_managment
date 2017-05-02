@@ -25,6 +25,7 @@ namespace MedicalDocManagment.DAL.Initializer
                                     .Without(childCard => childCard.ParentsChildren)
                                     .Without(childCard => childCard.DiagnosisId)
                                     .Without(childCard => childCard.Diagnosis)
+                                    .Without(childCard => childCard.PsychiatristsConclusion)
                                     .CreateMany(30);
 
             var petrenkosCards = fixture.Build<ChildCard>()
