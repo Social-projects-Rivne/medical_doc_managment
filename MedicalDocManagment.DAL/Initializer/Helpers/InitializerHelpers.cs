@@ -41,7 +41,8 @@ namespace MedicalDocManagment.DAL.Initializer
                 UserName = "admin",
                 Email = "admin@mail.com",
                 PasswordHash = passwordHasher.HashPassword(adminPassword),
-                Position = new Position { Name = "admin"}
+                Position = new Position { Name = "admin"},
+                IsActive = true
             };
             var result = unitOfWork.UsersManager.Create(user);
             if (result.Succeeded)
