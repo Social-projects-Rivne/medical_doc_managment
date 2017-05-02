@@ -253,6 +253,7 @@
     <Compile Include="Models\Main\ViewPatientDataVM.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
     <Compile Include="Models\Validators\AddPatientValidator.cs" />
+    <Compile Include="Models\Validators\Helpers\AddPatientValidatorHelper.cs" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
