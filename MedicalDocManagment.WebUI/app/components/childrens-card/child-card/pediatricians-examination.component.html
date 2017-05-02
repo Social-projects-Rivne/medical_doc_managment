@@ -1,12 +1,220 @@
 ﻿<div class="container">
+  <form class="form-horizontal">
+    <!-- ПІБ пацієнта, якого стосується форма -->
     <div class="row">
-        <h4 class="text-center">
-            {{_childCard.lastName}} {{_childCard.firstName}} {{_childCard.secondName}}
-        </h4>
+      <h4 class="text-center">
+        {{_childCard.lastName}} {{_childCard.firstName}} {{_childCard.secondName}}
+      </h4>
     </div>
+    <!-- Заголовок форми — ОГЛЯД ЛІКАРЯ-ПЕДІАТРА -->
     <div class="row">
-        <h4 class="text-center">
-            ОГЛЯД ЛІКАРЯ-ПЕДІАТРА
-        </h4>
+      <h4 class="text-center">
+        ОГЛЯД ЛІКАРЯ-ПЕДІАТРА
+      </h4>
     </div>
+
+    <!-- Вік -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-offset-2 col-xs-4">
+          <span class="input-group-addon">Вік</span>
+          <input type="text" class="form-control" id="childAge" name="childAge"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+        </div>
+      </div>
+    </div>
+    <!-- Вага -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-offset-2 col-xs-4">
+          <span class="input-group-addon">Вага</span>
+          <input type="text" class="form-control" id="childWeight" name="childWeight"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+        </div>
+      </div>
+    </div>
+    <!-- Зріст -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-offset-2 col-xs-4">
+          <span class="input-group-addon">Зріст</span>
+          <input type="text" class="form-control" id="childHeight" name="childHeight"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+        </div>
+      </div>
+    </div>
+    <!-- Окружність голови -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-offset-2 col-xs-4">
+          <span class="input-group-addon">Окружність голови</span>
+          <input type="text" class="form-control" id="headCircumference" name="headCircumference"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+        </div>
+      </div>
+    </div>
+    <!-- Окружність грудної клітки -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-offset-2 col-xs-4">
+          <span class="input-group-addon">Окружність грудної клітки</span>
+          <input type="text" class="form-control" id="chestCircumference" name="chestCircumference"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+        </div>
+      </div>
+    </div>
+    <!-- ВТ -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-offset-2 col-xs-4">
+          <span class="input-group-addon">ВТ</span>
+          <input type="text" class="form-control" id="childVT" name="childVT"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Скарги -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <label for="complaints">Скарги</label>
+        <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                  id="complaints"
+                  name="complaints" [(ngModel)]="_conclusion"
+                  #conclusionTextArea="ngModel" [disabled]="_isSaving"
+                  maxlength="308" rows=3></textarea>
+      </div>
+    </div>
+    <!-- Анамнез захворювання -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <label for="complaints">Анамнез захворювання</label>
+        <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                  id="anamnesisOfDisease"
+                  name="anamnesisOfDisease" [(ngModel)]="_conclusion"
+                  #conclusionTextArea="ngModel" [disabled]="_isSaving"
+                  maxlength="819" rows=8></textarea>
+      </div>
+    </div>
+    <!-- Анамнез життя -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">Анамнез життя</span>
+          <input type="text" class="form-control" id="anamnesisOfLife" name="anamnesisOfLife"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Вагітність та пологи -->
+    <!-- Рядок 1 -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">Дитина від</span>
+          <input type="text" class="form-control" id="pregnancySomeDetails" name="pregnancySomeDetails"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+          <span class="input-group-addon">вагітності, яка протікала:<i>нормально,</i><i>з токсикозом</i></span>
+        </div>
+      </div>
+    </div>
+    <!-- Рядок 2 -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <input type="text" class="form-control" id="pregnancyToxemiaDetails" name="pregnancyToxemiaDetails"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+          <span class="input-group-addon"><i>половини,</i><i> анемією,</i><i> загрозою переривання у терміні</i></span>
+          <input type="text" class="form-control" id="pregnancywithThreatInInterruption" name="pregnancyToxemiawithThreatInInterruption"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+        </div>
+      </div>
+    </div>
+    <!-- Рядок 3 -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">від</span>
+          <input type="text" class="form-control" id="pregnancyDateOfInterruption" name="pregnancyDateOfInterruption"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+          <span class="input-group-addon"><i>термінових,</i><i> передчасних,</i><i> оперативних пологів.</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Результати огляду при народженні -->
+    <!-- Рядок 1 -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">Вага при народженні</span>
+          <input type="text" class="form-control" id="birthDetailsWeight" name="birthDetailsWeight"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+          <span class="input-group-addon">, довжина тіла</span>
+          <input type="text" class="form-control" id="birthDetailsBodyLength" name="birthDetailsBodyLength"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+          <span class="input-group-addon">, окружність голови</span>
+          <input type="text" class="form-control" id="birthDetailsHeadCircumference" name="birthDetailsHeadCircumference"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+          <span class="input-group-addon">,</span>
+        </div>
+      </div>
+    </div>
+    <!-- Рядок 2 -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">окружність грудної клітки</span>
+          <input type="text" class="form-control" id="birthDetailsChestCircumference" name="birthDetailsChestCircumference"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+          <span class="input-group-addon">, оцінка за шкалою Апгар</span>
+          <input type="text" class="form-control" id="birthDetailsScoreByApgar" name="birthDetailsScoreByApgar"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+          <span class="input-group-addon">.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ранній неонатальний період -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">Ранній неонатальний період протікав <i>без ускладнень,</i><i>був ускладнений</i></span>
+          <input type="text" class="form-control" id="birthDetailsChestCircumference" name="birthDetailsChestCircumference"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+        </div>
+      </div>
+    </div>
+    <!-- Рядок після рядку з раннім неонатальним періодом -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <input type="text" class="form-control" id="detailsAfterPsychomotorDevelopmentOnFirstYear"
+                 name="detailsAfterPsychomotorDevelopmentOnFirstYear"
+                 [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                 [disabled]="_isAdding" />
+        </div>
+      </div>
+    </div>
+
+
+  </form>
 </div>
