@@ -40,6 +40,11 @@ namespace MedicalDocManagment.WebUI.Providers
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
+            else if(!user.IsActive)
+            {
+                context.SetError("invalid_grant", "The user was deleted.");
+                return;
+            }
 
             var roles = oAuthIdentity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
             AuthenticationProperties properties = CreateProperties(user.UserName, Newtonsoft.Json.JsonConvert.SerializeObject(roles.Select(x => x.Value)));
