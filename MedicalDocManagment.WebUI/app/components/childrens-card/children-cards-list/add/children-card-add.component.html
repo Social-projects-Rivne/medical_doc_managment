@@ -109,6 +109,14 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="directedBy">Ким направлено</label>
+            <input type="text" class="form-control" id="directedBy" name="directedBy" [(ngModel)]="childrensCard.directedBy" #directedBy="ngModel"
+                   required />
+            <div [hidden]="directedBy.valid || directedBy.untouched" class="alert alert-danger">
+                Поле "Ким направлено" обовёязкове!
+            </div>
+        </div>
+        <div class="form-group">
             <label for="parents">Батьки</label>
             <div class="col-xs-12">
                 <button type="button" class="btn btn-primary" data-toggle="modal"

@@ -40,7 +40,7 @@ export default class ChildrensCardService {
             address: childCard.address,
             diagnosisCode: childCard.diagnosis.id,
             prescription: childCard.prescription,
-            directedBy: childCard.prescription,
+            directedBy: childCard.directedBy,
         };
         let body = JSON.stringify(sendObj);
 
