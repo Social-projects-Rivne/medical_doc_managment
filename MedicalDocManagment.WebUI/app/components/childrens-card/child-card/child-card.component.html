@@ -43,8 +43,9 @@
     </div>
     <div class="row">
         <p *ngIf="_childCard.psychiatristsConclusion">
-            <b>Заключення психіатра:</b> {{_childCard.psychiatristsConclusion}} <br />
+            <b>Заключення психіатра:</b>
         </p>
+        <pre *ngIf="_childCard.psychiatristsConclusion">{{_childCard.psychiatristsConclusion}}</pre>
         <span *ngIf="!_childCard.psychiatristsConclusion &&
               this._currentUsersPositionName=='психіатр'">
             <button class="btn btn-primary" data-toggle="modal"
