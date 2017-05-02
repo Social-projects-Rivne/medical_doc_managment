@@ -242,6 +242,7 @@
     <Compile Include="Controllers\PsychiatristsOnlyAuthorization.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />
     <Compile Include="Helpers\ChildCardMapHelper.cs" />
+    <Compile Include="Helpers\PositionMapHelper.cs" />
     <Compile Include="Helpers\ViewPatientDataHelper.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
