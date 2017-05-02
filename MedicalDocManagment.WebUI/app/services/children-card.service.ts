@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Subject } from 'rxjs/Subject';
 
+import ParentChildCard from '../models/parent-child-card.model';
 import ChildCardModel from '../models/child-card.model';
 import ChildrenCardsModel from '../models/children-cards.model';
 import ParentModel from '../models/parent.model';
@@ -39,12 +40,25 @@ export default class ChildrensCardService {
             address: childCard.address,
             diagnosisCode: childCard.diagnosis.id,
             prescription: childCard.prescription,
-            directedBy: childCard.prescription,
+            directedBy: childCard.directedBy,
         };
         let body = JSON.stringify(sendObj);
 
         return this._http.post(this._apiUrl + '/addpatient', body, { headers })
                          .map((resp: Response) => new ChildCardModel(resp.json()))
+                         .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    addParentIntoChildCard(parent: ParentModel, childCard: ChildCardModel): Observable<ParentChildCard> {
+        let headers = this._headers;
+        let sendObj = new ParentChildCard({
+            parentId: parent.id,
+            childId: childCard.id
+        });
+        let body = JSON.stringify(sendObj);
+
+        return this._http.post(this._apiUrl + '/addparentintochildcard', body, { headers })
+                         .map((resp: Response) => { return new ParentChildCard(resp.json()); })
                          .catch((error: any) => { return Observable.throw(error); });
     }
 
