@@ -20,5 +20,6 @@ namespace MedicalDocManagment.WebUI.Models
         public DateTime? Checkout { get; set; }
         public string DiagnosisCode { get; set; }
         public string DirectedBy { get; set; }
+        public string Prescription { get; set; }
     }
 }
