@@ -12,6 +12,9 @@ using MedicalDocManagement.BLL.Services.Abstract;
 using MedicalDocManagment.WebUI.Models.Main;
 using MedicalDocManagement.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Helpers;
+using MedicalDocManagment.WebUI.Models.Validators;
+using System.Net.Http;
+using System.Net;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -63,22 +66,25 @@ namespace MedicalDocManagment.WebUI.Controllers
 
         [Authorize]
         [HttpPost]
-        public IHttpActionResult AddPatient(AddPatientVM addPatientVM)
+        public HttpResponseMessage AddPatient(AddPatientVM addPatientVM)
         {
-            if (!ModelState.IsValid)
+            var addPatientValidator = new AddPatientVMValidator();
+            var fluentValidationResult = addPatientValidator.Validate(addPatientVM);
+            if (!fluentValidationResult.IsValid)
             {
-                return BadRequest(ModelState);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, fluentValidationResult.Errors);
             }
+
             var newChildCardDTO = AddPatientHelper.AddPatientVMToChildCardDTO(addPatientVM);
 
             try
             {
                 var result = _childCardsService.AddChildCard(newChildCardDTO);
-                return Ok(result);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception exception)
             {
-                return InternalServerError(exception);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception);
             }
         }
 
