@@ -2,24 +2,42 @@
 
 import ChildCardModel from "../../../models/child-card.model";
 import PediatriciansExaminationModel from "../../../models/pediatricians-examination/pediatricians-examination.model";
+import { ChildBirthEnum } from '../../../models/pediatricians-examination/child-birth.enum';
+import Trilean from '../../../models/pediatricians-examination/trilean';
+
 import ChildrenCardService from '../../../services/children-card.service';
 import MainAppService from "../../../services/main-app.service";
 
 @Component({
     moduleId: module.id,
-    selector: 'pediatricians-examination',
-    templateUrl: 'pediatricians-examination.component.html'
+    selector: 'pediatricians-examination-form',
+    templateUrl: 'pediatricians-examination-form.component.html'
 })
-export default class PediatriciansExaminationComponent {
+export default class PediatriciansExaminationFormComponent {
+    // next is declared in such way so that enum can be used in template
+    ChildBirthEnum = ChildBirthEnum;
+
     private _childCard: ChildCardModel;
     private _childrenCardService: ChildrenCardService;
-    // TODO don't forget to change type
+    private _isSaving: boolean;
     private _pediatriciansExamination: PediatriciansExaminationModel;
 
     constructor(childrenCardService: ChildrenCardService, mainAppService: MainAppService) {
         this._childrenCardService = childrenCardService;
         this._childCard = mainAppService.currentCard;
-        //
+        this._isSaving = false;
         this._pediatriciansExamination = new PediatriciansExaminationModel();
+    }
+
+    private _textDecoration(textState: Trilean): string {
+        let result = '';
+        if (textState.value == true) {
+            result += 'underline'
+        } else {
+            if (textState.value == false) {
+                result += 'line-through'
+            }
+        }
+        return result;
     }
 }

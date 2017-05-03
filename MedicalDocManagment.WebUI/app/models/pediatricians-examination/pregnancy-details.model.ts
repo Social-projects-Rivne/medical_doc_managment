@@ -1,20 +1,26 @@
-﻿export default class CurrentDetailsModel {
+﻿import Trilean from './trilean';
+import ChildBirthModel from './child-birth.model';
+
+export default class CurrentDetailsModel {
     someDetails: string;
-    passedNormally: boolean;
-    passedWithToxemia: boolean;
+    passedNormally: Trilean;
+    passedWithToxemia: Trilean;
     toxemiaDetails: string;
-    passedWithAnemia: boolean;
-    withThreatInInterruption: boolean;
+    passedWithAnemia: Trilean;
+    withThreatInInterruption: Trilean;
     dateOfInterruption: string;
     fromDetails: string;
-    urgentChildBirth: boolean;
-    prematureChildBirth: boolean;
-    operativeChildBirth: boolean;
+    childBirth: ChildBirthModel;
 
     constructor() {
-        this.someDetails = this.passedNormally = this.passedWithToxemia =
-            this.toxemiaDetails = this.passedWithAnemia = this.withThreatInInterruption =
-            this.dateOfInterruption = this.fromDetails = this.urgentChildBirth =
-            this.prematureChildBirth = this.operativeChildBirth = null;
+        this.passedNormally = new Trilean();
+        this.passedWithToxemia = new Trilean();
+        this.passedWithAnemia = new Trilean();
+        this.withThreatInInterruption = new Trilean();
+
+        this.childBirth = new ChildBirthModel();
+
+        this.someDetails = this.toxemiaDetails = this.dateOfInterruption =
+            this.fromDetails = null;
     }
 }

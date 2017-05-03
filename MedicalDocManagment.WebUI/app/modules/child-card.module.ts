@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { MomentModule } from 'angular2-moment';
 
 import ChildCardMainPageComponent from '../components/childrens-card/child-card/main-page.component';
-import ChildCardPediatriciansExaminationComponent from '../components/childrens-card/child-card/pediatricians-examination.component';
+import ChildCardPediatriciansExaminationFormComponent from '../components/childrens-card/child-card/pediatricians-examination-form.component';
 import ChildCardPsychiatristsConclusionFormComponent from '../components/childrens-card/child-card/psychiatrists-conclusion-form.component';
 
 import { AuthenticationService } from '../services/authentication.service';
@@ -21,7 +21,7 @@ import ChildrenCardService from '../services/children-card.service';
     ],
     declarations: [
         ChildCardMainPageComponent,
-        ChildCardPediatriciansExaminationComponent,
+        ChildCardPediatriciansExaminationFormComponent,
         ChildCardPsychiatristsConclusionFormComponent
     ],
     providers: [

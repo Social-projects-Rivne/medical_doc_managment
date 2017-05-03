@@ -1,4 +1,4 @@
-﻿import ChildCardModel from '../child-card.model';
+﻿import Trilean from './trilean';
 
 import HeaderModel from './header.model';
 import PregnancyDetailsModel from './pregnancy-details.model';
@@ -14,36 +14,40 @@ export default class PediatriciansExaminationModel {
     anamnesisOfLife: string;
     pregnancyDetails: PregnancyDetailsModel;
     birthDetails: BirthDetailsModel;
-    earlyNeonatalPeriodWasWithoutComplications: boolean;
+    earlyNeonatalPeriodWasWithoutComplications: Trilean;
     complicationsDuringNeonatalPeriod: string;
-    psychomotorDevelopmentOnFirstYear: PsychomotorDevelopmentModel;
-    detailsAfterPsychomotorDevelopmentOnFirstYear: string;
+    detailsAfterEarlyNeonatalPeriod: string;
+    psychomotorDevelopmentOnFirstYear: PsychomotorDevelopmentModel;    
     naturalFeedingDetails: string;
     nonNaturalFeedingDetails: string;
     mixedFeedingDetails: string;
     pastIllnesses: string;
     screeningReasonsDetails: string;
-    badHabitsPresent: boolean;
+    badHabitsPresent: Trilean;
     badHabitsDetails: string;
-    weightedWithAllergicHistory: boolean;
+    weightedWithAllergicHistory: Trilean;
     allergicHistoryDetails: string;
-    weightedWithAncestralAnamnesis: string;
+    weightedWithAncestralAnamnesis: Trilean;
     ancestralAnamnesisDetails: string;
     preventiveVaccinations: string;
 
     constructor() {
-        this.id = this.childCardId =  null;
         this.header = new HeaderModel();
-        this.complaints = this.anamnesisOfDisease = this.anamnesisOfLife = null;
         this.pregnancyDetails = new PregnancyDetailsModel();
         this.birthDetails = new BirthDetailsModel();
-        this.earlyNeonatalPeriodWasWithoutComplications = this.complicationsDuringNeonatalPeriod = null;
         this.psychomotorDevelopmentOnFirstYear = new PsychomotorDevelopmentModel();
-        this.detailsAfterPsychomotorDevelopmentOnFirstYear = this.naturalFeedingDetails =
-            this.nonNaturalFeedingDetails = this.mixedFeedingDetails = this.pastIllnesses =
-            this.screeningReasonsDetails = this.badHabitsPresent = this.badHabitsDetails = 
-            this.weightedWithAllergicHistory = this.allergicHistoryDetails = 
-            this.weightedWithAncestralAnamnesis = this.ancestralAnamnesisDetails =
+
+        this.earlyNeonatalPeriodWasWithoutComplications = new Trilean();
+        this.weightedWithAllergicHistory = new Trilean();
+        this.weightedWithAncestralAnamnesis = new Trilean();
+        this.badHabitsPresent = new Trilean();
+
+        this.id = this.childCardId = this.complaints = this.anamnesisOfDisease = 
+            this.anamnesisOfLife = this.complicationsDuringNeonatalPeriod =
+            this.detailsAfterEarlyNeonatalPeriod = this.naturalFeedingDetails =
+            this.nonNaturalFeedingDetails = this.mixedFeedingDetails =
+            this.pastIllnesses = this.screeningReasonsDetails = this.badHabitsDetails = 
+            this.allergicHistoryDetails = this.ancestralAnamnesisDetails =
             this.preventiveVaccinations = null;
     }
 }

@@ -1,0 +1,1 @@
+﻿export enum ChildBirthEnum { Unknown, Urgent, Premature, Operative }
