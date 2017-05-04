@@ -44,12 +44,10 @@ export class UsersListComponent {
     constructor(httpFacade: HttpFacade, private _service: NotificationsService,
                 private itemNotificationService: ItemActionListNotificationService) {
         this._httpFacade = httpFacade;
-        this.userForEdit = new UserModel(null);
     }
 
-    onUsersListEdit(id: string) {
-        this._httpFacade.getUserById(id)
-            .subscribe((data: any) => { this.userForEdit = data; });
+    onUsersListEdit(userForEdit: UserModel) {
+        this.userForEdit = userForEdit;
     }
 
     ngOnInit() {

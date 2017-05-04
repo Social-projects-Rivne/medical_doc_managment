@@ -3,6 +3,7 @@ import { Response } from '@angular/http';
 
 import ItemComponent from './item/item.component';
 import UsersModel from '../../../../models/usersmodel';
+import UserModel from '../../../../models/usermodel';
 
 @Component({
     moduleId: module.id,
@@ -16,18 +17,21 @@ export default class PageComponent {
     @Input() pageSize: number;
     @Input() total: number;
     @Input() loading: boolean;
-    @Output() onUsersListEdit = new EventEmitter<string>();
+    @Output() onUsersListEdit: EventEmitter<UserModel>;
 
     @Output() onPageChange = new EventEmitter<number>();
+
     constructor() {
-        //this.users = new UsersModel(null);
+        this.onUsersListEdit = new EventEmitter<UserModel>();
     }
+
     changePage(page: number) {
         if (!this.loading) {
             this.onPageChange.emit(page);
         }
     }
-    onPageEdit(id: string) {
+
+    onPageEdit(id: UserModel) {
         this.onUsersListEdit.emit(id);
     }
 }

@@ -11,14 +11,14 @@ import UserModel from '../../../../../../models/usermodel'
 
 export default class ItemActionListComponent {
     @Input() user: UserModel;
-    @Output() onItemEdit = new EventEmitter<string>();
+    @Output() onItemEdit = new EventEmitter<UserModel>();
 
     constructor() {
         this.user = new UserModel();
     }
 
-    onActionListEdit(id: string) {
-        this.onItemEdit.emit(id);
+    onActionListEdit(userForEdit: UserModel) {
+        this.onItemEdit.emit(userForEdit);
     }
 
 }
