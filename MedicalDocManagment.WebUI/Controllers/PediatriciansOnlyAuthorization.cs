@@ -8,11 +8,11 @@ using System.Web.Http.Filters;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
-    public class PsychiatristsOnlyAuthorization : AuthorizationFilterAttribute
+    public class PediatriciansOnlyAuthorization : AuthorizationFilterAttribute
     {
         private readonly IUsersService _usersService;
 
-        public PsychiatristsOnlyAuthorization()
+        public PediatriciansOnlyAuthorization()
         {
             _usersService = new UsersService();
         }
@@ -25,11 +25,11 @@ namespace MedicalDocManagment.WebUI.Controllers
                 var positionName = _usersService.GetPositionByUserName(
                     HttpContext.Current.User.Identity.Name);
 
-                if (positionName != "психіатр")
+                if (positionName != "педіатр")
                 {
                     httpActionContext.Response = new HttpResponseMessage(HttpStatusCode.Unauthorized);
                 }
-            }            
+            }
         }
     }
 }

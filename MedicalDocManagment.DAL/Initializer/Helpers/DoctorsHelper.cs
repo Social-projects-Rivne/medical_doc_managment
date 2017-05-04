@@ -17,14 +17,16 @@ namespace MedicalDocManagment.DAL.Initializer.Helpers
                     UserName = "pediatrician",
                     Email = "pediatrician@mail.com",
                     PasswordHash = passwordHash,
-                    Position = new Position { Name = "педіатр" }
+                    Position = new Position { Name = "педіатр" },
+                    IsActive = true
                 },
                 new User
                 {
                     UserName = "psychiatrist",
                     Email = "psychiatrist@mail.com",
                     PasswordHash = passwordHash,
-                    Position = new Position { Name = "психіатр" }
+                    Position = new Position { Name = "психіатр" },
+                    IsActive = true
                 }
             };
 

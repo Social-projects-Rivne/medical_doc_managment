@@ -1,24 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace MedicalDocManagment.WebUI.Models.Main
 {
-    public class ChildCardVM
+    public class SavePediatriciansExaminationVM
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string SecondName { get; set; }
-        public string LastName { get; set; }
-        public DateTime Date { get; set; }
-        public string Address { get; set; }
-        public DateTime CheckIn { get; set; }
-        public DateTime? CheckOut { get; set; }
-        public string DiagnosisId { get; set; }
-        public string Prescription { get; set; }
-        public string DirectedBy { get; set; }
-        public DiagnosisMkhVM Diagnosis { get; set; }
-        public string PsychiatristsConclusion { get; set; }
+        [Required(ErrorMessage = "Для збереження огляду педіатра необхідно вказати ідентифікатор картки пацієнта")]
+        public int ChildCardId { get; set; }
+
+    header: HeaderModel;
+    complaints: string;
+    anamnesisOfDisease: string;
+    anamnesisOfLife: string;
+    pregnancyDetails: PregnancyDetailsModel;
+    birthDetails: BirthDetailsModel;
+    earlyNeonatalPeriodWasWithoutComplications: Trilean;
+    complicationsDuringNeonatalPeriod: string;
+    detailsAfterEarlyNeonatalPeriod: string;
+    psychomotorDevelopmentOnFirstYear: PsychomotorDevelopmentModel;    
+    naturalFeedingDetails: string;
+    nonNaturalFeedingDetails: string;
+    mixedFeedingDetails: string;
+    pastIllnesses: string;
+    screeningReasonsDetails: string;
+    badHabitsPresent: Trilean;
+    badHabitsDetails: string;
+    weightedWithAllergicHistory: Trilean;
+    allergicHistoryDetails: string;
+    weightedWithAncestralAnamnesis: Trilean;
+    ancestralAnamnesisDetails: string;
+    preventiveVaccinations: string;
     }
 }

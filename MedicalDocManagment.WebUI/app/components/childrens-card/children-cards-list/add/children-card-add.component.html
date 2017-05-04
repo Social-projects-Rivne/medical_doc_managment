@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="form" (ngSubmit)="submit(); childrensCardFormAdd.reset()" #childrensCardFormAdd="ngForm">
+    <form class="form" (ngSubmit)="submit(childrensCardFormAdd)" #childrensCardFormAdd="ngForm">
         <div class="form-group">
             <label for="firstName">Ім'я</label>
             <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="childrensCard.firstName" #firstName="ngModel" required
@@ -109,12 +109,46 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="directedBy">Ким направлено</label>
+            <input type="text" class="form-control" id="directedBy" name="directedBy" [(ngModel)]="childrensCard.directedBy" #directedBy="ngModel"
+                   required />
+            <div [hidden]="directedBy.valid || directedBy.untouched" class="alert alert-danger">
+                Поле "Ким направлено" обов'язкове!
+            </div>
+        </div>
+        <div class="form-group">
             <label for="parents">Батьки</label>
-            <button type="button" class="btn btn-primary" data-toggle="modal"
-                    data-target="#childCardAddParentModal">
-                Додати батька
-            </button>
-            <child-card-add-parent></child-card-add-parent>
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#childCardAddParentModal">
+                    Додати батька
+                </button>
+            </div>
+            <div class="col-xs-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Ім'я</th>
+                                <th>По батькові</th>
+                                <th>Прізвище</th>
+                                <th>Місце роботи</th>
+                                <th>Номер телефону</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let parent of listParents">
+                                <td>{{parent.firstName}}</td>
+                                <td>{{parent.secondName}}</td>
+                                <td>{{parent.lastName}}</td>
+                                <td>{{parent.work}}</td>
+                                <td>{{parent.phone}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <child-card-add-parent (parentAddedEvent)="parentAddedEvent($event)"></child-card-add-parent>
         </div>
         <div class="form-group">
             <div class="col-xs-offset-2 col-xs-10">

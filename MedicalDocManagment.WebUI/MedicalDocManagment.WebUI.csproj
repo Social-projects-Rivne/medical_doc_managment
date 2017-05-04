@@ -205,6 +205,7 @@
     <Content Include="app\index.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\loading.gif" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
@@ -244,6 +245,7 @@
     <TypeScriptCompile Include="app\models\pediatricians-examination\pregnancy-details.model.ts" />
     <TypeScriptCompile Include="app\models\pediatricians-examination\pediatricians-examination.model.ts" />
     <TypeScriptCompile Include="app\models\pediatricians-examination\trilean.ts" />
+    <TypeScriptCompile Include="app\models\parent-child-card.model.ts" />
     <TypeScriptCompile Include="app\modules\child-card.module.ts" />
     <TypeScriptCompile Include="app\modules\users-search.module.ts" />
     <Compile Include="Controllers\ChildCardsController.cs" />
@@ -251,9 +253,11 @@
     <Compile Include="Controllers\PsychiatristsOnlyAuthorization.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />
     <Compile Include="Helpers\ChildCardMapHelper.cs" />
+    <Compile Include="Helpers\PositionMapHelper.cs" />
     <Compile Include="Helpers\ViewPatientDataHelper.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
+    <Compile Include="Models\Main\SavePediatriciansExaminationVM.cs" />
     <Compile Include="Models\Main\ChildCardVM.cs" />
     <Compile Include="Models\Main\ClassMkhVM.cs" />
     <Compile Include="Models\Main\DiagnosisMkhVM.cs" />
@@ -262,6 +266,8 @@
     <Compile Include="Models\Main\AddParentVM.cs" />
     <Compile Include="Models\Main\ViewPatientDataVM.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
+    <Compile Include="Models\Validators\AddPatientValidator.cs" />
+    <Compile Include="Models\Validators\Helpers\AddPatientValidatorHelper.cs" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />

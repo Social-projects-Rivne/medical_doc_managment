@@ -13,28 +13,35 @@ using Microsoft.AspNet.Identity;
 using MedicalDocManagment.DAL.Entities;
 using MedicalDocManagment.DAL.Repository.Interfaces;
 using MedicalDocManagment.DAL.Repository;
+using MedicalDocManagement.BLL.Services.Abstract;
+using MedicalDocManagement.BLL.Services;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
     public class AdminController : ApiController
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IUsersService _usersService;
+        private readonly IPositionsService _positionsService;
 
         public AdminController()
         {
             _unitOfWork = new UnitOfWork();
+            _usersService = new UsersService();
+            _positionsService = new PositionsService();
         }
 
         [Authorize]
         [HttpGet]
         public IHttpActionResult GetUsers()
         {
-            Mapper.Initialize(config => {
-                config.CreateMap<User, UserIndexModel>();
-                config.CreateMap<Position, PositionModel>();
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<UserDTO, UserIndexModel>();
+                cfg.CreateMap<PositionDTO, PositionModel>();
             });
+            var mapper = config.CreateMapper();
+            var users = mapper.Map<IList<User>, List<UserIndexModel>>(_unitOfWork.UsersManager.Users.ToList());
 
-            var users = Mapper.Map<IList<User>, List<UserIndexModel>>(_unitOfWork.UsersManager.Users.ToList());
             return Ok(users);
         }
 
@@ -42,20 +49,16 @@ namespace MedicalDocManagment.WebUI.Controllers
         [HttpGet]
         public IHttpActionResult GetPaged(int pageNumber = 1, int pageSize = 20)
         {
-            Mapper.Initialize(config => {
-                config.CreateMap<User, UserIndexModel>();
-                config.CreateMap<Position, PositionModel>();
+            var usersPagedDTO = _usersService.GetPaged(pageNumber, pageSize);
+            int total = _usersService.GetUsersCount();
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<UserDTO, UserIndexModel>();
+                cfg.CreateMap<PositionDTO, PositionModel>();
             });
-            int skip = (pageNumber - 1) * pageSize;
-            int total = _unitOfWork.UsersManager.Users.Count();
-            var users = Mapper.Map<IList<User>, List<UserIndexModel>>(_unitOfWork.UsersManager.Users
-                                                                                              .OrderBy(c => c.Id)
-                                                                                              .Skip(skip)
-                                                                                              .Take(pageSize)
-                                                                                              .ToList());
+            var mapper = config.CreateMapper();
+            var usersMapped = mapper.Map<IList<UserDTO>, List<UserIndexModel>>(usersPagedDTO);
 
-
-            return Ok(new PagedResultHelper<UserIndexModel>(users, pageNumber, pageSize, total));
+            return Ok(new PagedResultHelper<UserIndexModel>(usersMapped, pageNumber, pageSize, total));
         }
 
         [HttpGet]
@@ -289,13 +292,12 @@ namespace MedicalDocManagment.WebUI.Controllers
         [HttpGet]
         public IHttpActionResult GetPositions()
         {
-            Mapper.Initialize(config => config.CreateMap<Position, PositionModel>());
+            var positionsDTO = _positionsService.GetPositions();
 
-            var positions = Mapper.Map<IList<Position>, List<PositionModel>>(_unitOfWork.PositionRepository.Get().ToList());
-
-            if (positions.Any())
+            if (positionsDTO.Any())
             {
-                return Ok(positions);
+                var positionsMapped = PositionMapHelper.DTOsToVMs(positionsDTO);
+                return Ok(positionsMapped);
             }
 
             return NotFound();
@@ -305,12 +307,13 @@ namespace MedicalDocManagment.WebUI.Controllers
         [HttpGet]
         public IHttpActionResult GetPosition(int id)
         {
-            Mapper.Initialize(config => config.CreateMap<Position, PositionModel>());
-            var position = Mapper.Map<Position, PositionModel>(_unitOfWork.PositionRepository.Get(p => p.PositionId == id)
-                                                                                             .FirstOrDefault());
-            if (position != null)
+            var position = _positionsService.GetPosition(id);
+
+            if(position != null)
             {
+                var positionMapped = PositionMapHelper.DTOToVM(position);
                 return Ok(position);
+                
             }
 
             return NotFound();

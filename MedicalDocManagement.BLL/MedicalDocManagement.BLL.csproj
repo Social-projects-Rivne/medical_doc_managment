@@ -69,8 +69,12 @@
     <Compile Include="DTO\Admin\PositionDTO.cs" />
     <Compile Include="DTO\Admin\UserDTO.cs" />
     <Compile Include="Helpers\ChildCardDTOHelper.cs" />
+    <Compile Include="Helpers\PositionDTOHelper.cs" />
+    <Compile Include="Helpers\UserDTOHelper.cs" />
+    <Compile Include="Services\Abstract\IPositionsService.cs" />
     <Compile Include="Services\Abstract\IUsersService.cs" />
     <Compile Include="Services\Abstract\IChildCardsService.cs" />
+    <Compile Include="Services\PositionsService.cs" />
     <Compile Include="Services\UsersService.cs" />
     <Compile Include="Services\ChildCardsService.cs" />
     <Compile Include="DTO\Main\ClassMkhDTO.cs" />
