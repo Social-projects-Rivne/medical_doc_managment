@@ -247,6 +247,7 @@
     <TypeScriptCompile Include="app\modules\child-card.module.ts" />
     <TypeScriptCompile Include="app\modules\users-search.module.ts" />
     <Compile Include="Controllers\ChildCardsController.cs" />
+    <Compile Include="Controllers\PediatriciansOnlyAuthorization.cs" />
     <Compile Include="Controllers\PsychiatristsOnlyAuthorization.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />
     <Compile Include="Helpers\ChildCardMapHelper.cs" />

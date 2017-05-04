@@ -2,17 +2,17 @@
     value: boolean;
 
     constructor() {
-        this.value = null;
+        this.value = undefined;
     }
 
     /**
-     * null => false => true => null
+     * undefined => false => true => undefined
      */
     nextValue(): void {
-        if (this.value == null) {
+        if (this.value == undefined) {
             this.value = false;
         } else {
-            this.value = this.value ? null : true;
+            this.value = this.value ? undefined : true;
         }
     }
 
@@ -22,5 +22,9 @@
             result.value = !this.value;
         }
         return result;
+    }
+
+    toJSON(): boolean {
+        return this.value;
     }
 }

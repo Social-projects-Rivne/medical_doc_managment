@@ -19,13 +19,17 @@ export default class PediatriciansExaminationFormComponent {
 
     private _childCard: ChildCardModel;
     private _childrenCardService: ChildrenCardService;
+    private _isErrorOnSaving: boolean;
     private _isSaving: boolean;
+    private _lastErrorMessage: string;
     private _pediatriciansExamination: PediatriciansExaminationModel;
 
     constructor(childrenCardService: ChildrenCardService, mainAppService: MainAppService) {
         this._childrenCardService = childrenCardService;
         this._childCard = mainAppService.currentCard;
+        this._isErrorOnSaving = false;
         this._isSaving = false;
+        this._lastErrorMessage = null;
         this._pediatriciansExamination = new PediatriciansExaminationModel();
     }
 
@@ -39,5 +43,23 @@ export default class PediatriciansExaminationFormComponent {
             }
         }
         return result;
+    }
+
+    private _Save():void {
+        this._lastErrorMessage = '';
+        this._isErrorOnSaving = false;
+        this._isSaving = true;
+        this._childrenCardService.savePediatriciansExamination(this._childCard.id,
+            this._pediatriciansExamination)
+            .subscribe((savedExamination: PediatriciansExaminationModel) => {
+                this._pediatriciansExamination = savedExamination;
+                this._isSaving = false;
+            },
+            (error: any) => {
+                this._isSaving = false;
+                this._isErrorOnSaving = true;
+                this._lastErrorMessage = 'При збереженні результатів огляду \
+                                        виникла помилка: \r\n' + <any>error;
+            });
     }
 }

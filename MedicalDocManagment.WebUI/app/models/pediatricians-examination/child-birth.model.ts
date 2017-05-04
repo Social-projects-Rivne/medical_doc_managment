@@ -40,4 +40,8 @@ export default class ChildBirthModel {
             }
         }
     }
+
+    toJSON(): ChildBirthEnum {
+        return this.value;
+    }
 }

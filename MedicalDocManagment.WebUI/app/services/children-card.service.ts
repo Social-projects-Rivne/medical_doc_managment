@@ -12,6 +12,7 @@ import ChildrenCardsModel from '../models/children-cards.model';
 import ParentModel from '../models/parent.model';
 import ViewPatientDataModel from '../models/view-patient-data.model';
 import ChildrenCardsPagedModel from '../models/children-cards-paged.model';
+import PediatriciansExaminationModel from "../models/pediatricians-examination/pediatricians-examination.model";
 
 import { AuthenticationService } from "./authentication.service";
 
@@ -125,5 +126,21 @@ export default class ChildrensCardService {
             childCardId, '"'+conclusion+'"', { headers })
                          .map((resp: Response) => { return resp.text(); })
                          .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    /**
+     * Method saves pediatrician's examination to child card
+     * @param {string} childCardId Id of child card to save examination into
+     * @param {PediatriciansExaminationModel} pediatriciansExamination Contains examination to save
+     * @return {Observable<PediatriciansExaminationModel>} Observable to saved examination by server
+     */
+    savePediatriciansExamination(childCardId: number,
+        pediatriciansExamination: PediatriciansExaminationModel):
+        Observable<PediatriciansExaminationModel> {
+        let headers: Headers = this._headers;
+        let body: string = JSON.stringify({ childCardId: childCardId, examination: pediatriciansExamination });
+        return this._http.post('/api/childcards/savePediatriciansExamination', body, { headers })
+            .map((resp: Response) => { return resp.json(); })
+            .catch((error: any) => { return Observable.throw(error); });
     }
 }

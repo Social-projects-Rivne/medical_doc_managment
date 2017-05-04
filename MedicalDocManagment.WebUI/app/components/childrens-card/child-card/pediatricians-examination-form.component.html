@@ -185,25 +185,24 @@
                  #lastName="ngModel" maxlength="60"
                  [disabled]="_isSaving || _pediatriciansExamination.pregnancyDetails.childBirth
                    .value == ChildBirthEnum.Unknown" />
-          <span class="input-group-addon">
-            <span [style.font-style]="'italic'"
-                  [style.text-decoration]="_textDecoration(_pediatriciansExamination.
+          <span class="input-group-addon" [style.font-style]="'italic'"
+                (click)="_pediatriciansExamination.pregnancyDetails.childBirth.nextValue()">
+            <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
                     pregnancyDetails.childBirth.compareWithEnum(ChildBirthEnum.Urgent))"
-                  (click)="_pediatriciansExamination.pregnancyDetails.childBirth.nextValue()">
+                  >
               термінових
-            </span><i>, </i>
-            <span [style.font-style]="'italic'"
-                  [style.text-decoration]="_textDecoration(_pediatriciansExamination.
-                    pregnancyDetails.childBirth.compareWithEnum(ChildBirthEnum.Premature))"
-                  (click)="_pediatriciansExamination.pregnancyDetails.childBirth.nextValue()">
+            </span>
+            , 
+            <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
+                    pregnancyDetails.childBirth.compareWithEnum(ChildBirthEnum.Premature))">
               передчасних
-            </span><i>, </i>
-            <span [style.font-style]="'italic'"
-                  [style.text-decoration]="_textDecoration(_pediatriciansExamination.
-                    pregnancyDetails.childBirth.compareWithEnum(ChildBirthEnum.Operative))"
-                  (click)="_pediatriciansExamination.pregnancyDetails.childBirth.nextValue()">
+            </span>
+            , 
+            <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
+                    pregnancyDetails.childBirth.compareWithEnum(ChildBirthEnum.Operative))">
               оперативних пологів
-            </span><i>.</i>
+            </span>
+            .
           </span>
         </div>
       </div>
@@ -256,20 +255,20 @@
           <span class="input-group-addon">
             Ранній неонатальний період протікав 
             <span [style.font-style]="'italic'"
-                  [style.text-decoration]="_textDecoration(_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications)"
                   (click)="_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications.nextValue()">
-              без ускладнень
-            </span><i>,</i>
-            <span [style.font-style]="'italic'"
-                  [style.text-decoration]="_textDecoration(_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications.not())"
-                  (click)="_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications.nextValue()">
-              був ускладнений
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications)">
+                без ускладнень
+              </span>
+              ,
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications.not())">
+                був ускладнений
+              </span>
             </span>
           </span>
           <input type="text" class="form-control" id="complicationsDuringNeonatalPeriod"
                  name="complicationsDuringNeonatalPeriod"
                  [(ngModel)]="_pediatriciansExamination.complicationsDuringNeonatalPeriod" 
-                 #lastName="ngModel" [disabled]="_isSaving" maxlength="35" />
+                 #lastName="ngModel" [disabled]="_isSaving || _pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications.value!=false" maxlength="35" />
           <span class="input-group-addon">.</span>
         </div>
       </div>
@@ -289,11 +288,25 @@
     <div class="row">
       <div class="form-group col-xs-12">
         <div class="input-group col-xs-12">
-          <span class="input-group-addon">Психомоторний розвиток на 1-му році життя <i>відповідав віковій нормі,</i><i>не відповідав нормі</i></span>
+          <span class="input-group-addon">
+            Психомоторний розвиток на 1-му році життя 
+            <span [style.font-style]="'italic'">
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit)"
+                    (click)="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit.nextValue()">
+                відповідав віковій нормі
+              </span>
+              ,
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal)"
+                    (click)="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal.nextValue()">
+                не відповідав нормі
+              </span>
+            </span>
+          </span>
           <input type="text" class="form-control" id="psychomotorDevelopmentModelDetails"
                  name="psychomotorDevelopmentModelDetails"
                  [(ngModel)]="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.details" 
-                 #lastName="ngModel" [disabled]="_isSaving" maxlength="125" />
+                 #lastName="ngModel" maxlength="125" 
+                 [disabled]="_isSaving || !_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal.value"/>
         </div>
       </div>
     </div>
@@ -345,11 +358,23 @@
     <div class="row">
       <div class="form-group col-xs-12">
         <div class="input-group col-xs-12">
-          <span class="input-group-addon">Шкідливі звички: <i>немає,</i><i>є</i></span>
+          <span class="input-group-addon">
+            Шкідливі звички:
+            <span [style.font-style]="'italic'" 
+                  (click)="_pediatriciansExamination.badHabitsPresent.nextValue()">
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.badHabitsPresent.not())">
+                немає
+              </span>
+              ,
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.badHabitsPresent)">
+                є
+              </span>
+            </span>
+          </span>
           <input type="text" class="form-control" id="badHabitsDetails"
                  name="badHabitsDetails"
                  [(ngModel)]="_pediatriciansExamination.badHabitsDetails" #lastName="ngModel"
-                 [disabled]="_isSaving" maxlength="75" />
+                 maxlength="75" [disabled]="_isSaving || !_pediatriciansExamination.badHabitsPresent.value"/>
         </div>
       </div>
     </div>
@@ -357,11 +382,23 @@
     <div class="row">
       <div class="form-group col-xs-12">
         <div class="input-group col-xs-12">
-          <span class="input-group-addon">Алергологічний анамнез: <i>не обтяжений,</i><i>обтяжений</i></span>
+          <span class="input-group-addon">
+            Алергологічний анамнез:
+            <span [style.font-style]="'italic'"
+                  (click)="_pediatriciansExamination.weightedWithAllergicHistory.nextValue()">
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.weightedWithAllergicHistory.not())">
+                не обтяжений
+              </span>
+              ,
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.weightedWithAllergicHistory)">
+                обтяжений
+              </span>
+            </span>
+          </span>
           <input type="text" class="form-control" id="allergicHistoryDetails"
                  name="allergicHistoryDetails"
                  [(ngModel)]="_pediatriciansExamination.allergicHistoryDetails" #lastName="ngModel"
-                 [disabled]="_isSaving" maxlength="52" />
+                 maxlength="52" [disabled]="_isSaving || !_pediatriciansExamination.weightedWithAllergicHistory.value" />
         </div>
       </div>
     </div>
@@ -369,11 +406,24 @@
     <div class="row">
       <div class="form-group col-xs-12">
         <div class="input-group col-xs-12">
-          <span class="input-group-addon">Спадковий анамнез: <i>не обтяжений,</i><i>обтяжений</i></span>
+          <span class="input-group-addon">
+            Спадковий анамнез:
+            <span [style.font-style]="'italic'"
+                  (click)="_pediatriciansExamination.weightedWithAncestralAnamnesis.nextValue()">
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.weightedWithAncestralAnamnesis.not())">
+                не обтяжений
+              </span>
+              ,
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.weightedWithAncestralAnamnesis)">
+                обтяжений
+              </span>
+            </span>
+          </span>
           <input type="text" class="form-control" id="ancestralAnamnesisDetails"
                  name="ancestralAnamnesisDetails"
-                 [(ngModel)]="_pediatriciansExamination.ancestralAnamnesisDetails" 
-                 #lastName="ngModel" [disabled]="_isSaving" maxlength="55" />
+                 [(ngModel)]="_pediatriciansExamination.ancestralAnamnesisDetails"
+                 #lastName="ngModel" maxlength="55" 
+                 [disabled]="_isSaving || !_pediatriciansExamination.weightedWithAncestralAnamnesis.value"/>
         </div>
       </div>
     </div>
@@ -396,7 +446,22 @@
       </div>
     </div>
 
-    <br />
+    <hr />
+    <!-- Saving progress bar and alert for saving errors -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="progress" *ngIf="_isSaving">
+          <div class="progress-bar progress-bar-info progress-bar-striped active"
+               role="progressbar" aria-valuenow="0" aria-valuemin="0"
+               aria-valuemax="0" style="width:100%">
+            Збереження результату огляду...
+          </div>
+        </div>
+        <div *ngIf="_isErrorOnSaving" class="alert alert-danger col-xs-12">
+          {{_lastErrorMessage}}
+        </div>
+      </div>
+    </div>
     <!-- Save button -->
     <div class="row">
       <div class="form-group col-xs-11">

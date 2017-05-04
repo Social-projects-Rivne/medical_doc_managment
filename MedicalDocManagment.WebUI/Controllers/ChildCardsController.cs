@@ -226,5 +226,22 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return InternalServerError(exception);
             }
         }
+
+        [PediatriciansOnlyAuthorization]
+        [HttpPost]
+        public IHttpActionResult SavePediatriciansExamination([FromBody]int childCardId,
+            [FromBody]string examination)
+        {
+            try
+            {
+                // TODO
+                var result = _childCardsService.AddPsychiatristsConclusion(childCardId, examination);
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
     }
 }
