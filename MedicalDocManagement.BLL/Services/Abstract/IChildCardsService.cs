@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MedicalDocManagement.BLL.DTO;
+using MedicalDocManagement.BLL.DTO.Main;
 
 namespace MedicalDocManagement.BLL.Services.Abstract
 {
@@ -20,5 +21,7 @@ namespace MedicalDocManagement.BLL.Services.Abstract
         List<ChildCardDTO> GetChildrenCards();
         List<ChildCardDTO> GetChildrenCardsPaged(int pageNumber, int pageSize);
         string AddPsychiatristsConclusion(int childCardId, string conclusion);
+        PediatriciansExaminationDTO AddPediatriciansExamination(int childCardId,
+           PediatriciansExaminationDTO examination)
     }
 }

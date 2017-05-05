@@ -266,9 +266,9 @@
             </span>
           </span>
           <input type="text" class="form-control" id="complicationsDuringNeonatalPeriod"
-                 name="complicationsDuringNeonatalPeriod"
+                 name="complicationsDuringNeonatalPeriod" maxlength="35" 
                  [(ngModel)]="_pediatriciansExamination.complicationsDuringNeonatalPeriod" 
-                 #lastName="ngModel" [disabled]="_isSaving || _pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications.value!=false" maxlength="35" />
+                 #lastName="ngModel" [disabled]="_isSaving || _pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications.value!=false" />
           <span class="input-group-addon">.</span>
         </div>
       </div>

@@ -7,7 +7,6 @@ import PsychomotorDevelopmentModel from './psychomotor-development.model';
 
 export default class PediatriciansExaminationModel {
     id: number;
-    childCardId: number;
     header: HeaderModel;
     complaints: string;
     anamnesisOfDisease: string;
@@ -42,7 +41,7 @@ export default class PediatriciansExaminationModel {
         this.weightedWithAncestralAnamnesis = new Trilean();
         this.badHabitsPresent = new Trilean();
 
-        this.id = this.childCardId = this.complaints = this.anamnesisOfDisease = 
+        this.id = this.complaints = this.anamnesisOfDisease = 
             this.anamnesisOfLife = this.complicationsDuringNeonatalPeriod =
             this.detailsAfterEarlyNeonatalPeriod = this.naturalFeedingDetails =
             this.nonNaturalFeedingDetails = this.mixedFeedingDetails =

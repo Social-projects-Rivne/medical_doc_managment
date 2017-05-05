@@ -68,6 +68,7 @@
     <Compile Include="DTO\Main\ParentDTO.cs" />
     <Compile Include="DTO\Admin\PositionDTO.cs" />
     <Compile Include="DTO\Admin\UserDTO.cs" />
+    <Compile Include="DTO\Main\PediatriciansExaminationDTO.cs" />
     <Compile Include="Helpers\ChildCardDTOHelper.cs" />
     <Compile Include="Helpers\PositionDTOHelper.cs" />
     <Compile Include="Helpers\UserDTOHelper.cs" />

@@ -253,11 +253,16 @@
     <Compile Include="Controllers\PsychiatristsOnlyAuthorization.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />
     <Compile Include="Helpers\ChildCardMapHelper.cs" />
+    <Compile Include="Helpers\PediatriciansExaminationHelper.cs" />
     <Compile Include="Helpers\PositionMapHelper.cs" />
     <Compile Include="Helpers\ViewPatientDataHelper.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
-    <Compile Include="Models\Main\SavePediatriciansExaminationVM.cs" />
+    <Compile Include="Models\Main\PediatriciansExamination\BirthDetailsVM.cs" />
+    <Compile Include="Models\Main\PediatriciansExamination\PregnancyDetailsVM.cs" />
+    <Compile Include="Models\Main\PediatriciansExamination\HeaderVM.cs" />
+    <Compile Include="Models\Main\PediatriciansExamination\PsychomotorDevelopmentVM.cs" />
+    <Compile Include="Models\Main\PediatriciansExamination\PediatriciansExaminationVM.cs" />
     <Compile Include="Models\Main\ChildCardVM.cs" />
     <Compile Include="Models\Main\ClassMkhVM.cs" />
     <Compile Include="Models\Main\DiagnosisMkhVM.cs" />

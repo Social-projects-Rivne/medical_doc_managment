@@ -9,6 +9,7 @@ using MedicalDocManagement.BLL.Services.Abstract;
 using MedicalDocManagment.DAL.Entities;
 using MedicalDocManagment.DAL.Repository;
 using MedicalDocManagment.DAL.Repository.Interfaces;
+using MedicalDocManagement.BLL.DTO.Main;
 
 namespace MedicalDocManagement.BLL.Services
 {
@@ -171,6 +172,20 @@ namespace MedicalDocManagement.BLL.Services
         public void Dispose()
         {
             _unitOfWork.Dispose();
+        }
+
+        public PediatriciansExaminationDTO AddPediatriciansExamination(int childCardId, 
+            PediatriciansExaminationDTO examination)
+        {
+            //var childCard = _unitOfWork.ChildrenCardsRepository
+            //                           .Get(card => card.Id == childCardId)
+            //                           .Single();
+            //childCard.PsychiatristsConclusion = conclusion;
+            //_unitOfWork.ChildrenCardsRepository.Update(childCard);
+            //_unitOfWork.Save();
+
+            //return childCard.PsychiatristsConclusion;
+            return null;
         }
     }
 }
