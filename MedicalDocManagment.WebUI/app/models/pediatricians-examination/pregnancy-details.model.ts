@@ -1,26 +1,21 @@
-﻿import Trilean from './trilean';
-import ChildBirthModel from './child-birth.model';
+﻿import { ChildBirthEnum } from './child-birth.enum';
 
 export default class CurrentDetailsModel {
     someDetails: string;
-    passedNormally: Trilean;
-    passedWithToxemia: Trilean;
+    passedNormally: boolean;
+    passedWithToxemia: boolean;
     toxemiaDetails: string;
-    passedWithAnemia: Trilean;
-    withThreatInInterruption: Trilean;
+    passedWithAnemia: boolean;
+    withThreatInInterruption: boolean;
     dateOfInterruption: string;
     fromDetails: string;
-    childBirth: ChildBirthModel;
+    childBirth: ChildBirthEnum;
 
     constructor() {
-        this.passedNormally = new Trilean();
-        this.passedWithToxemia = new Trilean();
-        this.passedWithAnemia = new Trilean();
-        this.withThreatInInterruption = new Trilean();
+        this.someDetails = this.passedNormally = this.passedWithToxemia =
+            this.toxemiaDetails = this.passedWithAnemia = this.withThreatInInterruption =
+            this.dateOfInterruption = this.fromDetails = null;
 
-        this.childBirth = new ChildBirthModel();
-
-        this.someDetails = this.toxemiaDetails = this.dateOfInterruption =
-            this.fromDetails = null;
+        this.childBirth = ChildBirthEnum.Unknown;
     }
 }

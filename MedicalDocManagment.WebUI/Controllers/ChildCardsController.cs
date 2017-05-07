@@ -16,6 +16,7 @@ using MedicalDocManagment.WebUI.Models.Validators;
 using System.Net.Http;
 using System.Net;
 using MedicalDocManagment.WebUI.Models.Main.PediatriciansExamination;
+using MedicalDocManagment.WebUI.Controllers.CustomAtrributes;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -237,14 +238,15 @@ namespace MedicalDocManagment.WebUI.Controllers
         [PediatriciansOnlyAuthorization]
         [HttpPut]
         public IHttpActionResult SavePediatriciansExamination(int childCardId,
-            [FromBody]PediatriciansExaminationVM examination)
+            [FromBody]PediatriciansExaminationVM examinationVM)
         {
             try
             {
-                // TODO
-                //var result = _childCardsService.AddPsychiatristsConclusion(childCardId, examination);
-                //return Ok(result);
-                return Ok();
+                var examinationDTO = PediatriciansExaminationHelper.VMToDTO(examinationVM);
+                var resultDTO = _childCardsService.SavePediatriciansExamination(childCardId,
+                    examinationDTO);
+                var resultVM = PediatriciansExaminationHelper.DTOToVM(resultDTO);
+                return Ok(resultVM);
             }
             catch (Exception exception)
             {

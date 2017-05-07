@@ -9,7 +9,8 @@ using MedicalDocManagement.BLL.Services.Abstract;
 using MedicalDocManagment.DAL.Entities;
 using MedicalDocManagment.DAL.Repository;
 using MedicalDocManagment.DAL.Repository.Interfaces;
-using MedicalDocManagement.BLL.DTO.Main;
+using MedicalDocManagement.BLL.DTO.Main.PediatriciansExamination;
+using MedicalDocManagment.DAL.Entities.Main.PediatriciansExamination;
 
 namespace MedicalDocManagement.BLL.Services
 {
@@ -174,18 +175,28 @@ namespace MedicalDocManagement.BLL.Services
             _unitOfWork.Dispose();
         }
 
-        public PediatriciansExaminationDTO AddPediatriciansExamination(int childCardId, 
-            PediatriciansExaminationDTO examination)
+        public PediatriciansExaminationDTO SavePediatriciansExamination(int childCardId, 
+            PediatriciansExaminationDTO examinationDTO)
         {
-            //var childCard = _unitOfWork.ChildrenCardsRepository
-            //                           .Get(card => card.Id == childCardId)
-            //                           .Single();
-            //childCard.PsychiatristsConclusion = conclusion;
-            //_unitOfWork.ChildrenCardsRepository.Update(childCard);
-            //_unitOfWork.Save();
+            var childCard = _unitOfWork.ChildrenCardsRepository
+                                       .Get(card => card.Id == childCardId)
+                                       .Single();
+            PediatriciansExamination examination = PediatriciansExaminationDTOHelper.DTOToEntity(examinationDTO);
+            if (childCard.PediatriciansExaminationId == null)
+            {
+                _unitOfWork.PediatriciansExaminationsRepository.Add(examination);
+                _unitOfWork.Save();
+                childCard.PediatriciansExaminationId = examination.Id;
+                _unitOfWork.ChildrenCardsRepository.Update(childCard);
+            }
+            else
+            {
+                examination.Id = childCard.PediatriciansExaminationId.Value;
+                _unitOfWork.PediatriciansExaminationsRepository.Update(examination);
+            }
+            _unitOfWork.Save();
 
-            //return childCard.PsychiatristsConclusion;
-            return null;
+            return PediatriciansExaminationDTOHelper.EntityToDTO(examination);
         }
     }
 }

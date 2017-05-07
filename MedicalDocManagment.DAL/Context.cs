@@ -1,4 +1,5 @@
 ﻿using MedicalDocManagment.DAL.Entities;
+using MedicalDocManagment.DAL.Entities.Main;
 using MedicalDocManagment.DAL.Initializer;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;

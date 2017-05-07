@@ -128,12 +128,12 @@
             <span 
                   [style.font-style]="'italic'"
                   [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedNormally)"
-                  (click)="_pediatriciansExamination.pregnancyDetails.passedNormally.nextValue()">
+                  (click)="_pediatriciansExamination.pregnancyDetails.passedNormally=!_pediatriciansExamination.pregnancyDetails.passedNormally">
               нормально
             </span><i>, </i>
             <span [style.font-style]="'italic'"
                   [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedWithToxemia)"
-                  (click)="_pediatriciansExamination.pregnancyDetails.passedWithToxemia.nextValue()">
+                  (click)="_pediatriciansExamination.pregnancyDetails.passedWithToxemia=!_pediatriciansExamination.pregnancyDetails.passedWithToxemia">
               з токсикозом
             </span>
           </span>
@@ -148,21 +148,21 @@
                  name="pregnancyToxemiaDetails"
                  [(ngModel)]="_pediatriciansExamination.pregnancyDetails.toxemiaDetails"
                  #lastName="ngModel" maxlength="22" 
-                 [disabled]="_isSaving || !_pediatriciansExamination.pregnancyDetails.passedWithToxemia.value" />
+                 [disabled]="_isSaving || !_pediatriciansExamination.pregnancyDetails.passedWithToxemia" />
           <span class="input-group-addon">
             <span [style.font-style]="'italic'"
                   [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedWithToxemia)"
-                  (click)="_pediatriciansExamination.pregnancyDetails.passedWithToxemia.nextValue()">
+                  (click)="_pediatriciansExamination.pregnancyDetails.passedWithToxemia=!_pediatriciansExamination.pregnancyDetails.passedWithToxemia">
               половини
             </span><i>, </i>
             <span [style.font-style]="'italic'"
                   [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedWithAnemia)"
-                  (click)="_pediatriciansExamination.pregnancyDetails.passedWithAnemia.nextValue()">
+                  (click)="_pediatriciansExamination.pregnancyDetails.passedWithAnemia=!_pediatriciansExamination.pregnancyDetails.passedWithAnemia">
               анемією
             </span><i>, </i>
             <span [style.font-style]="'italic'"
                   [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.withThreatInInterruption)"
-                  (click)="_pediatriciansExamination.pregnancyDetails.withThreatInInterruption.nextValue()">
+                  (click)="_pediatriciansExamination.pregnancyDetails.withThreatInInterruption=!_pediatriciansExamination.pregnancyDetails.withThreatInInterruption">
               загрозою переривання у терміні
             </span>
           </span>
@@ -170,7 +170,7 @@
                  name="pregnancyDateOfInterruption"
                  [(ngModel)]="_pediatriciansExamination.pregnancyDetails.dateOfInterruption"
                  #lastName="ngModel" maxlength="29" 
-                 [disabled]="_isSaving || !_pediatriciansExamination.pregnancyDetails.withThreatInInterruption.value" />
+                 [disabled]="_isSaving || !_pediatriciansExamination.pregnancyDetails.withThreatInInterruption" />
         </div>
       </div>
     </div>
@@ -183,23 +183,21 @@
                  name="pregnancyFromDetails"
                  [(ngModel)]="_pediatriciansExamination.pregnancyDetails.fromDetails"
                  #lastName="ngModel" maxlength="60"
-                 [disabled]="_isSaving || _pediatriciansExamination.pregnancyDetails.childBirth
-                   .value == ChildBirthEnum.Unknown" />
+                 [disabled]="_isSaving || _pediatriciansExamination.pregnancyDetails.childBirth == ChildBirthEnum.Unknown" />
           <span class="input-group-addon" [style.font-style]="'italic'"
-                (click)="_pediatriciansExamination.pregnancyDetails.childBirth.nextValue()">
+                (click)="_pediatriciansExamination.pregnancyDetails.childBirth = (_pediatriciansExamination.pregnancyDetails.childBirth+1) % 4">
             <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
-                    pregnancyDetails.childBirth.compareWithEnum(ChildBirthEnum.Urgent))"
-                  >
+                    pregnancyDetails.childBirth == ChildBirthEnum.Urgent)">
               термінових
             </span>
             , 
             <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
-                    pregnancyDetails.childBirth.compareWithEnum(ChildBirthEnum.Premature))">
+                    pregnancyDetails.childBirth == ChildBirthEnum.Premature)">
               передчасних
             </span>
             , 
             <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
-                    pregnancyDetails.childBirth.compareWithEnum(ChildBirthEnum.Operative))">
+                    pregnancyDetails.childBirth == ChildBirthEnum.Operative)">
               оперативних пологів
             </span>
             .
@@ -255,12 +253,12 @@
           <span class="input-group-addon">
             Ранній неонатальний період протікав 
             <span [style.font-style]="'italic'"
-                  (click)="_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications.nextValue()">
+                  (click)="_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications=!_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications">
               <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications)">
                 без ускладнень
               </span>
               ,
-              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications.not())">
+              <span [style.text-decoration]="_textDecoration(!_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications)">
                 був ускладнений
               </span>
             </span>
@@ -268,7 +266,7 @@
           <input type="text" class="form-control" id="complicationsDuringNeonatalPeriod"
                  name="complicationsDuringNeonatalPeriod" maxlength="35" 
                  [(ngModel)]="_pediatriciansExamination.complicationsDuringNeonatalPeriod" 
-                 #lastName="ngModel" [disabled]="_isSaving || _pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications.value!=false" />
+                 #lastName="ngModel" [disabled]="_isSaving || _pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications!=false" />
           <span class="input-group-addon">.</span>
         </div>
       </div>
@@ -292,12 +290,12 @@
             Психомоторний розвиток на 1-му році життя 
             <span [style.font-style]="'italic'">
               <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit)"
-                    (click)="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit.nextValue()">
+                    (click)="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit=!_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit">
                 відповідав віковій нормі
               </span>
               ,
               <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal)"
-                    (click)="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal.nextValue()">
+                    (click)="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal=!_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal">
                 не відповідав нормі
               </span>
             </span>
@@ -306,7 +304,7 @@
                  name="psychomotorDevelopmentModelDetails"
                  [(ngModel)]="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.details" 
                  #lastName="ngModel" maxlength="125" 
-                 [disabled]="_isSaving || !_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal.value"/>
+                 [disabled]="_isSaving || !_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal"/>
         </div>
       </div>
     </div>
@@ -361,8 +359,8 @@
           <span class="input-group-addon">
             Шкідливі звички:
             <span [style.font-style]="'italic'" 
-                  (click)="_pediatriciansExamination.badHabitsPresent.nextValue()">
-              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.badHabitsPresent.not())">
+                  (click)="_pediatriciansExamination.badHabitsPresent=!_pediatriciansExamination.badHabitsPresent">
+              <span [style.text-decoration]="_textDecoration(!_pediatriciansExamination.badHabitsPresent)">
                 немає
               </span>
               ,
@@ -374,7 +372,7 @@
           <input type="text" class="form-control" id="badHabitsDetails"
                  name="badHabitsDetails"
                  [(ngModel)]="_pediatriciansExamination.badHabitsDetails" #lastName="ngModel"
-                 maxlength="75" [disabled]="_isSaving || !_pediatriciansExamination.badHabitsPresent.value"/>
+                 maxlength="75" [disabled]="_isSaving || !_pediatriciansExamination.badHabitsPresent"/>
         </div>
       </div>
     </div>
@@ -385,8 +383,8 @@
           <span class="input-group-addon">
             Алергологічний анамнез:
             <span [style.font-style]="'italic'"
-                  (click)="_pediatriciansExamination.weightedWithAllergicHistory.nextValue()">
-              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.weightedWithAllergicHistory.not())">
+                  (click)="_pediatriciansExamination.weightedWithAllergicHistory=!_pediatriciansExamination.weightedWithAllergicHistory">
+              <span [style.text-decoration]="_textDecoration(!_pediatriciansExamination.weightedWithAllergicHistory)">
                 не обтяжений
               </span>
               ,
@@ -398,7 +396,7 @@
           <input type="text" class="form-control" id="allergicHistoryDetails"
                  name="allergicHistoryDetails"
                  [(ngModel)]="_pediatriciansExamination.allergicHistoryDetails" #lastName="ngModel"
-                 maxlength="52" [disabled]="_isSaving || !_pediatriciansExamination.weightedWithAllergicHistory.value" />
+                 maxlength="52" [disabled]="_isSaving || !_pediatriciansExamination.weightedWithAllergicHistory" />
         </div>
       </div>
     </div>
@@ -409,8 +407,8 @@
           <span class="input-group-addon">
             Спадковий анамнез:
             <span [style.font-style]="'italic'"
-                  (click)="_pediatriciansExamination.weightedWithAncestralAnamnesis.nextValue()">
-              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.weightedWithAncestralAnamnesis.not())">
+                  (click)="_pediatriciansExamination.weightedWithAncestralAnamnesis=!_pediatriciansExamination.weightedWithAncestralAnamnesis">
+              <span [style.text-decoration]="_textDecoration(!_pediatriciansExamination.weightedWithAncestralAnamnesis)">
                 не обтяжений
               </span>
               ,
@@ -423,7 +421,7 @@
                  name="ancestralAnamnesisDetails"
                  [(ngModel)]="_pediatriciansExamination.ancestralAnamnesisDetails"
                  #lastName="ngModel" maxlength="55" 
-                 [disabled]="_isSaving || !_pediatriciansExamination.weightedWithAncestralAnamnesis.value"/>
+                 [disabled]="_isSaving || !_pediatriciansExamination.weightedWithAncestralAnamnesis"/>
         </div>
       </div>
     </div>

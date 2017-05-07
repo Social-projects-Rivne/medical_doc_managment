@@ -1,13 +1,9 @@
-﻿import Trilean from './trilean';
-
-export default class PsychomotorDevelopmentModel {
-    wasAccordingToAgeLimit: Trilean;
-    wasNotNormal: Trilean;
+﻿export default class PsychomotorDevelopmentModel {
+    wasAccordingToAgeLimit: boolean;
+    wasNotNormal: boolean;
     details: string;
 
     constructor() {
-        this.wasAccordingToAgeLimit = new Trilean();
-        this.wasNotNormal = new Trilean();
-        this.details = null;
+        this.wasAccordingToAgeLimit = this.wasNotNormal = this.details = null;
     }
 }

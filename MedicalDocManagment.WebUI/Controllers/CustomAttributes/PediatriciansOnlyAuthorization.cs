@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
-namespace MedicalDocManagment.WebUI.Controllers
+namespace MedicalDocManagment.WebUI.Controllers.CustomAtrributes
 {
     public class PediatriciansOnlyAuthorization : AuthorizationFilterAttribute
     {

@@ -26,6 +26,8 @@ namespace MedicalDocManagment.DAL.Initializer
                                     .Without(childCard => childCard.DiagnosisId)
                                     .Without(childCard => childCard.Diagnosis)
                                     .Without(childCard => childCard.PsychiatristsConclusion)
+                                    .Without(childCard => childCard.PediatriciansExaminationId)
+                                    .Without(childCard => childCard.PediatriciansExamination)
                                     .CreateMany(30);
 
             var petrenkosCards = fixture.Build<ChildCard>()
@@ -36,6 +38,8 @@ namespace MedicalDocManagment.DAL.Initializer
                                         .With(childCard => childCard.DiagnosisId, "A00.0")
                                         .Without(childCard => childCard.ParentsChildren)
                                         .Without(childCard => childCard.Diagnosis)
+                                        .Without(childCard => childCard.PediatriciansExaminationId)
+                                        .Without(childCard => childCard.PediatriciansExamination)
                                         .CreateMany(3);
 
             return randomCards.Concat(petrenkosCards);

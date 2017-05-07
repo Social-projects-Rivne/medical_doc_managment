@@ -3,7 +3,6 @@
 import ChildCardModel from "../../../models/child-card.model";
 import PediatriciansExaminationModel from "../../../models/pediatricians-examination/pediatricians-examination.model";
 import { ChildBirthEnum } from '../../../models/pediatricians-examination/child-birth.enum';
-import Trilean from '../../../models/pediatricians-examination/trilean';
 
 import ChildrenCardService from '../../../services/children-card.service';
 import MainAppService from "../../../services/main-app.service";
@@ -33,12 +32,12 @@ export default class PediatriciansExaminationFormComponent {
         this._pediatriciansExamination = new PediatriciansExaminationModel();
     }
 
-    private _textDecoration(textState: Trilean): string {
+    private _textDecoration(textState: boolean): string {
         let result = '';
-        if (textState.value == true) {
+        if (textState == true) {
             result += 'underline'
         } else {
-            if (textState.value == false) {
+            if (textState == false) {
                 result += 'line-through'
             }
         }
