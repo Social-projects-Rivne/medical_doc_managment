@@ -10,7 +10,7 @@ import { routing } from '../routes/app.routing';
 
 import { UsersListModule } from "./users-list.module";
 import { Ng2PaginationModule } from 'ng2-pagination';
-import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
+//import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
 import ChildrenCardsListModule from "./children-cards-list.module";
 import UsersSearchModule from "./users-search.module";
 import ChildCardModule from "./child-card.module";
@@ -39,8 +39,8 @@ import ViewPatientDataComponent from "../components/childrens-card/view-patient-
         UsersListModule,
         UsersSearchModule,
         Ng2PaginationModule,
-        SimpleNotificationsModule,
-        PushNotificationsModule,
+        //SimpleNotificationsModule,
+        //PushNotificationsModule,
         ChildrenCardsListModule,
         ChildCardModule
     ],

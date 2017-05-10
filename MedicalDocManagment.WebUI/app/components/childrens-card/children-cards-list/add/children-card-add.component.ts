@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import ChildrensCardService from '../../../../services/children-card.service';
 import MkhsService from "../../../../services/mkhs.service";
-import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
+//import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
 
 import ParentChildCard from "../../../../models/parent-child-card.model";
 import ParentModel from "../../../../models/parent.model";
@@ -24,8 +24,8 @@ declare var $;
     templateUrl: 'children-card-add.component.html',
     providers: [
         ChildrensCardService,
-        MkhsService,
-        NotificationsService
+        MkhsService/*,*/
+        //NotificationsService
     ]
 })
 export default class ChildrenCardAddComponent {
@@ -53,7 +53,7 @@ export default class ChildrenCardAddComponent {
     };
 
     constructor(private _childrensCardService: ChildrensCardService,
-        private _notificationService: NotificationsService,
+        //private _notificationService: NotificationsService,
         private _mkhsService: MkhsService) {
     }
 
@@ -85,13 +85,13 @@ export default class ChildrenCardAddComponent {
         this._childrensCardService.addChildrenCard(this.childrensCard)
             .subscribe(
                 (data) => {
-                    this._notificationService.success("Успіх", "Дитячу картку успішно додано");
+                    //this._notificationService.success("Успіх", "Дитячу картку успішно додано");
                     let newChildCard = new ChildCardModel(data)
                     this._addParentsIntoChildCard(this.listParents, newChildCard);
                     this._formReset(form);
                 },
                 (error) => {
-                    this._notificationService.error("Помилка", "Дитячу картку не було додано");
+                    //this._notificationService.error("Помилка", "Дитячу картку не було додано");
                     console.log('Error: ' + error);
                 }
             );
@@ -103,11 +103,11 @@ export default class ChildrenCardAddComponent {
                 .addParentIntoChildCard(parent, childCard)
                 .subscribe(
                     (data) => {
-                        this._notificationService.info("Інформація про картку №" + data.childId,
-                                                        "До картки успішно додану інформацію про батька №" + data.parentId);
+                        //this._notificationService.info("Інформація про картку №" + data.childId,
+                        //                                "До картки успішно додану інформацію про батька №" + data.parentId);
                     },
                     (error) => {
-                        this._notificationService.error("Помилка", "Сталася помилки при додаванні до картки інформації про батька");
+                        //this._notificationService.error("Помилка", "Сталася помилки при додаванні до картки інформації про батька");
                         console.log(error);
                     }
                 );

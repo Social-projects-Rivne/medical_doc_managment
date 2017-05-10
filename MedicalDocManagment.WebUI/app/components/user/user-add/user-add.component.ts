@@ -1,14 +1,14 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { UserService} from '../../../services/user.service';
 import {User} from '../../../models/user';
-import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
+//import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
 import PositionModel from "../../../models/positionmodel";
 
 @Component({
     moduleId: module.id,
     selector: 'app-user-add',
     templateUrl: 'user-add.component.html',
-    providers: [UserService, NotificationsService]
+    providers: [UserService/*, NotificationsService*/]
 })
 export class UserAddComponent implements OnInit {
     user: User = new User();
@@ -26,7 +26,7 @@ export class UserAddComponent implements OnInit {
         animate: 'scale',
         position: ['right', 'bottom']
     };
-    constructor(private userService: UserService, private _service: NotificationsService) {}
+    constructor(private userService: UserService/*, private _service: NotificationsService*/) {}
     ngOnInit() {
         this.updatePositionsList();
     }
@@ -35,11 +35,11 @@ export class UserAddComponent implements OnInit {
                         .subscribe(
                         (data) => {
                             console.log(data);
-                            this._service.success("Успіх", "Успішно додано користувача");
+                            //this._service.success("Успіх", "Успішно додано користувача");
                         },
                         (error) => {
                             console.log(error);
-                            this._service.error("Помилка", "Відбулась помилка при додаванні користувача");
+                            //this._service.error("Помилка", "Відбулась помилка при додаванні користувача");
                         }
         );
     }

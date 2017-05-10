@@ -6,7 +6,7 @@ import { HttpFacade } from '../../../services/http.facade';
 import PageComponent from './page/page.component';
 import UsersModel from '../../../models/usersmodel';
 import UserModel from '../../../models/usersmodel';
-import {NotificationsService, SimpleNotificationsComponent} from 'angular2-notifications';
+//import {NotificationsService, SimpleNotificationsComponent} from 'angular2-notifications';
 import {ItemActionListNotificationService} from '../../../services/item-actionlist-notification.service'
 import { Subscription } from 'rxjs/Subscription';
 
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs/Subscription';
     selector: 'usersList',
     templateUrl: 'users-list.component.html',
     styleUrls: ['users-list.component.css'],
-    providers: [HttpFacade, NotificationsService]
+    providers: [HttpFacade/*, NotificationsService*/]
 })
 
 export class UsersListComponent {
@@ -41,7 +41,7 @@ export class UsersListComponent {
         position: ['right', 'bottom']
     };
 
-    constructor(httpFacade: HttpFacade, private _service: NotificationsService,
+    constructor(httpFacade: HttpFacade, /*private _service: NotificationsService,*/
                 private itemNotificationService: ItemActionListNotificationService) {
         this._httpFacade = httpFacade;
         this.userForEdit = new UserModel(null);
@@ -57,10 +57,10 @@ export class UsersListComponent {
         this.notificationSubscription = this.itemNotificationService.notificationAdded$.subscribe(
             (type:string) => {
                 if (type == "deleteSuccess") {
-                    this._service.success("Успіх", "Успішно видалено користувача");
+                    //this._service.success("Успіх", "Успішно видалено користувача");
                 }
                 else if (type == "deleteError") {
-                    this._service.error("Помилка", "Відбулася помилка при видаленні користувача");
+                    //this._service.error("Помилка", "Відбулася помилка при видаленні користувача");
                 }
             });
     }
