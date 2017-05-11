@@ -28,7 +28,7 @@ export default class PediatriciansExaminationModel {
     ancestralAnamnesisDetails: string;
     preventiveVaccinations: string;
 
-    constructor() {
+    constructor(objectToCreateFrom?) {
         this.header = new HeaderModel();
         this.pregnancyDetails = new PregnancyDetailsModel();
         this.birthDetails = new BirthDetailsModel();
@@ -44,5 +44,30 @@ export default class PediatriciansExaminationModel {
             this.weightedWithAllergicHistory = this.allergicHistoryDetails =
             this.weightedWithAncestralAnamnesis = this.ancestralAnamnesisDetails =
             this.preventiveVaccinations = null;
+
+        if (objectToCreateFrom) {
+            Object.assign(this, objectToCreateFrom);
+
+            this.pregnancyDetails = new PregnancyDetailsModel(objectToCreateFrom.pregnancyDetails);
+        }
+    }
+
+    get badHabitsAbsent(): boolean {
+        return this.badHabitsPresent == null ? null : !this.badHabitsPresent;
+    }
+
+    get earlyNeonatalPeriodWasWithComplications(): boolean {
+        return this.earlyNeonatalPeriodWasWithoutComplications == null ? null :
+            !this.earlyNeonatalPeriodWasWithoutComplications;
+    }
+
+    get notWeightedWithAllergicHistory(): boolean {
+        return this.weightedWithAllergicHistory == null ? null :
+            !this.weightedWithAllergicHistory;
+    }
+
+    get notWeightedWithAncestralAnamnesis(): boolean {
+        return this.weightedWithAncestralAnamnesis == null ? null :
+            !this.weightedWithAncestralAnamnesis;
     }
 }

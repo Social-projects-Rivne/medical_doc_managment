@@ -253,5 +253,21 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return InternalServerError(exception);
             }
         }
+
+        [Authorize]
+        [HttpGet]
+        public IHttpActionResult GetPediatriciansExamination(int childCardId)
+        {
+            try
+            {
+                var resultDTO = _childCardsService.GetPediatriciansExamination(childCardId);
+                var resultVM = PediatriciansExaminationHelper.DTOToVM(resultDTO);
+                return Ok(resultVM);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
     }
 }

@@ -155,7 +155,24 @@ export default class ChildrensCardService {
         let body: string = JSON.stringify(pediatriciansExamination);
         return this._http.put('/api/childcards/savePediatriciansExamination?childCardId=' + childCardId,
             body, { headers })
-                         .map((resp: Response) => { return resp.json(); })
+                         .map((resp: Response) => {                              
+                             return new PediatriciansExaminationModel(resp.json());
+                         })
                          .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    /**
+     * Method get's pediatrician's examination for child card
+     * @param {string} childCardId Id of child card to get examination for
+     * @return {Observable<PediatriciansExaminationModel>} Observable to examination
+     */
+    getPediatriciansExamination(childCardId: number,):Observable<PediatriciansExaminationModel> {
+        let headers: Headers = this._headers;
+        return this._http.get('/api/childcards/getPediatriciansExamination?childCardId=' + childCardId,
+            { headers })
+            .map((resp: Response) => {
+                return new PediatriciansExaminationModel(resp.json());
+            })
+            .catch((error: any) => { return Observable.throw(error); });
     }
 }

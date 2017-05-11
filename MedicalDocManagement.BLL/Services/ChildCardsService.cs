@@ -161,7 +161,7 @@ namespace MedicalDocManagement.BLL.Services
         public string AddPsychiatristsConclusion(int childCardId, string conclusion)
         {
             var childCard = _unitOfWork.ChildrenCardsRepository
-                                       .Get(card => card.Id == childCardId)
+                                       .Get(card => card.Id == childCardId)                                       
                                        .Single();
             childCard.PsychiatristsConclusion = conclusion;
             _unitOfWork.ChildrenCardsRepository.Update(childCard);
@@ -173,6 +173,16 @@ namespace MedicalDocManagement.BLL.Services
         public void Dispose()
         {
             _unitOfWork.Dispose();
+        }
+
+        public PediatriciansExaminationDTO GetPediatriciansExamination(int childCardId)
+        {
+            var childCard = _unitOfWork.ChildrenCardsRepository
+                                       .Get(card => card.Id == childCardId)
+                                       .AsNoTracking()
+                                       .Single();
+
+            return PediatriciansExaminationDTOHelper.EntityToDTO(childCard.PediatriciansExamination);
         }
 
         public PediatriciansExaminationDTO SavePediatriciansExamination(int childCardId, 
