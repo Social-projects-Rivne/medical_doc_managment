@@ -16,7 +16,7 @@ using MedicalDocManagment.WebUI.Models.Validators;
 using System.Net.Http;
 using System.Net;
 using MedicalDocManagment.WebUI.Models.Main.PediatriciansExamination;
-using MedicalDocManagment.WebUI.Controllers.CustomAtrributes;
+using MedicalDocManagment.WebUI.Controllers.CustomAttributes;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {

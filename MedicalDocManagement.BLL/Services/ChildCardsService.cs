@@ -161,7 +161,7 @@ namespace MedicalDocManagement.BLL.Services
         public string AddPsychiatristsConclusion(int childCardId, string conclusion)
         {
             var childCard = _unitOfWork.ChildrenCardsRepository
-                                       .Get(card => card.Id == childCardId)                                       
+                                       .Get(card => card.Id == childCardId)
                                        .Single();
             childCard.PsychiatristsConclusion = conclusion;
             _unitOfWork.ChildrenCardsRepository.Update(childCard);

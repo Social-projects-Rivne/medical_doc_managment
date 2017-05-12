@@ -30,41 +30,47 @@
     </div>
 
     <!-- Вік -->
-    <div class="row col-xs-12">
-      <p class="col-xs-offset-2 col-xs-4">
-        <b>Вік</b> <u>{{_pediatriciansExamination.header.age}}</u>
-      </p>
-    </div>
+    <span class="row">
+      <span class="header-item">
+        <b>Вік</b>
+        <u>{{_pediatriciansExamination.header.age}}</u>
+      </span>
+    </span>
     <!-- Вага -->
-    <div class="row col-xs-12">
-      <p class="col-xs-offset-2 col-xs-4">
-        <b>Вага</b> {{_pediatriciansExamination.header.weight}}
-      </p>
-    </div>
+    <span class="row">
+      <span class="header-item">
+        <b>Вага</b>
+        <u>{{_pediatriciansExamination.header.weight}}</u>
+      </span>
+    </span>
     <!-- Зріст -->
-    <div class="row col-xs-12">
-      <p class="col-xs-offset-2 col-xs-4">
-        <b>Зріст</b> {{_pediatriciansExamination.header.height}}
-      </p>
-    </div>
+    <span class="row">
+      <span class="header-item">
+        <b>Зріст</b>
+        <u>{{_pediatriciansExamination.header.height}}</u>
+      </span>
+    </span>
     <!-- Окружність голови -->
-    <div class="row col-xs-12">
-      <p class="col-xs-offset-2 col-xs-4">
-        <b>Окружність голови</b> {{_pediatriciansExamination.header.headCircumference}}
-      </p>
-    </div>
+    <span class="row">
+      <span class="header-item">
+        <b>Окружність голови</b>
+        <u>{{_pediatriciansExamination.header.headCircumference}}</u>
+      </span>
+    </span>
     <!-- Окружність грудної клітки -->
-    <div class="row col-xs-12">
-      <p class="col-xs-offset-2 col-xs-4">
-        <b>Окружність грудної клітки</b> {{_pediatriciansExamination.header.chestCircumference}}
-      </p>
-    </div>
+    <span class="row">
+      <span class="header-item">
+        <b>Окружність грудної клітки</b>
+        <u>{{_pediatriciansExamination.header.chestCircumference}}</u>
+      </span>
+    </span>
     <!-- ВТ -->
-    <div class="row col-xs-12">
-      <p class="col-xs-offset-2 col-xs-4">
-        <b>ВТ</b> {{_pediatriciansExamination.header.vt}}
-      </p>
-    </div>
+    <span class="row">
+      <span class="header-item">
+        <b>ВТ</b>
+        <u>{{_pediatriciansExamination.header.vt}}</u>
+      </span>
+    </span>
 
     <!-- Скарги -->
     <div class="row col-xs-12">
@@ -78,13 +84,14 @@
     </div>
     <!-- Анамнез життя -->
     <div class="row col-xs-12">
-      <b>Анамнез життя</b> {{_pediatriciansExamination.anamnesisOfLife}}
+      <b>Анамнез життя</b> 
+      <u>{{_pediatriciansExamination.anamnesisOfLife}}</u>
     </div>
 
-    <!-- Вагітність та пологи -->
-    <!-- Рядок 1 -->
+    <!-- Вагітність та пологи -->  
     <p class="row col-xs-12">
-      Дитина від {{_pediatriciansExamination.pregnancyDetails.someDetails}} вагітності, яка протікала:
+      <!-- Рядок 1 -->
+      Дитина від <u>{{_pediatriciansExamination.pregnancyDetails.someDetails}}</u> вагітності, яка протікала:
       <i>
         <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedNormally)">
           нормально
@@ -94,12 +101,10 @@
           з токсикозом
         </span>
       </i>
-    </p>
-    <!-- Рядок 2 -->
-    <p class="row col-xs-12">
-      <span *ngIf="_pediatriciansExamination.pregnancyDetails.passedWithToxemia">
+      <!-- Рядок 2 -->
+      <u *ngIf="_pediatriciansExamination.pregnancyDetails.passedWithToxemia">
         {{_pediatriciansExamination.pregnancyDetails.toxemiaDetails}}
-      </span>
+      </u>
       <i>
         <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedWithToxemia)">
           половини
@@ -113,16 +118,15 @@
           загрозою переривання у терміні
         </span>
       </i>
-      <span type="text" *ngIf="_pediatriciansExamination.pregnancyDetails.withThreatInInterruption">
+      <u type="text" *ngIf="_pediatriciansExamination.pregnancyDetails.withThreatInInterruption">
         {{_pediatriciansExamination.pregnancyDetails.dateOfInterruption}}
-      </span>
-    </p>
-    <!-- Рядок 3 -->
-    <p class="row col-xs-12">
-      від
-      <span *ngIf="_pediatriciansExamination.pregnancyDetails.childBirth != ChildBirthEnum.Unknown">
+      </u>
+      <!-- Рядок 3 -->
+      &nbsp;від&nbsp;
+      <u *ngIf="_pediatriciansExamination.pregnancyDetails.childBirth != ChildBirthEnum.Unknown">
         {{_pediatriciansExamination.pregnancyDetails.fromDetails}}
-      </span>
+      </u>
+      &nbsp;
       <i>
         <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
                     pregnancyDetails.childBirth == ChildBirthEnum.Urgent)">
@@ -142,23 +146,21 @@
       </i>
     </p>
 
-    <!-- Результати огляду при народженні -->
-    <!-- Рядок 1 -->
+    <!-- Результати огляду при народженні -->    
     <p class="row col-xs-12">
+      <!-- Рядок 1 -->
       Вага при народженні
-      {{_pediatriciansExamination.birthDetails.weight}}
+      <u>{{_pediatriciansExamination.birthDetails.weight}}</u>
       , довжина тіла
-      {{_pediatriciansExamination.birthDetails.bodyLength}}
+      <u>{{_pediatriciansExamination.birthDetails.bodyLength}}</u>
       , окружність голови
-      {{_pediatriciansExamination.birthDetails.headCircumference}}
+      <u>{{_pediatriciansExamination.birthDetails.headCircumference}}</u>
       ,
-    </p>
-    <!-- Рядок 2 -->
-    <p class="row col-xs-12">
+      <!-- Рядок 2 -->
       окружність грудної клітки
-      {{_pediatriciansExamination.birthDetails.chestCircumference}}
+      <u>{{_pediatriciansExamination.birthDetails.chestCircumference}}</u>
       , оцінка за шкалою Апгар
-      {{_pediatriciansExamination.birthDetails.scoreByApgar}}
+      <u>{{_pediatriciansExamination.birthDetails.scoreByApgar}}</u>
       .
     </p>
 
@@ -174,14 +176,14 @@
           був ускладнений
         </span>
       </i>
-      <span *ngIf="_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications!=false">
+      <u *ngIf="_pediatriciansExamination.earlyNeonatalPeriodWasWithComplications">
         {{_pediatriciansExamination.complicationsDuringNeonatalPeriod}}
-      </span>
+      </u>
       .
     </p>
     <!-- Рядок після рядку з раннім неонатальним періодом -->
     <p class="row col-xs-12">
-      {{_pediatriciansExamination.detailsAfterEarlyNeonatalPeriod}}
+      <u>{{_pediatriciansExamination.detailsAfterEarlyNeonatalPeriod}}</u>
     </p>
 
     <!-- Психомоторний розвиток на 1-му році життя -->
@@ -196,18 +198,18 @@
           не відповідав нормі
         </span>
       </i>
-      <span *ngIf="!_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal">
+      <u *ngIf="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal">
         {{_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.details}}
-      </span>
+      </u>
     </p>
     <!-- Вигодовування -->
     <p class="row col-xs-12">
       Вигодовування: природнє
-      {{_pediatriciansExamination.naturalFeedingDetails}}
+      <u>{{_pediatriciansExamination.naturalFeedingDetails}}</u>
       , штучне
-      {{_pediatriciansExamination.nonNaturalFeedingDetails}}
+      <u>{{_pediatriciansExamination.nonNaturalFeedingDetails}}</u>
       , змішане
-      {{_pediatriciansExamination.mixedFeedingDetails}}
+      <u>{{_pediatriciansExamination.mixedFeedingDetails}}</u>
     </p>
     <!-- Перенесені захворювання -->
     <div class="row col-xs-12">
@@ -231,7 +233,9 @@
           є
         </span>
       </i>
-      <span *ngIf="_pediatriciansExamination.badHabitsPresent">{{_pediatriciansExamination.badHabitsDetails}}</span>
+      <u *ngIf="_pediatriciansExamination.badHabitsPresent">
+        {{_pediatriciansExamination.badHabitsDetails}}
+      </u>
     </p>
     <!-- Алергологічний анамнез -->
     <p class="row col-xs-12">
@@ -245,7 +249,9 @@
           обтяжений
         </span>
       </i>
-      <span *ngIf="_pediatriciansExamination.weightedWithAllergicHistory">{{_pediatriciansExamination.allergicHistoryDetails}}</span>
+      <u *ngIf="_pediatriciansExamination.weightedWithAllergicHistory">
+        {{_pediatriciansExamination.allergicHistoryDetails}}
+      </u>
     </p>
     <!-- Спадковий анамнез -->
     <p class="row col-xs-12">
@@ -259,7 +265,9 @@
           обтяжений
         </span>
       </i>
-      <span *ngIf="_pediatriciansExamination.weightedWithAncestralAnamnesis">{{_pediatriciansExamination.ancestralAnamnesisDetails}}</span>
+      <u *ngIf="_pediatriciansExamination.weightedWithAncestralAnamnesis">
+        {{_pediatriciansExamination.ancestralAnamnesisDetails}}
+      </u>
     </p>
     <!-- Розладів стільця... -->
     <p class="row col-xs-12">
@@ -268,7 +276,7 @@
     <!-- Профщеплення -->
     <p class="row col-xs-12">
       Профщеплення:
-      {{_pediatriciansExamination.preventiveVaccinations}}
+      <u>{{_pediatriciansExamination.preventiveVaccinations}}</u>
     </p>
 
     <hr />

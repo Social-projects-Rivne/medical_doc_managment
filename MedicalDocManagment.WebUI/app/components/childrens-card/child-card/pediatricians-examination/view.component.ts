@@ -10,6 +10,7 @@ import MainAppService from "../../../../services/main-app.service";
 @Component({
     moduleId: module.id,
     selector: 'pediatricians-examination-view',
+    styleUrls: ['view.component.css'],
     templateUrl: 'view.component.html'
 })
 export default class PediatriciansExaminationViewComponent {

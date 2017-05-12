@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
-namespace MedicalDocManagment.WebUI.Controllers.CustomAtrributes
+namespace MedicalDocManagment.WebUI.Controllers.CustomAttributes
 {
     public class PsychiatristsOnlyAuthorization : AuthorizationFilterAttribute
     {
