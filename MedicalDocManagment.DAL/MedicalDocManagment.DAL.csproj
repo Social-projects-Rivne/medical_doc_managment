@@ -71,7 +71,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="Entities\Image.cs" />
     <Compile Include="Entities\Main\BlockMkh.cs" />
     <Compile Include="Entities\Main\ChildCard.cs" />
     <Compile Include="Entities\Main\ClassMkh.cs" />
@@ -135,9 +136,15 @@
     <Compile Include="Migrations\201704281351040_Feature-fill_form_psychiatrist.Designer.cs">
       <DependentUpon>201704281351040_Feature-fill_form_psychiatrist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705131649302_User_add_image.cs" />
+    <Compile Include="Migrations\201705131649302_User_add_image.Designer.cs">
+      <DependentUpon>201705131649302_User_add_image.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ImageRepository.cs" />
     <Compile Include="Repository\Interfaces\IChildrenCardsRepository.cs" />
+    <Compile Include="Repository\Interfaces\IImageRepository.cs" />
     <Compile Include="Repository\Interfaces\IParentChildCardRepository.cs" />
     <Compile Include="Repository\Interfaces\IParentRepository.cs" />
     <Compile Include="Repository\Main\BlockMkhRepository.cs" />
@@ -176,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704281351040_Feature-fill_form_psychiatrist.resx">
       <DependentUpon>201704281351040_Feature-fill_form_psychiatrist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705131649302_User_add_image.resx">
+      <DependentUpon>201705131649302_User_add_image.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

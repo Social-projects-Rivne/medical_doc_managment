@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\Admin\ImageDTO.cs" />
     <Compile Include="DTO\Main\BlockMkhDTO.cs" />
     <Compile Include="DTO\Main\ChildCardDTO.cs" />
     <Compile Include="DTO\Main\DiagnosisMkhDTO.cs" />

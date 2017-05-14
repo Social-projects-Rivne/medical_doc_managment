@@ -13,6 +13,7 @@ import PositionModel from "../../../models/positionmodel";
 export class UserAddComponent implements OnInit {
     user: User = new User();
     positions: PositionModel[];
+    userImage: any;
     public notificationOptions = {
         timeOut: 5000,
         lastOnBottom: true,
@@ -30,18 +31,22 @@ export class UserAddComponent implements OnInit {
     ngOnInit() {
         this.updatePositionsList();
     }
-    submit() {
-        this.userService.postData(this.user)
-                        .subscribe(
-                        (data) => {
-                            console.log(data);
-                            this._service.success("Успіх", "Успішно додано користувача");
-                        },
-                        (error) => {
-                            console.log(error);
-                            this._service.error("Помилка", "Відбулась помилка при додаванні користувача");
-                        }
-        );
+    imageUploaded(event) {
+        this.userImage = event.file;
+    }
+    submit(event: Event) {
+        event.preventDefault();
+        this.userService.postDataWithImage(this.user, this.userImage)
+            .subscribe(
+            (data) => {
+                console.log(data);
+                this._service.success("Успіх", "Успішно додано користувача");
+            },
+            (error) => {
+                console.log(error);
+                this._service.error("Помилка", "Відбулась помилка при додаванні користувача");
+            }
+            );
     }
     updatePositionsList(): void {
         this.userService.getPositionsList()
