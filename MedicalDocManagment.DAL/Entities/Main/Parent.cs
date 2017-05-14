@@ -17,9 +17,11 @@ namespace MedicalDocManagment.DAL.Entities
         
         [StringLength(100)]
         public string LastName { get; set; }
-        
+
+        [StringLength(100)]
         public string Work { get; set; }
         
+        [StringLength(12)]
         public string Phone { get; set; }
         
         public virtual ICollection<ParentChildCard> ParentsChildren { get; set; }
