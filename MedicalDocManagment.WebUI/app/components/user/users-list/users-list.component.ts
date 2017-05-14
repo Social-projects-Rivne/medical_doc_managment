@@ -5,7 +5,7 @@ import { HttpFacade } from '../../../services/http.facade';
 
 import PageComponent from './page/page.component';
 import UsersModel from '../../../models/usersmodel';
-import UserModel from '../../../models/usersmodel';
+import UserModel from '../../../models/usermodel';
 import {NotificationsService, SimpleNotificationsComponent} from 'angular2-notifications';
 import {ItemActionListNotificationService} from '../../../services/item-actionlist-notification.service'
 import { Subscription } from 'rxjs/Subscription';
@@ -21,6 +21,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class UsersListComponent {
     users: Observable<UsersModel>;
     userForEdit: UserModel;
+    tempUserForEdit: UserModel;
     page: number = 1;
     pageSize: number = 5;
     total: number;
@@ -44,10 +45,12 @@ export class UsersListComponent {
     constructor(httpFacade: HttpFacade, private _service: NotificationsService,
                 private itemNotificationService: ItemActionListNotificationService) {
         this._httpFacade = httpFacade;
+        this.tempUserForEdit = new UserModel();
     }
 
     onUsersListEdit(userForEdit: UserModel) {
         this.userForEdit = userForEdit;
+        this.tempUserForEdit.clone(userForEdit);
     }
 
     ngOnInit() {
