@@ -13,7 +13,7 @@ import { Ng2PaginationModule } from 'ng2-pagination';
 import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
 import ChildrenCardsListModule from "./children-cards-list.module";
 import UsersSearchModule from "./users-search.module";
-import ChildCardModule from "./child-card.module";
+import ChildCardModule from "./child-card/child-card.module";
 
 import { LoginAppComponent } from '../components/login-app.component';
 import { LoginComponent } from '../components/login/login.component';
