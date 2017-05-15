@@ -15,6 +15,8 @@ using MedicalDocManagment.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Models.Validators;
 using System.Net.Http;
 using System.Net;
+using MedicalDocManagment.WebUI.Models.Main.PediatriciansExamination;
+using MedicalDocManagment.WebUI.Controllers.CustomAttributes;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -226,6 +228,41 @@ namespace MedicalDocManagment.WebUI.Controllers
             {
                 var result = _childCardsService.AddPsychiatristsConclusion(childCardId, conclusion);
                 return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
+
+        [PediatriciansOnlyAuthorization]
+        [HttpPut]
+        public IHttpActionResult SavePediatriciansExamination(int childCardId,
+            [FromBody]PediatriciansExaminationVM examinationVM)
+        {
+            try
+            {
+                var examinationDTO = PediatriciansExaminationHelper.VMToDTO(examinationVM);
+                var resultDTO = _childCardsService.SavePediatriciansExamination(childCardId,
+                    examinationDTO);
+                var resultVM = PediatriciansExaminationHelper.DTOToVM(resultDTO);
+                return Ok(resultVM);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IHttpActionResult GetPediatriciansExamination(int childCardId)
+        {
+            try
+            {
+                var resultDTO = _childCardsService.GetPediatriciansExamination(childCardId);
+                var resultVM = PediatriciansExaminationHelper.DTOToVM(resultDTO);
+                return Ok(resultVM);
             }
             catch (Exception exception)
             {
