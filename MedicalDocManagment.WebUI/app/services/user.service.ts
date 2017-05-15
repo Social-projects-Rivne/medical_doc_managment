@@ -34,7 +34,9 @@ export class UserService {
         let headers = this.headers;
         headers.delete("Content-Type");
         let formData: FormData = new FormData();
-        formData.append('content', photo, photo.name);
+        if (photo != null) {
+            formData.append('content', photo, photo.name);
+        }
         for (var property in obj) {
             if (obj.hasOwnProperty(property)) {
                 formData.append(property, obj[property]);

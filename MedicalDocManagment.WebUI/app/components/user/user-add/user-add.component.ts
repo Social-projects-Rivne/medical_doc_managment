@@ -14,6 +14,8 @@ export class UserAddComponent implements OnInit {
     user: User = new User();
     positions: PositionModel[];
     userImage: any;
+    showImageInvalidMessage: boolean = false;
+    showImageSelectedMessage: boolean = false;
     public notificationOptions = {
         timeOut: 5000,
         lastOnBottom: true,
@@ -30,9 +32,23 @@ export class UserAddComponent implements OnInit {
     constructor(private userService: UserService, private _service: NotificationsService) {}
     ngOnInit() {
         this.updatePositionsList();
+
+    }
+    imageRemoved(event) {
+        this.resetImage();
+        this.resetMessages();
+    }
+    resetImage() {
+        this.userImage = null;
+    }
+    resetMessages() {
+        this.showImageSelectedMessage = false;
+        this.showImageInvalidMessage = false;
     }
     imageUploaded(event) {
         this.userImage = event.file;
+        this.showImageSelectedMessage = true;
+        this.showImageInvalidMessage = false;
     }
     submit(event: Event) {
         event.preventDefault();
@@ -44,6 +60,10 @@ export class UserAddComponent implements OnInit {
             },
             (error) => {
                 console.log(error);
+                let errorMessage = JSON.parse(error._body).message;
+                if (errorMessage == "Image is not valid.") {
+                    this.showImageInvalidMessage = true;
+                }
                 this._service.error("Помилка", "Відбулась помилка при додаванні користувача");
             }
             );

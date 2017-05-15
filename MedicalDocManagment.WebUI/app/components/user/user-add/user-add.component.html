@@ -1,4 +1,4 @@
-﻿<form  class="form-horizontal" enctype="multipart/form-data" (ngSubmit)="submit($event);userAddForm.reset();" #userAddForm="ngForm">
+﻿<form  class="form-horizontal" enctype="multipart/form-data" (ngSubmit)="submit($event);userAddForm.reset();resetMessages();resetImage();" #userAddForm="ngForm">
     <div class="form-group">
         <label for="username" class="control-label col-xs-2">Ім’я користувача</label>
         <div class = "col-xs-5">
@@ -99,12 +99,24 @@
         <div class="col-xs-5">
             <image-upload id="photo"
                           name="photo"
-                          [max]="1"
+                          [max]="100"
+                          [preview]="false"
                           (onFileUploadFinish)="imageUploaded($event)"
+                          (onRemove)="imageRemoved($event)"
                           [buttonCaption]="'Вибрати зображення'"
                           [dropBoxMessage]="'Перетягніть зображення сюди'">
 
             </image-upload>
+            <div *ngIf="showImageSelectedMessage && userImage!=null" class="alert alert-info">
+                Вибрано зображення {{userImage.name}}
+            </div>
+            <div *ngIf="showImageSelectedMessage">
+                <button type="button" class="btn btn-danger btn-block" (click)="imageRemoved($event);">Відмінити вибір</button>
+            </div>
+            <div *ngIf="showImageInvalidMessage" class="alert alert-danger">
+                Розмір зображення не повинен перевищувати 300 кБ, а висота та ширина 150 пікселів.
+            </div>
+            
         </div>
     </div>
     <div class="form-group">
