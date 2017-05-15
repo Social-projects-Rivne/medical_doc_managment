@@ -8,9 +8,9 @@ import ChildCardModel from "../models/child-card.model";
  */
 @Injectable()
 export default class MainAppService {
-    currentUser: ChildCardModel; 
+    currentCard: ChildCardModel; 
 
     constructor() {
-        this.currentUser = null;
+        this.currentCard = null;
     }
 }
