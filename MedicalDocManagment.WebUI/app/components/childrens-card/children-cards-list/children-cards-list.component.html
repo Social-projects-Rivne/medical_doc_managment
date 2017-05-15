@@ -1,11 +1,11 @@
-﻿<div class="container"
+﻿<div class="container-fluid"
      infiniteScroll
      [infiniteScrollDistance]="2"
      [infiniteScrollThrottle]="300"
      (scrolled)="onScrollDown()">
-    <div class="row">
-        <div class="col-xs-4" *ngFor="let childCard of childrenCards"
-             children-cards-list-item [childCard]="childCard">
-        </div>
-    </div>
+  <div class="children-cards">
+    <span *ngFor="let childCard of childrenCards"
+          children-cards-list-item [childCard]="childCard">
+    </span>
+  </div>
 </div>

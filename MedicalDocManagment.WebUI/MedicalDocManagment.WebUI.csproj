@@ -174,8 +174,10 @@
     <Content Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.html" />
     <Content Include="app\components\childrens-card\child-card\main-page.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\add\children-card-add.component.html" />
+    <None Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.less" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.html" />
+    <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.css" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list.component.html" />
     <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.html" />
     <Content Include="app\components\header\main\header-main.component.html" />
@@ -223,6 +225,7 @@
     <Content Include="app\components\user\users-search\search-options.component.html" />
     <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.css" />
     <Content Include="app\components\childrens-card\child-card\pediatricians-examination\view.component.less" />
+    <Content Include="app\components\childrens-card\children-cards-list\children-cards-list.component.css" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
