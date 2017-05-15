@@ -102,6 +102,11 @@
     <Compile Include="Entities\Main\NosologyMkh.cs" />
     <Compile Include="Entities\Main\Parent.cs" />
     <Compile Include="Entities\Main\ParentChildCard.cs" />
+    <Compile Include="Entities\Main\PediatriciansExamination\BirthDetails.cs" />
+    <Compile Include="Entities\Main\PediatriciansExamination\Header.cs" />
+    <Compile Include="Entities\Main\PediatriciansExamination\PediatriciansExamination.cs" />
+    <Compile Include="Entities\Main\PediatriciansExamination\PregnancyDetails.cs" />
+    <Compile Include="Entities\Main\PediatriciansExamination\PsychomotorDevelopment.cs" />
     <Compile Include="Entities\Position.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
@@ -135,10 +140,19 @@
     <Compile Include="Migrations\201704281351040_Feature-fill_form_psychiatrist.Designer.cs">
       <DependentUpon>201704281351040_Feature-fill_form_psychiatrist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705071936271_Feature-Fill_form_pediatrician.cs" />
+    <Compile Include="Migrations\201705071936271_Feature-Fill_form_pediatrician.Designer.cs">
+      <DependentUpon>201705071936271_Feature-Fill_form_pediatrician.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705151252104_Improvement-component_for_adding_parent_to_user_card.cs" />
+    <Compile Include="Migrations\201705151252104_Improvement-component_for_adding_parent_to_user_card.Designer.cs">
+      <DependentUpon>201705151252104_Improvement-component_for_adding_parent_to_user_card.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Interfaces\IChildrenCardsRepository.cs" />
     <Compile Include="Repository\Interfaces\IParentChildCardRepository.cs" />
+    <Compile Include="Repository\Interfaces\IPediatriciansExaminationsRepository.cs" />
     <Compile Include="Repository\Interfaces\IParentRepository.cs" />
     <Compile Include="Repository\Main\BlockMkhRepository.cs" />
     <Compile Include="Repository\Main\ChildrenCardsRepository.cs" />
@@ -154,6 +168,7 @@
     <Compile Include="Repository\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Repository\Main\NosologyMkhRepository.cs" />
     <Compile Include="Repository\Main\ParentChildCardRepository.cs" />
+    <Compile Include="Repository\Main\PediatriciansExaminationRepository.cs" />
     <Compile Include="Repository\Main\ParentRepository.cs" />
     <Compile Include="Repository\PositionRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
@@ -176,6 +191,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704281351040_Feature-fill_form_psychiatrist.resx">
       <DependentUpon>201704281351040_Feature-fill_form_psychiatrist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705071936271_Feature-Fill_form_pediatrician.resx">
+      <DependentUpon>201705071936271_Feature-Fill_form_pediatrician.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705151252104_Improvement-component_for_adding_parent_to_user_card.resx">
+      <DependentUpon>201705151252104_Improvement-component_for_adding_parent_to_user_card.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

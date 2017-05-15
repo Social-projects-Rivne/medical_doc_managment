@@ -168,8 +168,11 @@
   <ItemGroup>
     <Content Include="app\.gitignore" />
     <Content Include="app\components\admin-app.component.html" />
+    <Content Include="app\components\childrens-card\child-card\pediatricians-examination\view.component.html" />
+    <Content Include="app\components\childrens-card\child-card\pediatricians-examination\component.html" />
+    <Content Include="app\components\childrens-card\child-card\pediatricians-examination\form.component.html" />
     <Content Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.html" />
-    <Content Include="app\components\childrens-card\child-card\child-card.component.html" />
+    <Content Include="app\components\childrens-card\child-card\main-page.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\add\children-card-add.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.html" />
@@ -219,6 +222,7 @@
     <Content Include="App_Data\src\nosologies.json" />
     <Content Include="app\components\user\users-search\search-options.component.html" />
     <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.css" />
+    <Content Include="app\components\childrens-card\child-card\pediatricians-examination\view.component.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -230,22 +234,39 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\pediatricians-examination\view.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\pediatricians-examination\component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\pediatricians-examination\form.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.ts" />
-    <TypeScriptCompile Include="app\components\childrens-card\child-card\child-card.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\main-page.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.ts" />
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
     <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
+    <TypeScriptCompile Include="app\models\pediatricians-examination\child-birth.enum.ts" />
+    <TypeScriptCompile Include="app\models\pediatricians-examination\psychomotor-development.model.ts" />
+    <TypeScriptCompile Include="app\models\pediatricians-examination\header.model.ts" />
+    <TypeScriptCompile Include="app\models\pediatricians-examination\birth-details.model.ts" />
+    <TypeScriptCompile Include="app\models\pediatricians-examination\pregnancy-details.model.ts" />
+    <TypeScriptCompile Include="app\models\pediatricians-examination\pediatricians-examination.model.ts" />
     <TypeScriptCompile Include="app\models\parent-child-card.model.ts" />
-    <TypeScriptCompile Include="app\modules\child-card.module.ts" />
+    <TypeScriptCompile Include="app\modules\child-card\pediatricians-examination.module.ts" />
+    <TypeScriptCompile Include="app\modules\child-card\child-card.module.ts" />
     <TypeScriptCompile Include="app\modules\users-search.module.ts" />
     <Compile Include="Controllers\ChildCardsController.cs" />
-    <Compile Include="Controllers\PsychiatristsOnlyAuthorization.cs" />
+    <Compile Include="Controllers\CustomAttributes\PediatriciansOnlyAuthorization.cs" />
+    <Compile Include="Controllers\CustomAttributes\PsychiatristsOnlyAuthorization.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />
     <Compile Include="Helpers\ChildCardMapHelper.cs" />
+    <Compile Include="Helpers\PediatriciansExaminationHelper.cs" />
     <Compile Include="Helpers\PositionMapHelper.cs" />
     <Compile Include="Helpers\ViewPatientDataHelper.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
+    <Compile Include="Models\Main\PediatriciansExamination\BirthDetailsVM.cs" />
+    <Compile Include="Models\Main\PediatriciansExamination\PregnancyDetailsVM.cs" />
+    <Compile Include="Models\Main\PediatriciansExamination\HeaderVM.cs" />
+    <Compile Include="Models\Main\PediatriciansExamination\PsychomotorDevelopmentVM.cs" />
+    <Compile Include="Models\Main\PediatriciansExamination\PediatriciansExaminationVM.cs" />
     <Compile Include="Models\Main\ChildCardVM.cs" />
     <Compile Include="Models\Main\ClassMkhVM.cs" />
     <Compile Include="Models\Main\DiagnosisMkhVM.cs" />

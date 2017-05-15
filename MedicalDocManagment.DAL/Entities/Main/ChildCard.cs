@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicalDocManagment.DAL.Entities.Main.PediatriciansExamination;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -42,5 +43,10 @@ namespace MedicalDocManagment.DAL.Entities
         // 2260 is the calculated number of characters that can fit into paper form
         [StringLength(2260)]
         public string PsychiatristsConclusion { get; set; }
+
+        public int? PediatriciansExaminationId { get; set; }
+
+        [ForeignKey("PediatriciansExaminationId")]
+        public virtual PediatriciansExamination PediatriciansExamination { get; set; }
     }
 }

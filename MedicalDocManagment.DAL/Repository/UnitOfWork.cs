@@ -21,6 +21,7 @@ namespace MedicalDocManagment.DAL.Repository
         private readonly Lazy<IChildrenCardsRepository> _childrenCardsRepository;
         private readonly Lazy<IParentRepository> _parentRepository;
         private readonly Lazy<IParentChildCardRepository> _parentChildCardRepository;
+        private readonly Lazy<IPediatriciansExaminationsRepository> _pediatriciansExaminationsRepository;
         private readonly Lazy<RolesManager> _rolesManager;
 
         public UnitOfWork()
@@ -35,6 +36,8 @@ namespace MedicalDocManagment.DAL.Repository
             _childrenCardsRepository = new Lazy<IChildrenCardsRepository>(() => new ChildrenCardsRepository(_context));
             _parentRepository = new Lazy<IParentRepository>(() => new ParentRepository(_context));
             _parentChildCardRepository = new Lazy<IParentChildCardRepository>(() => new ParentChildCardRepository(_context));
+            _pediatriciansExaminationsRepository = new Lazy<IPediatriciansExaminationsRepository>
+                (() => new PediatriciansExaminationsRepository(_context));
             _rolesManager = new Lazy<RolesManager>(() => HttpContext.Current
                                                                     .GetOwinContext()
                                                                     .GetUserManager<RolesManager>());
@@ -48,6 +51,7 @@ namespace MedicalDocManagment.DAL.Repository
         public IChildrenCardsRepository ChildrenCardsRepository => _childrenCardsRepository.Value;
         public IParentRepository ParentRepository => _parentRepository.Value;
         public IParentChildCardRepository ParentChildCardRepository => _parentChildCardRepository.Value;
+        public IPediatriciansExaminationsRepository PediatriciansExaminationsRepository => _pediatriciansExaminationsRepository.Value;
         public UsersManager UsersManager => HttpContext.Current.GetOwinContext().GetUserManager<UsersManager>();
         public RolesManager RolesManager => _rolesManager.Value;
 
