@@ -50,26 +50,25 @@ export default class ItemActionListEditModal implements OnInit {
     }
     onCancel() {
         this.resetImage();
-        this.resetMessages()
-    }
-    onSave() {
-        this.resetImage();
-        this.resetMessages()
+        this.resetMessages();
     }
     submit() {
         this._http.updateUserWithImage(this.user, this.userImage)
             .subscribe(
             (data) => {
-                console.log(data);
+                this.resetImage();
+                this.resetMessages();
                 let updatedAvatar = JSON.parse(data._body).avatar;
                 this.user.avatar = updatedAvatar;
                 this._service.success("Успіх", "Успішно відредаговано користувача");
             },
             (error) => {
                 console.log(error);
+                this.resetImage();
                 this._service.error("Помилка", "Відбулась помилка при редагуванні користувача");
             }
         );
+        
     }
 
     ngOnInit() {
