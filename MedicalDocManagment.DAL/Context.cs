@@ -17,6 +17,7 @@ namespace MedicalDocManagment.DAL
         public DbSet<Parent> Parents { get; set; }
         public DbSet<ParentChildCard> ParentsChildrenCards { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<Visit> Visits { get; set; }
 
         static Context()
         {

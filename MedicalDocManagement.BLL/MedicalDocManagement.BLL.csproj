@@ -74,18 +74,22 @@
     <Compile Include="DTO\Main\PediatriciansExamination\PediatriciansExaminationDTO.cs" />
     <Compile Include="DTO\Main\PediatriciansExamination\PregnancyDetailsDTO.cs" />
     <Compile Include="DTO\Main\PediatriciansExamination\PsychomotorDevelopmentDTO.cs" />
+    <Compile Include="DTO\Main\VisitDTO.cs" />
     <Compile Include="Helpers\PediatriciansExaminationDTOHelper.cs" />
     <Compile Include="Helpers\ChildCardDTOHelper.cs" />
     <Compile Include="Helpers\PositionDTOHelper.cs" />
     <Compile Include="Helpers\UserDTOHelper.cs" />
+    <Compile Include="Helpers\VisitDTOHelper.cs" />
     <Compile Include="Services\Abstract\IPositionsService.cs" />
     <Compile Include="Services\Abstract\IUsersService.cs" />
     <Compile Include="Services\Abstract\IChildCardsService.cs" />
+    <Compile Include="Services\Abstract\IVisitsService.cs" />
     <Compile Include="Services\PositionsService.cs" />
     <Compile Include="Services\UsersService.cs" />
     <Compile Include="Services\ChildCardsService.cs" />
     <Compile Include="DTO\Main\ClassMkhDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\VisitService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MedicalDocManagment.DAL\MedicalDocManagment.DAL.csproj">

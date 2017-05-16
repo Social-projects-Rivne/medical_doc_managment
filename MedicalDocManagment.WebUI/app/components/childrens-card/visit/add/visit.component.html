@@ -1,0 +1,22 @@
+﻿<div class="container">
+    <div class="col-xs-12">
+        <form class="form" (ngSubmit)="submitVisit(visitAddForm)" #visitAddForm="ngForm">
+            <div class="form-group">
+                <label for="date">Дата візиту</label>
+                <input #date type="date" class="form-control" (change)="onDateChange($event.target)"
+                       id="date" name="date" [value]="visit.date | date:'yyyy-MM-dd'" required />
+            </div>
+            <div class="form-group">
+                <label for="summury">Заключення</label>
+                <textarea class="form-control" id="summury" name="summury" [(ngModel)]="visit.summury"
+                          #summury="ngModel" required rows="10" style="resize: vertical;"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <button [disabled]="visitAddForm.form.invalid" class="btn btn-default" type="submit">Додати</button>
+                </div>
+            </div>
+        </form>
+        <simple-notifications [options]="_sharedService.notificationOptions"></simple-notifications>
+    </div>
+</div>
