@@ -32,6 +32,23 @@ export class HttpFacade {
             .map((resp: Response) => { return resp; })
             .catch((error: any) => { return Observable.throw(error); });
     }
+    updateUserWithImage(user: UserModel, photo: File) {
+        const jsonBody = JSON.stringify(user);
+        let headers = this.headers;
+        headers.delete("Content-Type");
+        let formData: FormData = new FormData();
+        if (photo != null) {
+            formData.append('content', photo, photo.name);
+        }
+        for (var property in user) {
+            if (user.hasOwnProperty(property)) {
+                formData.append(property, user[property]);
+            }
+        }
+        return this._http.put('/api/admin/edituser/' + user.id, formData, { headers })
+            .map((resp: Response) => { return resp; })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
     searchUsersByPositionName(positionName: string): Observable<UsersModel> {
         let headers = this.headers;
         return this._http.get('/api/Admin/GetUsersByPosition?positionName=' + positionName, { headers })
