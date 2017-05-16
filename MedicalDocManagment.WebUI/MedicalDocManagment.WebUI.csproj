@@ -371,6 +371,7 @@
     <TypeScriptCompile Include="app\services\item-actionlist-notification.service.ts" />
     <TypeScriptCompile Include="app\services\main-app.service.ts" />
     <TypeScriptCompile Include="app\services\mkhs.service.ts" />
+    <TypeScriptCompile Include="app\services\shared.service.ts" />
     <TypeScriptCompile Include="app\services\user.service.ts" />
   </ItemGroup>
   <ItemGroup>
