@@ -1,4 +1,5 @@
 ﻿import { Component, EventEmitter, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
 declare var jQuery: any;
@@ -22,6 +23,7 @@ export default class ChildCardAddParentComponent {
     private _isErrorOnAdding: boolean;
     private _lastErrorMessage: string;
     private _parent: ParentModel;
+    private _phoneMask: Array<string | RegExp>;
 
     constructor(childrenCardService: ChildrenCardService) {
         this.parentAddedEvent = new EventEmitter<ParentModel>();
@@ -31,19 +33,10 @@ export default class ChildCardAddParentComponent {
         this._isErrorOnAdding = false;
         this._lastErrorMessage = null;
         this._parent = new ParentModel();
+        this._phoneMask = ['0', ' ', /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
     }
 
-    private _isValid(): boolean {
-        return (
-            this._parent.firstName && (this._parent.firstName.trim().length > 0) &&
-            this._parent.secondName && (this._parent.secondName.trim().length > 0) &&
-            this._parent.lastName && (this._parent.lastName.trim().length > 0) &&
-            this._parent.work && (this._parent.work.trim().length > 0) &&
-            this._parent.phone && (this._parent.phone.trim().length > 0)
-        );
-    }
-
-    private _onSave(): void {
+    private _onSave(form: FormGroup): void {
         this._isAdding = true;
         this._isErrorOnAdding = false;
         this._childrenCardService.addParent(this._parent)
@@ -54,6 +47,7 @@ export default class ChildCardAddParentComponent {
                     let parent = new ParentModel(result.value);
                     this.parentAddedEvent.emit(parent);
                     jQuery('#childCardAddParentModal').modal('hide');
+                    form.reset();
                 }
             },
             (error: any) => {
