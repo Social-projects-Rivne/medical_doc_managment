@@ -166,12 +166,22 @@ export default class ChildrensCardService {
      * @param {string} childCardId Id of child card to get examination for
      * @return {Observable<PediatriciansExaminationModel>} Observable to examination
      */
-    getPediatriciansExamination(childCardId: number,):Observable<PediatriciansExaminationModel> {
+    getPediatriciansExamination(childCardId: number):Observable<PediatriciansExaminationModel> {
         let headers: Headers = this._headers;
         return this._http.get('/api/childcards/getPediatriciansExamination?childCardId=' + childCardId,
             { headers })
             .map((resp: Response) => {
                 return new PediatriciansExaminationModel(resp.json());
+            })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    getChildCard(childCardId: number): Observable<ChildCardModel> {
+        let headers: Headers = this._headers;
+        return this._http.get('/api/childcards/getChildCard?childCardId=' + childCardId,
+            { headers })
+            .map((resp: Response) => {
+                return new ChildCardModel(resp.json());
             })
             .catch((error: any) => { return Observable.throw(error); });
     }

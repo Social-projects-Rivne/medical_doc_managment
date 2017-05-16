@@ -13,9 +13,9 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a [routerLink]="['/main/childCard']">Головна сторінка</a></li>
+                    <li><a [routerLink]="['/main/childCard/'+_mainAppService.currentCard.id]">Головна сторінка</a></li>
                     <li>
-                        <a [routerLink]="['/main/childCard/pediatriciansExamination']">
+                        <a [routerLink]="['/main/childCard/'+_mainAppService.currentCard.id+'/pediatriciansExamination']">
                             Огляд лікаря-педіатра
                         </a>
                     </li>
