@@ -18,6 +18,7 @@ import UsersListPageItemComponent from '../components/user/users-list/page/item/
 import { ItemActionListNotificationService } from '../services/item-actionlist-notification.service'
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
+import { ImageUploadModule } from "angular2-image-upload";
 
 @NgModule({
     imports: [
@@ -26,7 +27,8 @@ import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-not
         HttpModule, 
         Ng2PaginationModule, 
         SimpleNotificationsModule,
-        PushNotificationsModule
+        PushNotificationsModule,
+        ImageUploadModule.forRoot()
     ],
     declarations: [
         UsersListComponent,
