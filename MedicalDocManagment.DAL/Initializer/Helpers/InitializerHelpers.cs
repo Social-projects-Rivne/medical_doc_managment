@@ -42,7 +42,8 @@ namespace MedicalDocManagment.DAL.Initializer
                 Email = "admin@mail.com",
                 PasswordHash = passwordHasher.HashPassword(adminPassword),
                 Position = new Position { Name = "admin"},
-                IsActive = true
+                IsActive = true,
+                Image = new Image { ImageUrl = "/Files/no-image.png" }
             };
             var result = unitOfWork.UsersManager.Create(user);
             if (result.Succeeded)
@@ -61,6 +62,7 @@ namespace MedicalDocManagment.DAL.Initializer
             var users = fixture.Build<User>()
                                .Without(user => user.Position)
                                .Without(user => user.PositionId)
+                               .Without(user => user.Image)
                                .CreateMany(10);
             var roleAdmin = new Role { Name = "admin" };
             var roleUser = new Role { Name = "user" };
@@ -74,6 +76,7 @@ namespace MedicalDocManagment.DAL.Initializer
             foreach (var user in users)
             {
                 user.Position = new Position { Name = GeneratePositionName(positionCounter) };
+                user.Image = new Image { ImageUrl = "/Files/no-image.png" };
                 user.UserName = GenerateUserName(userCounter);
                 user.Email = GenerateEmail(userCounter);
                 var result = unitOfWork.UsersManager.Create(user, $"password{userCounter}");

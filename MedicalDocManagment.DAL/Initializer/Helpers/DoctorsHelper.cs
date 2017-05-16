@@ -18,7 +18,8 @@ namespace MedicalDocManagment.DAL.Initializer.Helpers
                     Email = "pediatrician@mail.com",
                     PasswordHash = passwordHash,
                     Position = new Position { Name = "педіатр" },
-                    IsActive = true
+                    IsActive = true,
+                    Image = new Image { ImageUrl = "\\Files\\no-image.png" }
                 },
                 new User
                 {
@@ -26,7 +27,8 @@ namespace MedicalDocManagment.DAL.Initializer.Helpers
                     Email = "psychiatrist@mail.com",
                     PasswordHash = passwordHash,
                     Position = new Position { Name = "психіатр" },
-                    IsActive = true
+                    IsActive = true,
+                    Image = new Image { ImageUrl = "/Files/no-image.png" }
                 }
             };
 

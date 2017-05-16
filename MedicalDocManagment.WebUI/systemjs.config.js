@@ -30,7 +30,8 @@
             'angular2-notifications': 'node_modules/angular2-notifications',
             'ngx-infinite-scroll':'node_modules/ngx-infinite-scroll',
             'moment': 'dist/js/moment/',
-            'angular2-moment':'dist/lib/npmlibs/angular2-moment'
+            'angular2-moment': 'dist/lib/npmlibs/angular2-moment',
+            'angular2-image-upload': 'node_modules/angular2-image-upload'
         },
         // пакеты, которые указывают загрузчику System, как загружать файлы без имени и расширения
         packages: {
@@ -60,7 +61,8 @@
             'ngx-infinite-scroll': {
                 main: 'bundles/ngx-infinite-scroll.umd.js',
                 defaultExtension: 'js'
-            }
+            },
+            'angular2-image-upload': { main: './index.js', defaultExtension: 'js' }
         }
     });
     if (global.filterSystemConfig) { global.filterSystemConfig(config); }

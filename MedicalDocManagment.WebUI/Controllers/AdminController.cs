@@ -15,6 +15,10 @@ using MedicalDocManagment.DAL.Repository.Interfaces;
 using MedicalDocManagment.DAL.Repository;
 using MedicalDocManagement.BLL.Services.Abstract;
 using MedicalDocManagement.BLL.Services;
+using System;
+using System.IO;
+using MultipartDataMediaFormatter.Infrastructure;
+
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -44,7 +48,27 @@ namespace MedicalDocManagment.WebUI.Controllers
 
             return Ok(users);
         }
+       
+        private async Task<string> SaveImage(HttpFile photo)
+        {
+            string root = System.Web.HttpContext.Current.Server.MapPath("~");
+            if (!System.IO.Directory.Exists(root))
+            {
+                System.IO.Directory.CreateDirectory(root);
+            }
 
+            byte[] fileArray = photo.Buffer;
+            var filename = photo.FileName;
+            string guid = Guid.NewGuid().ToString();
+            string path = $"/Files/{guid + Path.GetExtension(filename)}";
+            
+            using (System.IO.FileStream fs = new System.IO.FileStream(root+path
+                , System.IO.FileMode.Create))
+            {
+                await fs.WriteAsync(fileArray, 0, fileArray.Length);
+            }
+            return path;
+        }
         [Authorize]
         [HttpGet]
         public IHttpActionResult GetPaged(int pageNumber = 1, int pageSize = 20)
@@ -52,7 +76,8 @@ namespace MedicalDocManagment.WebUI.Controllers
             var usersPagedDTO = _usersService.GetPaged(pageNumber, pageSize);
             int total = _usersService.GetUsersCount();
             var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<UserDTO, UserIndexModel>();
+                cfg.CreateMap<UserDTO, UserIndexModel>()
+                   .ForMember("Avatar", opt => opt.MapFrom(src => src.Image.ImageUrl));
                 cfg.CreateMap<PositionDTO, PositionModel>();
             });
             var mapper = config.CreateMapper();
@@ -86,12 +111,28 @@ namespace MedicalDocManagment.WebUI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            string imagePath = "/Files/no-image.png";
+            if (userModel.Content!=null)
+            {
+                if (!ImageHelper.IsImage(userModel.Content))
+                {
+                    return BadRequest("Image is not valid.");
+                }
+                imagePath = await SaveImage(userModel.Content);
+                var imageSize = userModel.Content.Buffer.Length;
+                if (!ImageHelper.IsImageValid(imagePath, imageSize))
+                {
+                    return BadRequest("Image is not valid.");
+                }
+            }
             var user = UserHelpers.ConvertUserModelToUser(userModel);
             user.PositionId = userModel.PositionId;
             user.IsActive = true;
+            user.Image = new Image { ImageUrl = imagePath };
+            
             var result = await _unitOfWork.UsersManager.CreateAsync(user, userModel.Password);
             _unitOfWork.UsersManager.AddToRole(user.Id, "user");
+
             var errorResult = GetErrorResult(result);
 
             return errorResult ?? Ok(result);
@@ -322,8 +363,8 @@ namespace MedicalDocManagment.WebUI.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            _unitOfWork.Dispose();
-            base.Dispose(disposing);
+            //_unitOfWork.Dispose();
+            //base.Dispose(disposing);
         }
     }
 }

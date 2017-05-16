@@ -10,5 +10,6 @@ namespace MedicalDocManagment.DAL.Entities
         public bool IsActive { get; set; }
         public int PositionId { get; set; }
         public PositionDTO Position { get; set; }
+        public ImageDTO Image { get; set; }
     }
 }
