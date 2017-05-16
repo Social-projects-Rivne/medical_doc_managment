@@ -8,7 +8,8 @@ import MainAppService from "../../../services/main-app.service";
 @Component({
     moduleId: module.id,
     selector: '[children-cards-list-item]',
-    templateUrl: 'children-cards-list-item.component.html'
+    templateUrl: 'children-cards-list-item.component.html',
+    styleUrls: ['children-cards-list-item.component.css']
 })
 export default class ChildrenCardsListItemComponent {
     @Input() childCard: ChildCardModel;

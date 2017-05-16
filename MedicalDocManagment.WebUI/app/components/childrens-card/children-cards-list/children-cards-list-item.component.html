@@ -1,16 +1,16 @@
-﻿<div class="thumbnail" (click)="openChildCard()">
-    <h4 class="text-center">
-        {{childCard.lastName}} {{childCard.firstName}} {{childCard.secondName}}
-    </h4>
-    <p>
-        <b>Дата народження:</b> {{childCard.date | amDateFormat:'DD.MM.YYYY'}} <br />
-        <b>Адреса:</b> {{childCard.address}} <br />
-        <b>Дата госпіталізації:</b> {{childCard.checkIn | amDateFormat:'DD.MM.YYYY'}} <br />
-        <span *ngIf="childCard.checkOut">
-            <b>Дата виписки:</b> {{childCard.checkOut | amDateFormat:'DD.MM.YYYY'}} <br />
-        </span>
-        <span *ngIf="childCard.diagnosis">
-            <b>Діагноз:</b> {{childCard.diagnosis.name}} <br />
-        </span>
-</p>
+﻿<div class="child-card" (click)="openChildCard()">
+  <h4 class="text-center">
+    {{childCard.lastName}} {{childCard.firstName}} {{childCard.secondName}}
+  </h4>
+  <p>
+    <b>Дата народження:</b> {{childCard.date | amDateFormat:'DD.MM.YYYY'}} <br />
+    <b>Адреса:</b> {{childCard.address}} <br />
+    <b>Дата госпіталізації:</b> {{childCard.checkIn | amDateFormat:'DD.MM.YYYY'}} <br />
+    <span *ngIf="childCard.checkOut">
+      <b>Дата виписки:</b> {{childCard.checkOut | amDateFormat:'DD.MM.YYYY'}} <br />
+    </span>
+    <span *ngIf="childCard.diagnosis">
+      <b>Діагноз:</b> {{childCard.diagnosis.name}} <br />
+    </span>
+  </p>
 </div>
