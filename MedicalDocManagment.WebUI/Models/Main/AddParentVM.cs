@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MedicalDocManagment.WebUI.Models.Main
 {
@@ -22,7 +21,7 @@ namespace MedicalDocManagment.WebUI.Models.Main
         public string Work { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(12)]
         public string Phone { get; set; }
     }
 }

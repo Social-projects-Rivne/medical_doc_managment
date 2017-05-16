@@ -109,6 +109,17 @@ gulp.task('copy-angular2-moment', () => {
         .pipe(gulp.dest('./dist/lib/npmlibs/angular2-moment'));
 });
 
+gulp.task('copy-angular2-text-mask', () => {
+    gulp.src('**', { cwd: './node_modules/angular2-text-mask/dist' })
+        .pipe(gulp.dest('./dist/lib/npmlibs/angular2-text-mask'));
+});
+
+gulp.task('copy-text-mask-core', () => {
+    gulp.src('**', { cwd: './node_modules/text-mask-core/dist' })
+        .pipe(gulp.dest('./dist/lib/npmlibs/text-mask-core/dist'));
+});
+
+
 gulp.task('less', () => {
     gulp.src('./app/**/*.less')
         .pipe(less())
@@ -117,5 +128,6 @@ gulp.task('less', () => {
 });
 
 gulp.task('default', ['copy-js', 'copy-css', 'copy-ng2-pagination', 'copy-moment',
-    'copy-bootstrap-datepicker', 'copy-angular2-moment', 'less']);
+    'copy-bootstrap-datepicker', 'copy-angular2-moment', 'copy-angular2-text-mask',
+    'copy-text-mask-core', 'less']);
 gulp.task('minify', ['copy-min-js', 'copy-min-css']);

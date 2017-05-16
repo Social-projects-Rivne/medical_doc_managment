@@ -11,6 +11,7 @@ import { routing } from '../routes/app.routing';
 import { UsersListModule } from "./users-list.module";
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
+import { TextMaskModule } from 'angular2-text-mask';
 import ChildrenCardsListModule from "./children-cards-list.module";
 import UsersSearchModule from "./users-search.module";
 import ChildCardModule from "./child-card/child-card.module";
@@ -41,6 +42,7 @@ import { ImageUploadModule } from "angular2-image-upload";
         Ng2PaginationModule,
         SimpleNotificationsModule,
         PushNotificationsModule,
+        TextMaskModule,
         ChildrenCardsListModule,
         ChildCardModule,
         ImageUploadModule.forRoot()
