@@ -25,6 +25,6 @@ export default class ChildrenCardsListItemComponent {
 
     openChildCard(): void {
         this._mainAppService.currentCard = this.childCard;
-        this._router.navigateByUrl('/main/childCard');
+        this._router.navigateByUrl('/main/childCard/' + this.childCard.id);
     }
 }

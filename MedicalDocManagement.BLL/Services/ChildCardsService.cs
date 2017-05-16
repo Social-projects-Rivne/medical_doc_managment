@@ -208,5 +208,20 @@ namespace MedicalDocManagement.BLL.Services
 
             return PediatriciansExaminationDTOHelper.EntityToDTO(examination);
         }
+
+        public ChildCardDTO GetChildCard(int childCardId)
+        {
+            var childCard = _unitOfWork.ChildrenCardsRepository
+                                       .Get(card => card.Id == childCardId)
+                                       .AsNoTracking();
+
+            ChildCardDTO result = null;
+            if (childCard.Any())
+            {
+                result = ChildCardDTOHelper.EntityToDTO(childCard.Single());
+            }
+
+            return result;
+        }
     }
 }
