@@ -32,7 +32,7 @@ const appRoutes: Routes = [
             { path: 'add', component: ChildCardAddComponent },
             { path: 'viewPatient', component: ViewPatientDataComponent },
             {
-                path: 'childCard',
+                path: 'childCard/:id',
                 children: [
                     { path: '', component: ChildCardMainPageComponent, pathMatch: 'full' },
                     {
