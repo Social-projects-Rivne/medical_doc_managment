@@ -9,10 +9,10 @@ import UserModel from "../../../../../../../../models/usermodel";
 })
 export default class ItemActionListEditButton {
     @Input() user: UserModel = new UserModel();
-    @Output() onActionListEdit = new EventEmitter<string>();
+    @Output() onActionListEdit = new EventEmitter<UserModel>();
 
-    onEditBtn(id: string) {
-        this.onActionListEdit.emit(id);
+    onEditBtn() {
+        this.onActionListEdit.emit(this.user);
     }
     
 }

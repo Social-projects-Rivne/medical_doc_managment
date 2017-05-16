@@ -13,6 +13,7 @@ import PositionModel from '../../../../../../../../models/positionmodel';
 })
 export default class ItemActionListEditModal implements OnInit {
     @Input() user: UserModel = new UserModel();
+    @Input() tempUser: UserModel = new UserModel();
     positions: PositionModel[];
     public notificationOptions = {
         timeOut: 5000,
@@ -31,10 +32,11 @@ export default class ItemActionListEditModal implements OnInit {
     constructor(private _http: HttpFacade, private _service: NotificationsService) { }
 
     submit() {
-        this._http.updateUser(this.user)
+        this._http.updateUser(this.tempUser)
             .subscribe(
             (data) => {
                 console.log(data);
+                this.user.clone(this.tempUser);
                 this._service.success("Успіх", "Успішно відредаговано користувача");
             },
             (error) => {

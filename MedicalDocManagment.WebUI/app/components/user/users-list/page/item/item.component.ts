@@ -17,12 +17,12 @@ export default class ItemComponent {
      * @type {UserModel}
      */
     @Input() user: UserModel;
-    @Output() onPageEdit = new EventEmitter<string>();
+    @Output() onPageEdit = new EventEmitter<UserModel>();
 
     constructor() { }
 
-    onItemEdit(id: string) {
-        this.onPageEdit.emit(id);
+    onItemEdit(userForEdit: UserModel) {
+        this.onPageEdit.emit(userForEdit);
     }
 }
 

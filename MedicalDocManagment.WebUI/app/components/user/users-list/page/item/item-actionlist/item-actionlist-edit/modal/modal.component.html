@@ -13,7 +13,7 @@
                         <label for="username">Ім'я користувача</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control col-xs-5" id="username" name="username" [(ngModel)]="user.userName"
+                            <input type="text" class="form-control col-xs-5" id="username" name="username" [(ngModel)]="tempUser.userName"
                                    #username="ngModel" required pattern="[a-zA-Z0-9]{3,60}" />
                         </div>
                         <div [hidden]="username.valid || username.untouched" class="alert alert-danger">
@@ -24,7 +24,7 @@
                         <label for="email">Електронна пошта</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" id="email" name="email" [(ngModel)]="user.email"
+                            <input type="text" class="form-control" id="email" name="email" [(ngModel)]="tempUser.email"
                                    #email="ngModel" required pattern="[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}" />
                         </div>
                         <div [hidden]="email.valid || email.untouched" class="alert alert-danger">
@@ -35,7 +35,7 @@
                         <label for="firstName">Ім'я</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="user.firstName"
+                            <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="tempUser.firstName"
                                    #firstName="ngModel" required pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}" />
                         </div>
                         <div [hidden]="firstName.valid || firstName.untouched" class="alert alert-danger">
@@ -46,7 +46,7 @@
                         <label for="secondName">По батькові</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" id="secondName" name="secondName" [(ngModel)]="user.secondName"
+                            <input type="text" class="form-control" id="secondName" name="secondName" [(ngModel)]="tempUser.secondName"
                                    #secondName="ngModel" pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}" />
                         </div>
                         <div [hidden]="secondName.valid || secondName.untouched" class="alert alert-danger">
@@ -57,7 +57,7 @@
                         <label for="lastName">Прізвище</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="user.lastName"
+                            <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="tempUser.lastName"
                                    #lastName="ngModel" required pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}" />
                         </div>
                         <div [hidden]="lastName.valid || lastName.untouched" class="alert alert-danger">
@@ -68,7 +68,7 @@
                         <label for="position">Посада</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-th-list" aria-hidden="true"></i></span>
-                            <select name="position" id="position" [(ngModel)]="user.positionId" class="form-control"
+                            <select name="position" id="position" [(ngModel)]="tempUser.positionId" class="form-control"
                                     required #position="ngModel">
                                 <option *ngFor="let position of positions" [ngValue]="position.positionId">
                                     {{position.name}}
