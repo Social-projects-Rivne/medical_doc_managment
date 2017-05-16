@@ -1,0 +1,94 @@
+﻿<div class="container">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-xs-offset-1 col-xs-2" for="lastName">Прізвище</label>
+            <div class="input-group col-xs-4">
+                <input type="text" class="form-control" id="lastName" name="lastName"
+                       [(ngModel)]="_patientToView.lastName" #lastName="ngModel"
+                       [disabled]="_isSearching" />
+            </div>
+            <div *ngIf="!_patientToView.lastName && lastName.touched"
+                 class="alert alert-danger col-xs-offset-3 col-xs-4">
+                Введіть прізвище.
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-offset-1 col-xs-2" for="firstName">Ім'я</label>
+            <div class="input-group col-xs-4">
+                <input type="text" class="form-control" id="firstName" name="firstName"
+                       [(ngModel)]="_patientToView.firstName" #firstName="ngModel"
+                       [disabled]="_isSearching" />
+            </div>
+            <div *ngIf="!_patientToView.firstName && firstName.touched"
+                 class="alert alert-danger col-xs-offset-3 col-xs-4">
+                Введіть ім'я.
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-offset-1 col-xs-2" for="secondName">По батькові</label>
+            <div class="input-group col-xs-4">
+                <input type="text" class="form-control" id="secondName" name="secondName"
+                       [(ngModel)]="_patientToView.secondName" #secondName="ngModel"
+                       [disabled]="_isSearching" />
+            </div>
+            <div *ngIf="!_patientToView.secondName && secondName.touched"
+                 class="alert alert-danger col-xs-offset-3 col-xs-4">
+                Введіть по батькові.
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-offset-1 col-xs-2" for="birthDate">Дата народження</label>
+            <div class="input-group col-xs-2">
+                <div class="input-group date" data-provide="datepicker" id="birthDatePicker"
+                     #birthDatePicker>
+                    <input type="text" #birthDatePickerInput class="form-control"
+                           [disabled]="_isSearching">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!_patientToView.birthDate && this._birthDatePickerTouched"
+                 class="alert alert-danger col-xs-offset-3 col-xs-3">
+                Введіть дату народження.
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div *ngIf="!_patientToView.lastName || !_patientToView.firstName
+                     || !_patientToView.secondName || !_patientToView.birthDate"
+                     class="alert alert-danger col-xs-offset-3 col-xs-4">
+                    Для пошуку введіть значення у всі поля.
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-offset-3">
+                    <button class="btn btn-primary" (click)="viewPatientData()"
+                            [disabled]="!_patientToView.lastName || !_patientToView.firstName
+                            || !_patientToView.secondName || !_patientToView.birthDate"
+                            *ngIf="!_isSearching">
+                        Переглянути
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="_triedToSearch"><hr /></div>
+        <div class="alert alert-info col-xs-offset-3 col-xs-4" *ngIf="_isSearching">
+            Триває отримання даних про пацієнта...
+        </div>
+        <div *ngIf="_isErrorOnSearching" class="alert alert-danger col-xs-offset-1">
+            {{_lastErrorMessage}}
+        </div>
+        <div class="form-group" *ngIf="_triedToSearch && !_isSearching && !_isErrorOnSearching
+            && _searchResult.length">
+            <h4 class="text-center">Дані про пацієнта:</h4>
+            <children-cards-list-without-lazy [childrenCards]="_searchResult">
+            </children-cards-list-without-lazy>
+        </div>
+        <div class="alert alert-info col-xs-offset-3 col-xs-4"
+             *ngIf="_triedToSearch && !_isSearching  && !_isErrorOnSearching 
+             && !_searchResult.length ">
+            <h4>По Вашому запиту пацієнта не знайдено.</h4>
+        </div>
+    </form>
+</div>

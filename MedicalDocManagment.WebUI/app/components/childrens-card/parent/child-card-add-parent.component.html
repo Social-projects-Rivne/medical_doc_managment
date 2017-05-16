@@ -1,0 +1,168 @@
+﻿<div id="childCardAddParentModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Додати одного з батьків</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" #childCardAddParentForm="ngForm">
+          <!-- Прізвище -->
+          <div class="row">
+            <div class="form-group col-xs-12">
+              <label class="control-label col-xs-4" for="lastName">Прізвище</label>
+              <div class="input-group col-xs-7">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-info-sign" aria-hidden="true">
+                  </i>
+                </span>
+                <input type="text" class="form-control" id="lastName" name="lastName"
+                       [(ngModel)]="_parent.lastName" #lastName="ngModel"
+                       [disabled]="_isAdding" required pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"
+                       maxlength="100" />
+              </div>
+              <span [hidden]="lastName.valid || lastName.untouched || _isAdding"
+                    class="alert alert-danger col-xs-offset-4 col-xs-7">
+                Введено неправильне прізвище!<br />
+                Прізвище вважається правильним, якщо воно містить тільки літери українського алфавіту, апостроф або дефіс.
+              </span>
+            </div>
+          </div>
+          <!-- Ім'я -->
+          <div class="row">
+            <div class="form-group col-xs-12">
+              <label class="control-label col-xs-4" for="firstName">Ім'я</label>
+              <div class="input-group col-xs-7">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-info-sign" aria-hidden="true">
+                  </i>
+                </span>
+                <input type="text" class="form-control" id="firstName" name="firstName"
+                       [(ngModel)]="_parent.firstName" #firstName="ngModel"
+                       [disabled]="_isAdding" required pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"
+                       maxlength="100" />
+              </div>
+              <span [hidden]="firstName.valid || firstName.untouched || _isAdding"
+                    class="alert alert-danger col-xs-offset-4 col-xs-7">
+                Введено неправильне ім'я!<br />
+                Ім'я вважається правильним, якщо воно містить тільки літери українського алфавіту, апостроф або дефіс.
+              </span>
+            </div>
+          </div>
+          <!-- По-батькові -->
+          <div class="row">
+            <div class="form-group col-xs-12">
+              <label class="control-label col-xs-4" for="secondName">По батькові</label>
+              <div class="input-group col-xs-7">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-info-sign" aria-hidden="true">
+                  </i>
+                </span>
+                <input type="text" class="form-control" id="secondName" name="secondName"
+                       [(ngModel)]="_parent.secondName" #secondName="ngModel"
+                       [disabled]="_isAdding" required pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"
+                       maxlength="100" />
+              </div>
+              <span [hidden]="firstName.valid || firstName.untouched || _isAdding"
+                    class="alert alert-danger col-xs-offset-4 col-xs-7">
+                Введено неправильне по-батькові!<br />
+                По-батькові вважається правильним, якщо воно містить тільки літери українського алфавіту, апостроф або дефіс.
+              </span>
+            </div>
+          </div>
+          <!-- Місце роботи -->
+          <div class="row">
+            <div class="form-group col-xs-12">
+              <label class="control-label col-xs-4" for="work">Місце роботи</label>
+              <div class="input-group col-xs-7">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-info-sign" aria-hidden="true">
+                  </i>
+                </span>
+                <input type="text" class="form-control" id="work" name="work"
+                       [(ngModel)]="_parent.work" #work="ngModel" required maxlength="100"
+                       [disabled]="_isAdding" />
+              </div>
+              <span [hidden]="work.valid || work.untouched || _isAdding"
+                    class="alert alert-danger col-xs-offset-4 col-xs-7">
+                Введіть місце роботи.
+              </span>
+            </div>
+          </div>
+          <!-- Номер телефону -->
+          <div class="row">
+            <div class="form-group col-xs-12">
+              <label class="control-label col-xs-4" for="phone">Номер телефону</label>
+              <div class="input-group col-xs-7">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-phone-alt" aria-hidden="true">
+                  </i>
+                </span>
+                <input type="text" class="form-control" id="phone" name="phone"
+                       [(ngModel)]="_parent.phone" 
+                       [textMask]="{mask: _phoneMask, keepCharPositions : true, showMask: true}"
+                       #phone="ngModel" [disabled]="_isAdding" required 
+                       pattern="0 \d\d \d\d\d\d\d\d\d"/>
+              </div>
+              <span [hidden]="phone.valid || phone.untouched || _isAdding"
+                    class="alert alert-danger col-xs-offset-4 col-xs-7">
+                Введіть правильний номер телефону.
+              </span>
+            </div>
+          </div>
+          <!-- Reset button -->
+          <div class="row">
+            <div class="form-group">
+              <button type="reset" class="btn btn-default col-xs-offset-6"
+                      (click)="childCardAddParentForm.reset();" [disabled]="_isAdding">
+                Очистити значення у полях форми
+              </button>
+            </div>
+          </div>
+          <hr />
+          <!-- Message when form is not valid-->
+          <div class="row">            
+            <span [hidden]="childCardAddParentForm.valid || _isAdding"
+                  class="alert alert-danger col-xs-offset-4 col-xs-7">
+              Введіть правильні значення у всі поля.
+            </span>
+          </div>
+          <!-- Buttons "Save" and "Cancel"-->
+          <div class="row">
+            <div class="col-xs-3 col-xs-offset-6">
+              <button type="button" class="btn btn-primary"
+                      [disabled]="!childCardAddParentForm.valid || _isAdding"
+                      (click)="_onSave(childCardAddParentForm);">
+                Зберегти
+              </button>
+            </div>
+            <div class="col-xs-3">
+              <button type="button" class="btn btn-default" data-dismiss="modal">
+                Відміна
+              </button>
+            </div>
+          </div>
+          <!-- Progress bar for adding parent -->
+          <div class="row" *ngIf="_isAdding">
+            <div class="progress col-xs-12">
+              <div class="progress-bar progress-bar-info progress-bar-striped active"
+                   role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"
+                   style="width:100%">
+                Додавання одного з батьків...
+              </div>
+            </div>
+          </div>
+          <!-- Alert with error message on adding parent -->
+          <div class="row" *ngIf="_isErrorOnAdding">
+            <div class="col-xs-12">
+              <div class="alert alert-danger">
+                Помилка при додаванні одного з батьків:
+                {{_lastErrorMessage}}
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

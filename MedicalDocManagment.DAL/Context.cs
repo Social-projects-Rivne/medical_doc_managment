@@ -1,4 +1,5 @@
 ﻿using MedicalDocManagment.DAL.Entities;
+using MedicalDocManagment.DAL.Entities.Main;
 using MedicalDocManagment.DAL.Initializer;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
@@ -15,6 +16,7 @@ namespace MedicalDocManagment.DAL
         public DbSet<ChildCard> ChildrenCards { get; set; }
         public DbSet<Parent> Parents { get; set; }
         public DbSet<ParentChildCard> ParentsChildrenCards { get; set; }
+        public DbSet<Image> Images { get; set; }
 
         static Context()
         {

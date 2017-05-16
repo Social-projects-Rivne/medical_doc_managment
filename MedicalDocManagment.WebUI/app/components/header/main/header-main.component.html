@@ -1,0 +1,34 @@
+﻿<nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" [routerLink]="['/main/home']">MedicalDocManagement</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/main/home']">Головна сторінка</a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/main/add']">Додати пацієнта</a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/main/viewPatient']">Переглянути дані пацієнта</a></li>
+            <li class="dropdown" *ngIf="someChildCardIsSelected">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Картка пацієнта
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a [routerLink]="['/main/childCard/'+_mainAppService.currentCard.id]">Головна сторінка</a></li>
+                    <li>
+                        <a [routerLink]="['/main/childCard/'+_mainAppService.currentCard.id+'/pediatriciansExamination']">
+                            Огляд лікаря-педіатра
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user icon-size"></span> {{username}} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" (click)="logout($event)"><span class="glyphicon glyphicon-log-out"></span> Вихід</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

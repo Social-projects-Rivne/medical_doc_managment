@@ -1,0 +1,4 @@
+﻿<h3 class="text-center">Список користувачів</h3>
+<item-actionlist-edit-modal [user]="userForEdit"></item-actionlist-edit-modal>
+<page (onUsersListEdit)="onUsersListEdit($event)" [users]="users" [page]="page" [pageSize]="pageSize" [total]="total" [loading]="loading" (onPageChange)="onPageChange($event)"></page>
+<simple-notifications [options]="notificationOptions"></simple-notifications>

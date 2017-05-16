@@ -3,14 +3,14 @@
         paths: {
             // псевдоним для пути к модулям
             'npm:': 'node_modules/',
-            'dist': 'dist/'
+            'dist:': 'dist/'
         },
         // указываем загрузчику System, где искать модули
         map: {
             // locations of Angular applications
-            admin_app: 'app/admin',
-            login_app: 'app/core',
-            main_app: 'app/main',
+            //admin_app: 'app/admin',
+            //login_app: 'app/core',
+            //main_app: 'app/main',
             // for app search in folder app
             'app': 'app',
             // пакеты angular
@@ -26,8 +26,14 @@
             // остальные пакеты
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-            'ng2-pagination': 'dist/lib/npmlibs/ng2-pagination/dist',
-            'angular2-notifications': 'node_modules/angular2-notifications'
+            'ng2-pagination': 'dist:lib/npmlibs/ng2-pagination/dist',
+            'angular2-notifications': 'node_modules/angular2-notifications',
+            'ngx-infinite-scroll':'node_modules/ngx-infinite-scroll',
+            'moment': 'dist:js/moment/',
+            'angular2-moment': 'dist:lib/npmlibs/angular2-moment',
+            'angular2-text-mask': 'dist:lib/npmlibs/angular2-text-mask',
+            'text-mask-core': 'dist:lib/npmlibs/text-mask-core',
+            'angular2-image-upload': 'node_modules/angular2-image-upload'
         },
         // пакеты, которые указывают загрузчику System, как загружать файлы без имени и расширения
         packages: {
@@ -43,12 +49,24 @@
                 main: './main.js',
                 defaultExtension: 'js'
             },
-            'app': { defaultExtension: 'js', },
+            'app': {
+                defaultExtension: 'js',
+                main: './main.js',
+            },
             rxjs: {
                 defaultExtension: 'js'
             },
             'ng2-pagination': { main: 'ng2-pagination.js', defaultExtension: 'js' },
-            'angular2-notifications': { main: 'components.js', defaultExtension: 'js' }
+            'angular2-notifications': { main: 'components.js', defaultExtension: 'js' },
+            'moment': { main: 'moment-with-locales.min.js', defaultExtension: 'js' },
+            'angular2-moment': { main: './index.js', defaultExtension: 'js' },
+            'ngx-infinite-scroll': {
+                main: 'bundles/ngx-infinite-scroll.umd.js',
+                defaultExtension: 'js'
+            },
+            'angular2-text-mask': { main: 'angular2TextMask.js', defaultExtension: 'js' },
+            'text-mask-core': { main: 'dist/textMaskCore.js', defaultExtension: 'js' },
+            'angular2-image-upload': { main: './index.js', defaultExtension: 'js' }
         }
     });
     if (global.filterSystemConfig) { global.filterSystemConfig(config); }

@@ -40,10 +40,21 @@ namespace MedicalDocManagment.WebUI.Providers
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
+            else if(!user.IsActive)
+            {
+                context.SetError("invalid_grant", "The user was deleted.");
+                return;
+            }
 
             var roles = oAuthIdentity.Claims.Where(c => c.Type == ClaimTypes.Role).ToList();
             AuthenticationProperties properties = CreateProperties(user.UserName, Newtonsoft.Json.JsonConvert.SerializeObject(roles.Select(x => x.Value)));
-
+            properties.Dictionary.Add("position", user.Position.Name);
+            properties.Dictionary.Add("positionId", user.Position.PositionId.ToString());
+            properties.Dictionary.Add("id", user.Id);
+            properties.Dictionary.Add("firstName", user.FirstName != null ? user.FirstName : "");
+            properties.Dictionary.Add("secondName", user.SecondName != null ? user.SecondName : "");
+            properties.Dictionary.Add("lastName", user.LastName != null ? user.LastName : "");
+            properties.Dictionary.Add("email", user.Email);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
 

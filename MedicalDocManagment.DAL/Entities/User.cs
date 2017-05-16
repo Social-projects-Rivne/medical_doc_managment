@@ -17,8 +17,8 @@ namespace MedicalDocManagment.DAL.Entities
         public bool IsActive { get; set; }
 
         public int PositionId { get; set; }
-
         [ForeignKey("PositionId")]
         public virtual Position Position { get; set; }
+        public virtual Image Image { get; set; }
     }
 }

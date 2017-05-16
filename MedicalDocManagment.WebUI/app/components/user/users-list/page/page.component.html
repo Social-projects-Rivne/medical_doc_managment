@@ -1,0 +1,15 @@
+<div class="container">
+    <table class="table table-hover">
+        <thead page-header></thead>
+        <tbody>
+            <tr *ngFor="let user of users | async | paginate: { id: 'server', itemsPerPage: pageSize, currentPage: page, totalItems: total }" item (onPageEdit)="onPageEdit($event)" [user]="user"></tr>
+        </tbody>
+    </table>
+    <div class="center">
+        <div [ngClass]="{ 'hidden': !loading }">
+            <img id="loading" src="/Content/images/loading.gif" alt="Loading...">
+        </div>
+        <pagination-controls (pageChange)="changePage($event)" id="server" class="my-pagination" previousLabel="Попередня" nextLabel="Наступна"></pagination-controls>
+    </div>
+</div>
+

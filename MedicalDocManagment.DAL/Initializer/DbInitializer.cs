@@ -10,8 +10,7 @@ namespace MedicalDocManagment.DAL.Initializer
 
             InitializerHelpers.FillDbMkh(context);
 
-            // Bug
-            //InitializerHelpers.FillChildCardDb(context);
+            ChildrenCardsInitializerHelper.FillChildCardDb(context);
         }
        
     }
