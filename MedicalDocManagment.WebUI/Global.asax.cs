@@ -5,6 +5,8 @@ using System.Web.Routing;
 using System.Web.Http;
 using FluentValidation.Mvc;
 using Newtonsoft.Json.Serialization;
+using MultipartDataMediaFormatter;
+using MultipartDataMediaFormatter.Infrastructure;
 
 namespace MedicalDocManagment.WebUI
 {
@@ -20,6 +22,7 @@ namespace MedicalDocManagment.WebUI
             FluentValidationModelValidatorProvider.Configure();
 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            GlobalConfiguration.Configuration.Formatters.Add(new FormMultipartEncodedMediaTypeFormatter(new MultipartFormatterSettings()));
             GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
 
             HttpConfiguration config = GlobalConfiguration.Configuration;

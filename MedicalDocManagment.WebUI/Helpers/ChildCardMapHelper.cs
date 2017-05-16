@@ -29,5 +29,16 @@ namespace MedicalDocManagment.WebUI.Helpers
             Mapper.Initialize(cfg => cfg.CreateMap<AddParentChildCardVM, ParentChildCardDTO>());
             return Mapper.Map<ParentChildCardDTO>(parentVM);
         }
+
+        public static ChildCardVM DTOToVM(ChildCardDTO childCardDTO)
+        {
+            Mapper.Initialize(cfg =>
+                {
+                    cfg.CreateMap<DiagnosisMkhDTO, DiagnosisMkhVM>();
+                    cfg.CreateMap<ChildCardDTO, ChildCardVM>();
+                }
+            );
+            return Mapper.Map<ChildCardVM>(childCardDTO);
+        }
     }
 }

@@ -18,6 +18,7 @@ namespace MedicalDocManagment.DAL.Repository.Interfaces
         IChildrenCardsRepository ChildrenCardsRepository { get; }
         IParentRepository ParentRepository { get; }
         IParentChildCardRepository ParentChildCardRepository { get; }
+        IImageRepository ImageRepository { get; }
         IPediatriciansExaminationsRepository PediatriciansExaminationsRepository { get; }
 
         UsersManager UsersManager { get; }

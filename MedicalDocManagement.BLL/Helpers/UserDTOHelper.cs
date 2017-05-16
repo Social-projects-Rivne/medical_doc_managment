@@ -16,6 +16,8 @@ namespace MedicalDocManagement.BLL.Helpers
                      configuration.CreateMap<UserDTO, User>();
                      configuration.CreateMap<Position, PositionDTO>();
                      configuration.CreateMap<PositionDTO, Position>();
+                     configuration.CreateMap<Image, ImageDTO>();
+                     configuration.CreateMap<ImageDTO, Image>();
                  }
              );
         }

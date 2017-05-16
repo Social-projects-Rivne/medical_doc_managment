@@ -11,13 +11,14 @@ import ChildrenCardsModel from '../../../models/children-cards.model';
     moduleId: module.id,
     selector: 'children-cards-list',
     templateUrl: 'children-cards-list.component.html',
-    providers: [ChildrensCardService]
+    providers: [ChildrensCardService],
+    styleUrls: ['children-cards-list.component.css']
 })
 export default class ChildrenCardsListComponent implements OnInit {
     private childrenCardsRetriever: Subject<any>;
     @Input() private childrenCards: Array<ChildrenCardsModel>;
     private page: number = 1;
-    private pageSize: number = 9;
+    private pageSize: number = 12;
     private total: number;
     private pageCount: number;
     private loading: boolean = false;

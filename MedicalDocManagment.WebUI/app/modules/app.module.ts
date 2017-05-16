@@ -30,7 +30,7 @@ import MainAppService from "../services/main-app.service";
 import ChildCardAddParentComponent from "../components/childrens-card/parent/child-card-add-parent.component";
 import ChildrenCardAddComponent from "../components/childrens-card/children-cards-list/add/children-card-add.component";
 import ViewPatientDataComponent from "../components/childrens-card/view-patient-data/view-patient-data.component";
-
+import { ImageUploadModule } from "angular2-image-upload";
 @NgModule({
     imports: [
         BrowserModule,
@@ -44,7 +44,8 @@ import ViewPatientDataComponent from "../components/childrens-card/view-patient-
         PushNotificationsModule,
         TextMaskModule,
         ChildrenCardsListModule,
-        ChildCardModule
+        ChildCardModule,
+        ImageUploadModule.forRoot()
     ],
     declarations: [
         LoginAppComponent,

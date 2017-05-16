@@ -29,6 +29,23 @@ export class UserService {
                         .map((resp: Response) => resp.json())
                         .catch((error: any) => { return Observable.throw(error); });
     }
+    postDataWithImage(obj: User, photo:File) {
+        let body:any = JSON.stringify(obj);
+        let headers = this.headers;
+        headers.delete("Content-Type");
+        let formData: FormData = new FormData();
+        if (photo != null) {
+            formData.append('content', photo, photo.name);
+        }
+        for (var property in obj) {
+            if (obj.hasOwnProperty(property)) {
+                formData.append(property, obj[property]);
+            }
+        }
+        return this.http.post('/api/Admin/AddUser', formData, { headers: headers})
+            .map((resp: Response) => resp.json())
+            .catch((error: any) => { return Observable.throw(error); });
+    }
     getPositionsList(): Observable<PositionModel[]> {
         let headers = this.headers;
         return this.http.get('/api/Admin/GetPositions', { headers: headers })
