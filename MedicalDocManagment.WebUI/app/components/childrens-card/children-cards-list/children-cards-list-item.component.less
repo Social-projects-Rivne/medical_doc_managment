@@ -1,8 +1,29 @@
 ﻿@import (reference) "./node_modules/bootstrap/less/bootstrap.less";
 
+.selected {
+    outline: solid;
+    outline-width: 2px;
+    outline-color: deepskyblue;
+    cursor: pointer;
+}
+
 .child-card {
     .thumbnail;
+    cursor: default;
     display: inline-block;
     margin: 0 0 1em; 
     width: 100%;
+
+    // Making text inside paragraphs unselectable
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.child-card_hover {
+    .child-card;
+    .selected;
 }
