@@ -18,6 +18,8 @@ namespace MedicalDocManagement.BLL.Helpers
                     configuration.CreateMap<ChildCard, ChildCardDTO>();
                     configuration.CreateMap<DiagnosisMkhDTO, DiagnosisMkh>();
                     configuration.CreateMap<DiagnosisMkh, DiagnosisMkhDTO>();
+
+                    configuration.CreateMap<Parent, ParentDTO>();
                 }
             );
         }
@@ -34,7 +36,7 @@ namespace MedicalDocManagement.BLL.Helpers
             return mapper.Map<ChildCardDTO>(childCard);
         }
 
-        public static List<ChildCardDTO> EntitiesToDTO(List<ChildCard> childCard)
+        public static List<ChildCardDTO> EntitiesToDTOs(List<ChildCard> childCard)
         {
             var mapper = mapperConfiguration.CreateMapper();
             return mapper.Map<List<ChildCardDTO>>(childCard);
@@ -62,6 +64,12 @@ namespace MedicalDocManagement.BLL.Helpers
         {
             Mapper.Initialize(cfg => cfg.CreateMap<ParentChildCard, ParentChildCardDTO>());
             return Mapper.Map<ParentChildCardDTO>(parentChildCard);
+        }
+
+        public static List<ParentDTO> EntitiesToDTOs(List<Parent> parents)
+        {
+            var mapper = mapperConfiguration.CreateMapper();
+            return mapper.Map<List<ParentDTO>>(parents);
         }
     }
 }

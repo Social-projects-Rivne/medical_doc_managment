@@ -25,5 +25,6 @@ namespace MedicalDocManagement.BLL.Services.Abstract
         PediatriciansExaminationDTO SavePediatriciansExamination(int childCardId,
             PediatriciansExaminationDTO examination);
         ChildCardDTO GetChildCard(int childCardId);
+        List<ParentDTO> GetChildsParents(int childCardId);
     }
 }

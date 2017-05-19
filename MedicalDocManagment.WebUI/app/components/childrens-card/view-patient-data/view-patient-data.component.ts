@@ -7,7 +7,7 @@ declare var $;
 
 import ChildrensCardService from '../../../services/children-card.service';
 
-import ChildCardModel from '../../../models/child-card.model';
+import ChildCardModel from '../../../models/child-card/child-card.model';
 import ChildrenCardsModel from '../../../models/children-cards.model';
 import ViewPatientDataModel from '../../../models/view-patient-data.model';
 

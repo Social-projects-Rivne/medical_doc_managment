@@ -1,8 +1,8 @@
-﻿import { Component, Input } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
-import ChildCardModel from "../../../models/child-card.model";
+import ChildCardModel from "../../../models/child-card/child-card.model";
 import ChildrenCardService from '../../../services/children-card.service';
 import MainAppService from "../../../services/main-app.service";
 
@@ -32,6 +32,7 @@ export default class MainPageComponent {
 
         if (!this._childCard) {
             route.params.subscribe(params => {
+                this._childCard = new ChildCardModel({ id: params['id'] });
                 this._loadChildCard(params['id']);
             })
         }
