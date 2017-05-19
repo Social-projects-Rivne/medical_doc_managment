@@ -60,10 +60,14 @@ namespace MedicalDocManagment.DAL.Initializer
             var unitOfWork = new UnitOfWork();
 
             var users = fixture.Build<User>()
+                               .With(user => user.FirstName, "Твердислава")
+                               .With(user => user.SecondName, "Святославівна")
+                               .With(user => user.LastName, "Нечуй-Левицька")
                                .Without(user => user.Position)
                                .Without(user => user.PositionId)
                                .Without(user => user.Image)
                                .CreateMany(10);
+
             var roleAdmin = new Role { Name = "admin" };
             var roleUser = new Role { Name = "user" };
             unitOfWork.RolesManager.Create(roleAdmin);
