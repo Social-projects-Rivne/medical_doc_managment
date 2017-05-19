@@ -28,6 +28,7 @@ export default class ChildrenCardsListComponent implements OnInit {
     }
     ngOnInit() {
         this.childrenCardsRetriever = this._childrensCardService.childrenCardsSubject;
+        this.loading = true;
         this.childrenCardsRetriever.subscribe(data => {
             this.childrenCards.push.apply(this.childrenCards, data.childrenCards);
             this.page = data.pageNumber;
