@@ -6,6 +6,8 @@ import { NotificationsService, SimpleNotificationsComponent } from 'angular2-not
 import UserModel from "../../../../../../../../models/usermodel";
 import PositionModel from '../../../../../../../../models/positionmodel';
 
+declare let $: any;
+
 @Component({
     moduleId: module.id,
     selector: 'item-actionlist-edit-modal',
@@ -38,6 +40,7 @@ export default class ItemActionListEditModal implements OnInit {
                 console.log(data);
                 this.user.clone(this.tempUser);
                 this._service.success("Успіх", "Успішно відредаговано користувача");
+                $('#userEditModal').modal('hide');
             },
             (error) => {
                 console.log(error);
