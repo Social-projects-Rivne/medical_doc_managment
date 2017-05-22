@@ -8,7 +8,7 @@ import 'rxjs/add/observable/throw';
 
 import VisitModel from "../models/visit.model";
 import UserModel from "../models/usermodel";
-import ChildCardModel from '../models/child-card.model';
+import ChildCardModel from '../models/child-card/child-card.model';
 
 import { AuthenticationService } from './authentication.service';
 

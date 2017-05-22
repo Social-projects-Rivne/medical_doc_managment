@@ -1,7 +1,8 @@
-﻿import DiagnosisModel from './diagnosis.model';
+﻿import DiagnosisModel from '../diagnosis.model';
 
 export default class ChildCardModel {
     id: number;
+    cardNumber: number;
     firstName: string;
     secondName: string;
     lastName: string;
@@ -15,8 +16,8 @@ export default class ChildCardModel {
     psychiatristsConclusion: string;
 
     constructor(jsonObject?) {
-        this.id = this.firstName = this.secondName = this.lastName = this.date =
-            this.address = this.checkIn = this.checkOut = this.prescription =
+        this.id = this.cardNumber = this.firstName = this.secondName = this.lastName =
+            this.date =  this.address = this.checkIn = this.checkOut = this.prescription =
             this.psychiatristsConclusion = this.directedBy = null;
         this.diagnosis = new DiagnosisModel();
 

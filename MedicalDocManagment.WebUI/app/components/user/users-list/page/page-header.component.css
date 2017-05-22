@@ -1,3 +1,4 @@
-﻿tr th {
+﻿th {
     vertical-align : middle;
+    word-break:break-all;
 }

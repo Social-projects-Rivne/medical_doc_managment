@@ -1,8 +1,28 @@
 ﻿@import (reference) "./node_modules/bootstrap/less/bootstrap.less";
 
 .child-card {
-    .thumbnail;
+    .panel;    
     display: inline-block;
     margin: 0 0 1em; 
     width: 100%;
+
+    // Making text unselectable
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.child-card_inactive{
+    .child-card;
+    .panel-default;
+    cursor: default;
+}
+
+.child-card_active {
+    .child-card;
+    .panel-primary;
+    cursor: pointer;
 }

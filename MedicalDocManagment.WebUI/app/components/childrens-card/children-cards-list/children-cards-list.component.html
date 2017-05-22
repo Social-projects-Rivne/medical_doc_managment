@@ -8,4 +8,16 @@
           children-cards-list-item [childCard]="childCard">
     </span>
   </div>
+  <!-- "Loading" progress bar -->
+  <div class="row" *ngIf="loading">
+    <div class="col-xs-offset-2 col-xs-8">
+      <div class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped active"
+             role="progressbar" aria-valuenow="0" aria-valuemin="0"
+             aria-valuemax="0" style="width:100%">
+          Завантаження карток пацієнтів...
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

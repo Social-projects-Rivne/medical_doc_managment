@@ -6,7 +6,7 @@ import VisitService from '../../../../services/visit.service';
 import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
 
 import VisitModel from '../../../../models/visit.model';
-import ChildCardModel from '../../../../models/child-card.model';
+import ChildCardModel from '../../../../models/child-card/child-card.model';
 import UserModel from '../../../../models/usermodel';
 
 @Component({

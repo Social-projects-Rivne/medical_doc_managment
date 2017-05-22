@@ -1,0 +1,53 @@
+﻿<div class="panel panel-info">
+  <div class="panel-heading"><h4>Інформація про батьків</h4></div>
+  <div class="panel-body">
+    <!-- "Loading" progress bar -->
+    <div class="row" *ngIf="_isLoading">
+      <div class="col-xs-12">
+        <div class="progress">
+          <div class="progress-bar progress-bar-info progress-bar-striped active"
+               role="progressbar" aria-valuenow="0" aria-valuemin="0"
+               aria-valuemax="0" style="width: 100%">
+            Отримання інформації щодо батьків пацієнта ...
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- "Loading" related error alert -->
+    <div class="row" *ngIf="_isErrorOnLoading">
+      <div class="alert alert-danger col-xs-12">
+        {{_lastLoadingErrorMessage}}
+      </div>
+    </div>
+    <!-- Parents list -->
+    <div *ngIf="!_isLoading && !_isErrorOnLoading">
+      <!-- If child has parents then show them on page-->
+      <div *ngIf="_parents && _parents.length">
+        <div *ngFor="let parent of _parents" class="panel panel-info">
+          <!-- Last, second and first names -->
+          <div class="panel-heading">
+            <b>ПІБ:</b>
+            {{parent.lastName}} {{parent.firstName}} {{parent.secondName}}
+          </div>
+          <!-- Other information -->
+          <div class="panel-body">
+            <!-- Work -->
+            <p>
+              <b>Місце роботи:</b> {{parent.work}} <br />
+            </p>
+            <!-- Phone -->
+            <p>
+              <b>Номер телефону:</b> {{parent.phone}} <br />
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- If child don't have parents then show text about it-->
+      <div *ngIf="!_parents || !_parents.length">
+        <p>
+          У дитини немає батьків.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,7 @@ import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-not
 import PediatriciansExaminationModule from './pediatricians-examination.module';
 
 import ChildCardMainPageComponent from '../../components/childrens-card/child-card/main-page.component';
+import ChildCardParentsListComponent from '../../components/childrens-card/child-card/parents/parents-list.component';
 import ChildCardPsychiatristsConclusionFormComponent from '../../components/childrens-card/child-card/psychiatrists-conclusion-form.component';
 import VisitComponent from '../../components/childrens-card/visit/add/visit.component';
 
@@ -28,7 +29,8 @@ import ChildrenCardService from '../../services/children-card.service';
     declarations: [
         ChildCardMainPageComponent,
         ChildCardPsychiatristsConclusionFormComponent,
-        VisitComponent
+        VisitComponent,
+        ChildCardParentsListComponent
     ],
     providers: [
         AuthenticationService,
