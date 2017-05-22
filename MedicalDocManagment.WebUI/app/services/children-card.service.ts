@@ -13,6 +13,7 @@ import ChildrenCardsModel from '../models/children-cards.model';
 import ParentModel from '../models/parent.model';
 import ViewPatientDataModel from '../models/view-patient-data.model';
 import ChildrenCardsPagedModel from '../models/children-cards-paged.model';
+import PediatriciansExaminationModel from "../models/pediatricians-examination/pediatricians-examination.model";
 
 import { AuthenticationService } from "./authentication.service";
 
@@ -139,5 +140,49 @@ export default class ChildrensCardService {
             childCardId, '"' + conclusion + '"', { headers })
                          .map((resp: Response) => { return JSON.parse(resp.text()); })
                          .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    /**
+     * Method saves pediatrician's examination to child card
+     * @param {string} childCardId Id of child card to save examination into
+     * @param {PediatriciansExaminationModel} pediatriciansExamination Contains examination to save
+     * @return {Observable<PediatriciansExaminationModel>} Observable to saved examination by server
+     */
+    savePediatriciansExamination(childCardId: number,
+        pediatriciansExamination: PediatriciansExaminationModel):
+        Observable<PediatriciansExaminationModel> {
+        let headers: Headers = this._headers;
+        let body: string = JSON.stringify(pediatriciansExamination);
+        return this._http.put('/api/childcards/savePediatriciansExamination?childCardId=' + childCardId,
+            body, { headers })
+                         .map((resp: Response) => {                              
+                             return new PediatriciansExaminationModel(resp.json());
+                         })
+                         .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    /**
+     * Method get's pediatrician's examination for child card
+     * @param {string} childCardId Id of child card to get examination for
+     * @return {Observable<PediatriciansExaminationModel>} Observable to examination
+     */
+    getPediatriciansExamination(childCardId: number):Observable<PediatriciansExaminationModel> {
+        let headers: Headers = this._headers;
+        return this._http.get('/api/childcards/getPediatriciansExamination?childCardId=' + childCardId,
+            { headers })
+            .map((resp: Response) => {
+                return new PediatriciansExaminationModel(resp.json());
+            })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    getChildCard(childCardId: number): Observable<ChildCardModel> {
+        let headers: Headers = this._headers;
+        return this._http.get('/api/childcards/getChildCard?childCardId=' + childCardId,
+            { headers })
+            .map((resp: Response) => {
+                return new ChildCardModel(resp.json());
+            })
+            .catch((error: any) => { return Observable.throw(error); });
     }
 }

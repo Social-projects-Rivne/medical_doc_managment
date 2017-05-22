@@ -17,6 +17,9 @@ export default class ItemActionListEditModal implements OnInit {
     @Input() user: UserModel = new UserModel();
     @Input() tempUser: UserModel = new UserModel();
     positions: PositionModel[];
+    userImage: any;
+    showImageInvalidMessage: boolean = false;
+    showImageSelectedMessage: boolean = false;
     public notificationOptions = {
         timeOut: 5000,
         lastOnBottom: true,
@@ -32,21 +35,47 @@ export default class ItemActionListEditModal implements OnInit {
     };
 
     constructor(private _http: HttpFacade, private _service: NotificationsService) { }
+    imageRemoved(event) {
+        this.resetImage();
+        this.resetMessages();
+    }
+    resetImage() {
+        this.userImage = null;
+    }
+    resetMessages() {
+        this.showImageSelectedMessage = false;
+        this.showImageInvalidMessage = false;
+    }
+    imageUploaded(event) {
+        this.userImage = event.file;
+        this.showImageSelectedMessage = true;
+        this.showImageInvalidMessage = false;
+    }
+    onCancel() {
+        this.resetImage();
+        this.resetMessages();
+    }
 
     submit() {
-        this._http.updateUser(this.tempUser)
+        this._http.updateUserWithImage(this.tempUser, this.userImage)
             .subscribe(
-            (data) => {
-                console.log(data);
-                this.user.clone(this.tempUser);
-                this._service.success("Успіх", "Успішно відредаговано користувача");
-                $('#userEditModal').modal('hide');
-            },
-            (error) => {
-                console.log(error);
-                this._service.error("Помилка", "Відбулась помилка при редагуванні користувача");
-            }
-        );
+                (data) => {
+                    console.log(data);
+                    this.user.clone(this.tempUser);
+                    this.resetImage();
+                    this.resetMessages();
+                    let updatedAvatar = JSON.parse(data._body).avatar;
+                    this.user.avatar = updatedAvatar;
+                    this._service.success("Успіх", "Успішно відредаговано користувача");
+                    $('#userEditModal').modal('hide');
+                },
+                (error) => {
+                    console.log(error);
+                    this.resetImage();
+                    this._service.error("Помилка", "Відбулась помилка при редагуванні користувача");
+                }
+            );
+        
     }
 
     ngOnInit() {

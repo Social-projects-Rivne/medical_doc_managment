@@ -11,9 +11,10 @@ import { routing } from '../routes/app.routing';
 import { UsersListModule } from "./users-list.module";
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
+import { TextMaskModule } from 'angular2-text-mask';
 import ChildrenCardsListModule from "./children-cards-list.module";
 import UsersSearchModule from "./users-search.module";
-import ChildCardModule from "./child-card.module";
+import ChildCardModule from "./child-card/child-card.module";
 
 import { LoginAppComponent } from '../components/login-app.component';
 import { LoginComponent } from '../components/login/login.component';
@@ -29,7 +30,7 @@ import MainAppService from "../services/main-app.service";
 import ChildCardAddParentComponent from "../components/childrens-card/parent/child-card-add-parent.component";
 import ChildrenCardAddComponent from "../components/childrens-card/children-cards-list/add/children-card-add.component";
 import ViewPatientDataComponent from "../components/childrens-card/view-patient-data/view-patient-data.component";
-
+import { ImageUploadModule } from "angular2-image-upload";
 @NgModule({
     imports: [
         BrowserModule,
@@ -41,8 +42,10 @@ import ViewPatientDataComponent from "../components/childrens-card/view-patient-
         Ng2PaginationModule,
         SimpleNotificationsModule,
         PushNotificationsModule,
+        TextMaskModule,
         ChildrenCardsListModule,
-        ChildCardModule
+        ChildCardModule,
+        ImageUploadModule.forRoot()
     ],
     declarations: [
         LoginAppComponent,

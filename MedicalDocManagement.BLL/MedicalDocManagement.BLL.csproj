@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\Admin\ImageDTO.cs" />
     <Compile Include="DTO\Main\BlockMkhDTO.cs" />
     <Compile Include="DTO\Main\ChildCardDTO.cs" />
     <Compile Include="DTO\Main\DiagnosisMkhDTO.cs" />
@@ -68,6 +69,12 @@
     <Compile Include="DTO\Main\ParentDTO.cs" />
     <Compile Include="DTO\Admin\PositionDTO.cs" />
     <Compile Include="DTO\Admin\UserDTO.cs" />
+    <Compile Include="DTO\Main\PediatriciansExamination\BirthDetailsDTO.cs" />
+    <Compile Include="DTO\Main\PediatriciansExamination\HeaderDTO.cs" />
+    <Compile Include="DTO\Main\PediatriciansExamination\PediatriciansExaminationDTO.cs" />
+    <Compile Include="DTO\Main\PediatriciansExamination\PregnancyDetailsDTO.cs" />
+    <Compile Include="DTO\Main\PediatriciansExamination\PsychomotorDevelopmentDTO.cs" />
+    <Compile Include="Helpers\PediatriciansExaminationDTOHelper.cs" />
     <Compile Include="Helpers\ChildCardDTOHelper.cs" />
     <Compile Include="Helpers\PositionDTOHelper.cs" />
     <Compile Include="Helpers\UserDTOHelper.cs" />

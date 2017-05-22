@@ -1,0 +1,488 @@
+﻿<div class="container">
+  <!-- "Loading" progress bar and related error alert -->
+  <div class="row" *ngIf="_isLoading">
+    <div class="progress">
+      <div class="progress-bar progress-bar-info progress-bar-striped active"
+           role="progressbar" aria-valuenow="0" aria-valuemin="0"
+           aria-valuemax="0" style="width:100%">
+        Отримання інформації щодо форми ...
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="_isErrorOnLoading">
+    <div class="alert alert-danger col-xs-12">
+      {{_lastLoadingErrorMessage}}
+    </div>
+  </div>
+
+  <form class="form-horizontal" *ngIf="!_isLoading">
+    <!-- ПІБ пацієнта, якого стосується форма -->
+    <div class="row">
+      <h4 class="text-center">
+        {{_childCard.lastName}} {{_childCard.firstName}} {{_childCard.secondName}}
+      </h4>
+    </div>
+    <!-- Заголовок форми — ОГЛЯД ЛІКАРЯ-ПЕДІАТРА -->
+    <div class="row">
+      <h4 class="text-center">
+        ОГЛЯД ЛІКАРЯ-ПЕДІАТРА
+      </h4>
+    </div>
+
+    <!-- Вік -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-offset-2 col-xs-4">
+          <span class="input-group-addon">Вік</span>
+          <input type="text" class="form-control" id="childAge" name="childAge"
+                 [(ngModel)]="_pediatriciansExamination.header.age" #lastName="ngModel"
+                 [disabled]="_isSaving" maxlength="33" />
+        </div>
+      </div>
+    </div>
+    <!-- Вага -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-offset-2 col-xs-4">
+          <span class="input-group-addon">Вага</span>
+          <input type="text" class="form-control" id="childWeight" name="childWeight"
+                 [(ngModel)]="_pediatriciansExamination.header.weight" #lastName="ngModel"
+                 [disabled]="_isSaving" maxlength="32" />
+        </div>
+      </div>
+    </div>
+    <!-- Зріст -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-offset-2 col-xs-4">
+          <span class="input-group-addon">Зріст</span>
+          <input type="text" class="form-control" id="childHeight" name="childHeight"
+                 [(ngModel)]="_pediatriciansExamination.header.height" #lastName="ngModel"
+                 [disabled]="_isSaving" maxlength="31" />
+        </div>
+      </div>
+    </div>
+    <!-- Окружність голови -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-offset-2 col-xs-4">
+          <span class="input-group-addon">Окружність голови</span>
+          <input type="text" class="form-control" id="headCircumference" name="headCircumference"
+                 [(ngModel)]="_pediatriciansExamination.header.headCircumference"
+                 #lastName="ngModel" [disabled]="_isSaving" maxlength="19" />
+        </div>
+      </div>
+    </div>
+    <!-- Окружність грудної клітки -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-offset-2 col-xs-4">
+          <span class="input-group-addon">Окружність грудної клітки</span>
+          <input type="text" class="form-control" id="chestCircumference" name="chestCircumference"
+                 [(ngModel)]="_pediatriciansExamination.header.chestCircumference"
+                 #lastName="ngModel" [disabled]="_isSaving" maxlength="11" />
+        </div>
+      </div>
+    </div>
+    <!-- ВТ -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-offset-2 col-xs-4">
+          <span class="input-group-addon">ВТ</span>
+          <input type="text" class="form-control" id="childVT" name="childVT"
+                 [(ngModel)]="_pediatriciansExamination.header.vt" #lastName="ngModel"
+                 [disabled]="_isSaving" maxlength="34" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Скарги -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <label for="complaints">Скарги</label>
+        <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                  id="complaints"
+                  name="complaints" [(ngModel)]="_pediatriciansExamination.complaints"
+                  #conclusionTextArea="ngModel" [disabled]="_isSaving"
+                  maxlength="308" rows=3></textarea>
+      </div>
+    </div>
+    <!-- Анамнез захворювання -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <label for="complaints">Анамнез захворювання</label>
+        <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                  id="anamnesisOfDisease" name="anamnesisOfDisease"
+                  [(ngModel)]="_pediatriciansExamination.anamnesisOfDisease"
+                  #conclusionTextArea="ngModel" [disabled]="_isSaving"
+                  maxlength="819" rows=8></textarea>
+      </div>
+    </div>
+    <!-- Анамнез життя -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">Анамнез життя</span>
+          <input type="text" class="form-control" id="anamnesisOfLife" name="anamnesisOfLife"
+                 [(ngModel)]="_pediatriciansExamination.anamnesisOfLife" #lastName="ngModel"
+                 [disabled]="_isSaving" maxlength="92" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Вагітність та пологи -->
+    <!-- Рядок 1 -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">Дитина від</span>
+          <input type="text" class="form-control" id="pregnancySomeDetails" name="pregnancySomeDetails"
+                 [(ngModel)]="_pediatriciansExamination.pregnancyDetails.someDetails"
+                 #lastName="ngModel" [disabled]="_isSaving" maxlength="54" />
+          <span class="input-group-addon">
+            вагітності, яка протікала:
+            <span [style.font-style]="'italic'"
+                  [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedNormally)"
+                  (click)="_pediatriciansExamination.pregnancyDetails.switchPassedNormally()">
+              нормально
+            </span><i>, </i>
+            <span [style.font-style]="'italic'"
+                  [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedWithToxemia)"
+                  (click)="_pediatriciansExamination.pregnancyDetails.switchPassedWithToxemia()">
+              з токсикозом
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- Рядок 2 -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <input type="text" class="form-control" id="pregnancyToxemiaDetails"
+                 name="pregnancyToxemiaDetails"
+                 [(ngModel)]="_pediatriciansExamination.pregnancyDetails.toxemiaDetails"
+                 #lastName="ngModel" maxlength="22"
+                 [disabled]="_isSaving || !_pediatriciansExamination.pregnancyDetails.passedWithToxemia" />
+          <span class="input-group-addon">
+            <span [style.font-style]="'italic'"
+                  [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedWithToxemia)"
+                  (click)="_pediatriciansExamination.pregnancyDetails.switchPassedWithToxemia()">
+              половини
+            </span><i>, </i>
+            <span [style.font-style]="'italic'"
+                  [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedWithAnemia)"
+                  (click)="_pediatriciansExamination.pregnancyDetails.switchPassedWithAnemia()">
+              анемією
+            </span><i>, </i>
+            <span [style.font-style]="'italic'"
+                  [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.withThreatInInterruption)"
+                  (click)="_pediatriciansExamination.pregnancyDetails.switchWithThreatInInterruption()">
+              загрозою переривання у терміні
+            </span>
+          </span>
+          <input type="text" class="form-control" id="pregnancyDateOfInterruption"
+                 name="pregnancyDateOfInterruption"
+                 [(ngModel)]="_pediatriciansExamination.pregnancyDetails.dateOfInterruption"
+                 #lastName="ngModel" maxlength="29"
+                 [disabled]="_isSaving || !_pediatriciansExamination.pregnancyDetails.withThreatInInterruption" />
+        </div>
+      </div>
+    </div>
+    <!-- Рядок 3 -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">від</span>
+          <input type="text" class="form-control" id="pregnancyFromDetails"
+                 name="pregnancyFromDetails"
+                 [(ngModel)]="_pediatriciansExamination.pregnancyDetails.fromDetails"
+                 #lastName="ngModel" maxlength="60"
+                 [disabled]="_isSaving || _pediatriciansExamination.pregnancyDetails.childBirth == ChildBirthEnum.Unknown" />
+          <span class="input-group-addon" [style.font-style]="'italic'"
+                (click)="_pediatriciansExamination.pregnancyDetails.childBirth = (_pediatriciansExamination.pregnancyDetails.childBirth+1) % 4">
+            <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
+                    pregnancyDetails.childBirth == ChildBirthEnum.Urgent)">
+              термінових
+            </span>
+            ,
+            <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
+                    pregnancyDetails.childBirth == ChildBirthEnum.Premature)">
+              передчасних
+            </span>
+            ,
+            <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
+                    pregnancyDetails.childBirth == ChildBirthEnum.Operative)">
+              оперативних пологів
+            </span>
+            .
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Результати огляду при народженні -->
+    <!-- Рядок 1 -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">Вага при народженні</span>
+          <input type="text" class="form-control" id="birthDetailsWeight" name="birthDetailsWeight"
+                 [(ngModel)]="_pediatriciansExamination.birthDetails.weight" #lastName="ngModel"
+                 [disabled]="_isSaving" maxlength="15" />
+          <span class="input-group-addon">, довжина тіла</span>
+          <input type="text" class="form-control" id="birthDetailsBodyLength" name="birthDetailsBodyLength"
+                 [(ngModel)]="_pediatriciansExamination.birthDetails.bodyLength" #lastName="ngModel"
+                 [disabled]="_isSaving" maxlength="16" />
+          <span class="input-group-addon">, окружність голови</span>
+          <input type="text" class="form-control" id="birthDetailsHeadCircumference" name="birthDetailsHeadCircumference"
+                 [(ngModel)]="_pediatriciansExamination.birthDetails.headCircumference"
+                 #lastName="ngModel" [disabled]="_isSaving" maxlength="18" />
+          <span class="input-group-addon">,</span>
+        </div>
+      </div>
+    </div>
+    <!-- Рядок 2 -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">окружність грудної клітки</span>
+          <input type="text" class="form-control" id="birthDetailsChestCircumference"
+                 name="birthDetailsChestCircumference"
+                 [(ngModel)]="_pediatriciansExamination.birthDetails.chestCircumference"
+                 #lastName="ngModel" [disabled]="_isSaving" maxlength="24" />
+          <span class="input-group-addon">, оцінка за шкалою Апгар</span>
+          <input type="text" class="form-control" id="birthDetailsScoreByApgar"
+                 name="birthDetailsScoreByApgar"
+                 [(ngModel)]="_pediatriciansExamination.birthDetails.scoreByApgar" #lastName="ngModel"
+                 [disabled]="_isSaving" maxlength="29" />
+          <span class="input-group-addon">.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ранній неонатальний період -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">
+            Ранній неонатальний період протікав
+            <span [style.font-style]="'italic'"
+                  (click)="_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications=!_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications">
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications)">
+                без ускладнень
+              </span>
+              ,
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.earlyNeonatalPeriodWasWithComplications)">
+                був ускладнений
+              </span>
+            </span>
+          </span>
+          <input type="text" class="form-control" id="complicationsDuringNeonatalPeriod"
+                 name="complicationsDuringNeonatalPeriod" maxlength="35"
+                 [(ngModel)]="_pediatriciansExamination.complicationsDuringNeonatalPeriod"
+                 #lastName="ngModel" [disabled]="_isSaving || _pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications!=false" />
+          <span class="input-group-addon">.</span>
+        </div>
+      </div>
+    </div>
+    <!-- Рядок після рядку з раннім неонатальним періодом -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <input type="text" class="form-control" id="detailsAfterEarlyNeonatalPeriod"
+                 name="detailsAfterEarlyNeonatalPeriod"
+                 [(ngModel)]="_pediatriciansExamination.detailsAfterEarlyNeonatalPeriod"
+                 #lastName="ngModel" [disabled]="_isSaving" maxlength="105" />
+        </div>
+      </div>
+    </div>
+    <!-- Психомоторний розвиток на 1-му році життя -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">
+            Психомоторний розвиток на 1-му році життя
+            <span [style.font-style]="'italic'">
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit)"
+                    (click)="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit=!_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit">
+                відповідав віковій нормі
+              </span>
+              ,
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal)"
+                    (click)="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal=!_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal">
+                не відповідав нормі
+              </span>
+            </span>
+          </span>
+          <input type="text" class="form-control" id="psychomotorDevelopmentModelDetails"
+                 name="psychomotorDevelopmentModelDetails"
+                 [(ngModel)]="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.details"
+                 #lastName="ngModel" maxlength="125"
+                 [disabled]="_isSaving || !_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal" />
+        </div>
+      </div>
+    </div>
+    <!-- Вигодовування -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">Вигодовування: природнє</span>
+          <input type="text" class="form-control" id="naturalFeedingDetails"
+                 name="naturalFeedingDetails"
+                 [(ngModel)]="_pediatriciansExamination.naturalFeedingDetails" #lastName="ngModel"
+                 [disabled]="_isSaving" maxlength="18" />
+          <span class="input-group-addon">, штучне</span>
+          <input type="text" class="form-control" id="nonNaturalFeedingDetails"
+                 name="nonNaturalFeedingDetails"
+                 [(ngModel)]="_pediatriciansExamination.nonNaturalFeedingDetails" #lastName="ngModel"
+                 [disabled]="_isSaving" maxlength="19" />
+          <span class="input-group-addon">, змішане</span>
+          <input type="text" class="form-control" id="mixedFeedingDetails"
+                 name="mixedFeedingDetails"
+                 [(ngModel)]="_pediatriciansExamination.mixedFeedingDetails" #lastName="ngModel"
+                 [disabled]="_isSaving" maxlength="21" />
+        </div>
+      </div>
+    </div>
+    <!-- Перенесені захворювання -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <label for="complaints">Перенесені захворювання</label>
+        <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                  id="pastIllnesses"
+                  name="pastIllnesses" [(ngModel)]="_pediatriciansExamination.pastIllnesses"
+                  #conclusionTextArea="ngModel" [disabled]="_isSaving"
+                  maxlength="817" rows=8></textarea>
+      </div>
+    </div>
+    <!-- "Д" облік з приводу -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <label for="complaints">"Д" облік з приводу</label>
+        <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                  id="screeningReasonsDetails" name="screeningReasonsDetails"
+                  [(ngModel)]="_pediatriciansExamination.screeningReasonsDetails"
+                  #conclusionTextArea="ngModel" [disabled]="_isSaving"
+                  maxlength="297" rows=3></textarea>
+      </div>
+    </div>
+    <!-- Шкідливі звички -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">
+            Шкідливі звички:
+            <span [style.font-style]="'italic'"
+                  (click)="_pediatriciansExamination.badHabitsPresent=!_pediatriciansExamination.badHabitsPresent">
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.badHabitsAbsent)">
+                немає
+              </span>
+              ,
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.badHabitsPresent)">
+                є
+              </span>
+            </span>
+          </span>
+          <input type="text" class="form-control" id="badHabitsDetails"
+                 name="badHabitsDetails"
+                 [(ngModel)]="_pediatriciansExamination.badHabitsDetails" #lastName="ngModel"
+                 maxlength="75" [disabled]="_isSaving || !_pediatriciansExamination.badHabitsPresent" />
+        </div>
+      </div>
+    </div>
+    <!-- Алергологічний анамнез -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">
+            Алергологічний анамнез:
+            <span [style.font-style]="'italic'"
+                  (click)="_pediatriciansExamination.weightedWithAllergicHistory=!_pediatriciansExamination.weightedWithAllergicHistory">
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.notWeightedWithAllergicHistory)">
+                не обтяжений
+              </span>
+              ,
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.weightedWithAllergicHistory)">
+                обтяжений
+              </span>
+            </span>
+          </span>
+          <input type="text" class="form-control" id="allergicHistoryDetails"
+                 name="allergicHistoryDetails"
+                 [(ngModel)]="_pediatriciansExamination.allergicHistoryDetails" #lastName="ngModel"
+                 maxlength="52" [disabled]="_isSaving || !_pediatriciansExamination.weightedWithAllergicHistory" />
+        </div>
+      </div>
+    </div>
+    <!-- Спадковий анамнез -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">
+            Спадковий анамнез:
+            <span [style.font-style]="'italic'"
+                  (click)="_pediatriciansExamination.weightedWithAncestralAnamnesis=!_pediatriciansExamination.weightedWithAncestralAnamnesis">
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.notWeightedWithAncestralAnamnesis)">
+                не обтяжений
+              </span>
+              ,
+              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.weightedWithAncestralAnamnesis)">
+                обтяжений
+              </span>
+            </span>
+          </span>
+          <input type="text" class="form-control" id="ancestralAnamnesisDetails"
+                 name="ancestralAnamnesisDetails"
+                 [(ngModel)]="_pediatriciansExamination.ancestralAnamnesisDetails"
+                 #lastName="ngModel" maxlength="55"
+                 [disabled]="_isSaving || !_pediatriciansExamination.weightedWithAncestralAnamnesis" />
+        </div>
+      </div>
+    </div>
+    <!-- Розладів стільця... -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <span>Розладів стільця за останні три дні не було. В контакті з інфекційними хворими протягом 21 дня небув(ла).</span>
+      </div>
+    </div>
+    <!-- Профщеплення -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="input-group col-xs-12">
+          <span class="input-group-addon">Профщеплення:</span>
+          <input type="text" class="form-control" id="preventiveVaccinations"
+                 name="preventiveVaccinations"
+                 [(ngModel)]="_pediatriciansExamination.preventiveVaccinations" #lastName="ngModel"
+                 [disabled]="_isSaving" maxlength="83" />
+        </div>
+      </div>
+    </div>
+
+    <hr />
+    <!-- Saving progress bar and alert for saving errors -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="progress" *ngIf="_isSaving">
+          <div class="progress-bar progress-bar-info progress-bar-striped active"
+               role="progressbar" aria-valuenow="0" aria-valuemin="0"
+               aria-valuemax="0" style="width:100%">
+            Збереження результату огляду...
+          </div>
+        </div>
+        <div *ngIf="_isErrorOnSaving" class="alert alert-danger col-xs-12">
+          {{_lastSavingErrorMessage}}
+        </div>
+      </div>
+    </div>
+    <!-- Save button -->
+    <div class="row">
+      <div class="form-group col-xs-11">
+        <button type="button" class="btn btn-primary" (click)="_save()"
+                [disabled]="_isSaving">
+          Зберегти
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
