@@ -6,9 +6,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import ChildCardModel from '../models/child-card.model';
+import ChildCardModel from '../models/child-card/child-card.model';
 import ChildrenCardsModel from '../models/children-cards.model';
-import ParentModel from '../models/parent.model';
+import ParentModel from '../models/child-card/parent.model';
 import ViewPatientDataModel from '../models/view-patient-data.model';
 
 import { AuthenticationService } from "./authentication.service";

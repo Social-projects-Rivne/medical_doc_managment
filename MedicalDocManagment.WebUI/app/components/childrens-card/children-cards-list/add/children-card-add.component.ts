@@ -5,9 +5,9 @@ import ChildrensCardService from '../../../../services/children-card.service';
 import MkhsService from "../../../../services/mkhs.service";
 import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
 
-import ParentChildCard from "../../../../models/parent-child-card.model";
-import ParentModel from "../../../../models/parent.model";
-import ChildCardModel from '../../../../models/child-card.model';
+import ParentChildCard from "../../../../models/child-card/parent-child-card.model";
+import ParentModel from "../../../../models/child-card/parent.model";
+import ChildCardModel from '../../../../models/child-card/child-card.model';
 import DiagnosisModel from "../../../../models/diagnosis.model";
 import DiagnosesModel from "../../../../models/diagnoses.model";
 import ClassModel from "../../../../models/class.model";

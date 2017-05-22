@@ -7,13 +7,13 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Subject } from 'rxjs/Subject';
 
-import ParentChildCard from '../models/parent-child-card.model';
-import ChildCardModel from '../models/child-card.model';
+import ParentChildCard from '../models/child-card/parent-child-card.model';
+import ChildCardModel from '../models/child-card/child-card.model';
 import ChildrenCardsModel from '../models/children-cards.model';
-import ParentModel from '../models/parent.model';
+import ParentModel from '../models/child-card/parent.model';
 import ViewPatientDataModel from '../models/view-patient-data.model';
 import ChildrenCardsPagedModel from '../models/children-cards-paged.model';
-import PediatriciansExaminationModel from "../models/pediatricians-examination/pediatricians-examination.model";
+import PediatriciansExaminationModel from "../models/child-card/pediatricians-examination/pediatricians-examination.model";
 
 import { AuthenticationService } from "./authentication.service";
 
@@ -180,9 +180,19 @@ export default class ChildrensCardService {
         let headers: Headers = this._headers;
         return this._http.get('/api/childcards/getChildCard?childCardId=' + childCardId,
             { headers })
-            .map((resp: Response) => {
-                return new ChildCardModel(resp.json());
-            })
-            .catch((error: any) => { return Observable.throw(error); });
+                         .map((resp: Response) => {
+                             return new ChildCardModel(resp.json());
+                         })
+                         .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    getChildsParents(childCardId: number): Observable<ParentModel[]> {
+        let headers: Headers = this._headers;
+        return this._http.get('/api/childcards/getChildsParents?childCardId=' + childCardId,
+            { headers })
+                         .map((resp: Response) => {
+                             return resp.json();
+                         })
+                         .catch((error: any) => { return Observable.throw(error); });
     }
 }

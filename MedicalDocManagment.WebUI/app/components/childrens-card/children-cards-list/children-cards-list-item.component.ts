@@ -2,7 +2,7 @@
 import { Response } from '@angular/http';
 import { Router } from '@angular/router';
 
-import ChildCardModel from "../../../models/child-card.model";
+import ChildCardModel from "../../../models/child-card/child-card.model";
 import MainAppService from "../../../services/main-app.service";
 
 @Component({

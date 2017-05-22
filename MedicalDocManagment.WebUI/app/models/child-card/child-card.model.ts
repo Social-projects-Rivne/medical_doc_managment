@@ -1,4 +1,4 @@
-﻿import DiagnosisModel from './diagnosis.model';
+﻿import DiagnosisModel from '../diagnosis.model';
 
 export default class ChildCardModel {
     id: number;

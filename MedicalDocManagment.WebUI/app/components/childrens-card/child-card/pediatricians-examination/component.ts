@@ -1,8 +1,8 @@
 ﻿import { Component } from '@angular/core';
 
-import ChildCardModel from "../../../../models/child-card.model";
-import PediatriciansExaminationModel from "../../../../models/pediatricians-examination/pediatricians-examination.model";
-import { ChildBirthEnum } from '../../../../models/pediatricians-examination/child-birth.enum';
+import ChildCardModel from "../../../../models/child-card/child-card.model";
+import PediatriciansExaminationModel from "../../../../models/child-card/pediatricians-examination/pediatricians-examination.model";
+import { ChildBirthEnum } from '../../../../models/child-card/pediatricians-examination/child-birth.enum';
 
 import ChildrenCardService from '../../../../services/children-card.service';
 import MainAppService from "../../../../services/main-app.service";
