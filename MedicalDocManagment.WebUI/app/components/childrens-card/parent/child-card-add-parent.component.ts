@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 declare var jQuery: any;
 
 import ChildrenCardService from "../../../services/children-card.service";
-import ParentModel from "../../../models/parent.model";
+import ParentModel from "../../../models/child-card/parent.model";
 
 @Component({
     moduleId: module.id,

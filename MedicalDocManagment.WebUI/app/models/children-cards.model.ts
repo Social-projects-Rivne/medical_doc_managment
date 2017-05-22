@@ -1,4 +1,4 @@
-﻿import ChildCardModel from './child-card.model';
+﻿import ChildCardModel from './child-card/child-card.model';
 
 export default class ChildrenCardsModel extends Array<ChildCardModel> {
     constructor(jsonObject?) {

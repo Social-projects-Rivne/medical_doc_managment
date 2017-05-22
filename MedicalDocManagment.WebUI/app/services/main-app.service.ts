@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 
-import ChildCardModel from "../models/child-card.model";
+import ChildCardModel from "../models/child-card/child-card.model";
 
 /**
  * Class designed to provide communication between components of main application

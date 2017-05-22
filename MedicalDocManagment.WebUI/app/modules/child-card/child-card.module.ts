@@ -7,6 +7,7 @@ import { MomentModule } from 'angular2-moment';
 import PediatriciansExaminationModule from './pediatricians-examination.module';
 
 import ChildCardMainPageComponent from '../../components/childrens-card/child-card/main-page.component';
+import ChildCardParentsListComponent from '../../components/childrens-card/child-card/parents/parents-list.component';
 import ChildCardPsychiatristsConclusionFormComponent from '../../components/childrens-card/child-card/psychiatrists-conclusion-form.component';
 
 import { AuthenticationService } from '../../services/authentication.service';
@@ -23,6 +24,7 @@ import ChildrenCardService from '../../services/children-card.service';
     ],
     declarations: [
         ChildCardMainPageComponent,
+        ChildCardParentsListComponent,
         ChildCardPsychiatristsConclusionFormComponent
     ],
     providers: [

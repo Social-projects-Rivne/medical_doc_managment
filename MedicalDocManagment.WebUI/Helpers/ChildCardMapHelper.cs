@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MedicalDocManagement.BLL.DTO;
 using MedicalDocManagment.WebUI.Models.Main;
+using System.Collections.Generic;
 
 namespace MedicalDocManagment.WebUI.Helpers
 {
@@ -39,6 +40,16 @@ namespace MedicalDocManagment.WebUI.Helpers
                 }
             );
             return Mapper.Map<ChildCardVM>(childCardDTO);
+        }
+
+        public static List<ParentVM> DTOsToVMs(List<ParentDTO> parentDTOs)
+        {
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<ParentDTO, ParentVM>();
+            }
+            );
+            return Mapper.Map<List<ParentVM>>(parentDTOs);
         }
     }
 }

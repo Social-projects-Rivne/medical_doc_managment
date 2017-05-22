@@ -28,7 +28,7 @@ namespace MedicalDocManagement.BLL.Services
                                            .Get()
                                            .AsNoTracking()
                                            .ToList();
-            return ChildCardDTOHelper.EntitiesToDTO(childrenCards);
+            return ChildCardDTOHelper.EntitiesToDTOs(childrenCards);
         }
         public int GetChildrenCardsCount()
         {
@@ -47,7 +47,7 @@ namespace MedicalDocManagement.BLL.Services
                                            .Take(pageSize)
                                            .AsNoTracking()
                                            .ToList();
-            return ChildCardDTOHelper.EntitiesToDTO(childrenCards);
+            return ChildCardDTOHelper.EntitiesToDTOs(childrenCards);
         }
         public List<ClassMkhDTO> GetClassesMkh()
         {
@@ -155,7 +155,7 @@ namespace MedicalDocManagement.BLL.Services
                                         .AsEnumerable()
                                         .ToList();
 
-            return ChildCardDTOHelper.EntitiesToDTO(childCards);
+            return ChildCardDTOHelper.EntitiesToDTOs(childCards);
         }
 
         public string AddPsychiatristsConclusion(int childCardId, string conclusion)
@@ -222,6 +222,26 @@ namespace MedicalDocManagement.BLL.Services
             }
 
             return result;
+        }
+
+        public List<ParentDTO> GetChildsParents(int childCardId)
+        {
+            var parentChilds = _unitOfWork.ParentChildCardRepository
+                                         .Get(pc => pc.ChildId == childCardId)
+                                         .AsNoTracking()
+                                         .ToList();
+
+            var parents = new List<Parent>();
+            foreach (var parentChild in parentChilds)
+            {
+                parents.Add(_unitOfWork.ParentRepository
+                                       .Get(p => p.Id == parentChild.ParentId)
+                                       .AsNoTracking()
+                                       .Single()
+                                       );
+            }
+
+            return ChildCardDTOHelper.EntitiesToDTOs(parents);
         }
     }
 }

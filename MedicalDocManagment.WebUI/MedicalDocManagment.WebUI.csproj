@@ -172,6 +172,7 @@
   <ItemGroup>
     <Content Include="app\.gitignore" />
     <Content Include="app\components\admin-app.component.html" />
+    <Content Include="app\components\childrens-card\child-card\parents\parents-list.component.html" />
     <Content Include="app\components\childrens-card\child-card\pediatricians-examination\view.component.html" />
     <Content Include="app\components\childrens-card\child-card\pediatricians-examination\component.html" />
     <Content Include="app\components\childrens-card\child-card\pediatricians-examination\form.component.html" />
@@ -241,6 +242,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\parents\parents-list.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\pediatricians-examination\view.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\pediatricians-examination\component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\pediatricians-examination\form.component.ts" />
@@ -249,13 +251,13 @@
     <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.ts" />
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
     <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
-    <TypeScriptCompile Include="app\models\pediatricians-examination\child-birth.enum.ts" />
-    <TypeScriptCompile Include="app\models\pediatricians-examination\psychomotor-development.model.ts" />
-    <TypeScriptCompile Include="app\models\pediatricians-examination\header.model.ts" />
-    <TypeScriptCompile Include="app\models\pediatricians-examination\birth-details.model.ts" />
-    <TypeScriptCompile Include="app\models\pediatricians-examination\pregnancy-details.model.ts" />
-    <TypeScriptCompile Include="app\models\pediatricians-examination\pediatricians-examination.model.ts" />
-    <TypeScriptCompile Include="app\models\parent-child-card.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\child-birth.enum.ts" />
+    <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\psychomotor-development.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\header.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\birth-details.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\pregnancy-details.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\pediatricians-examination.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\parent-child-card.model.ts" />
     <TypeScriptCompile Include="app\modules\child-card\pediatricians-examination.module.ts" />
     <TypeScriptCompile Include="app\modules\child-card\child-card.module.ts" />
     <TypeScriptCompile Include="app\modules\users-search.module.ts" />
@@ -268,6 +270,7 @@
     <Compile Include="Helpers\PositionMapHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\ViewPatientDataHelper.cs" />
+    <Compile Include="Models\Main\ParentVM.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
     <Compile Include="Models\Main\PediatriciansExamination\BirthDetailsVM.cs" />
@@ -350,7 +353,7 @@
     <TypeScriptCompile Include="app\components\childrens-card\view-patient-data\view-patient-data.component.ts" />
     <TypeScriptCompile Include="app\models\block.model.ts" />
     <TypeScriptCompile Include="app\models\blocks.model.ts" />
-    <TypeScriptCompile Include="app\models\child-card.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\child-card.model.ts" />
     <TypeScriptCompile Include="app\models\children-cards.model.ts" />
     <TypeScriptCompile Include="app\models\class.model.ts" />
     <TypeScriptCompile Include="app\models\classes.model.ts" />
@@ -359,7 +362,7 @@
     <TypeScriptCompile Include="app\models\nosologies.model.ts" />
     <TypeScriptCompile Include="app\models\nosology.model.ts" />
     <TypeScriptCompile Include="app\models\paged-response-model.ts" />
-    <TypeScriptCompile Include="app\models\parent.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\parent.model.ts" />
     <TypeScriptCompile Include="app\models\positionmodel.ts" />
     <TypeScriptCompile Include="app\models\rolemodel.ts" />
     <TypeScriptCompile Include="app\models\user-search.model.ts" />
