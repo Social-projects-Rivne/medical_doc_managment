@@ -3,6 +3,7 @@ import { UserService} from '../../../services/user.service';
 import {User} from '../../../models/user';
 import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
 import PositionModel from "../../../models/positionmodel";
+declare var $: any;
 
 @Component({
     moduleId: module.id,
@@ -32,7 +33,13 @@ export class UserAddComponent implements OnInit {
     constructor(private userService: UserService, private _service: NotificationsService) {}
     ngOnInit() {
         this.updatePositionsList();
-
+    }
+    ngAfterViewInit() {
+        $('input[type=text]').tooltip({
+            placement: "right",
+            trigger: "focus",
+            container: 'body'
+        });
     }
     imageRemoved(event) {
         this.resetImage();

@@ -5,7 +5,8 @@
         	<div class="input-group">
         		<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
 		        <input type="text" class="form-control col-xs-5" id="username" name="username" [(ngModel)]="user.userName"
-		               #username="ngModel" required pattern="[a-zA-Z0-9]{3,60}"/>
+		               #username="ngModel" required pattern="[a-zA-Z0-9]{3,60}"
+                       title="Може містити латинські літери та цифри. Довжина від 3 до 60 символів."/>
 	        </div>
 	        <div [hidden]="username.valid || username.untouched" class="alert alert-danger">
 		            Некоректне ім’я користувача
@@ -31,7 +32,8 @@
         	<div class="input-group">
 	        	<span class="input-group-addon"><i class="glyphicon glyphicon-asterisk" aria-hidden="true"></i></span>
 		        <input type="text" class="form-control col-xs-2" id="password" name="password" [(ngModel)]="user.password" 
-		               #password="ngModel" required pattern="[A-Za-z0-9!@#$%^&amp;*'&gt;&lt;?.,&quot;()+-_~`{}|]{6,100}"/>
+		               #password="ngModel" required pattern="[A-Za-z0-9!@#$%^&amp;*'&gt;&lt;?.,&quot;()+-_~`{}|]{6,100}"
+                       title="Може містити латинські літери, цифри та спецсимволи. Довжина від 6 до 100 символів."/>
 	        </div>
 	        <div [hidden]="password.valid || password.untouched" class="alert alert-danger">
 	            Некоректний пароль
@@ -44,7 +46,8 @@
         	<div class="input-group">
 	        	<span class="input-group-addon"><i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i></span>
 		        <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="user.firstName" 
-		               #firstName="ngModel" required pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"/>
+		               #firstName="ngModel" required pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"
+                       title="Може містити кириличні літери, дефіс та апостроф. Довжина від 1 до 100 символів."/>
 	        </div>
 	        <div [hidden]="firstName.valid || firstName.untouched" class="alert alert-danger">
 	            Некоректне ім’я
@@ -57,7 +60,8 @@
         	<div class="input-group">
 	        	<span class="input-group-addon"><i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i></span>
 		        <input type="text" class="form-control" id="secondName" name="secondName" [(ngModel)]="user.secondName" 
-		               #secondName="ngModel" pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"/>
+		               #secondName="ngModel" pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"
+                       title="Може містити кириличні літери, дефіс та апостроф. Довжина від 1 до 100 символів."/>
 	         </div>
 	        <div [hidden]="secondName.valid || secondName.untouched" class="alert alert-danger">
 	            Некоректне по батькові
@@ -70,7 +74,8 @@
         	<div class="input-group">
 	        	<span class="input-group-addon"><i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i></span>
 		        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="user.lastName"  
-		               #lastName="ngModel" required pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"/>
+		               #lastName="ngModel" required pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"
+                       title="Може містити кириличні літери, дефіс та апостроф. Довжина від 1 до 100 символів."/>
 	        </div>
 	        <div [hidden]="lastName.valid || lastName.untouched" class="alert alert-danger">
 	            Некоректне прізвище
