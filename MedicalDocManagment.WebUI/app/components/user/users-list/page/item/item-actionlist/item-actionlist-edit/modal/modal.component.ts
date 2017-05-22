@@ -1,5 +1,6 @@
 ﻿import { Component, Input, OnInit } from '@angular/core';
 
+import SharedService from "../../../../../../../../services/shared.service";
 import { HttpFacade } from "../../../../../../../../services/http.facade";
 import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
 
@@ -11,30 +12,24 @@ declare let $: any;
 @Component({
     moduleId: module.id,
     selector: 'item-actionlist-edit-modal',
-    templateUrl: 'modal.component.html'
+    templateUrl: 'modal.component.html',
+    providers: [
+        SharedService
+    ]
 })
-export default class ItemActionListEditModal implements OnInit {
+export default class ItemActionListEditModal implements OnInit  {
     @Input() user: UserModel = new UserModel();
     @Input() tempUser: UserModel = new UserModel();
     positions: PositionModel[];
     userImage: any;
     showImageInvalidMessage: boolean = false;
     showImageSelectedMessage: boolean = false;
-    public notificationOptions = {
-        timeOut: 5000,
-        lastOnBottom: true,
-        clickToClose: true,
-        maxLength: 0,
-        maxStack: 7,
-        showProgressBar: true,
-        pauseOnHover: false,
-        preventDuplicates: false,
-        preventLastDuplicates: 'visible',
-        animate: 'scale',
-        position: ['right', 'bottom']
-    };
+    notificationOptions: NotificationOptions;
 
-    constructor(private _http: HttpFacade, private _service: NotificationsService) { }
+    constructor(private _http: HttpFacade,
+                private _service: NotificationsService,
+                private _sharedService: SharedService) { }
+
     imageRemoved(event) {
         this.resetImage();
         this.resetMessages();
@@ -55,7 +50,6 @@ export default class ItemActionListEditModal implements OnInit {
         this.resetImage();
         this.resetMessages();
     }
-
     submit() {
         this._http.updateUserWithImage(this.tempUser, this.userImage)
             .subscribe(
@@ -75,11 +69,11 @@ export default class ItemActionListEditModal implements OnInit {
                     this._service.error("Помилка", "Відбулась помилка при редагуванні користувача");
                 }
             );
-        
     }
 
     ngOnInit() {
         this.updatePositionsList();
+        this.notificationOptions = this._sharedService.notificationOptions;
     }
 
     updatePositionsList(): void {
