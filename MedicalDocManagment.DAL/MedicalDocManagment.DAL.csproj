@@ -149,9 +149,17 @@
     <Compile Include="Migrations\201705071936271_Feature-Fill_form_pediatrician.Designer.cs">
       <DependentUpon>201705071936271_Feature-Fill_form_pediatrician.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705151252104_Improvement-component_for_adding_parent_to_user_card.cs" />
+    <Compile Include="Migrations\201705151252104_Improvement-component_for_adding_parent_to_user_card.Designer.cs">
+      <DependentUpon>201705151252104_Improvement-component_for_adding_parent_to_user_card.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201705161407205_Merge.cs" />
     <Compile Include="Migrations\201705161407205_Merge.Designer.cs">
       <DependentUpon>201705161407205_Merge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705161614273_Merge1.cs" />
+    <Compile Include="Migrations\201705161614273_Merge1.Designer.cs">
+      <DependentUpon>201705161614273_Merge1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,14 +213,21 @@
     <EmbeddedResource Include="Migrations\201705071936271_Feature-Fill_form_pediatrician.resx">
       <DependentUpon>201705071936271_Feature-Fill_form_pediatrician.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705151252104_Improvement-component_for_adding_parent_to_user_card.resx">
+      <DependentUpon>201705151252104_Improvement-component_for_adding_parent_to_user_card.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705161407205_Merge.resx">
       <DependentUpon>201705161407205_Merge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705161614273_Merge1.resx">
+      <DependentUpon>201705161614273_Merge1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

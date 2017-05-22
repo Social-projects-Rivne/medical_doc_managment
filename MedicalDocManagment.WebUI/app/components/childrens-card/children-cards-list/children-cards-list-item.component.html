@@ -1,8 +1,15 @@
-﻿<div class="child-card" (click)="openChildCard()">
-  <h4 class="text-center">
-    {{childCard.lastName}} {{childCard.firstName}} {{childCard.secondName}}
-  </h4>
-  <p>
+﻿<div class="child-card_inactive" (click)="openChildCard()"
+     onmouseover="this.className = 'child-card_active'"
+     onmouseout="this.className = 'child-card_inactive'"
+     unselectable="on">
+  <div class="panel-heading">
+    <h4 class="text-center">
+      Картка №{{childCard.cardNumber}}
+    </h4>
+  </div>
+  <div class="panel-body">
+    <b>ПІБ:</b> {{childCard.lastName}} {{childCard.firstName}} {{childCard.secondName}} <br />
+    <br />
     <b>Дата народження:</b> {{childCard.date | amDateFormat:'DD.MM.YYYY'}} <br />
     <b>Адреса:</b> {{childCard.address}} <br />
     <b>Дата госпіталізації:</b> {{childCard.checkIn | amDateFormat:'DD.MM.YYYY'}} <br />
@@ -12,5 +19,5 @@
     <span *ngIf="childCard.diagnosis">
       <b>Діагноз:</b> {{childCard.diagnosis.name}} <br />
     </span>
-  </p>
+  </div>
 </div>
