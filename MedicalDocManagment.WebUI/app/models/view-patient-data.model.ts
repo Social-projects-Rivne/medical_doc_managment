@@ -3,8 +3,10 @@
     secondName: string;
     lastName: string;
     birthDate: Date;
+    cardNumber: string;
 
     constructor() {
-        this.firstName = this.secondName = this.lastName = this.birthDate = null;
+        this.firstName = this.secondName = this.lastName = this.birthDate =
+            this.cardNumber = null;
     }
 }

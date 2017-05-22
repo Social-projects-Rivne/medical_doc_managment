@@ -230,6 +230,8 @@
     <Content Include="app\components\user\users-search\search-options.component.html" />
     <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.css" />
     <Content Include="app\components\childrens-card\child-card\pediatricians-examination\view.component.less" />
+    <Content Include="app\components\childrens-card\children-cards-list\children-cards-list.component.css" />
+    <None Include="app\components\childrens-card\view-patient-data\view-patient-data.component.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -248,6 +250,7 @@
     <TypeScriptCompile Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\main-page.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\view-patient-data\view-categories.ts" />
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
     <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
     <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\child-birth.enum.ts" />

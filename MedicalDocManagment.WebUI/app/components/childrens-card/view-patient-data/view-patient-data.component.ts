@@ -1,4 +1,4 @@
-﻿import { AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+﻿import { Component, ElementRef, ViewChild} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Response } from '@angular/http';
@@ -10,15 +10,20 @@ import ChildrensCardService from '../../../services/children-card.service';
 import ChildCardModel from '../../../models/child-card/child-card.model';
 import ChildrenCardsModel from '../../../models/children-cards.model';
 import ViewPatientDataModel from '../../../models/view-patient-data.model';
+import { CategoriesToViewByEnum, CATEGORIES_TO_VIEW_BY } from './view-categories';
 
 @Component({
     moduleId: module.id,
     selector: 'view-patient-data',
     templateUrl: 'view-patient-data.component.html',
-    providers: [ChildrensCardService]
+    providers: [ChildrensCardService],
+    styleUrls: ['view-patient-data.component.css']
 })
+export default class ViewPatientDataComponent{
+    // next is declared in such way so that can be used in template
+    CategoriesToViewByEnum = CategoriesToViewByEnum;
+    CATEGORIES_TO_VIEW_BY = CATEGORIES_TO_VIEW_BY;
 
-export default class ViewPatientDataComponent implements AfterViewInit {
     @ViewChild('birthDatePicker') _birthDatePicker: ElementRef;
     private _birthDatePickerTouched: boolean;
     private _isErrorOnSearching: boolean;
@@ -28,7 +33,8 @@ export default class ViewPatientDataComponent implements AfterViewInit {
     private _childrensCardService: ChildrensCardService;
     private _patientToView: ViewPatientDataModel;
     private _searchResult: ChildrenCardsModel;
-    private _triedToSearch: boolean; 
+    private _triedToSearch: boolean;
+    private _viewCategory: CategoriesToViewByEnum;
 
     constructor(childrensCardService: ChildrensCardService) {
         this._birthDatePickerTouched = false;
@@ -39,25 +45,8 @@ export default class ViewPatientDataComponent implements AfterViewInit {
         this._patientToView = new ViewPatientDataModel();
         this._searchResult = [];
         this._triedToSearch = false;
+        this._viewCategory = CategoriesToViewByEnum.byLastName;
     }
-
-    ngAfterViewInit(): void {
-        $(this._birthDatePicker.nativeElement).datepicker({
-            autoclose: true,
-            language: 'uk'
-        });
-        $(this._birthDatePicker.nativeElement).on('changeDate', (e) => {
-            this._birthDatePickerTouched = true;
-            this._patientToView.birthDate = e.date;
-        });
-        $(this._birthDatePicker.nativeElement).on('clearDate', (e) => {
-            this._patientToView.birthDate = null;
-        });
-        $(this._birthDatePicker.nativeElement).on('show', (e) => {
-            this._birthDatePickerTouched = true;
-        });
-    }
-
 
     viewPatientData(): void {
         this._isErrorOnSearching = false;
@@ -72,13 +61,28 @@ export default class ViewPatientDataComponent implements AfterViewInit {
                                       }
                                       this._isSearching = false;
                                   },
-                                  (error: any) => { this._handleSearchError(error); });
+                                  (error: any) => {
+                                    this._isSearching = false;
+                                    this._isErrorOnSearching = true;
+                                    this._lastErrorMessage = 'При перегляді виникла помилка: \r\n' + <any>error;
+                                  });
     }
 
-    private _handleSearchError(error: any) {
-        this._isSearching = false;
-        this._isErrorOnSearching = true;
-        this._lastErrorMessage = 'При перегляді виникла помилка: \r\n' + <any>error;
+    private _initDatePicker(): void {
+        $(this._birthDatePicker.nativeElement).datepicker({
+            autoclose: true,
+            language: 'uk'
+        });
+        $(this._birthDatePicker.nativeElement).on('changeDate', (e) => {
+            this._birthDatePickerTouched = true;
+            this._patientToView.birthDate = e.date;
+        });
+        $(this._birthDatePicker.nativeElement).on('clearDate', (e) => {
+            this._patientToView.birthDate = null;
+        });
+        $(this._birthDatePicker.nativeElement).on('show', (e) => {
+            this._birthDatePickerTouched = true;
+        });
     }
 }
 
