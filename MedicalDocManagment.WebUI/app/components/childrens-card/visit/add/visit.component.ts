@@ -9,6 +9,8 @@ import VisitModel from '../../../../models/visit.model';
 import ChildCardModel from '../../../../models/child-card/child-card.model';
 import UserModel from '../../../../models/usermodel';
 
+declare let $;
+
 @Component({
     moduleId: module.id,
     selector: 'create-visit-form',
@@ -39,10 +41,10 @@ export default class VisitComponent implements OnInit {
         this._visitService.createVisit(this.visit)
             .subscribe(
             (data: VisitModel) => {
-                this._notificationService.success("Успіх", "Заключення додано успішно!");
+                $('#createVisitModal').modal('hide');
                 this.visit.date = null;
                 form.reset();
-                console.log(data);
+                this._notificationService.success("Успіх", "Заключення додано успішно!");
             },
             (error) => {
                 this._notificationService.error("Помилка", "Заключення не було додано успішно.");
