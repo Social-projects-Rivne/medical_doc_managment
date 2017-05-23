@@ -24,7 +24,7 @@ export default class ItemActionListEditModal implements OnInit  {
     userImage: any;
     showImageInvalidMessage: boolean = false;
     showImageSelectedMessage: boolean = false;
-    notificationOptions: NotificationOptions;
+    notificationOptions: any;
 
     constructor(private _http: HttpFacade,
                 private _service: NotificationsService,
