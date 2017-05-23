@@ -12,15 +12,15 @@ namespace MedicalDocManagment.DAL.Entities.Main
         public int PatientId { get; set; }
 
         [ForeignKey("PatientId")]
-        public ChildCard Patient { get; set; }
+        public virtual ChildCard Patient { get; set; }
 
         public string DoctorId { get; set; }
 
         [ForeignKey("DoctorId")]
-        public User Doctor { get; set; }
+        public virtual User Doctor { get; set; }
 
         public DateTime Date { get; set; }
 
-        public string Summury { get; set; }
+        public string Summary { get; set; }
     }
 }
