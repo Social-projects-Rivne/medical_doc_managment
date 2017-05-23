@@ -15,7 +15,7 @@ namespace MedicalDocManagment.DAL.Migrations
                         PatientId = c.Int(nullable: false),
                         DoctorId = c.String(maxLength: 128),
                         Date = c.DateTime(nullable: false),
-                        Summury = c.String(),
+                        Summary = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.DoctorId)
