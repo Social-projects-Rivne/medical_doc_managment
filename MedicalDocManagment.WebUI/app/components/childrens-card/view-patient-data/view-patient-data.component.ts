@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Response } from '@angular/http';
 import 'rxjs/add/observable/of';
-declare var $;
 
 import ChildrensCardService from '../../../services/children-card.service';
 
@@ -24,8 +23,9 @@ export default class ViewPatientDataComponent{
     CategoriesToViewByEnum = CategoriesToViewByEnum;
     CATEGORIES_TO_VIEW_BY = CATEGORIES_TO_VIEW_BY;
 
-    @ViewChild('birthDatePicker') _birthDatePicker: ElementRef;
-    private _birthDatePickerTouched: boolean;
+    @ViewChild('viewPatientDataForm') viewPatientDataForm: NgForm;
+
+    private _birthDateTouched: boolean;
     private _isErrorOnSearching: boolean;
     private _isNotFound: boolean;
     private _isSearching: boolean;
@@ -37,7 +37,7 @@ export default class ViewPatientDataComponent{
     private _viewCategory: CategoriesToViewByEnum;
 
     constructor(childrensCardService: ChildrensCardService) {
-        this._birthDatePickerTouched = false;
+        this._birthDateTouched = false;
         this._isErrorOnSearching = false;
         this._isSearching = false;
         this._lastErrorMessage = '';
@@ -68,21 +68,46 @@ export default class ViewPatientDataComponent{
                                   });
     }
 
-    private _initDatePicker(): void {
-        $(this._birthDatePicker.nativeElement).datepicker({
-            autoclose: true,
-            language: 'uk'
-        });
-        $(this._birthDatePicker.nativeElement).on('changeDate', (e) => {
-            this._birthDatePickerTouched = true;
-            this._patientToView.birthDate = e.date;
-        });
-        $(this._birthDatePicker.nativeElement).on('clearDate', (e) => {
-            this._patientToView.birthDate = null;
-        });
-        $(this._birthDatePicker.nativeElement).on('show', (e) => {
-            this._birthDatePickerTouched = true;
-        });
+    _formInvalid(): boolean {    
+        let result: boolean = false;
+        switch (this._viewCategory) {
+            case CategoriesToViewByEnum.byFirstName: {
+                let firstName = this.viewPatientDataForm.controls['firstName'];
+                if (firstName) {
+                    result = firstName.invalid;
+                }
+                break;
+            }
+            case CategoriesToViewByEnum.byLastName: {
+                let lastName = this.viewPatientDataForm.controls['lastName'];
+                if (lastName) {
+                    result = lastName.invalid;
+                }
+                break;
+            }
+            case CategoriesToViewByEnum.bySecondName: {
+                let secondName = this.viewPatientDataForm.controls['secondName'];
+                if (secondName) {
+                    result = secondName.invalid;
+                }
+                break;
+            }
+            case CategoriesToViewByEnum.byBirthDate: {
+                break;
+            }
+            case CategoriesToViewByEnum.byCardNumber: {
+                let cardNumber = this.viewPatientDataForm.controls['cardNumber'];
+                if (cardNumber) {
+                    result = cardNumber.invalid;
+                }
+                break;
+            }
+            case CategoriesToViewByEnum.byAllInTheAbove: {
+                break;
+            }
+        }
+
+        return result;
     }
 }
 

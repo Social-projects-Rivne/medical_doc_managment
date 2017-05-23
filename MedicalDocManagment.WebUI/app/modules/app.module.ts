@@ -15,6 +15,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import ChildrenCardsListModule from "./children-cards-list.module";
 import UsersSearchModule from "./users-search.module";
 import ChildCardModule from "./child-card/child-card.module";
+import CustomDatepickerModule from "./custom-datepicker.module";
 
 import { LoginAppComponent } from '../components/login-app.component';
 import { LoginComponent } from '../components/login/login.component';
@@ -45,7 +46,8 @@ import { ImageUploadModule } from "angular2-image-upload";
         TextMaskModule,
         ChildrenCardsListModule,
         ChildCardModule,
-        ImageUploadModule.forRoot()
+        ImageUploadModule.forRoot(),
+        CustomDatepickerModule
     ],
     declarations: [
         LoginAppComponent,
