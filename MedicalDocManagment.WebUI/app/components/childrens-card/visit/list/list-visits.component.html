@@ -1,0 +1,36 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading clickable" data-toggle="collapse" data-target="#listVisits" (click)="toogleVisibilityList()">
+        <h4>Візити до лікарів</h4>
+        <span id="toogleListVisits" class="pull-right" aria-hidden="true">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+        </span>
+    </div>
+    <div class="panel-body collapse in" id="listVisits" aria-expanded="true">
+        <div class="col-xs-12">
+            <div *ngIf="visits && visits.length">
+                <div *ngFor="let visit of visits" class="panel panel-info">
+                    <div class="panel-heading">
+                        <div>
+                            <b>Дата: </b>
+                            {{visit.date | amDateFormat: 'DD.MM.YYYY'}} <br />
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div>
+                            <b>Лікарь ( {{visit.doctor.position.name}} ):</b>
+                            {{visit.doctor.lastName}} {{visit.doctor.secondName}} {{visit.doctor.firstName}}
+                        </div>
+                        <div>
+                            <b>Заключення:</b> {{visit.summary}} <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!visits || !visits.length">
+                <div>
+                    Дитини ще ні разу не була на примомі у лікарів.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

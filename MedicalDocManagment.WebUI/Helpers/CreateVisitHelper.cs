@@ -6,15 +6,15 @@ namespace MedicalDocManagment.WebUI.Helpers
 {
     public class CreateVisitHelper
     {
-        public static CreateVisitModel DTOToVM(VisitDTO visitDTO)
+        public static CreateVisitVM DTOToVM(VisitDTO visitDTO)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<VisitDTO, CreateVisitModel>());
-            return Mapper.Map<CreateVisitModel>(visitDTO);
+            Mapper.Initialize(cfg => cfg.CreateMap<VisitDTO, CreateVisitVM>());
+            return Mapper.Map<CreateVisitVM>(visitDTO);
         }
 
-        public static VisitDTO VMToDTO(CreateVisitModel createVisitModel)
+        public static VisitDTO VMToDTO(CreateVisitVM createVisitModel)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<CreateVisitModel, VisitDTO>());
+            Mapper.Initialize(cfg => cfg.CreateMap<CreateVisitVM, VisitDTO>());
             return Mapper.Map<VisitDTO>(createVisitModel);
         }
 

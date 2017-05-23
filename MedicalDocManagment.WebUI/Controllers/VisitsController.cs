@@ -20,7 +20,7 @@ namespace MedicalDocManagment.WebUI.Controllers
 
         [HttpPost]
         [Authorize]
-        public IHttpActionResult CreateVisit(CreateVisitModel visitModel)
+        public IHttpActionResult CreateVisit(CreateVisitVM visitModel)
         {
             if (!ModelState.IsValid)
             {
@@ -32,7 +32,6 @@ namespace MedicalDocManagment.WebUI.Controllers
 
             return Ok(result);
         }
-
 
         [HttpGet]
         [Authorize]

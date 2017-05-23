@@ -19,10 +19,20 @@ namespace MedicalDocManagement.BLL.Helpers
                  {
                      configuration.CreateMap<Visit, VisitDTO>();
                      configuration.CreateMap<VisitDTO, Visit>();
+
                      configuration.CreateMap<User, UserDTO>();
                      configuration.CreateMap<UserDTO, User>();
+                     configuration.CreateMap<Position, PositionDTO>();
+                     configuration.CreateMap<PositionDTO, Position>();
+                     configuration.CreateMap<Image, ImageDTO>();
+                     configuration.CreateMap<ImageDTO, Image>();
+
                      configuration.CreateMap<ChildCard, ChildCardDTO>();
                      configuration.CreateMap<ChildCardDTO, ChildCard>();
+                     configuration.CreateMap<DiagnosisMkhDTO, DiagnosisMkh>();
+                     configuration.CreateMap<DiagnosisMkh, DiagnosisMkhDTO>();
+                     configuration.CreateMap<Parent, ParentDTO>();
+                     configuration.CreateMap<ParentDTO, Parent>();
                  }
              );
         }

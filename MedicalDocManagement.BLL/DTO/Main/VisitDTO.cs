@@ -9,14 +9,14 @@ namespace MedicalDocManagement.BLL.DTO.Main
 
         public int PatientId { get; set; }
 
-        public ChildCardDTO Patient { get; set; }
+        public virtual ChildCardDTO Patient { get; set; }
 
         public string DoctorId { get; set; }
 
-        public UserDTO Doctor { get; set; }
+        public virtual UserDTO Doctor { get; set; }
 
         public DateTime Date { get; set; }
 
-        public string Summury { get; set; }
+        public string Summary { get; set; }
     }
 }

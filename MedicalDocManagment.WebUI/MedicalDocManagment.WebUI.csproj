@@ -185,6 +185,8 @@
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list.component.html" />
     <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.html" />
     <Content Include="app\components\childrens-card\visit\add\visit.component.html" />
+    <Content Include="app\components\childrens-card\visit\list\list-visit.component.css" />
+    <Content Include="app\components\childrens-card\visit\list\list-visits.component.html" />
     <Content Include="app\components\header\main\header-main.component.html" />
     <Content Include="app\components\header\admin\header-admin.component.html" />
     <Content Include="app\components\home\main\home-main.component.html" />
@@ -250,6 +252,7 @@
     <TypeScriptCompile Include="app\components\childrens-card\child-card\main-page.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\add\visit.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\visit\list\list-visits.component.ts" />
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
     <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
     <TypeScriptCompile Include="app\models\visit.model.ts" />
@@ -277,7 +280,7 @@
     <Compile Include="Models\Main\ParentVM.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
-    <Compile Include="Models\Main\CreateVisitModel.cs" />
+    <Compile Include="Models\Main\CreateVisitVM.cs" />
     <Compile Include="Models\Main\PediatriciansExamination\BirthDetailsVM.cs" />
     <Compile Include="Models\Main\PediatriciansExamination\PregnancyDetailsVM.cs" />
     <Compile Include="Models\Main\PediatriciansExamination\HeaderVM.cs" />
@@ -290,6 +293,7 @@
     <Compile Include="Models\Main\AddParentChildCardVM.cs" />
     <Compile Include="Models\Main\AddParentVM.cs" />
     <Compile Include="Models\Main\ViewPatientDataVM.cs" />
+    <Compile Include="Models\Main\ViewVisitVM.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
     <Compile Include="Models\Validators\AddPatientValidator.cs" />
     <Compile Include="Models\Validators\Helpers\AddPatientValidatorHelper.cs" />

@@ -90,6 +90,9 @@
       <div *ngIf="_childCard.id" class="col-xs-5">
         <parents-list [childCardId]="_childCard.id"></parents-list>
       </div>
+      <div *ngIf="_childCard.id" class="col-xs-12">
+        <list-visits [childCardId]="_childCard.id"></list-visits>
+      </div>
     </div>
     <div class="col-xs-12">
         <create-visit-form [patient]="_childCard"></create-visit-form>
