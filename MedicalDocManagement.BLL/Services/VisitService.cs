@@ -29,21 +29,6 @@ namespace MedicalDocManagement.BLL.Services
             return VisitDTOHelper.EntityToDTO(visit);
         }
 
-        public VisitDTO GetVisitById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<VisitDTO> GetVisits()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<VisitDTO> GetVisitsByDoctorId(int doctorId)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<VisitDTO> GetVisitsByPatientId(int patientId)
         {
             var visitsPatient = _unitOfWork.VisitsRepository.GetAll(visit => visit.PatientId == patientId)
