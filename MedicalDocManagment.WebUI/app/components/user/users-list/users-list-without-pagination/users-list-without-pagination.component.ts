@@ -17,16 +17,17 @@ import UserModel from '../../../../models/usermodel';
 export default class UsersListWithoutPaginationComponent {
   @Input() users: Observable<UsersModel>;
   userForEdit: UserModel;
+  tempUserForEdit: UserModel;
   private _httpFacade: HttpFacade;
 
   constructor(httpFacade: HttpFacade) {
     this._httpFacade = httpFacade;
-    this.userForEdit = new UserModel(null);
+    this.tempUserForEdit = new UserModel();
   }
 
-  onUsersListEdit(id: string) {
-    this._httpFacade.getUserById(id)
-      .subscribe((data: any) => { this.userForEdit = data; });
+  onUsersListEdit(userForEdit: UserModel) {
+      this.userForEdit = userForEdit;
+      this.tempUserForEdit.clone(userForEdit);
   }
 
   updateUsersList(): void {
