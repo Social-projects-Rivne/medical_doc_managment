@@ -33,7 +33,8 @@
             'angular2-moment': 'dist:lib/npmlibs/angular2-moment',
             'angular2-text-mask': 'dist:lib/npmlibs/angular2-text-mask',
             'text-mask-core': 'dist:lib/npmlibs/text-mask-core',
-            'angular2-image-upload': 'node_modules/angular2-image-upload'
+            'angular2-image-upload': 'node_modules/angular2-image-upload',
+            'mydatepicker': 'npm:mydatepicker/bundles/mydatepicker.umd.min.js'
         },
         // пакеты, которые указывают загрузчику System, как загружать файлы без имени и расширения
         packages: {

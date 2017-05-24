@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { MomentModule } from 'angular2-moment';
 import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
+import { MyDatePickerModule } from 'mydatepicker';
 
 import PediatriciansExaminationModule from './pediatricians-examination.module';
 
@@ -25,7 +26,8 @@ import ChildrenCardService from '../../services/children-card.service';
         MomentModule,
         PediatriciansExaminationModule,
         SimpleNotificationsModule,
-        PushNotificationsModule
+        PushNotificationsModule,
+        MyDatePickerModule 
     ],
     declarations: [
         ChildCardMainPageComponent,

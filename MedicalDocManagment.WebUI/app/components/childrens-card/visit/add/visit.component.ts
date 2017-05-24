@@ -1,6 +1,8 @@
 ﻿import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
+import { IMyDateModel, IMyDpOptions } from 'mydatepicker';
+
 import SharedService from '../../../../services/shared.service';
 import VisitService from '../../../../services/visit.service';
 import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
@@ -26,9 +28,17 @@ export default class VisitComponent implements OnInit {
     @Input() patient: ChildCardModel;
     @Output() addVisit: EventEmitter<VisitModel>;
 
+    private datePickerModel: IMyDateModel;
+    private myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'dd.mm.yyyy',
+        dayLabels: { su: 'Нед', mo: 'Пн', tu: 'Вт', we: 'Ср', th: 'Чт', fr: 'Пт', sa: 'Суб' },
+        monthLabels: { 1: 'Січ', 2: 'Гру', 3: 'Бер', 4: 'Кві', 5: 'Тра', 6: 'Чер', 7: 'Лип', 8: 'Сер', 9: 'Вер', 10: 'Жов', 11: 'Лист', 12: 'Гру' },
+        todayBtnTxt: 'Сьогодні'
+    };
+
     constructor(private _visitService: VisitService,
-        private _sharedService: SharedService,
-        private _notificationService: NotificationsService) {
+                private _sharedService: SharedService,
+                private _notificationService: NotificationsService) {
         this.visit = new VisitModel();
         this.addVisit = new EventEmitter<VisitModel>();
     }
@@ -40,6 +50,7 @@ export default class VisitComponent implements OnInit {
     }
 
     submitVisit(form: NgForm) {
+        this._updateDate();
         this._visitService.createVisit(this.visit)
             .subscribe(
             (result: VisitModel) => {
@@ -57,14 +68,8 @@ export default class VisitComponent implements OnInit {
             );
     }
 
-    onDateChange(target: HTMLInputElement) {
-        let miliseconds: number = target.valueAsNumber;
-
-        this.visit.date = this.getDateByMiliseconds(miliseconds);
-    }
-
-    private getDateByMiliseconds(miliseconds: number) {
-        return (miliseconds) ? new Date(miliseconds) : null;
+    private _updateDate() {
+        this.visit.date = this.datePickerModel.jsdate;
     }
 
 }
