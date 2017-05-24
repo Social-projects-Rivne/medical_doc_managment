@@ -1,4 +1,4 @@
-﻿import { Component, Input, OnInit } from '@angular/core';
+﻿import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import SharedService from '../../../../services/shared.service';
@@ -22,13 +22,15 @@ declare let $;
     ]
 })
 export default class VisitComponent implements OnInit {
-    visit: VisitModel
+    visit: VisitModel;
     @Input() patient: ChildCardModel;
+    @Output() addVisit: EventEmitter<VisitModel>;
 
     constructor(private _visitService: VisitService,
         private _sharedService: SharedService,
         private _notificationService: NotificationsService) {
         this.visit = new VisitModel();
+        this.addVisit = new EventEmitter<VisitModel>();
     }
 
     ngOnInit() {
@@ -40,10 +42,12 @@ export default class VisitComponent implements OnInit {
     submitVisit(form: NgForm) {
         this._visitService.createVisit(this.visit)
             .subscribe(
-            (data: VisitModel) => {
+            (result: VisitModel) => {
                 $('#createVisitModal').modal('hide');
                 this.visit.date = null;
                 form.reset();
+                console.log(result);
+                this.addVisit.emit(result);
                 this._notificationService.success("Успіх", "Заключення додано успішно!");
             },
             (error) => {

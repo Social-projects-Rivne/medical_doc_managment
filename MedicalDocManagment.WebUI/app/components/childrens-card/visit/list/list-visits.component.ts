@@ -1,4 +1,4 @@
-﻿import { Component, Input, OnInit } from '@angular/core';
+﻿import { Component, Input } from '@angular/core';
 
 import VisitModel from '../../../../models/visit.model';
 
@@ -17,30 +17,12 @@ declare let $;
         VisitService
     ]
 })
-export default class ListVisitsComponent implements OnInit {
+export default class ListVisitsComponent {
 
-    @Input() childCardId: number;
-    visitService: VisitService;
-    visits: VisitModel[];
+    @Input() visits: VisitModel[];
     
     constructor(visitService: VisitService) {
-        this.visitService = visitService;
         this.visits = [];
-        this.childCardId = null;
-    }
-
-    ngOnInit() {
-        if (this.childCardId != null) {
-            this.visitService.getVisitsByPatientId(this.childCardId)
-                             .subscribe(
-                                 (visits: VisitModel[]) => {
-                                 this.visits = visits;
-                             },
-                             (error: any) => {
-                                 console.log(error);
-                             }
-            );
-        }
     }
 
     toogleVisibilityList() {

@@ -4,6 +4,7 @@ using MedicalDocManagment.DAL.Repository;
 using MedicalDocManagment.DAL.Repository.Interfaces;
 using MedicalDocManagment.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Models.Main;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 
@@ -20,7 +21,7 @@ namespace MedicalDocManagment.WebUI.Controllers
 
         [HttpPost]
         [Authorize]
-        public IHttpActionResult CreateVisit(CreateVisitVM visitModel)
+        public async Task<IHttpActionResult> CreateVisit(CreateVisitVM visitModel)
         {
             if (!ModelState.IsValid)
             {
@@ -28,7 +29,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             }
 
             var visitDTO = CreateVisitHelper.VMToDTO(visitModel);
-            var result = _visitsService.CreateVisit(visitDTO);
+            var result = await _visitsService.CreateVisit(visitDTO);
 
             return Ok(result);
         }

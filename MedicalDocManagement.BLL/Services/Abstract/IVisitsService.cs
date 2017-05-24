@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MedicalDocManagement.BLL.DTO.Main;
+using System.Threading.Tasks;
 
 namespace MedicalDocManagement.BLL.Services.Abstract
 {
@@ -8,6 +9,6 @@ namespace MedicalDocManagement.BLL.Services.Abstract
     {
         List<VisitDTO> GetVisitsByPatientId(int patientId);
 
-        VisitDTO CreateVisit(VisitDTO visitDTO);
+        Task<VisitDTO> CreateVisit(VisitDTO visitDTO);
     }
 }
