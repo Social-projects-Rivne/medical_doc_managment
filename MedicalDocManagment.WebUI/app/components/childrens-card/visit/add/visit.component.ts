@@ -54,8 +54,7 @@ export default class VisitComponent implements OnInit {
             .subscribe(
                 (result: VisitModel) => {
                     $('#createVisitModal').modal('hide');
-                    this.visit.date = null;
-                    form.reset();
+                    this.resetFormData(form);
                     console.log(result);
                     this.addVisit.emit(result);
                     this._notificationService.success("Успіх", "Заключення додано успішно!");
@@ -76,6 +75,12 @@ export default class VisitComponent implements OnInit {
             let errorMessage: string = errors[i].errorMessage;
             this.responseErrors.push(errorMessage)
         }
+    }
+
+    resetFormData(form: NgForm) {
+        this.visit.date = null;
+        form.reset();
+        this.responseErrors = [];
     }
 
     updateDate() {
