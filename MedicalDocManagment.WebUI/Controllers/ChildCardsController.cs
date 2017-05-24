@@ -184,24 +184,29 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Ok(diagnosesMkhVM);
         }
 
-        [Authorize]
+        // TODO Uncomment before pull request
+        //[Authorize]
         [HttpGet]
         public IHttpActionResult ViewPatientData([FromUri]ViewPatientDataVM viewPatientDataVM)
         {
+            // Validation
             if (viewPatientDataVM == null)
             {
                 return BadRequest("No data about patient to view.");
             }
-            if (!ModelState.IsValid)
+            var viewPatientDataValidator = new ViewPatientDataValidator();
+            var fluentValidationResult = viewPatientDataValidator.Validate(viewPatientDataVM);
+            if (!fluentValidationResult.IsValid)
             {
-                return BadRequest(ModelState);
+                return ResponseMessage(Request.CreateResponse
+                    (HttpStatusCode.BadRequest, fluentValidationResult.Errors)
+                    );
             }
-            var сhildCardDTO = ViewPatientDataHelper.
-                ViewPatientDataVMToChildCardDTO(viewPatientDataVM);
 
             try
             {
-                var result = _childCardsService.FindChildCards(сhildCardDTO);
+                var result = _childCardsService.FindFirst20ChildCards(viewPatientDataVM);
+
                 return Ok(result);
             }
             catch (Exception exception)

@@ -1,12 +1,17 @@
-﻿export default class ViewPatientDataModel {
+﻿export enum CategoriesToViewByEnum {
+    byFirstName, byLastName, bySecondName, byBirthDate, byCardNumber, byAllInTheAbove
+}
+
+export default class ViewPatientDataModel {
     firstName: string;
     secondName: string;
     lastName: string;
-    birthDate: Date;
+    date: string;
     cardNumber: string;
+    viewCategory: CategoriesToViewByEnum;
 
     constructor() {
-        this.firstName = this.secondName = this.lastName = this.birthDate =
-            this.cardNumber = null;
+        this.firstName = this.secondName = this.lastName = this.date =
+            this.cardNumber = this.viewCategory = null;
     }
 }

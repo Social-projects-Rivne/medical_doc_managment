@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 
 using MedicalDocManagement.BLL.DTO;
 using MedicalDocManagement.BLL.Helpers;
@@ -11,6 +14,7 @@ using MedicalDocManagment.DAL.Repository;
 using MedicalDocManagment.DAL.Repository.Interfaces;
 using MedicalDocManagement.BLL.DTO.Main.PediatriciansExamination;
 using MedicalDocManagment.DAL.Entities.Main.PediatriciansExamination;
+using MedicalDocManagement.BLL.DTO.Main;
 
 namespace MedicalDocManagement.BLL.Services
 {
@@ -139,19 +143,38 @@ namespace MedicalDocManagement.BLL.Services
 
             return parentChildCardDTO;
         }
-            
-        public List<ChildCardDTO> FindChildCards(ChildCardDTO childCardDTO)
+
+        public List<ChildCardDTO> FindFirst20ChildCards(IViewPatientData viewPatientData)
         {
+            // Creating expression
+            ParameterExpression predicateParam = Expression.Parameter(typeof(ChildCard), "childCard");
+            PropertyInfo[] properties = typeof(IViewPatientData).GetProperties();
+            Expression predicateBody = null;
+            foreach (PropertyInfo property in properties)
+            {
+                var value = property.GetValue(viewPatientData);
+                if (value != null)
+                {
+                    Expression left = Expression.Property(predicateParam, property.Name);
+                    Expression right = Expression.Constant(value);
+                    Expression pair = Expression.Equal(left, right);
+                    if (predicateBody == null)
+                    {
+                        predicateBody = pair;
+                    }
+                    else
+                    {
+                        predicateBody = Expression.AndAlso(predicateBody, pair);
+                    }
+                }
+            }
+            Expression<Func<ChildCard,bool>> expression = Expression.Lambda<Func<ChildCard, bool>>(predicateBody, predicateParam);
+
+            //Searching cards
             var childCards = _unitOfWork.ChildrenCardsRepository
-                                        .Get
-                                        (
-                                            childCard =>
-                                                childCard.LastName == childCardDTO.LastName &&
-                                                childCard.FirstName == childCardDTO.FirstName &&
-                                                childCard.SecondName == childCardDTO.SecondName &&
-                                                childCard.Date == childCardDTO.Date
-                                        )
+                                        .Get(expression)
                                         .AsNoTracking()
+                                        .Take(20)
                                         .AsEnumerable()
                                         .ToList();
 

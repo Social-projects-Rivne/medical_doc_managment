@@ -1,15 +1,25 @@
-﻿import { Component, ElementRef, ViewChild} from '@angular/core';
+﻿import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Response } from '@angular/http';
 import 'rxjs/add/observable/of';
+declare var $;
 
 import ChildrensCardService from '../../../services/children-card.service';
 
 import ChildCardModel from '../../../models/child-card/child-card.model';
 import ChildrenCardsModel from '../../../models/children-cards.model';
 import ViewPatientDataModel from '../../../models/view-patient-data.model';
-import { CategoriesToViewByEnum, CATEGORIES_TO_VIEW_BY } from './view-categories';
+import { CategoriesToViewByEnum } from '../../../models/view-patient-data.model';
+
+export const CATEGORIES_TO_VIEW_BY = [
+    { name: 'По імені', key: CategoriesToViewByEnum.byFirstName },
+    { name: 'По прізвищу', key: CategoriesToViewByEnum.byLastName },
+    { name: 'По батькові', key: CategoriesToViewByEnum.bySecondName },
+    { name: 'По даті народження', key: CategoriesToViewByEnum.byBirthDate },
+    { name: 'По номеру картки', key: CategoriesToViewByEnum.byCardNumber },
+    { name: 'По всьому вищевказаному', key: CategoriesToViewByEnum.byAllInTheAbove }
+];
 
 @Component({
     moduleId: module.id,
@@ -23,9 +33,6 @@ export default class ViewPatientDataComponent{
     CategoriesToViewByEnum = CategoriesToViewByEnum;
     CATEGORIES_TO_VIEW_BY = CATEGORIES_TO_VIEW_BY;
 
-    @ViewChild('viewPatientDataForm') viewPatientDataForm: NgForm;
-
-    private _birthDateTouched: boolean;
     private _isErrorOnSearching: boolean;
     private _isNotFound: boolean;
     private _isSearching: boolean;
@@ -34,27 +41,25 @@ export default class ViewPatientDataComponent{
     private _patientToView: ViewPatientDataModel;
     private _searchResult: ChildrenCardsModel;
     private _triedToSearch: boolean;
-    private _viewCategory: CategoriesToViewByEnum;
 
     constructor(childrensCardService: ChildrensCardService) {
-        this._birthDateTouched = false;
         this._isErrorOnSearching = false;
         this._isSearching = false;
         this._lastErrorMessage = '';
         this._childrensCardService = childrensCardService;
         this._patientToView = new ViewPatientDataModel();
+        this._patientToView.viewCategory = CategoriesToViewByEnum.byLastName;
         this._searchResult = [];
         this._triedToSearch = false;
-        this._viewCategory = CategoriesToViewByEnum.byLastName;
     }
 
-    viewPatientData(): void {
+    _viewPatientData(formValue: any): void {
         this._isErrorOnSearching = false;
         this._isSearching = true;
         this._searchResult = [];
         this._triedToSearch = true;
-
-        this._childrensCardService.viewPatientData(this._patientToView)
+        
+        this._childrensCardService.viewPatientData(formValue)
                                   .subscribe((data: ChildrenCardsModel) => {
                                       if (data && data.length) {
                                           this._searchResult = this._searchResult.concat(data);
@@ -68,46 +73,27 @@ export default class ViewPatientDataComponent{
                                   });
     }
 
-    _formInvalid(): boolean {    
-        let result: boolean = false;
-        switch (this._viewCategory) {
-            case CategoriesToViewByEnum.byFirstName: {
-                let firstName = this.viewPatientDataForm.controls['firstName'];
-                if (firstName) {
-                    result = firstName.invalid;
-                }
-                break;
-            }
-            case CategoriesToViewByEnum.byLastName: {
-                let lastName = this.viewPatientDataForm.controls['lastName'];
-                if (lastName) {
-                    result = lastName.invalid;
-                }
-                break;
-            }
-            case CategoriesToViewByEnum.bySecondName: {
-                let secondName = this.viewPatientDataForm.controls['secondName'];
-                if (secondName) {
-                    result = secondName.invalid;
-                }
-                break;
-            }
-            case CategoriesToViewByEnum.byBirthDate: {
-                break;
-            }
-            case CategoriesToViewByEnum.byCardNumber: {
-                let cardNumber = this.viewPatientDataForm.controls['cardNumber'];
-                if (cardNumber) {
-                    result = cardNumber.invalid;
-                }
-                break;
-            }
-            case CategoriesToViewByEnum.byAllInTheAbove: {
-                break;
-            }
-        }
+    // Initializing tooltips
 
-        return result;
+    @ViewChild('lastNameInput')
+    set _lastNameInput(elementRef: ElementRef) {
+        this._initTooltip(elementRef);
+    }
+
+    @ViewChild('firstNameInput')
+    set _firstNameInput(elementRef: ElementRef) {
+        this._initTooltip(elementRef);
+    }
+
+    @ViewChild('secondNameInput')
+    set _secondNameInput(elementRef: ElementRef) {
+        this._initTooltip(elementRef);
+    }
+
+    _initTooltip(elementRef: ElementRef): void {
+        if (elementRef) {
+            $(elementRef.nativeElement).tooltip();
+        }
     }
 }
 

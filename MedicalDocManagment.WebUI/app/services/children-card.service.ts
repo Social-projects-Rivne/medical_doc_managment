@@ -6,12 +6,12 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Subject } from 'rxjs/Subject';
+declare var $;
 
 import ParentChildCard from '../models/child-card/parent-child-card.model';
 import ChildCardModel from '../models/child-card/child-card.model';
 import ChildrenCardsModel from '../models/children-cards.model';
 import ParentModel from '../models/child-card/parent.model';
-import ViewPatientDataModel from '../models/view-patient-data.model';
 import ChildrenCardsPagedModel from '../models/children-cards-paged.model';
 import PediatriciansExaminationModel from "../models/child-card/pediatricians-examination/pediatricians-examination.model";
 
@@ -117,13 +117,11 @@ export default class ChildrensCardService {
      * @param {ViewPatientDataModel} viewPatientDataModel Contains data about patient to view
      * @return {Observable<ChildrenCardsModel>} Contains data about patients
     */
-    viewPatientData(viewPatientDataModel: ViewPatientDataModel): Observable<ChildrenCardsModel> {
+    viewPatientData(dataOfPatient: any): Observable<ChildrenCardsModel> {
         let headers = this._headers;
-        return this._http.get('/api/childcards/viewPatientData?firstName=' +
-            viewPatientDataModel.firstName + "&&secondName=" +
-            viewPatientDataModel.secondName + "&&lastName=" +
-            viewPatientDataModel.lastName + "&&birthDate=" +
-            viewPatientDataModel.birthDate.toISOString(), { headers })
+
+        return this._http.get('/api/childcards/viewPatientData?' +
+            $.param(dataOfPatient), { headers })
             .map((resp: Response) => { return new ChildrenCardsModel(resp.json()); })
             .catch((error: any) => { return Observable.throw(error); });
     }

@@ -1,11 +1,14 @@
 ﻿<div class="container">
-  <form class="form-horizontal" #viewPatientDataForm="ngForm">
+  <br />
+  <br />
+  <form class="form-horizontal" #viewPatientDataForm="ngForm" 
+        (ngSubmit)="_viewPatientData(viewPatientDataForm.value)">
     <div class="row">
       <!-- Fields with patient to view info -->
       <div class="col-xs-6">
         <!-- Last name -->
-        <div *ngIf="_viewCategory == CategoriesToViewByEnum.byLastName 
-             || _viewCategory == CategoriesToViewByEnum.byAllInTheAbove" 
+        <div *ngIf="_patientToView.viewCategory == CategoriesToViewByEnum.byLastName 
+             || _patientToView.viewCategory == CategoriesToViewByEnum.byAllInTheAbove" 
              class="form-group row">
           <div class="view-category-label">
             <label class="control-label" for="lastName">Прізвище</label>
@@ -13,9 +16,11 @@
           <div class="view-category-input">
             <div class="input-group col-xs-12">
               <input type="text" class="form-control" id="lastName" name="lastName"
-                     [(ngModel)]="_patientToView.lastName" #lastName="ngModel"
+                     [(ngModel)]="_patientToView.lastName" #lastName="ngModel" #lastNameInput
                      [disabled]="_isSearching" required 
-                     pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"/>
+                     pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"
+                     data-toggle="tooltip" data-placement="top" data-viewport="#lastName"
+                     data-title="Може містити кириличні літери, дефіс та апостроф. Довжина від 1 до 100 символів."/>
             </div>
           </div>
           <div class="view-category-alert">
@@ -26,8 +31,8 @@
           </div>
         </div>
         <!-- First name -->
-        <div *ngIf="_viewCategory == CategoriesToViewByEnum.byFirstName
-             || _viewCategory == CategoriesToViewByEnum.byAllInTheAbove"
+        <div *ngIf="_patientToView.viewCategory == CategoriesToViewByEnum.byFirstName
+             || _patientToView.viewCategory == CategoriesToViewByEnum.byAllInTheAbove"
              class="form-group row">
           <div class="view-category-label">
             <label class="control-label" for="firstName">Ім'я</label>
@@ -35,9 +40,11 @@
           <div class="view-category-input">
             <div class="input-group col-xs-12">
               <input type="text" class="form-control" id="firstName" name="firstName"
-                     [(ngModel)]="_patientToView.firstName" #firstName="ngModel"
+                     [(ngModel)]="_patientToView.firstName" #firstName="ngModel"  #firstNameInput
                      [disabled]="_isSearching" required 
-                     pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"/>
+                     pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"                     
+                     data-toggle="tooltip" data-placement="top" data-viewport="#firstName"
+                     data-title="Може містити кириличні літери, дефіс та апостроф. Довжина від 1 до 100 символів."/>
             </div>
           </div>
           <div class="view-category-alert">
@@ -48,8 +55,8 @@
           </div>
         </div>
         <!-- Second name -->
-        <div *ngIf="_viewCategory == CategoriesToViewByEnum.bySecondName
-             || _viewCategory == CategoriesToViewByEnum.byAllInTheAbove"
+        <div *ngIf="_patientToView.viewCategory == CategoriesToViewByEnum.bySecondName
+             || _patientToView.viewCategory == CategoriesToViewByEnum.byAllInTheAbove"
              class="form-group row">
           <div class="view-category-label">
             <label class="control-label" for="secondName">По батькові</label>
@@ -57,9 +64,11 @@
           <div class="view-category-input">
             <div class="input-group col-xs-12">
               <input type="text" class="form-control" id="secondName" name="secondName"
-                     [(ngModel)]="_patientToView.secondName" #secondName="ngModel"
+                     [(ngModel)]="_patientToView.secondName" #secondName="ngModel" #secondNameInput
                      [disabled]="_isSearching" required
-                     pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}" />
+                     pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}" 
+                     data-toggle="tooltip" data-placement="top" data-viewport="#secondName"
+                     data-title="Може містити кириличні літери, дефіс та апостроф. Довжина від 1 до 100 символів."/>
             </div>
           </div>
           <div class="view-category-alert">
@@ -70,27 +79,29 @@
           </div>
         </div>
         <!-- Birth date -->
-        <div *ngIf="_viewCategory == CategoriesToViewByEnum.byBirthDate
-             || _viewCategory == CategoriesToViewByEnum.byAllInTheAbove"
+        <div *ngIf="_patientToView.viewCategory == CategoriesToViewByEnum.byBirthDate
+             || _patientToView.viewCategory == CategoriesToViewByEnum.byAllInTheAbove"
              class="form-group row">
           <div class="view-category-label">
-            <label class="control-label" for="birthDate">Дата народження</label>
+            <label class="control-label" for="date">Дата народження</label>
           </div>
           <div class="col-xs-5">
-            <custom-datepicker [(date)]="_patientToView.birthDate" 
-                               [(touched)]="_birthDateTouched">
+            <custom-datepicker [(ngModel)]="_patientToView.date"
+                               name="date"
+                               #date="ngModel"
+                               required>
             </custom-datepicker>
           </div>
-          <div class="view-category-alert">
-            <div *ngIf="!_patientToView.birthDate && _birthDateTouched"
+          <div class="col-xs-offset-4 col-xs-5">
+            <div *ngIf="!_patientToView.date && date.touched"
                  class="alert alert-danger">
               Введіть дату народження.
             </div>
           </div>
         </div>
         <!-- Card number -->
-        <div *ngIf="_viewCategory == CategoriesToViewByEnum.byCardNumber
-             || _viewCategory == CategoriesToViewByEnum.byAllInTheAbove"
+        <div *ngIf="_patientToView.viewCategory == CategoriesToViewByEnum.byCardNumber
+             || _patientToView.viewCategory == CategoriesToViewByEnum.byAllInTheAbove"
              class="form-group row">
           <div class="view-category-label">
             <label class="control-label" for="cardNumber">Номер картки</label>
@@ -109,15 +120,6 @@
             </div>
           </div>
         </div>
-        <!-- TODO Change to tooltip -->
-        <!-- Alert when there are missing values -->
-        <div class="form-group row">
-          <div *ngIf="!_patientToView.lastName || !_patientToView.firstName
-                     || !_patientToView.secondName || !_patientToView.birthDate"
-               class="alert alert-danger">
-            Для пошуку введіть значення у всі поля.
-          </div>
-        </div>
       </div>
       <!-- Categories to view by -->
       <div class="col-xs-4">
@@ -127,8 +129,8 @@
           </div>
           <div class="view-category-input">
             <div class="input-group col-xs-12">
-              <select class="form-control" id="viewCategoryList" name="viewCategoryList"
-                      [(ngModel)]="_viewCategory" #viewCategoryList="ngModel"
+              <select class="form-control" id="viewCategory" name="viewCategory"
+                      [(ngModel)]="_patientToView.viewCategory" #viewCategory="ngModel"
                       [disabled]="_isSearching">
                 <option *ngFor="let category of CATEGORIES_TO_VIEW_BY" [ngValue]="category.key">
                   {{category.name}}
@@ -142,8 +144,8 @@
       <div class="form-group">
         <div class="row">
           <div class="col-xs-offset-3">
-            <button class="btn btn-primary" (click)="viewPatientData()"
-                    [disabled]="_formInvalid() || _isSearching">
+            <button type="submit" class="btn btn-primary"
+                    [disabled]="viewPatientDataForm.invalid || _isSearching">
               Переглянути
             </button>
           </div>
@@ -151,13 +153,28 @@
       </div>
     </div>
   </form>
+  <!-- Alert when there are missing values -->
+  <div class="row">
+    <div class="col-xs-offset-4 col-xs-4">
+      <div *ngIf="viewPatientDataForm.invalid"
+           class="alert alert-danger">
+        Для перегляду введіть правильні значення.
+      </div>
+    </div>
+  </div>
   <!-- Horizontal bar, which divides form and results-->
   <div *ngIf="_triedToSearch"><hr /></div>
   <!-- Results -->
   <div class="row">
     <!-- Viewing data progress bar -->
-    <div class="alert alert-info col-xs-offset-3 col-xs-4" *ngIf="_isSearching">
-      Триває отримання даних про пацієнта...
+    <div class=" col-xs-offset-3 col-xs-6">
+      <div class="progress" *ngIf="_isSearching">
+        <div class="progress-bar progress-bar-info progress-bar-striped active"
+             role="progressbar" aria-valuenow="0" aria-valuemin="0"
+             aria-valuemax="0" style="width: 100%">
+          Триває отримання даних про пацієнта...
+        </div>
+      </div>
     </div>
     <!-- Error message if there was one-->
     <div *ngIf="_isErrorOnSearching" class="alert alert-danger col-xs-offset-1">
@@ -167,11 +184,12 @@
     <div class="form-group" *ngIf="_triedToSearch && !_isSearching && !_isErrorOnSearching
             && _searchResult.length">
       <h4 class="text-center">Дані про пацієнта:</h4>
+      <br />
       <children-cards-list-without-lazy [childrenCards]="_searchResult">
       </children-cards-list-without-lazy>
     </div>
     <!-- Message that nothing was found -->
-    <div class="alert alert-info col-xs-offset-3 col-xs-4"
+    <div class="alert alert-info text-center col-xs-offset-3 col-xs-6"
          *ngIf="_triedToSearch && !_isSearching  && !_isErrorOnSearching
              && !_searchResult.length ">
       <h4>По Вашому запиту пацієнта не знайдено.</h4>
