@@ -1,5 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { IMyDpOptions } from 'mydatepicker';
 
@@ -32,7 +33,16 @@ export default class SharedService {
         todayBtnTxt: 'Сьогодні'
     };
 
-    constructor( @Inject(AuthenticationService) private _authenticationService: AuthenticationService) {
+    constructor( @Inject(AuthenticationService) private _authenticationService: AuthenticationService,
+                private _route: ActivatedRoute) {
+    }
+
+    getChildrenCardIdFromRoute(): number {
+        let childCardid: number;
+        this._route.params.subscribe(params => {
+            childCardid = params['id'];
+        });
+        return childCardid;
     }
 
     getCurrentUser(): UserModel {

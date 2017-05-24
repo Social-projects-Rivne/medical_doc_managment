@@ -185,9 +185,11 @@
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.css" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list.component.html" />
     <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.html" />
+    <Content Include="app\components\childrens-card\visit\add\visit.component.css" />
     <Content Include="app\components\childrens-card\visit\add\visit.component.html" />
-    <Content Include="app\components\childrens-card\visit\list\list-visit.component.css" />
     <Content Include="app\components\childrens-card\visit\list\list-visits.component.html" />
+    <Content Include="app\components\childrens-card\visit\main-page\visit-main-page.component.css" />
+    <Content Include="app\components\childrens-card\visit\main-page\visit-main-page.component.html" />
     <Content Include="app\components\header\main\header-main.component.html" />
     <Content Include="app\components\header\admin\header-admin.component.html" />
     <Content Include="app\components\home\main\home-main.component.html" />
@@ -254,6 +256,7 @@
     <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\add\visit.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\list\list-visits.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\visit\main-page\visit-main-page.component.ts" />
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
     <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
     <TypeScriptCompile Include="app\models\visit.model.ts" />

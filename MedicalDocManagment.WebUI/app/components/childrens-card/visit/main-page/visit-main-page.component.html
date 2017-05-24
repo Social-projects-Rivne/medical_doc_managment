@@ -1,0 +1,17 @@
+﻿<div class="container">
+    <create-visit-form (addVisit)="addVisit($event)"></create-visit-form>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4>Візити до лікарів</h4>
+            <span id="toogleListVisits" class="pull-right clickable" aria-hidden="true" 
+                  data-toggle="modal" data-target="#createVisitModal">
+                <i class="glyphicon glyphicon-plus"></i>
+            </span>
+        </div>
+        <div class="panel-body collapse in" id="listVisits" aria-expanded="true">
+            <list-visits [visits]="visits"></list-visits>
+        </div>
+    </div>
+
+</div>

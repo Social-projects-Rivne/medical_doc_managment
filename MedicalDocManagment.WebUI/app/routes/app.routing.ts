@@ -12,6 +12,7 @@ import ChildCardPediatriciansExaminationComponent from '../components/childrens-
 import ViewPatientDataComponent from "../components/childrens-card/view-patient-data/view-patient-data.component";
 import MainAppComponent from "../components/main-app.component";
 import AdminAppComponent from "../components/admin-app.component";
+import VisitMainPageComponent from "../components/childrens-card/visit/main-page/visit-main-page.component";
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -39,6 +40,10 @@ const appRoutes: Routes = [
                         path: 'pediatriciansExamination',
                         component: ChildCardPediatriciansExaminationComponent
                     },
+                    {
+                        path: 'visit',
+                        component: VisitMainPageComponent
+                    }
                 ]
             },
         ]

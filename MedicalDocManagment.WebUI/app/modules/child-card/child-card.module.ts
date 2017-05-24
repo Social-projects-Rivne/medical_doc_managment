@@ -13,6 +13,7 @@ import ChildCardParentsListComponent from '../../components/childrens-card/child
 import ChildCardPsychiatristsConclusionFormComponent from '../../components/childrens-card/child-card/psychiatrists-conclusion-form.component';
 import VisitComponent from '../../components/childrens-card/visit/add/visit.component';
 import VisitsListComponent from '../../components/childrens-card/visit/list/list-visits.component';
+import VisitMainPageComponent from '../../components/childrens-card/visit/main-page/visit-main-page.component';
 
 import { AuthenticationService } from '../../services/authentication.service';
 import { AuthGuard } from '../../services/guards/auth.guard';
@@ -34,7 +35,8 @@ import ChildrenCardService from '../../services/children-card.service';
         ChildCardPsychiatristsConclusionFormComponent,
         VisitComponent,
         VisitsListComponent,
-        ChildCardParentsListComponent
+        ChildCardParentsListComponent,
+        VisitMainPageComponent
     ],
     providers: [
         AuthenticationService,

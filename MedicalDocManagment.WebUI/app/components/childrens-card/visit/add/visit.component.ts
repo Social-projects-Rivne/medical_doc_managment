@@ -17,6 +17,9 @@ declare let $;
     moduleId: module.id,
     selector: 'create-visit-form',
     templateUrl: 'visit.component.html',
+    styleUrls: [
+        'visit.component.css'
+    ],
     providers: [
         VisitService,
         SharedService,
@@ -29,21 +32,21 @@ export default class VisitComponent implements OnInit {
     isValidResponse: boolean;
     datePickerModel: IMyDateModel;
     myDatePickerOptions: IMyDpOptions;
-    @Input() patient: ChildCardModel;
+    patientId: number;
     @Output() addVisit: EventEmitter<VisitModel>;
 
     constructor(private _visitService: VisitService,
-        private _sharedService: SharedService,
-        private _notificationService: NotificationsService) {
+                private _sharedService: SharedService,
+                private _notificationService: NotificationsService) {
         this.visit = new VisitModel();
         this.addVisit = new EventEmitter<VisitModel>();
     }
 
     ngOnInit() {
+        this.patientId = this._sharedService.getChildrenCardIdFromRoute();
         let currentDoctor = this._sharedService.getCurrentUser();
         this.visit.doctorId = currentDoctor.id;
-        this.visit.patientId = this.patient.id;
-
+        this.visit.patientId = this.patientId;
         this.isValidResponse = true;
         this.myDatePickerOptions = this._sharedService.myDatePickerOptions;
     }

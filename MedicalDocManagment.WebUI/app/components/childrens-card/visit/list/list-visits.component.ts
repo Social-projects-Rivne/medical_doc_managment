@@ -10,9 +10,6 @@ declare let $;
     moduleId: module.id,
     selector: 'list-visits',
     templateUrl: 'list-visits.component.html',
-    styleUrls: [
-        'list-visit.component.css'
-    ],
     providers: [
         VisitService
     ]
@@ -25,10 +22,4 @@ export default class ListVisitsComponent {
         this.visits = [];
     }
 
-    toogleVisibilityList() {
-        let isVisible = $('#listVisits').attr('aria-expanded') == 'true';
-        let classes = isVisible ? 'glyphicon glyphicon-chevron-down'
-                                : 'glyphicon glyphicon-chevron-up';
-        $('#toogleListVisits i').attr('class', classes);
-    }
 }

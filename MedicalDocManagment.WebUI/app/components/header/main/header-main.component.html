@@ -20,7 +20,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" data-toggle="modal" data-target="#createVisitModal">Додати візит</a>
+                        <a [routerLink]="['/main/childCard/'+_mainAppService.currentCard.id+'/visit']">Візити до лікарів</a>
                     </li>
                 </ul>
             </li>
