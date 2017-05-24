@@ -90,6 +90,13 @@
       <div *ngIf="_childCard.id" class="col-xs-5">
         <parents-list [childCardId]="_childCard.id"></parents-list>
       </div>
+      <div *ngIf="_childCard.id" class="col-xs-12">
+        <list-visits [visits]="visits">Завантаження...</list-visits>
+      </div>
+    </div>
+    <div class="col-xs-12">
+        <create-visit-form (addVisit)="addVisit($event)" [patient]="_childCard"></create-visit-form>
     </div>
   </div>
+    <simple-notifications [options]="_sharedService.notificationOptions"></simple-notifications>
 </div>

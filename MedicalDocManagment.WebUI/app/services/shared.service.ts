@@ -1,6 +1,8 @@
 ﻿import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
 
+import { IMyDpOptions } from 'mydatepicker';
+
 import UserModel from "../models/usermodel";
 import PositionModel from "../models/positionmodel";
 
@@ -21,6 +23,13 @@ export default class SharedService {
         preventLastDuplicates: 'visible',
         animate: 'scale',
         position: ['right', 'bottom']
+    };
+
+    readonly myDatePickerOptions: IMyDpOptions = {
+        dateFormat: 'dd.mm.yyyy',
+        dayLabels: { su: 'Нед', mo: 'Пн', tu: 'Вт', we: 'Ср', th: 'Чт', fr: 'Пт', sa: 'Суб' },
+        monthLabels: { 1: 'Січ', 2: 'Гру', 3: 'Бер', 4: 'Кві', 5: 'Тра', 6: 'Чер', 7: 'Лип', 8: 'Сер', 9: 'Вер', 10: 'Жов', 11: 'Лист', 12: 'Гру' },
+        todayBtnTxt: 'Сьогодні'
     };
 
     constructor( @Inject(AuthenticationService) private _authenticationService: AuthenticationService) {
