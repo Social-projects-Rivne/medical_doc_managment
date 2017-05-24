@@ -1,12 +1,13 @@
-﻿using MedicalDocManagement.BLL.Services;
-using MedicalDocManagement.BLL.Services.Abstract;
-using MedicalDocManagment.DAL.Repository;
-using MedicalDocManagment.DAL.Repository.Interfaces;
-using MedicalDocManagment.WebUI.Helpers;
-using MedicalDocManagment.WebUI.Models.Main;
+﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-
+using MedicalDocManagement.BLL.Services;
+using MedicalDocManagement.BLL.Services.Abstract;
+using MedicalDocManagment.WebUI.Helpers;
+using MedicalDocManagment.WebUI.Models.Main;
+using MedicalDocManagment.WebUI.Models.Validators;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -21,17 +22,25 @@ namespace MedicalDocManagment.WebUI.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IHttpActionResult> CreateVisit(CreateVisitVM visitModel)
+        public async Task<HttpResponseMessage> CreateVisit(CreateVisitVM visitModel)
         {
-            if (!ModelState.IsValid)
+            var createVisitValidator = new CreateVisitValidator();
+            var fluentValidationResult = createVisitValidator.Validate(visitModel);
+            if (!fluentValidationResult.IsValid)
             {
-                return BadRequest(ModelState);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, fluentValidationResult.Errors);
             }
 
             var visitDTO = CreateVisitHelper.VMToDTO(visitModel);
-            var result = await _visitsService.CreateVisit(visitDTO);
-
-            return Ok(result);
+            try
+            {
+                var result = await _visitsService.CreateVisit(visitDTO);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception exception)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception);
+            }
         }
 
         [HttpGet]

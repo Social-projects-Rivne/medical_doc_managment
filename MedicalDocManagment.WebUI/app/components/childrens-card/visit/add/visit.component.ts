@@ -25,20 +25,16 @@ declare let $;
 })
 export default class VisitComponent implements OnInit {
     visit: VisitModel;
+    responseErrors: string[];
+    isValidResponse: boolean;
+    datePickerModel: IMyDateModel;
+    myDatePickerOptions: IMyDpOptions;
     @Input() patient: ChildCardModel;
     @Output() addVisit: EventEmitter<VisitModel>;
 
-    private datePickerModel: IMyDateModel;
-    private myDatePickerOptions: IMyDpOptions = {
-        dateFormat: 'dd.mm.yyyy',
-        dayLabels: { su: 'Нед', mo: 'Пн', tu: 'Вт', we: 'Ср', th: 'Чт', fr: 'Пт', sa: 'Суб' },
-        monthLabels: { 1: 'Січ', 2: 'Гру', 3: 'Бер', 4: 'Кві', 5: 'Тра', 6: 'Чер', 7: 'Лип', 8: 'Сер', 9: 'Вер', 10: 'Жов', 11: 'Лист', 12: 'Гру' },
-        todayBtnTxt: 'Сьогодні'
-    };
-
     constructor(private _visitService: VisitService,
-                private _sharedService: SharedService,
-                private _notificationService: NotificationsService) {
+        private _sharedService: SharedService,
+        private _notificationService: NotificationsService) {
         this.visit = new VisitModel();
         this.addVisit = new EventEmitter<VisitModel>();
     }
@@ -47,28 +43,42 @@ export default class VisitComponent implements OnInit {
         let currentDoctor = this._sharedService.getCurrentUser();
         this.visit.doctorId = currentDoctor.id;
         this.visit.patientId = this.patient.id;
+
+        this.isValidResponse = true;
+        this.myDatePickerOptions = this._sharedService.myDatePickerOptions;
     }
 
     submitVisit(form: NgForm) {
-        this._updateDate();
+        this.updateDate();
         this._visitService.createVisit(this.visit)
             .subscribe(
-            (result: VisitModel) => {
-                $('#createVisitModal').modal('hide');
-                this.visit.date = null;
-                form.reset();
-                console.log(result);
-                this.addVisit.emit(result);
-                this._notificationService.success("Успіх", "Заключення додано успішно!");
-            },
-            (error) => {
-                this._notificationService.error("Помилка", "Заключення не було додано успішно.");
-                console.log('Error: ' + error);
-            }
+                (result: VisitModel) => {
+                    $('#createVisitModal').modal('hide');
+                    this.visit.date = null;
+                    form.reset();
+                    console.log(result);
+                    this.addVisit.emit(result);
+                    this._notificationService.success("Успіх", "Заключення додано успішно!");
+                },
+                (error) => {
+                    let errors = JSON.parse(error._body);
+                    this.fillResponseErrors(errors);
+                    console.log(errors);
+                    this.isValidResponse = false;
+                    this._notificationService.error("Помилка", "Заключення не було додано успішно.");
+                }
             );
     }
 
-    private _updateDate() {
+    fillResponseErrors(errors) {
+        this.responseErrors = [];
+        for (let i = 0; i < errors.length; i++) {
+            let errorMessage: string = errors[i].errorMessage;
+            this.responseErrors.push(errorMessage)
+        }
+    }
+
+    updateDate() {
         this.visit.date = this.datePickerModel.jsdate;
     }
 

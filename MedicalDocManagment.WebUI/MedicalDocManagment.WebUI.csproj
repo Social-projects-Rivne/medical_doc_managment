@@ -297,7 +297,9 @@
     <Compile Include="Models\Main\ViewVisitVM.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
     <Compile Include="Models\Validators\AddPatientValidator.cs" />
+    <Compile Include="Models\Validators\CreateVisitValidator.cs" />
     <Compile Include="Models\Validators\Helpers\AddPatientValidatorHelper.cs" />
+    <Compile Include="Models\Validators\Helpers\CreateVisitValidatorHelper.cs" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
