@@ -1,3 +1,7 @@
 ﻿#createVisitModal #summary {
     resize: vertical;
 }
+
+#modeldate {
+    display: inline-block;
+}

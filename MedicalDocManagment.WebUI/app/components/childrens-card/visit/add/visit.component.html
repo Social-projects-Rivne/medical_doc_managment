@@ -9,12 +9,14 @@
                 <div class="modal-body">
                     <form class="form" (ngSubmit)="submitVisit(visitAddForm)" #visitAddForm="ngForm">
                         <div class="form-group">
-                            <label for="date">Дата візиту</label>
-                            <my-date-picker #date id="modeldate" name="date" [options]="myDatePickerOptions"
-                                            [(ngModel)]="datePickerModel" required></my-date-picker>
+                            <div class="row">
+                                <label for="date" class="col-xs-2">Дата візиту:</label>
+                                <my-date-picker #date id="modeldate" name="date" class="col-xs-10" [options]="myDatePickerOptions"
+                                                [(ngModel)]="datePickerModel" required></my-date-picker>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="summary">Заключення</label>
+                            <label for="summary">Заключення:</label>
                             <textarea class="form-control" id="summary" name="summary" [(ngModel)]="visit.summary"
                                       #summary="ngModel" rows="10" required></textarea>
                         </div>
