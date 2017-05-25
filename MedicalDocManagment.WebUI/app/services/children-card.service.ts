@@ -114,7 +114,7 @@ export default class ChildrensCardService {
 
     /**
      * Method returns some patient data
-     * @param {ViewPatientDataModel} viewPatientDataModel Contains data about patient to view
+     * @param {any} dataOfPatient Contains data about patient to view
      * @return {Observable<ChildrenCardsModel>} Contains data about patients
     */
     viewPatientData(dataOfPatient: any): Observable<ChildrenCardsModel> {

@@ -175,7 +175,6 @@ namespace MedicalDocManagement.BLL.Services
                                         .Get(expression)
                                         .AsNoTracking()
                                         .Take(20)
-                                        .AsEnumerable()
                                         .ToList();
 
             return ChildCardDTOHelper.EntitiesToDTOs(childCards);

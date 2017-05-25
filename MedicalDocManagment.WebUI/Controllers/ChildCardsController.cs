@@ -184,8 +184,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Ok(diagnosesMkhVM);
         }
 
-        // TODO Uncomment before pull request
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public IHttpActionResult ViewPatientData([FromUri]ViewPatientDataVM viewPatientDataVM)
         {
