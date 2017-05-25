@@ -17,7 +17,7 @@ namespace MedicalDocManagement.BLL.Services.Abstract
         ChildCardDTO AddChildCard(ChildCardDTO childCardDTO);
         ParentDTO AddParent(ParentDTO parentDTO);
         ParentChildCardDTO AddParentIntoChildCard(ParentChildCardDTO parentChildCardDTO);
-        List<ChildCardDTO> FindFirst20ChildCards(IViewPatientData viewPatientData);
+        List<ChildCardDTO> FindChildCards(IViewPatientData viewPatientData);
         int GetChildrenCardsCount();
         List<ChildCardDTO> GetChildrenCards();
         List<ChildCardDTO> GetChildrenCardsPaged(int pageNumber, int pageSize);

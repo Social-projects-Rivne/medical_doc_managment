@@ -204,7 +204,7 @@ namespace MedicalDocManagment.WebUI.Controllers
 
             try
             {
-                var result = _childCardsService.FindFirst20ChildCards(viewPatientDataVM);
+                var result = _childCardsService.FindChildCards(viewPatientDataVM);
 
                 return Ok(result);
             }

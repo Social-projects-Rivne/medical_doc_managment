@@ -144,7 +144,7 @@ namespace MedicalDocManagement.BLL.Services
             return parentChildCardDTO;
         }
 
-        public List<ChildCardDTO> FindFirst20ChildCards(IViewPatientData viewPatientData)
+        public List<ChildCardDTO> FindChildCards(IViewPatientData viewPatientData)
         {
             // Creating expression
             ParameterExpression predicateParam = Expression.Parameter(typeof(ChildCard), "childCard");
@@ -174,7 +174,6 @@ namespace MedicalDocManagement.BLL.Services
             var childCards = _unitOfWork.ChildrenCardsRepository
                                         .Get(expression)
                                         .AsNoTracking()
-                                        .Take(20)
                                         .ToList();
 
             return ChildCardDTOHelper.EntitiesToDTOs(childCards);
