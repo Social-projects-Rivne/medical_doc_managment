@@ -49,6 +49,7 @@ namespace MedicalDocManagment.WebUI.Models.Validators
 
             RuleFor(data => data.CardNumber)
                 .NotNull()
+                .Length(1,10)
                 .When(data => data.ViewCategory == ViewPatientDataCategoryEnum.byCardNumber ||
                     data.ViewCategory == ViewPatientDataCategoryEnum.byAllInTheAbove);
             RuleFor(data => data.CardNumber)

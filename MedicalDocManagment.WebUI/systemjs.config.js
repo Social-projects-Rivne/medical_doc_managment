@@ -33,7 +33,9 @@
             'angular2-moment': 'dist:lib/npmlibs/angular2-moment',
             'angular2-text-mask': 'dist:lib/npmlibs/angular2-text-mask',
             'text-mask-core': 'dist:lib/npmlibs/text-mask-core',
-            'angular2-image-upload': 'node_modules/angular2-image-upload'
+            'angular2-image-upload': 'node_modules/angular2-image-upload',
+            'angular2-masonry': 'dist:lib/npmlibs/angular2-masonry',
+            'masonry-layout': 'dist:lib/npmlibs/masonry-layout/masonry.pkgd.min.js'
         },
         // пакеты, которые указывают загрузчику System, как загружать файлы без имени и расширения
         packages: {
@@ -66,7 +68,8 @@
             },
             'angular2-text-mask': { main: 'angular2TextMask.js', defaultExtension: 'js' },
             'text-mask-core': { main: 'dist/textMaskCore.js', defaultExtension: 'js' },
-            'angular2-image-upload': { main: './index.js', defaultExtension: 'js' }
+            'angular2-image-upload': { main: './index.js', defaultExtension: 'js' },
+            'angular2-masonry': { main: 'index', defaultExtension: 'js' }
         }
     });
     if (global.filterSystemConfig) { global.filterSystemConfig(config); }

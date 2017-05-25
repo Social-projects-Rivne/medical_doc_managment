@@ -1,7 +1,7 @@
 ﻿<div class="container-fluid">
-  <div class="children-cards">
-    <span *ngFor="let childCard of childrenCards"
-          children-cards-list-item [childCard]="childCard">
-    </span>
-  </div>
+  <masonry [options]='{ itemSelector : ".brick", gutter : 5, horizontalOrder : true }'>
+    <masonry-brick class="brick" *ngFor="let childCard of childrenCards">
+      <children-cards-list-item [childCard]="childCard"></children-cards-list-item>
+    </masonry-brick>
+  </masonry>
 </div>

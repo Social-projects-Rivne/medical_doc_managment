@@ -7,7 +7,7 @@ import MainAppService from "../../../services/main-app.service";
 
 @Component({
     moduleId: module.id,
-    selector: '[children-cards-list-item]',
+    selector: 'children-cards-list-item',
     templateUrl: 'children-cards-list-item.component.html',
     styleUrls: ['children-cards-list-item.component.css']
 })

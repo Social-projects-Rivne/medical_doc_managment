@@ -24,9 +24,9 @@
             </div>
           </div>
           <div class="view-category-alert">
-            <div *ngIf="!_patientToView.lastName && lastName.touched"
+            <div *ngIf="lastName.touched && (!_patientToView.lastName || lastName.invalid)"
                  class="alert alert-danger">
-              Введіть прізвище.
+              Введіть правильне прізвище.
             </div>
           </div>
         </div>
@@ -48,9 +48,9 @@
             </div>
           </div>
           <div class="view-category-alert">
-            <div *ngIf="!_patientToView.firstName && firstName.touched"
+            <div *ngIf="firstName.touched && (!_patientToView.firstName || firstName.invalid)"
                  class="alert alert-danger">
-              Введіть ім'я.
+              Введіть правильне ім'я.
             </div>
           </div>
         </div>
@@ -72,9 +72,9 @@
             </div>
           </div>
           <div class="view-category-alert">
-            <div *ngIf="!_patientToView.secondName && secondName.touched"
+            <div *ngIf="secondName.touched && (!_patientToView.secondName || secondName.invalid)"
                  class="alert alert-danger">
-              Введіть по батькові.
+              Введіть правильне по батькові.
             </div>
           </div>
         </div>
@@ -85,15 +85,15 @@
           <div class="view-category-label">
             <label class="control-label" for="date">Дата народження</label>
           </div>
-          <div class="col-xs-5">
-            <custom-datepicker [(ngModel)]="_patientToView.date"
+          <div class="col-xs-4">
+            <custom-datepicker [(ngModel)]="_patientToView.date" [disabled]="_isSearching"
                                name="date"
                                #date="ngModel"
                                required>
             </custom-datepicker>
           </div>
-          <div class="col-xs-offset-4 col-xs-5">
-            <div *ngIf="!_patientToView.date && date.touched"
+          <div class="col-xs-offset-4 col-xs-4">
+            <div *ngIf="date.touched && (!_patientToView.date || date.invalid)"
                  class="alert alert-danger">
               Введіть дату народження.
             </div>
@@ -106,15 +106,15 @@
           <div class="view-category-label">
             <label class="control-label" for="cardNumber">Номер картки</label>
           </div>
-          <div class="view-category-input">
+          <div class="view-category-input-card-number">
             <div class="input-group col-xs-12">
               <input type="text" class="form-control" id="cardNumber" name="cardNumber"
                      [(ngModel)]="_patientToView.cardNumber" #cardNumber="ngModel"
-                     [disabled]="_isSearching" required/>
+                     [disabled]="_isSearching" required maxlength="10"/>
             </div>
           </div>
-          <div class="view-category-alert">
-            <div *ngIf="!_patientToView.cardNumber && cardNumber.touched"
+          <div class="view-category-alert-card-number">
+            <div *ngIf="cardNumber.touched && (!_patientToView.cardNumber || cardNumber.invalid)"
                  class="alert alert-danger">
               Введіть номер картки.
             </div>
