@@ -3,11 +3,11 @@
      [infiniteScrollDistance]="2"
      [infiniteScrollThrottle]="300"
      (scrolled)="onScrollDown()">
-  <div class="children-cards">
-    <span *ngFor="let childCard of childrenCards"
-          children-cards-list-item [childCard]="childCard">
-    </span>
-  </div>
+  <masonry [options]='{ itemSelector : ".brick", gutter : 5, horizontalOrder : true }'>
+    <masonry-brick class="brick" *ngFor="let childCard of childrenCards">
+      <children-cards-list-item [childCard]="childCard"></children-cards-list-item>
+    </masonry-brick>
+  </masonry>
   <!-- "Loading" progress bar -->
   <div class="row" *ngIf="loading">
     <div class="col-xs-offset-2 col-xs-8">

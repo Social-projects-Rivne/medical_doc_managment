@@ -1,94 +1,198 @@
 ﻿<div class="container">
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label class="control-label col-xs-offset-1 col-xs-2" for="lastName">Прізвище</label>
-            <div class="input-group col-xs-4">
-                <input type="text" class="form-control" id="lastName" name="lastName"
-                       [(ngModel)]="_patientToView.lastName" #lastName="ngModel"
-                       [disabled]="_isSearching" />
+  <br />
+  <br />
+  <form class="form-horizontal" #viewPatientDataForm="ngForm" 
+        (ngSubmit)="_viewPatientData(viewPatientDataForm.value)">
+    <div class="row">
+      <!-- Fields with patient to view info -->
+      <div class="col-xs-6">
+        <!-- Last name -->
+        <div *ngIf="_patientToView.viewCategory == CategoriesToViewByEnum.byLastName 
+             || _patientToView.viewCategory == CategoriesToViewByEnum.byAllInTheAbove" 
+             class="form-group row">
+          <div class="view-category-label">
+            <label class="control-label" for="lastName">Прізвище</label>
+          </div>
+          <div class="view-category-input">
+            <div class="input-group col-xs-12">
+              <input type="text" class="form-control" id="lastName" name="lastName"
+                     [(ngModel)]="_patientToView.lastName" #lastName="ngModel" #lastNameInput
+                     [disabled]="_isSearching" required 
+                     pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"
+                     data-toggle="tooltip" data-placement="top" data-viewport="#lastName"
+                     data-title="Може містити кириличні літери, дефіс та апостроф. Довжина від 1 до 100 символів."/>
             </div>
-            <div *ngIf="!_patientToView.lastName && lastName.touched"
-                 class="alert alert-danger col-xs-offset-3 col-xs-4">
-                Введіть прізвище.
+          </div>
+          <div class="view-category-alert">
+            <div *ngIf="lastName.touched && (!_patientToView.lastName || lastName.invalid)"
+                 class="alert alert-danger">
+              Введіть правильне прізвище.
             </div>
+          </div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-xs-offset-1 col-xs-2" for="firstName">Ім'я</label>
-            <div class="input-group col-xs-4">
-                <input type="text" class="form-control" id="firstName" name="firstName"
-                       [(ngModel)]="_patientToView.firstName" #firstName="ngModel"
-                       [disabled]="_isSearching" />
+        <!-- First name -->
+        <div *ngIf="_patientToView.viewCategory == CategoriesToViewByEnum.byFirstName
+             || _patientToView.viewCategory == CategoriesToViewByEnum.byAllInTheAbove"
+             class="form-group row">
+          <div class="view-category-label">
+            <label class="control-label" for="firstName">Ім'я</label>
+          </div>
+          <div class="view-category-input">
+            <div class="input-group col-xs-12">
+              <input type="text" class="form-control" id="firstName" name="firstName"
+                     [(ngModel)]="_patientToView.firstName" #firstName="ngModel"  #firstNameInput
+                     [disabled]="_isSearching" required 
+                     pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}"                     
+                     data-toggle="tooltip" data-placement="top" data-viewport="#firstName"
+                     data-title="Може містити кириличні літери, дефіс та апостроф. Довжина від 1 до 100 символів."/>
             </div>
-            <div *ngIf="!_patientToView.firstName && firstName.touched"
-                 class="alert alert-danger col-xs-offset-3 col-xs-4">
-                Введіть ім'я.
+          </div>
+          <div class="view-category-alert">
+            <div *ngIf="firstName.touched && (!_patientToView.firstName || firstName.invalid)"
+                 class="alert alert-danger">
+              Введіть правильне ім'я.
             </div>
+          </div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-xs-offset-1 col-xs-2" for="secondName">По батькові</label>
-            <div class="input-group col-xs-4">
-                <input type="text" class="form-control" id="secondName" name="secondName"
-                       [(ngModel)]="_patientToView.secondName" #secondName="ngModel"
-                       [disabled]="_isSearching" />
+        <!-- Second name -->
+        <div *ngIf="_patientToView.viewCategory == CategoriesToViewByEnum.bySecondName
+             || _patientToView.viewCategory == CategoriesToViewByEnum.byAllInTheAbove"
+             class="form-group row">
+          <div class="view-category-label">
+            <label class="control-label" for="secondName">По батькові</label>
+          </div>
+          <div class="view-category-input">
+            <div class="input-group col-xs-12">
+              <input type="text" class="form-control" id="secondName" name="secondName"
+                     [(ngModel)]="_patientToView.secondName" #secondName="ngModel" #secondNameInput
+                     [disabled]="_isSearching" required
+                     pattern="[А-Яа-яґҐєЄіІїЇ`´ʼ’ʼ’'-]{1,100}" 
+                     data-toggle="tooltip" data-placement="top" data-viewport="#secondName"
+                     data-title="Може містити кириличні літери, дефіс та апостроф. Довжина від 1 до 100 символів."/>
             </div>
-            <div *ngIf="!_patientToView.secondName && secondName.touched"
-                 class="alert alert-danger col-xs-offset-3 col-xs-4">
-                Введіть по батькові.
+          </div>
+          <div class="view-category-alert">
+            <div *ngIf="secondName.touched && (!_patientToView.secondName || secondName.invalid)"
+                 class="alert alert-danger">
+              Введіть правильне по батькові.
             </div>
+          </div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-xs-offset-1 col-xs-2" for="birthDate">Дата народження</label>
-            <div class="input-group col-xs-2">
-                <div class="input-group date" data-provide="datepicker" id="birthDatePicker"
-                     #birthDatePicker>
-                    <input type="text" #birthDatePickerInput class="form-control"
-                           [disabled]="_isSearching">
-                    <div class="input-group-addon">
-                        <span class="glyphicon glyphicon-th"></span>
-                    </div>
-                </div>
+        <!-- Birth date -->
+        <div *ngIf="_patientToView.viewCategory == CategoriesToViewByEnum.byBirthDate
+             || _patientToView.viewCategory == CategoriesToViewByEnum.byAllInTheAbove"
+             class="form-group row">
+          <div class="view-category-label">
+            <label class="control-label" for="date">Дата народження</label>
+          </div>
+          <div class="col-xs-4">
+            <custom-datepicker [(ngModel)]="_patientToView.date" [disabled]="_isSearching"
+                               name="date"
+                               #date="ngModel"
+                               required>
+            </custom-datepicker>
+          </div>
+          <div class="col-xs-offset-4 col-xs-4">
+            <div *ngIf="date.touched && (!_patientToView.date || date.invalid)"
+                 class="alert alert-danger">
+              Введіть дату народження.
             </div>
-            <div *ngIf="!_patientToView.birthDate && this._birthDatePickerTouched"
-                 class="alert alert-danger col-xs-offset-3 col-xs-3">
-                Введіть дату народження.
+          </div>
+        </div>
+        <!-- Card number -->
+        <div *ngIf="_patientToView.viewCategory == CategoriesToViewByEnum.byCardNumber
+             || _patientToView.viewCategory == CategoriesToViewByEnum.byAllInTheAbove"
+             class="form-group row">
+          <div class="view-category-label">
+            <label class="control-label" for="cardNumber">Номер картки</label>
+          </div>
+          <div class="view-category-input-card-number">
+            <div class="input-group col-xs-12">
+              <input type="text" class="form-control" id="cardNumber" name="cardNumber"
+                     [(ngModel)]="_patientToView.cardNumber" #cardNumber="ngModel"
+                     [disabled]="_isSearching" required maxlength="10"/>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="row">
-                <div *ngIf="!_patientToView.lastName || !_patientToView.firstName
-                     || !_patientToView.secondName || !_patientToView.birthDate"
-                     class="alert alert-danger col-xs-offset-3 col-xs-4">
-                    Для пошуку введіть значення у всі поля.
-                </div>
+          </div>
+          <div class="view-category-alert-card-number">
+            <div *ngIf="cardNumber.touched && (!_patientToView.cardNumber || cardNumber.invalid)"
+                 class="alert alert-danger">
+              Введіть номер картки.
             </div>
-            <div class="row">
-                <div class="col-xs-offset-3">
-                    <button class="btn btn-primary" (click)="viewPatientData()"
-                            [disabled]="!_patientToView.lastName || !_patientToView.firstName
-                            || !_patientToView.secondName || !_patientToView.birthDate"
-                            *ngIf="!_isSearching">
-                        Переглянути
-                    </button>
-                </div>
+          </div>
+        </div>
+      </div>
+      <!-- Categories to view by -->
+      <div class="col-xs-4">
+        <div class="form-group row">
+          <div class="view-category-label">
+            <label class="control-label" for="viewCategoryList">Категорія</label>
+          </div>
+          <div class="view-category-input">
+            <div class="input-group col-xs-12">
+              <select class="form-control" id="viewCategory" name="viewCategory"
+                      [(ngModel)]="_patientToView.viewCategory" #viewCategory="ngModel"
+                      [disabled]="_isSearching">
+                <option *ngFor="let category of CATEGORIES_TO_VIEW_BY" [ngValue]="category.key">
+                  {{category.name}}
+                </option>
+              </select>
             </div>
+          </div>
         </div>
-        <div *ngIf="_triedToSearch"><hr /></div>
-        <div class="alert alert-info col-xs-offset-3 col-xs-4" *ngIf="_isSearching">
-            Триває отримання даних про пацієнта...
+      </div>
+      <!-- Button to view data -->
+      <div class="form-group">
+        <div class="row">
+          <div class="col-xs-offset-3">
+            <button type="submit" class="btn btn-primary"
+                    [disabled]="viewPatientDataForm.invalid || _isSearching">
+              Переглянути
+            </button>
+          </div>
         </div>
-        <div *ngIf="_isErrorOnSearching" class="alert alert-danger col-xs-offset-1">
-            {{_lastErrorMessage}}
+      </div>
+    </div>
+  </form>
+  <!-- Alert when there are missing values -->
+  <div class="row">
+    <div class="col-xs-offset-4 col-xs-4">
+      <div *ngIf="viewPatientDataForm.invalid"
+           class="alert alert-danger">
+        Для перегляду введіть правильні значення.
+      </div>
+    </div>
+  </div>
+  <!-- Horizontal bar, which divides form and results-->
+  <div *ngIf="_triedToSearch"><hr /></div>
+  <!-- Results -->
+  <div class="row">
+    <!-- Viewing data progress bar -->
+    <div class=" col-xs-offset-3 col-xs-6">
+      <div class="progress" *ngIf="_isSearching">
+        <div class="progress-bar progress-bar-info progress-bar-striped active"
+             role="progressbar" aria-valuenow="0" aria-valuemin="0"
+             aria-valuemax="0" style="width: 100%">
+          Триває отримання даних про пацієнта...
         </div>
-        <div class="form-group" *ngIf="_triedToSearch && !_isSearching && !_isErrorOnSearching
+      </div>
+    </div>
+    <!-- Error message if there was one-->
+    <div *ngIf="_isErrorOnSearching" class="alert alert-danger col-xs-offset-1">
+      {{_lastErrorMessage}}
+    </div>
+    <!-- Children cards, if there were any -->
+    <div class="form-group" *ngIf="_triedToSearch && !_isSearching && !_isErrorOnSearching
             && _searchResult.length">
-            <h4 class="text-center">Дані про пацієнта:</h4>
-            <children-cards-list-without-lazy [childrenCards]="_searchResult">
-            </children-cards-list-without-lazy>
-        </div>
-        <div class="alert alert-info col-xs-offset-3 col-xs-4"
-             *ngIf="_triedToSearch && !_isSearching  && !_isErrorOnSearching 
+      <h4 class="text-center">Дані про пацієнта:</h4>
+      <br />
+      <children-cards-list-without-lazy [childrenCards]="_searchResult">
+      </children-cards-list-without-lazy>
+    </div>
+    <!-- Message that nothing was found -->
+    <div class="alert alert-info text-center col-xs-offset-3 col-xs-6"
+         *ngIf="_triedToSearch && !_isSearching  && !_isErrorOnSearching
              && !_searchResult.length ">
-            <h4>По Вашому запиту пацієнта не знайдено.</h4>
-        </div>
-    </form>
+      <h4>По Вашому запиту пацієнта не знайдено.</h4>
+    </div>
+  </div>
 </div>

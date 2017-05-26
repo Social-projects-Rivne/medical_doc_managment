@@ -1,20 +1,24 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using FluentValidation.Attributes;
+using MedicalDocManagment.WebUI.Models.Validators;
+using MedicalDocManagement.BLL.DTO.Main;
+using System;
 
 namespace MedicalDocManagment.WebUI.Models
 {
-    public class ViewPatientDataVM
+    public enum ViewPatientDataCategoryEnum
     {
-        [Required(ErrorMessage = "Для перегляду даних про пацієнта необхідне його прізвище.")]
+        byFirstName, byLastName, bySecondName, byBirthDate, byCardNumber, byAllInTheAbove
+    }
+
+    [Validator(typeof(AddPatientVMValidator))]
+    public class ViewPatientDataVM: IViewPatientData
+    {
         public string LastName { get; set; }
-
-        [Required(ErrorMessage = "Для перегляду даних про пацієнта необхідне його ім'я.")]
         public string FirstName { get; set; }
-
-        [Required(ErrorMessage = "Для перегляду даних про пацієнта необхідне його по батькові.")]
         public string SecondName { get; set; }
+        public DateTime? Date { get; set; }
+        public string CardNumber { get; set; }
 
-        [Required(ErrorMessage = "Для перегляду даних про пацієнта необхідна дата його народження.")]
-        public DateTime? BirthDate { get; set; }
+        public ViewPatientDataCategoryEnum ViewCategory { get; set; }
     }
 }

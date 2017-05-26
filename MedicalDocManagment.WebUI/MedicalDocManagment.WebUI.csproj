@@ -212,6 +212,7 @@
     <Content Include="app\components\user\users-list\users-list.component.html" />
     <Content Include="app\components\user\users-search\users-search-form.component.html" />
     <Content Include="app\index.html" />
+    <Content Include="app\shared\custom-datepicker\component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\loading.gif" />
@@ -231,6 +232,7 @@
     <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.css" />
     <Content Include="app\components\childrens-card\child-card\pediatricians-examination\view.component.less" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list.component.css" />
+    <None Include="app\components\childrens-card\view-patient-data\view-patient-data.component.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -258,6 +260,7 @@
     <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\pregnancy-details.model.ts" />
     <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\pediatricians-examination.model.ts" />
     <TypeScriptCompile Include="app\models\child-card\parent-child-card.model.ts" />
+    <TypeScriptCompile Include="app\modules\custom-datepicker.module.ts" />
     <TypeScriptCompile Include="app\modules\child-card\pediatricians-examination.module.ts" />
     <TypeScriptCompile Include="app\modules\child-card\child-card.module.ts" />
     <TypeScriptCompile Include="app\modules\users-search.module.ts" />
@@ -269,7 +272,6 @@
     <Compile Include="Helpers\PediatriciansExaminationHelper.cs" />
     <Compile Include="Helpers\PositionMapHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
-    <Compile Include="Helpers\ViewPatientDataHelper.cs" />
     <Compile Include="Models\Main\ParentVM.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
@@ -286,6 +288,8 @@
     <Compile Include="Models\Main\AddParentVM.cs" />
     <Compile Include="Models\Main\ViewPatientDataVM.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
+    <Compile Include="Models\Validators\Helpers\ViewPatientDataValidatorHelper.cs" />
+    <Compile Include="Models\Validators\ViewPatientDataValidator.cs" />
     <Compile Include="Models\Validators\AddPatientValidator.cs" />
     <Compile Include="Models\Validators\Helpers\AddPatientValidatorHelper.cs" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
@@ -305,6 +309,7 @@
     <Compile Include="Models\Validators\UserEditModelValidator.cs" />
     <Compile Include="Models\Validators\UserModelValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <TypeScriptCompile Include="app\shared\custom-datepicker\component.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
