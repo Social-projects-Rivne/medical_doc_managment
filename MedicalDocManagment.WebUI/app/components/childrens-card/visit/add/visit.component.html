@@ -10,15 +10,15 @@
                     <form class="form" (ngSubmit)="submitVisit(visitAddForm)" #visitAddForm="ngForm">
                         <div class="form-group">
                             <div class="row">
-                                <label for="date" class="col-xs-2">Дата візиту:</label>
-                                <my-date-picker #date id="modeldate" name="date" class="col-xs-10" [options]="myDatePickerOptions"
+                                <label for="date" class="col-xs-3" id="labelForDate">Дата візиту:</label>
+                                <my-date-picker #date id="modeldate" name="date" class="col-xs-9" [options]="myDatePickerOptions"
                                                 [(ngModel)]="datePickerModel" required></my-date-picker>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="summary">Заключення:</label>
-                            <textarea class="form-control" id="summary" name="summary" [(ngModel)]="visit.summary"
-                                      #summary="ngModel" rows="10" required></textarea>
+                            <tiny-mce-editor [elementId]="'summary'" 
+                                             (onEditorKeyup)="keyupHandlerFunction($event)"></tiny-mce-editor>
                         </div>
                         <div *ngIf="!isValidResponse" class="form-group">
                             <div *ngFor="let respError of responseErrors" class="text-danger">

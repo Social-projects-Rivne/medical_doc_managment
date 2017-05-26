@@ -35,6 +35,7 @@
     "rxjs": "^5.3.0",
     "systemjs": "0.19.39",
     "tether": "^1.4.0",
+    "tinymce": "^4.6.2",
     "zone.js": "^0.6.26"
   },
   "devDependencies": {

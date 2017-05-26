@@ -28,11 +28,12 @@ declare let $;
 })
 export default class VisitComponent implements OnInit {
     visit: VisitModel;
+    patientId: number;
     responseErrors: string[];
     isValidResponse: boolean;
     datePickerModel: IMyDateModel;
     myDatePickerOptions: IMyDpOptions;
-    patientId: number;
+    editor: any;
     @Output() addVisit: EventEmitter<VisitModel>;
 
     constructor(private _visitService: VisitService,
@@ -82,12 +83,21 @@ export default class VisitComponent implements OnInit {
 
     resetFormData(form: NgForm) {
         this.visit.date = null;
-        form.reset();
         this.responseErrors = [];
+        this.editor.setContent('');
+        form.reset();
     }
 
     updateDate() {
         this.visit.date = this.datePickerModel.jsdate;
+    }
+
+    keyupHandlerFunction(editor: any) {
+        if (!this.editor) {
+            this.editor = editor;
+        }
+        
+        this.visit.summary = this.editor.getContent();
     }
 
 }

@@ -13,7 +13,8 @@
                     {{visit.doctor.lastName}} {{visit.doctor.firstName}} {{visit.doctor.secondName}}
                 </div>
                 <div>
-                    <b>Заключення:</b> {{visit.summary}} <br />
+                    <b>Заключення:</b> 
+                    <div class="col-xs-12" [innerHTML]="visit.summary"></div>
                 </div>
             </div>
         </div>

@@ -257,6 +257,8 @@
     <TypeScriptCompile Include="app\components\childrens-card\visit\add\visit.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\list\list-visits.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\main-page\visit-main-page.component.ts" />
+    <TypeScriptCompile Include="app\components\shared\tiny-mce-editor\tiny-mce-editor.component.ts" />
+    <TypeScriptCompile Include="app\components\shared\tiny-mce-editor\tiny-mce-editor.translate.ts" />
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
     <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
     <TypeScriptCompile Include="app\models\visit.model.ts" />

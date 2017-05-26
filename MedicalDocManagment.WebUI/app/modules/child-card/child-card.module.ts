@@ -14,6 +14,7 @@ import ChildCardPsychiatristsConclusionFormComponent from '../../components/chil
 import VisitComponent from '../../components/childrens-card/visit/add/visit.component';
 import VisitsListComponent from '../../components/childrens-card/visit/list/list-visits.component';
 import VisitMainPageComponent from '../../components/childrens-card/visit/main-page/visit-main-page.component';
+import TinyMceEditorComponent from "../../components/shared/tiny-mce-editor/tiny-mce-editor.component";
 
 import { AuthenticationService } from '../../services/authentication.service';
 import { AuthGuard } from '../../services/guards/auth.guard';
@@ -36,7 +37,8 @@ import ChildrenCardService from '../../services/children-card.service';
         VisitComponent,
         VisitsListComponent,
         ChildCardParentsListComponent,
-        VisitMainPageComponent
+        VisitMainPageComponent,
+        TinyMceEditorComponent
     ],
     providers: [
         AuthenticationService,

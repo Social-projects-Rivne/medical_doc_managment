@@ -5,3 +5,9 @@
 #modeldate {
     display: inline-block;
 }
+
+@media (min-width: 504px) {
+    #labelForDate {
+        margin-top: 15px;
+    }
+}
