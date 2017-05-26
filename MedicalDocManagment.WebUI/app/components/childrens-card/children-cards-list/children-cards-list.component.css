@@ -1,4 +1,5 @@
-﻿.children-cards {
-	column-count: 3;
-	column-gap: 1em;
+.brick {
+    width: 33%;
+    margin-bottom: 0px;
 }
+

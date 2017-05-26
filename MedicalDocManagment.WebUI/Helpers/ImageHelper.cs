@@ -11,16 +11,18 @@ namespace MedicalDocManagment.WebUI.Helpers
         public static bool IsImageValid(string imagePath, int imageSizeBytes)
         {
             var imageMappedPath = HttpContext.Current.Server.MapPath(imagePath);
-            Image image = Image.FromFile(imageMappedPath);
-            decimal size = Math.Round(((decimal)imageSizeBytes / (decimal)1024), 2);
-            if (image.Height > 150 || image.Width > 150 || size > 300)
+            using (var image = Image.FromFile(imageMappedPath))
             {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+                decimal size = Math.Round(((decimal)imageSizeBytes / (decimal)1024), 2);
+                if (image.Height > 150 || image.Width > 150 || size > 300)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }   
         }
         public static bool IsImage(MultipartDataMediaFormatter.Infrastructure.HttpFile postedFile)
         {

@@ -5,6 +5,7 @@ namespace MedicalDocManagement.BLL.DTO
     public class ChildCardDTO
     {
         public int Id { get; set; }
+        public string CardNumber { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string LastName { get; set; }

@@ -158,6 +158,10 @@
     <Compile Include="Migrations\201705232035597_Add_Visit_Table.Designer.cs">
       <DependentUpon>201705232035597_Add_Visit_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705242005409_View_patient_data.cs" />
+    <Compile Include="Migrations\201705242005409_View_patient_data.Designer.cs">
+      <DependentUpon>201705242005409_View_patient_data.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ImageRepository.cs" />
@@ -217,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705232035597_Add_Visit_Table.resx">
       <DependentUpon>201705232035597_Add_Visit_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705242005409_View_patient_data.resx">
+      <DependentUpon>201705242005409_View_patient_data.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

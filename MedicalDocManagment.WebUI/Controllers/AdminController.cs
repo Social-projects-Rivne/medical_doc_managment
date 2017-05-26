@@ -124,6 +124,11 @@ namespace MedicalDocManagment.WebUI.Controllers
                 var imageSize = userModel.Content.Buffer.Length;
                 if (!ImageHelper.IsImageValid(imagePath, imageSize))
                 {
+                    var imageMappedPath = System.Web.HttpContext.Current.Server.MapPath(imagePath);
+                    if (File.Exists(imageMappedPath))
+                    {
+                        File.Delete(imageMappedPath);
+                    }
                     return BadRequest("Image is not valid.");
                 }
             }
@@ -161,6 +166,11 @@ namespace MedicalDocManagment.WebUI.Controllers
                 var imageSize = userEditModel.Content.Buffer.Length;
                 if (!ImageHelper.IsImageValid(imagePath, imageSize))
                 {
+                    var imageMappedPath = System.Web.HttpContext.Current.Server.MapPath(imagePath);
+                    if (File.Exists(imageMappedPath))
+                    {
+                        File.Delete(imageMappedPath);
+                    }
                     return Request.CreateResponse(HttpStatusCode.BadRequest, "Image is not valid.");
                 }
             }
