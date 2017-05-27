@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MedicalDocManagement.BLL.DTO;
 using MedicalDocManagement.BLL.DTO.Main.PediatriciansExamination;
+using MedicalDocManagement.BLL.DTO.Main;
 
 namespace MedicalDocManagement.BLL.Services.Abstract
 {
@@ -16,7 +17,7 @@ namespace MedicalDocManagement.BLL.Services.Abstract
         ChildCardDTO AddChildCard(ChildCardDTO childCardDTO);
         ParentDTO AddParent(ParentDTO parentDTO);
         ParentChildCardDTO AddParentIntoChildCard(ParentChildCardDTO parentChildCardDTO);
-        List<ChildCardDTO> FindChildCards(ChildCardDTO childCardDTO);
+        List<ChildCardDTO> FindChildCards(IViewPatientData viewPatientData);
         int GetChildrenCardsCount();
         List<ChildCardDTO> GetChildrenCards();
         List<ChildCardDTO> GetChildrenCardsPaged(int pageNumber, int pageSize);

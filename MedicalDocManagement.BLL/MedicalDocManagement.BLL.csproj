@@ -64,6 +64,7 @@
     <Compile Include="DTO\Main\BlockMkhDTO.cs" />
     <Compile Include="DTO\Main\ChildCardDTO.cs" />
     <Compile Include="DTO\Main\DiagnosisMkhDTO.cs" />
+    <Compile Include="DTO\Main\IViewPatientData.cs" />
     <Compile Include="DTO\Main\NosologyMkhDTO.cs" />
     <Compile Include="DTO\Main\ParentChildCardDTO.cs" />
     <Compile Include="DTO\Main\ParentDTO.cs" />

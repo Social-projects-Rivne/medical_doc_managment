@@ -11,7 +11,7 @@ import ChildrenCardsModel from '../../../models/children-cards.model';
     moduleId: module.id,
     selector: 'children-cards-list-without-lazy',
     templateUrl: 'children-cards-list-without-lazy.component.html',
-    styleUrls: ['children-cards-list-without-lazy.component.css']
+    styleUrls: ['children-cards-list.component.css']
 })
 export default class ChildrenCardsListWithoutLazyComponent {
     @Input() childrenCards: ChildrenCardsModel;

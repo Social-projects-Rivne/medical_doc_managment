@@ -24,5 +24,13 @@ export default class UserModel {
                     this[prop] = jsonObject[prop];
         }
     }
+
+    public clone(source) {
+        for (var prop in this) {
+            if (source.hasOwnProperty(prop)) {
+                this[prop] = source[prop];
+            }
+        }
+    }
 }
     
