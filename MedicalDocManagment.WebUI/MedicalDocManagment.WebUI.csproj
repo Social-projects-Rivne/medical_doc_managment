@@ -178,6 +178,8 @@
     <Content Include="app\components\childrens-card\child-card\pediatricians-examination\form.component.html" />
     <Content Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.html" />
     <Content Include="app\components\childrens-card\child-card\main-page.component.html" />
+    <Content Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-list.component.html" />
+    <Content Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-add.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\add\children-card-add.component.html" />
     <None Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.less" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.html" />
@@ -248,8 +250,12 @@
     <TypeScriptCompile Include="app\components\childrens-card\child-card\pediatricians-examination\form.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\main-page.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-list.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-add.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.ts" />
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
+    <TypeScriptCompile Include="app\models\child-card\procedure.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\rehabilitation.model.ts" />
     <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
     <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\child-birth.enum.ts" />
     <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\psychomotor-development.model.ts" />
@@ -269,6 +275,7 @@
     <Compile Include="Helpers\PediatriciansExaminationHelper.cs" />
     <Compile Include="Helpers\PositionMapHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\RehabilitationMapHelper.cs" />
     <Compile Include="Helpers\ViewPatientDataHelper.cs" />
     <Compile Include="Models\Main\ParentVM.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
@@ -284,6 +291,8 @@
     <Compile Include="Models\Main\NosologyMkhVM.cs" />
     <Compile Include="Models\Main\AddParentChildCardVM.cs" />
     <Compile Include="Models\Main\AddParentVM.cs" />
+    <Compile Include="Models\Main\RehabilitationVM.cs" />
+    <Compile Include="Models\Main\TherapeuticProcedureVM.cs" />
     <Compile Include="Models\Main\ViewPatientDataVM.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
     <Compile Include="Models\Validators\AddPatientValidator.cs" />

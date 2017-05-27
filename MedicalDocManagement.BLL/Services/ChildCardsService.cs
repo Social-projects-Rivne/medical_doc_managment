@@ -11,6 +11,7 @@ using MedicalDocManagment.DAL.Repository;
 using MedicalDocManagment.DAL.Repository.Interfaces;
 using MedicalDocManagement.BLL.DTO.Main.PediatriciansExamination;
 using MedicalDocManagment.DAL.Entities.Main.PediatriciansExamination;
+using MedicalDocManagment.DAL.Entities.Main;
 
 namespace MedicalDocManagement.BLL.Services
 {
@@ -60,7 +61,16 @@ namespace MedicalDocManagement.BLL.Services
 
             return mapper.Map<List<ClassMkhDTO>>(classesMkh);             
         }
+        public List<TherapeuticProcedureDTO> GetTherapeuticProcedures()
+        {
+            var procedures = _unitOfWork.TherapeuticProceduresRepository.Get()
+                                                                        .AsNoTracking()
+                                                                        .ToList();
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<TherapeuticProcedure, TherapeuticProcedureDTO>());
+            var mapper = config.CreateMapper();
 
+            return mapper.Map<List<TherapeuticProcedureDTO>>(procedures);
+        }
         public ClassMkhDTO GetClassesMkh(string id)
         {
             var classMkh = _unitOfWork.ClassMkhRepository
@@ -184,7 +194,29 @@ namespace MedicalDocManagement.BLL.Services
 
             return PediatriciansExaminationDTOHelper.EntityToDTO(childCard.PediatriciansExamination);
         }
+        public List<RehabilitationDTO> GetRehabilitationsList(int childCardId)
+        {
+            var childCard = _unitOfWork.ChildrenCardsRepository
+                                       .Get(card => card.Id == childCardId)
+                                       .AsNoTracking()
+                                       .Single();
 
+            return RehabilitationDTOHelper.EntitiesToDTOs(childCard.Rehabilitations.ToList());
+        }
+        public RehabilitationDTO AddRehabilitationIntoChildCard(int childCardId,
+            RehabilitationDTO rehabilitationDTO)
+        {
+            var childCard = _unitOfWork.ChildrenCardsRepository
+                                       .Get(card => card.Id == childCardId)
+                                       .Single();
+            var rehabilitation = RehabilitationDTOHelper.DTOToEntity(rehabilitationDTO);
+
+            _unitOfWork.RehabilitationsRepository.Add(rehabilitation);
+            childCard.Rehabilitations.Add(rehabilitation);
+            _unitOfWork.Save();
+
+            return RehabilitationDTOHelper.EntityToDTO(rehabilitation);
+        }
         public PediatriciansExaminationDTO SavePediatriciansExamination(int childCardId, 
             PediatriciansExaminationDTO examinationDTO)
         {
