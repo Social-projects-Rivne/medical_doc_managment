@@ -13,7 +13,7 @@ namespace MedicalDocManagment.DAL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201705232035597_Add_Visit_Table"; }
+            get { return "201705270648406_Add_Visit_Table"; }
         }
         
         string IMigrationMetadata.Source

@@ -154,13 +154,13 @@
     <Compile Include="Migrations\201705151252104_Improvement-component_for_adding_parent_to_user_card.Designer.cs">
       <DependentUpon>201705151252104_Improvement-component_for_adding_parent_to_user_card.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705232035597_Add_Visit_Table.cs" />
-    <Compile Include="Migrations\201705232035597_Add_Visit_Table.Designer.cs">
-      <DependentUpon>201705232035597_Add_Visit_Table.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201705242005409_View_patient_data.cs" />
     <Compile Include="Migrations\201705242005409_View_patient_data.Designer.cs">
       <DependentUpon>201705242005409_View_patient_data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705270648406_Add_Visit_Table.cs" />
+    <Compile Include="Migrations\201705270648406_Add_Visit_Table.Designer.cs">
+      <DependentUpon>201705270648406_Add_Visit_Table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -219,11 +219,11 @@
     <EmbeddedResource Include="Migrations\201705151252104_Improvement-component_for_adding_parent_to_user_card.resx">
       <DependentUpon>201705151252104_Improvement-component_for_adding_parent_to_user_card.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705232035597_Add_Visit_Table.resx">
-      <DependentUpon>201705232035597_Add_Visit_Table.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705242005409_View_patient_data.resx">
       <DependentUpon>201705242005409_View_patient_data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705270648406_Add_Visit_Table.resx">
+      <DependentUpon>201705270648406_Add_Visit_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
