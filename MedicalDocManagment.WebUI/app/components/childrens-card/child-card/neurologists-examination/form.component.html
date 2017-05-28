@@ -1,0 +1,414 @@
+﻿<div class="container">
+  <!-- "Loading" progress bar and related error alert -->
+  <div class="row" *ngIf="_isLoading">
+    <div class="progress">
+      <div class="progress-bar progress-bar-info progress-bar-striped active"
+           role="progressbar" aria-valuenow="0" aria-valuemin="0"
+           aria-valuemax="0" style="width:100%">
+        Отримання інформації щодо форми ...
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="_isErrorOnLoading">
+    <div class="alert alert-danger col-xs-12">
+      {{_lastLoadingErrorMessage}}
+    </div>
+  </div>
+
+  <form class="form-horizontal" *ngIf="!_isLoading" (submit)="_save()">
+    <!-- ПІБ пацієнта, якого стосується форма -->
+    <div class="row">
+      <h4 class="text-center">
+        {{_childCard.lastName}} {{_childCard.firstName}} {{_childCard.secondName}}
+      </h4>
+    </div>
+    <!-- Заголовок форми -->
+    <div class="row">
+      <h4 class="text-center">
+        ОГЛЯД НЕВРОЛОГА
+      </h4>
+    </div>
+
+    <!-- Скарги -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        Скарги:
+        <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                  id="complaints"
+                  name="complaints" [(ngModel)]="_neurologistsExamination.complaints"
+                  #conclusionTextArea="ngModel" [disabled]="_isSaving"
+                  maxlength="290" rows=3></textarea>
+      </div>
+    </div>
+    <!-- Анамнез (доповнення) -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        Анамнез (доповнення):
+        <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                  id="anamnesis"
+                  name="anamnesis" [(ngModel)]="_neurologistsExamination.anamnesis"
+                  #anamnesisTextArea="ngModel" [disabled]="_isSaving"
+                  maxlength="573" rows=6></textarea>
+      </div>
+    </div>
+    <!-- Статокінетичний розвиток -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        Статокінетичний розвиток
+        <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                  id="statokineticDevelopment"
+                  name="statokineticDevelopment" 
+                  [(ngModel)]="_neurologistsExamination.statokineticDevelopment"
+                  #statokineticDevelopmentTextArea="ngModel" [disabled]="_isSaving"
+                  maxlength="273" rows=3></textarea>
+      </div>
+    </div>
+    <!-- Психомовленнєвий розвиток -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        Психомовленнєвий розвиток
+        <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                  id="psychospeechDevelopment"
+                  name="psychospeechDevelopment" 
+                  [(ngModel)]="_neurologistsExamination.psychospeechDevelopment"
+                  #psychospeechDevelopmentTextArea="ngModel" [disabled]="_isSaving"
+                  maxlength="272" rows=3></textarea>
+      </div>
+    </div>
+
+    <!-- Neurological state group -->
+    <div>
+      <!-- Heading text -->
+      <div class="row">
+        <b><i>Неврологічний статус:</i></b>
+      </div>
+      <!-- Свідомість -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Свідомість</span>            
+            <input type="text" class="form-control" id="neurologicalStateConsciousness" 
+                   name="neurologicalStateConsciousness"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.consciousness" 
+                   #neurologicalStateConsciousness="ngModel"
+                   [disabled]="_isSaving" maxlength="89" />
+          </div>
+        </div>
+      </div>
+      <!-- Реакція на оточуючих -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Реакція на оточуючих</span>
+            <input type="text" class="form-control" id="neurologicalStateReactionToOthers"
+                   name="neurologicalStateReactionToOthers"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.reactionToOthers"
+                   #neurologicalStateReactionToOthers="ngModel"
+                   [disabled]="_isSaving" maxlength="79" />
+          </div>
+        </div>
+      </div>
+      <!-- Менінгеальні симптоми -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Менінгеальні симптоми</span>
+            <input type="text" class="form-control" id="neurologicalStateMeningealSymptoms"
+                   name="neurologicalStateMeningealSymptoms"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.meningealSymptoms"
+                   #neurologicalStateMeningealSymptoms="ngModel"
+                   [disabled]="_isSaving" maxlength="78" />
+          </div>
+        </div>
+      </div>
+      <!-- Data about head -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group col-xs-12">
+            <span class="input-group-addon">Голова: ОГ</span>
+            <input type="text" class="form-control" id="neurologicalStateHeadCircumference"
+                   name="neurologicalStateHeadCircumference"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.headCircumference" 
+                   #neurologicalStateHeadCircumference="ngModel"
+                   [disabled]="_isSaving" maxlength="17" />
+            <span class="input-group-addon">см, форма</span>
+            <input type="text" class="form-control" id="neurologicalStateHeadShape"
+                   name="neurologicalStateHeadShape"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.headShape"
+                   #neurologicalStateHeadShape="ngModel"
+                   [disabled]="_isSaving" maxlength="46" />
+          </div>
+        </div>
+      </div>
+      <!-- Черепно-мозкові нерви -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          Черепно-мозкові нерви:
+          <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                    id="neurologicalStateCranialNerves"
+                    name="neurologicalStateCranialNerves"
+                    [(ngModel)]="_neurologistsExamination.neurologicalState.cranialNerves"
+                    #neurologicalStateCranialNervesTextArea="ngModel" [disabled]="_isSaving"
+                    maxlength="276" rows=3></textarea>
+        </div>
+      </div>
+      <!-- Рефлекторно-рухова сфера -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Рефлекторно-рухова сфера:</span>
+            <input type="text" class="form-control" id="neurologicalStateReflexMotorArea"
+                   name="neurologicalStateReflexMotorArea"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.reflexMotorArea"
+                   #neurologicalStateReflexMotorArea="ngModel"
+                   [disabled]="_isSaving" maxlength="74" />
+          </div>
+        </div>
+      </div>
+      <!-- Об'єм рухів -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          Об'єм рухів
+          <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                    id="neurologicalStateMovementsVolume"
+                    name="neurologicalStateMovementsVolume"
+                    [(ngModel)]="_neurologistsExamination.neurologicalState.movementsVolume"
+                    #neurologicalStateMovementsVolumeTextArea="ngModel" [disabled]="_isSaving"
+                    maxlength="187" rows=2></textarea>
+        </div>
+      </div>
+      <!-- Сухожильні та періостальні рефлекси -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          Сухожильні та періостальні рефлекси
+          <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                    id="neurologicalStateTendonAndPeriostealReflexes"
+                    name="neurologicalStateTendonAndPeriostealReflexes"
+                    [(ngModel)]="_neurologistsExamination.neurologicalState.tendonAndPeriostealReflexes"
+                    #neurologicalStateTendonAndPeriostealReflexesTextArea="ngModel" 
+                    [disabled]="_isSaving" maxlength="163" rows=2>
+          </textarea>
+        </div>
+      </div>
+      <!-- Черевні рефлекси -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Черевні рефлекси:</span>
+            <input type="text" class="form-control" id="neurologicalStateAbdominalReflexes"
+                   name="neurologicalStateAbdominalReflexes"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.abdominalReflexes"
+                   #neurologicalStateAbdominalReflexes="ngModel"
+                   [disabled]="_isSaving" maxlength="82" />
+          </div>
+        </div>
+      </div>
+      <!-- Патологічні рефлекси -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          Патологічні рефлекси
+          <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                    id="neurologicalStateAbnormalReflexes"
+                    name="neurologicalStateAbnormalReflexes"
+                    [(ngModel)]="_neurologistsExamination.neurologicalState.abnormalReflexes"
+                    #neurologicalStateAbnormalReflexesTextArea="ngModel"
+                    [disabled]="_isSaving" maxlength="178" rows=2></textarea>
+        </div>
+      </div>
+      <!-- Безумовні рефлекси -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          Безумовні рефлекси:
+          <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                    id="neurologicalStateUnconditionedReflexes"
+                    name="neurologicalStateUnconditionedReflexes"
+                    [(ngModel)]="_neurologistsExamination.neurologicalState.unconditionedReflexes"
+                    #neurologicalStateUnconditionedReflexesTextArea="ngModel"
+                    [disabled]="_isSaving" maxlength="278" rows=3></textarea>
+        </div>
+      </div>
+      <!-- Контроль голови: -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Контроль голови:</span>
+            <input type="text" class="form-control" id="neurologicalStateHeadControl"
+                   name="neurologicalStateHeadControl"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.headControl"
+                   #neurologicalStateHeadControl="ngModel"
+                   [disabled]="_isSaving" maxlength="83" />
+          </div>
+        </div>
+      </div>
+      <!-- Перевертання на живіт: -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Перевертання на живіт:</span>
+            <input type="text" class="form-control" id="neurologicalStateTurningOnStomach"
+                   name="neurologicalStateTurningOnStomach"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.turningOnStomach"
+                   #neurologicalStateTurningOnStomach="ngModel"
+                   [disabled]="_isSaving" maxlength="77" />
+          </div>
+        </div>
+      </div>
+      <!-- Проба на тракцію: -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Проба на тракцію:</span>
+            <input type="text" class="form-control" id="neurologicalStateTestForTraction"
+                   name="neurologicalStateTestForTraction"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.testForTraction"
+                   #neurologicalStateTestForTraction="ngModel"
+                   [disabled]="_isSaving" maxlength="82" />
+          </div>
+        </div>
+      </div>
+      <!-- Сидіння: -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Сидіння:</span>
+            <input type="text" class="form-control" id="neurologicalStateSitting"
+                   name="neurologicalStateSitting"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.sitting"
+                   #neurologicalStateSitting="ngModel"
+                   [disabled]="_isSaving" maxlength="91" />
+          </div>
+        </div>
+      </div>
+      <!-- Повзання: -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Повзання:</span>
+            <input type="text" class="form-control" id="neurologicalStateCrawling"
+                   name="neurologicalStateCrawling"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.crawling"
+                   #neurologicalStateCrawling="ngModel"
+                   [disabled]="_isSaving" maxlength="90" />
+          </div>
+        </div>
+      </div>
+      <!-- Стояння: -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Стояння:</span>
+            <input type="text" class="form-control" id="neurologicalStateStanding"
+                   name="neurologicalStateStanding"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.standing"
+                   #neurologicalStateStanding="ngModel"
+                   [disabled]="_isSaving" maxlength="91" />
+          </div>
+        </div>
+      </div>
+      <!-- Опора: -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Опора:</span>
+            <input type="text" class="form-control" id="neurologicalStateBacking"
+                   name="neurologicalStateBacking"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.backing"
+                   #neurologicalStateBacking="ngModel"
+                   [disabled]="_isSaving" maxlength="93" />
+          </div>
+        </div>
+      </div>
+      <!-- Ходьба: -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Ходьба:</span>
+            <input type="text" class="form-control" id="neurologicalStateWalking"
+                   name="neurologicalStateWalking"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.walking"
+                   #neurologicalStateWalking="ngModel"
+                   [disabled]="_isSaving" maxlength="93" />
+          </div>
+        </div>
+      </div>
+      <!-- Гіперкінези: -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Гіперкінези:</span>
+            <input type="text" class="form-control" id="neurologicalStateHyperkinesis"
+                   name="neurologicalStateHyperkinesis"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.hyperkinesis"
+                   #neurologicalStateHyperkinesis="ngModel"
+                   [disabled]="_isSaving" maxlength="87" />
+          </div>
+        </div>
+      </div>
+      <!-- Епісиндром -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          Епісиндром:
+          <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                    id="neurologicalStateEpisyndrome"
+                    name="neurologicalStateEpisyndrome"
+                    [(ngModel)]="_neurologistsExamination.neurologicalState.episyndrome"
+                    #neurologicalStateEpisyndromeTextArea="ngModel"
+                    [disabled]="_isSaving" maxlength="286" rows=3></textarea>
+        </div>
+      </div>
+      <!-- Функції тазових органів -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <div class="input-group">
+            <span class="input-group-addon">Функції тазових органів</span>
+            <input type="text" class="form-control" id="neurologicalStateFunctionsOfPelvicOrgans"
+                   name="neurologicalStateFunctionsOfPelvicOrgans"
+                   [(ngModel)]="_neurologistsExamination.neurologicalState.functionsOfPelvicOrgans"
+                   #neurologicalStateFunctionsOfPelvicOrgans="ngModel"
+                   [disabled]="_isSaving" maxlength="76" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <!-- Діагноз -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <label for="complaints">Діагноз:</label>
+        <textarea class="form-control col-xs-12" style="min-width: 100%; max-width: 100%;"
+                  id="diagnosis"
+                  name="diagnosis"
+                  [(ngModel)]="_neurologistsExamination.diagnosis"
+                  #diagnosisTextArea="ngModel" [disabled]="_isSaving"
+                  maxlength="1477" rows=15></textarea>
+      </div>
+    </div>
+
+    <hr />
+    <!-- Saving progress bar and alert for saving errors -->
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <div class="progress" *ngIf="_isSaving">
+          <div class="progress-bar progress-bar-info progress-bar-striped active"
+               role="progressbar" aria-valuenow="0" aria-valuemin="0"
+               aria-valuemax="0" style="width:100%">
+            Збереження результату огляду...
+          </div>
+        </div>
+        <div *ngIf="_isErrorOnSaving" class="alert alert-danger col-xs-12">
+          {{_lastSavingErrorMessage}}
+        </div>
+      </div>
+    </div>
+    <!-- Save button -->
+    <div class="row">
+      <div class="form-group col-xs-11">
+        <button type="submit" class="btn btn-primary" [disabled]="_isSaving">
+          Зберегти
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <simple-notifications [options]="_notificationOptions"></simple-notifications>
+</div>

@@ -33,6 +33,8 @@ namespace MedicalDocManagment.DAL.Initializer
                                          .Without(childCard => childCard.PsychiatristsConclusion)
                                          .Without(childCard => childCard.PediatriciansExaminationId)
                                          .Without(childCard => childCard.PediatriciansExamination)
+                                         .Without(childCard => childCard.NeurologistsExaminationId)
+                                         .Without(childCard => childCard.NeurologistsExamination)
                                          .CreateMany(30);
 
             var ivanenkosCards = fixture.Build<ChildCard>()

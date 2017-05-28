@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MedicalDocManagement.BLL.DTO;
 using MedicalDocManagement.BLL.DTO.Main.PediatriciansExamination;
 using MedicalDocManagement.BLL.DTO.Main;
+using MedicalDocManagment.BLL.DTO.Main.NeurologistsExamination;
 
 namespace MedicalDocManagement.BLL.Services.Abstract
 {
@@ -27,5 +28,8 @@ namespace MedicalDocManagement.BLL.Services.Abstract
             PediatriciansExaminationDTO examination);
         ChildCardDTO GetChildCard(int childCardId);
         List<ParentDTO> GetChildsParents(int childCardId);
+        NeurologistsExaminationDTO GetNeurologistsExamination(int childCardId);
+        NeurologistsExaminationDTO SaveNeurologistsExamination(int childCardId,
+            NeurologistsExaminationDTO examination);
     }
 }

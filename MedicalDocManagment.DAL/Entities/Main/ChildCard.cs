@@ -1,4 +1,5 @@
-﻿using MedicalDocManagment.DAL.Entities.Main.PediatriciansExamination;
+﻿using MedicalDocManagment.DAL.Entities.Main.NeurologistsExamination;
+using MedicalDocManagment.DAL.Entities.Main.PediatriciansExamination;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -51,5 +52,10 @@ namespace MedicalDocManagment.DAL.Entities
 
         [ForeignKey("PediatriciansExaminationId")]
         public virtual PediatriciansExamination PediatriciansExamination { get; set; }
+
+        public int? NeurologistsExaminationId { get; set; }
+
+        [ForeignKey("NeurologistsExaminationId")]
+        public virtual NeurologistsExamination NeurologistsExamination { get; set; }
     }
 }

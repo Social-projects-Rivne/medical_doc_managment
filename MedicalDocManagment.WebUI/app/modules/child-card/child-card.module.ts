@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { MomentModule } from 'angular2-moment';
 
+import NeurologistsExaminationModule from './neurologists-examination.module';
 import PediatriciansExaminationModule from './pediatricians-examination.module';
 
 import ChildCardMainPageComponent from '../../components/childrens-card/child-card/main-page.component';
@@ -20,6 +21,7 @@ import ChildrenCardService from '../../services/children-card.service';
         FormsModule,
         HttpModule,
         MomentModule,
+        NeurologistsExaminationModule,
         PediatriciansExaminationModule
     ],
     declarations: [

@@ -17,6 +17,7 @@ using System.Net.Http;
 using System.Net;
 using MedicalDocManagment.WebUI.Models.Main.PediatriciansExamination;
 using MedicalDocManagment.WebUI.Controllers.CustomAttributes;
+using MedicalDocManagment.WebUI.Models.Main.NeurologistsExamination;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -313,6 +314,41 @@ namespace MedicalDocManagment.WebUI.Controllers
                 {
                     return Ok();
                 }
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
+
+        [NeurologistsOnlyAuthorization]
+        [HttpPut]
+        public IHttpActionResult SaveNeurologistsExamination(int childCardId,
+            [FromBody]NeurologistsExaminationVM examinationVM)
+        {
+            try
+            {
+                var examinationDTO = NeurologistsExaminationHelper.VMToDTO(examinationVM);
+                var resultDTO = _childCardsService.SaveNeurologistsExamination(childCardId,
+                    examinationDTO);
+                var resultVM = NeurologistsExaminationHelper.DTOToVM(resultDTO);
+                return Ok(resultVM);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IHttpActionResult GetNeurologistsExamination(int childCardId)
+        {
+            try
+            {
+                var resultDTO = _childCardsService.GetNeurologistsExamination(childCardId);
+                var resultVM = NeurologistsExaminationHelper.DTOToVM(resultDTO);
+                return Ok(resultVM);
             }
             catch (Exception exception)
             {

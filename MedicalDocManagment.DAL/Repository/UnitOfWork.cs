@@ -1,6 +1,8 @@
 ﻿using MedicalDocManagment.DAL.Manager;
 using MedicalDocManagment.DAL.Repository.Interfaces;
+using MedicalDocManagment.DAL.Repository.Interfaces.ChildCard;
 using MedicalDocManagment.DAL.Repository.Main;
+using MedicalDocManagment.DAL.Repository.Main.ChildCard;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Web;
@@ -24,6 +26,7 @@ namespace MedicalDocManagment.DAL.Repository
         private readonly Lazy<IImageRepository> _imageRepository;
         private readonly Lazy<UsersManager> _usersManager;
         private readonly Lazy<IPediatriciansExaminationsRepository> _pediatriciansExaminationsRepository;
+        private readonly Lazy<INeurologistsExaminationsRepository> _neurologistsExaminationsRepository;
         private readonly Lazy<RolesManager> _rolesManager;
 
         public UnitOfWork()
@@ -44,6 +47,8 @@ namespace MedicalDocManagment.DAL.Repository
                                                                     .GetUserManager<UsersManager>());
             _pediatriciansExaminationsRepository = new Lazy<IPediatriciansExaminationsRepository>
                 (() => new PediatriciansExaminationsRepository(_context));
+            _neurologistsExaminationsRepository = new Lazy<INeurologistsExaminationsRepository>
+                (() => new NeurologistsExaminationsRepository(_context));
             _rolesManager = new Lazy<RolesManager>(() => HttpContext.Current
                                                                     .GetOwinContext()
                                                                     .GetUserManager<RolesManager>());
@@ -58,6 +63,7 @@ namespace MedicalDocManagment.DAL.Repository
         public IParentRepository ParentRepository => _parentRepository.Value;
         public IParentChildCardRepository ParentChildCardRepository => _parentChildCardRepository.Value;
         public IPediatriciansExaminationsRepository PediatriciansExaminationsRepository => _pediatriciansExaminationsRepository.Value;
+        public INeurologistsExaminationsRepository NeurologistsExaminationsRepository => _neurologistsExaminationsRepository.Value;
         public UsersManager UsersManager => HttpContext.Current.GetOwinContext().GetUserManager<UsersManager>();
         public IImageRepository ImageRepository => _imageRepository.Value;
         public RolesManager RolesManager => _rolesManager.Value;

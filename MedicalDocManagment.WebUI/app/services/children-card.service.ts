@@ -14,6 +14,7 @@ import ChildrenCardsModel from '../models/children-cards.model';
 import ParentModel from '../models/child-card/parent.model';
 import ChildrenCardsPagedModel from '../models/children-cards-paged.model';
 import PediatriciansExaminationModel from "../models/child-card/pediatricians-examination/pediatricians-examination.model";
+import NeurologistsExaminationModel from "../models/child-card/neurologists-examination/examination.model";
 
 import { AuthenticationService } from "./authentication.service";
 
@@ -192,5 +193,28 @@ export default class ChildrensCardService {
                              return resp.json();
                          })
                          .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    saveNeurologistsExamination(childCardId: number,
+        neurologistsExamination: NeurologistsExaminationModel):
+        Observable<NeurologistsExaminationModel> {
+        let headers: Headers = this._headers;
+        let body: string = JSON.stringify(neurologistsExamination);
+        return this._http.put('/api/childcards/saveNeurologistsExamination?childCardId=' + childCardId,
+            body, { headers })
+            .map((resp: Response) => {
+                return new NeurologistsExaminationModel(resp.json());
+            })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    getNeurologistsExamination(childCardId: number): Observable<NeurologistsExaminationModel> {
+        let headers: Headers = this._headers;
+        return this._http.get('/api/childcards/getNeurologistsExamination?childCardId=' + childCardId,
+            { headers })
+            .map((resp: Response) => {
+                return new NeurologistsExaminationModel(resp.json());
+            })
+            .catch((error: any) => { return Observable.throw(error); });
     }
 }
