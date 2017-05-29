@@ -127,6 +127,11 @@ gulp.task('less', () => {
         .pipe(gulp.dest('./app/'));
 });
 
+gulp.task('copy-tiny-mce', () => {
+    gulp.src('**', { cwd: './node_modules/tinymce' })
+        .pipe(gulp.dest('./dist/lib/npmlibs/tinymce'));
+});
+
 gulp.task('angular2-masonry', () => {
     gulp.src('**', { cwd: './node_modules/angular2-masonry/' })
         .pipe(gulp.dest('./dist/lib/npmlibs/angular2-masonry/'));
@@ -136,5 +141,5 @@ gulp.task('angular2-masonry', () => {
 
 gulp.task('default', ['copy-js', 'copy-css', 'copy-ng2-pagination', 'copy-moment',
     'copy-bootstrap-datepicker', 'copy-angular2-moment', 'copy-angular2-text-mask',
-    'copy-text-mask-core', 'less', 'angular2-masonry']);
+    'copy-text-mask-core', 'less', 'copy-tiny-mce', 'angular2-masonry']);
 gulp.task('minify', ['copy-min-js', 'copy-min-css']);

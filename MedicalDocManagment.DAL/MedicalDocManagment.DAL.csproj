@@ -108,6 +108,7 @@
     <Compile Include="Entities\Main\PediatriciansExamination\PediatriciansExamination.cs" />
     <Compile Include="Entities\Main\PediatriciansExamination\PregnancyDetails.cs" />
     <Compile Include="Entities\Main\PediatriciansExamination\PsychomotorDevelopment.cs" />
+    <Compile Include="Entities\Main\Visit.cs" />
     <Compile Include="Entities\Position.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
@@ -153,17 +154,13 @@
     <Compile Include="Migrations\201705151252104_Improvement-component_for_adding_parent_to_user_card.Designer.cs">
       <DependentUpon>201705151252104_Improvement-component_for_adding_parent_to_user_card.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705161407205_Merge.cs" />
-    <Compile Include="Migrations\201705161407205_Merge.Designer.cs">
-      <DependentUpon>201705161407205_Merge.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705161614273_Merge1.cs" />
-    <Compile Include="Migrations\201705161614273_Merge1.Designer.cs">
-      <DependentUpon>201705161614273_Merge1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201705242005409_View_patient_data.cs" />
     <Compile Include="Migrations\201705242005409_View_patient_data.Designer.cs">
       <DependentUpon>201705242005409_View_patient_data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705270648406_Add_Visit_Table.cs" />
+    <Compile Include="Migrations\201705270648406_Add_Visit_Table.Designer.cs">
+      <DependentUpon>201705270648406_Add_Visit_Table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -173,6 +170,7 @@
     <Compile Include="Repository\Interfaces\IParentChildCardRepository.cs" />
     <Compile Include="Repository\Interfaces\IPediatriciansExaminationsRepository.cs" />
     <Compile Include="Repository\Interfaces\IParentRepository.cs" />
+    <Compile Include="Repository\Interfaces\IVisitRepository.cs" />
     <Compile Include="Repository\Main\BlockMkhRepository.cs" />
     <Compile Include="Repository\Main\ChildrenCardsRepository.cs" />
     <Compile Include="Repository\Main\ClassMkhRepository.cs" />
@@ -189,6 +187,7 @@
     <Compile Include="Repository\Main\ParentChildCardRepository.cs" />
     <Compile Include="Repository\Main\PediatriciansExaminationRepository.cs" />
     <Compile Include="Repository\Main\ParentRepository.cs" />
+    <Compile Include="Repository\Main\VisitRepository.cs" />
     <Compile Include="Repository\PositionRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
   </ItemGroup>
@@ -220,14 +219,11 @@
     <EmbeddedResource Include="Migrations\201705151252104_Improvement-component_for_adding_parent_to_user_card.resx">
       <DependentUpon>201705151252104_Improvement-component_for_adding_parent_to_user_card.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705161407205_Merge.resx">
-      <DependentUpon>201705161407205_Merge.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705161614273_Merge1.resx">
-      <DependentUpon>201705161614273_Merge1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705242005409_View_patient_data.resx">
       <DependentUpon>201705242005409_View_patient_data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705270648406_Add_Visit_Table.resx">
+      <DependentUpon>201705270648406_Add_Visit_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -34,6 +34,7 @@
             'angular2-text-mask': 'dist:lib/npmlibs/angular2-text-mask',
             'text-mask-core': 'dist:lib/npmlibs/text-mask-core',
             'angular2-image-upload': 'node_modules/angular2-image-upload',
+            'mydatepicker': 'npm:mydatepicker/bundles/mydatepicker.umd.min.js',
             'angular2-masonry': 'dist:lib/npmlibs/angular2-masonry',
             'masonry-layout': 'dist:lib/npmlibs/masonry-layout/masonry.pkgd.min.js'
         },

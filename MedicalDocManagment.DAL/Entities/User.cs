@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using MedicalDocManagment.DAL.Entities.Main;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,5 +22,7 @@ namespace MedicalDocManagment.DAL.Entities
         [ForeignKey("PositionId")]
         public virtual Position Position { get; set; }
         public virtual Image Image { get; set; }
+
+        public virtual ICollection<Visit> Visits { get; set; }
     }
 }
