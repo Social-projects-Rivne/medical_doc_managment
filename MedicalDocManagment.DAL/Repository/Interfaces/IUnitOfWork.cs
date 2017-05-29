@@ -22,6 +22,8 @@ namespace MedicalDocManagment.DAL.Repository.Interfaces
         IPediatriciansExaminationsRepository PediatriciansExaminationsRepository { get; }
         ITherapeuticProceduresRepository TherapeuticProceduresRepository { get; }
         IRehabilitationsRepository RehabilitationsRepository { get; }
+        IVisitsRepository VisitsRepository { get; }
+
         UsersManager UsersManager { get; }
 
         bool Save();

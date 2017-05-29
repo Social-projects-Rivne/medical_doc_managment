@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { MomentModule } from 'angular2-moment';
+import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
+import { MyDatePickerModule } from 'mydatepicker';
 
 import PediatriciansExaminationModule from './pediatricians-examination.module';
 import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
@@ -12,6 +14,10 @@ import ChildCardParentsListComponent from '../../components/childrens-card/child
 import ChildCardPsychiatristsConclusionFormComponent from '../../components/childrens-card/child-card/psychiatrists-conclusion-form.component';
 import ProceduresAddComponent from '../../components/childrens-card/child-card/therapeutic-procedures/procedures-add.component';
 import ProceduresListComponent from '../../components/childrens-card/child-card/therapeutic-procedures/procedures-list.component';
+import VisitComponent from '../../components/childrens-card/visit/add/visit.component';
+import VisitsListComponent from '../../components/childrens-card/visit/list/list-visits.component';
+import VisitMainPageComponent from '../../components/childrens-card/visit/main-page/visit-main-page.component';
+import TinyMceEditorComponent from "../../components/shared/tiny-mce-editor/tiny-mce-editor.component";
 
 import { AuthenticationService } from '../../services/authentication.service';
 import { AuthGuard } from '../../services/guards/auth.guard';
@@ -25,14 +31,20 @@ import ChildrenCardService from '../../services/children-card.service';
         MomentModule,
         PediatriciansExaminationModule,
         SimpleNotificationsModule,
-        PushNotificationsModule
+        PushNotificationsModule,
+        MyDatePickerModule 
     ],
     declarations: [
         ChildCardMainPageComponent,
+        ChildCardPsychiatristsConclusionFormComponent,
+        VisitComponent,
+        VisitsListComponent,
         ChildCardParentsListComponent,
         ChildCardPsychiatristsConclusionFormComponent,
         ProceduresAddComponent,
-        ProceduresListComponent
+        ProceduresListComponent,
+        VisitMainPageComponent,
+        TinyMceEditorComponent
     ],
     providers: [
         AuthenticationService,

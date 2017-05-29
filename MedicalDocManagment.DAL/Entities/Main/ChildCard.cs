@@ -52,6 +52,9 @@ namespace MedicalDocManagment.DAL.Entities
 
         [ForeignKey("PediatriciansExaminationId")]
         public virtual PediatriciansExamination PediatriciansExamination { get; set; }
+
         public virtual ICollection<Rehabilitation> Rehabilitations { get; set; }
+
+        public virtual ICollection<Visit> Visits { get; set; }
     }
 }
