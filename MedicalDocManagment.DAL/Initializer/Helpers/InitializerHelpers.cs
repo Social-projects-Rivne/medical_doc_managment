@@ -66,6 +66,7 @@ namespace MedicalDocManagment.DAL.Initializer
                                .Without(user => user.Position)
                                .Without(user => user.PositionId)
                                .Without(user => user.Image)
+                               .Without(user => user.Visits)
                                .CreateMany(10);
 
             var roleAdmin = new Role { Name = "admin" };

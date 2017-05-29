@@ -6,7 +6,7 @@ namespace MedicalDocManagment.DAL.Migrations
     public partial class Merge : DbMigration
     {
         public override void Up()
-        {            
+        { 
         }
         
         public override void Down()

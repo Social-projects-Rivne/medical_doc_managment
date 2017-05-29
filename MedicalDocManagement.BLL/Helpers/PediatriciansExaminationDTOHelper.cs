@@ -11,21 +11,21 @@ namespace MedicalDocManagement.BLL.Helpers
         static PediatriciansExaminationDTOHelper()
         {
             mapperConfiguration = new MapperConfiguration(
-                 configuration =>
-                 {
-                     configuration.CreateMap<BirthDetails, BirthDetailsDTO>();
-                     configuration.CreateMap<Header, HeaderDTO>();
-                     configuration.CreateMap<PregnancyDetails, PregnancyDetailsDTO>();
-                     configuration.CreateMap<PsychomotorDevelopment, PsychomotorDevelopmentDTO>();
-                     configuration.CreateMap<PediatriciansExamination, PediatriciansExaminationDTO>();
+                configuration =>
+                {
+                    configuration.CreateMap<BirthDetails, BirthDetailsDTO>();
+                    configuration.CreateMap<Header, HeaderDTO>();
+                    configuration.CreateMap<PregnancyDetails, PregnancyDetailsDTO>();
+                    configuration.CreateMap<PsychomotorDevelopment, PsychomotorDevelopmentDTO>();
+                    configuration.CreateMap<PediatriciansExamination, PediatriciansExaminationDTO>();
 
-                     configuration.CreateMap<BirthDetailsDTO, BirthDetails>();
-                     configuration.CreateMap<HeaderDTO, Header>();
-                     configuration.CreateMap<PregnancyDetailsDTO, PregnancyDetails>();
-                     configuration.CreateMap<PsychomotorDevelopmentDTO, PsychomotorDevelopment>();
-                     configuration.CreateMap<PediatriciansExaminationDTO, PediatriciansExamination>();
-                 }
-             );
+                    configuration.CreateMap<BirthDetailsDTO, BirthDetails>();
+                    configuration.CreateMap<HeaderDTO, Header>();
+                    configuration.CreateMap<PregnancyDetailsDTO, PregnancyDetails>();
+                    configuration.CreateMap<PsychomotorDevelopmentDTO, PsychomotorDevelopment>();
+                    configuration.CreateMap<PediatriciansExaminationDTO, PediatriciansExamination>();
+                }
+            );
         }
 
         public static PediatriciansExamination DTOToEntity(

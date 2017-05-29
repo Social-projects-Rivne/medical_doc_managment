@@ -7,13 +7,13 @@ namespace MedicalDocManagment.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class Merge : IMigrationMetadata
+    public sealed partial class Add_Visit_Table : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Merge));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_Visit_Table));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705161407205_Merge"; }
+            get { return "201705270648406_Add_Visit_Table"; }
         }
         
         string IMigrationMetadata.Source

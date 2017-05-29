@@ -188,6 +188,11 @@
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.css" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list.component.html" />
     <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.html" />
+    <Content Include="app\components\childrens-card\visit\add\visit.component.css" />
+    <Content Include="app\components\childrens-card\visit\add\visit.component.html" />
+    <Content Include="app\components\childrens-card\visit\list\list-visits.component.html" />
+    <Content Include="app\components\childrens-card\visit\main-page\visit-main-page.component.css" />
+    <Content Include="app\components\childrens-card\visit\main-page\visit-main-page.component.html" />
     <Content Include="app\components\header\main\header-main.component.html" />
     <Content Include="app\components\header\admin\header-admin.component.html" />
     <Content Include="app\components\home\main\home-main.component.html" />
@@ -257,10 +262,16 @@
     <TypeScriptCompile Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\main-page.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\visit\add\visit.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\visit\list\list-visits.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\visit\main-page\visit-main-page.component.ts" />
+    <TypeScriptCompile Include="app\components\shared\tiny-mce-editor\tiny-mce-editor.component.ts" />
+    <TypeScriptCompile Include="app\components\shared\tiny-mce-editor\tiny-mce-editor.translate.ts" />
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
     <TypeScriptCompile Include="app\models\child-card\neurologists-examination\neurological-state.model.ts" />
     <TypeScriptCompile Include="app\models\child-card\neurologists-examination\examination.model.ts" />
     <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
+    <TypeScriptCompile Include="app\models\visit.model.ts" />
     <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\child-birth.enum.ts" />
     <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\psychomotor-development.model.ts" />
     <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\header.model.ts" />
@@ -277,9 +288,11 @@
     <Compile Include="Controllers\CustomAttributes\NeurologistsOnlyAuthorization.cs" />
     <Compile Include="Controllers\CustomAttributes\PediatriciansOnlyAuthorization.cs" />
     <Compile Include="Controllers\CustomAttributes\PsychiatristsOnlyAuthorization.cs" />
+    <Compile Include="Controllers\VisitsController.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />
     <Compile Include="Helpers\ChildCardMapHelper.cs" />
     <Compile Include="Helpers\NeurologistsExaminationHelper.cs" />
+    <Compile Include="Helpers\CreateVisitHelper.cs" />
     <Compile Include="Helpers\PediatriciansExaminationHelper.cs" />
     <Compile Include="Helpers\PositionMapHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
@@ -288,6 +301,7 @@
     <Compile Include="Models\Main\ParentVM.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
+    <Compile Include="Models\Main\CreateVisitVM.cs" />
     <Compile Include="Models\Main\PediatriciansExamination\BirthDetailsVM.cs" />
     <Compile Include="Models\Main\PediatriciansExamination\PregnancyDetailsVM.cs" />
     <Compile Include="Models\Main\PediatriciansExamination\HeaderVM.cs" />
@@ -300,11 +314,14 @@
     <Compile Include="Models\Main\AddParentChildCardVM.cs" />
     <Compile Include="Models\Main\AddParentVM.cs" />
     <Compile Include="Models\Main\ViewPatientDataVM.cs" />
+    <Compile Include="Models\Main\ViewVisitVM.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
     <Compile Include="Models\Validators\Helpers\ViewPatientDataValidatorHelper.cs" />
     <Compile Include="Models\Validators\ViewPatientDataValidator.cs" />
     <Compile Include="Models\Validators\AddPatientValidator.cs" />
+    <Compile Include="Models\Validators\CreateVisitValidator.cs" />
     <Compile Include="Models\Validators\Helpers\AddPatientValidatorHelper.cs" />
+    <Compile Include="Models\Validators\Helpers\CreateVisitValidatorHelper.cs" />
     <Compile Include="Providers\AuthorizationServerProvider.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
@@ -322,6 +339,7 @@
     <Compile Include="Models\Validators\UserEditModelValidator.cs" />
     <Compile Include="Models\Validators\UserModelValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <TypeScriptCompile Include="app\services\visit.service.ts" />
     <TypeScriptCompile Include="app\shared\custom-datepicker\component.ts" />
   </ItemGroup>
   <ItemGroup>
