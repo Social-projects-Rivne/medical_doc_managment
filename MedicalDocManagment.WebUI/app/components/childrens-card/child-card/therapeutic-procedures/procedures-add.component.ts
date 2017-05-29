@@ -2,6 +2,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
+import { IMyDateModel, IMyDpOptions } from 'mydatepicker';
 
 import ChildCardModel from "../../../../models/child-card/child-card.model";
 import ChildrenCardService from '../../../../services/children-card.service';
@@ -21,6 +22,8 @@ import RehabilitationModel from "../../../../models/child-card/rehabilitation.mo
 })
 export default class ProceduresAddComponent implements OnInit {
     procedures: ProcedureModel[];
+    datePickerModel: IMyDateModel;
+    myDatePickerOptions: IMyDpOptions;
     rehabilitation = new RehabilitationModel();
     private _childCard: ChildCardModel;
     private _isSaving: boolean = false;
@@ -34,6 +37,7 @@ export default class ProceduresAddComponent implements OnInit {
 
     ngOnInit() {
         this.updateProceduresList();
+        this.myDatePickerOptions = this._sharedService.myDatePickerOptions;
     }
 
     updateProceduresList(): void {
@@ -41,10 +45,10 @@ export default class ProceduresAddComponent implements OnInit {
             .subscribe((data: ProcedureModel[]) => { console.log(data); this.procedures = data; });
     }
 
-    onDateChange(target: HTMLInputElement) {
-        let miliseconds: number = target.valueAsNumber;
-
-        this.rehabilitation.beginDate = this.getDateByMiliseconds(miliseconds);
+    updateDate() {
+        let dateWithTimezoneOffset = this.datePickerModel.jsdate;
+        let dateWithoutTimezoneOffset = new Date(dateWithTimezoneOffset.getTime() - (60000 * dateWithTimezoneOffset.getTimezoneOffset()));
+        this.rehabilitation.beginDate = dateWithoutTimezoneOffset;
     }
 
     private getDateByMiliseconds(miliseconds: number) {
@@ -53,6 +57,7 @@ export default class ProceduresAddComponent implements OnInit {
 
     submit(event: Event) {
         event.preventDefault();
+        this.updateDate();
         this._isSaving = true;
         this._childrenCardService.addRehabilitationIntoChildCard(this._childCard.id,
             this.rehabilitation)

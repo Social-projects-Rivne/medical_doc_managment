@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input } from '@angular/core';
+﻿import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
@@ -10,9 +10,10 @@ import RehabilitationModel from "../../../../models/child-card/rehabilitation.mo
 @Component({
     moduleId: module.id,
     selector: 'procedures-list',
-    templateUrl: 'procedures-list.component.html'
+    templateUrl: 'procedures-list.component.html',
+    styleUrls: ['procedures-list.component.css']
 })
-export default class ProceduresListComponent implements OnInit {
+export default class ProceduresListComponent {
 
     private _rehabilitations: RehabilitationModel[];
     private _childCard: ChildCardModel;
@@ -25,9 +26,6 @@ export default class ProceduresListComponent implements OnInit {
         this._childCard = _mainAppService.currentCard;
     }
 
-    ngOnInit() {
-        this._loadRehabilitations();
-    }
 
     private _loadRehabilitations(): void {
         if (this._childCardId != null) {

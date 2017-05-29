@@ -48,11 +48,8 @@
             <div class="form-group">
                 <label for="date" class="control-label col-xs-4">Дата призначення</label>
                 <div class="col-xs-4">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
-                        <input #date type="date" class="form-control" id="date" name="date"
-                               (change)="onDateChange($event.target)" [value]="rehabilitation.beginDate | date:'yyyy-MM-dd'" required />
-                    </div>
+                    <my-date-picker #date name="date" class="col-xs-12" id="date" [options]="myDatePickerOptions"
+                                    [(ngModel)]="datePickerModel" required></my-date-picker>
                 </div>
             </div>
         </div>

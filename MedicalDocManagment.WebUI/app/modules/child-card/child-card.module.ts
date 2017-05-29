@@ -7,7 +7,6 @@ import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-not
 import { MyDatePickerModule } from 'mydatepicker';
 
 import PediatriciansExaminationModule from './pediatricians-examination.module';
-import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
 
 import ChildCardMainPageComponent from '../../components/childrens-card/child-card/main-page.component';
 import ChildCardParentsListComponent from '../../components/childrens-card/child-card/parents/parents-list.component';

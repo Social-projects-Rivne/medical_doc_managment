@@ -178,6 +178,7 @@
     <Content Include="app\components\childrens-card\child-card\pediatricians-examination\form.component.html" />
     <Content Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.html" />
     <Content Include="app\components\childrens-card\child-card\main-page.component.html" />
+    <Content Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-list.component.css" />
     <Content Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-list.component.html" />
     <Content Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-add.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\add\children-card-add.component.html" />
