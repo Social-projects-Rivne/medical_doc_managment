@@ -326,6 +326,15 @@ namespace MedicalDocManagment.WebUI.Controllers
         public IHttpActionResult SaveNeurologistsExamination(int childCardId,
             [FromBody]NeurologistsExaminationVM examinationVM)
         {
+            if (examinationVM == null)
+            {
+                return BadRequest("No examination to save.");
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             try
             {
                 var examinationDTO = NeurologistsExaminationHelper.VMToDTO(examinationVM);

@@ -12,7 +12,8 @@ export default class NeurologistsExaminationModel {
     constructor(objectToCreateFrom?) {
         this.neurologicalState = new NeurologicalState();
 
-        this.id = this.complaints = this.anamnesis = 
+        this.id = 0;
+        this.complaints = this.anamnesis = 
             this.statokineticDevelopment = this.psychospeechDevelopment =
             this.diagnosis = null;
 

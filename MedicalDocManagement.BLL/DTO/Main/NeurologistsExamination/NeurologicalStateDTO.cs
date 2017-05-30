@@ -5,7 +5,7 @@
         public string Consciousness { get; set; }
         public string ReactionToOthers { get; set; }
         public string MeningealSymptoms { get; set; }
-        public string HeadCircumference { get; set; }
+        public float HeadCircumference { get; set; }
         public string HeadShape { get; set; }
         public string CranialNerves { get; set; }
         public string ReflexMotorArea { get; set; }

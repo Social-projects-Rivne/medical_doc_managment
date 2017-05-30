@@ -15,7 +15,8 @@
     </div>
   </div>
 
-  <form class="form-horizontal" *ngIf="!_isLoading" (submit)="_save()">
+  <form class="form-horizontal" *ngIf="!_isLoading" 
+        #neurologistsExaminationForm="ngForm" (submit)="_save()">
     <!-- ПІБ пацієнта, якого стосується форма -->
     <div class="row">
       <h4 class="text-center">
@@ -128,15 +129,26 @@
             <span class="input-group-addon">Голова: ОГ</span>
             <input type="text" class="form-control" id="neurologicalStateHeadCircumference"
                    name="neurologicalStateHeadCircumference"
-                   [(ngModel)]="_neurologistsExamination.neurologicalState.headCircumference" 
+                   [(ngModel)]="_neurologicalStateHeadCircumferenceValue" 
                    #neurologicalStateHeadCircumference="ngModel"
-                   [disabled]="_isSaving" maxlength="17" />
+                   #neurologicalStateHeadCircumferenceInput
+                   [disabled]="_isSaving"
+                   pattern="[1-9]\d(,\d)?"
+                   data-toggle="tooltip" data-placement="top"
+                   data-title="Може містити цифру та кому. Правильним вважається значення у проміжку від 10,0 до 99,9 з не більше ніж однією цифрою після коми. Наприклад: 42,4"/>
             <span class="input-group-addon">см, форма</span>
             <input type="text" class="form-control" id="neurologicalStateHeadShape"
                    name="neurologicalStateHeadShape"
                    [(ngModel)]="_neurologistsExamination.neurologicalState.headShape"
                    #neurologicalStateHeadShape="ngModel"
                    [disabled]="_isSaving" maxlength="46" />
+          </div>
+          <!-- Alert for head circumference -->
+          <div *ngIf="neurologicalStateHeadCircumference.touched && 
+               (!neurologicalStateHeadCircumference.value || 
+               neurologicalStateHeadCircumference.invalid)"
+               class="alert alert-danger col-xs-offset-1 col-xs-5">
+            Введіть правильне значення окружності голови.
           </div>
         </div>
       </div>
@@ -385,6 +397,15 @@
     </div>
 
     <hr />
+    <!-- Alert when there are missing values -->
+    <div class="row">
+      <div class="col-xs-4">
+        <div *ngIf="neurologistsExaminationForm.invalid"
+             class="alert alert-danger">
+          Для збереження введіть правильні значення.
+        </div>
+      </div>
+    </div>
     <!-- Saving progress bar and alert for saving errors -->
     <div class="row">
       <div class="form-group col-xs-12">
@@ -403,7 +424,8 @@
     <!-- Save button -->
     <div class="row">
       <div class="form-group col-xs-11">
-        <button type="submit" class="btn btn-primary" [disabled]="_isSaving">
+        <button type="submit" class="btn btn-primary" 
+                [disabled]="_isSaving || neurologistsExaminationForm.invalid">
           Зберегти
         </button>
       </div>

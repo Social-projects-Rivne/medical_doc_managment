@@ -1,5 +1,6 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
+declare var $;
 
 import ChildCardModel from "../../../../models/child-card/child-card.model";
 import NeurologistsExaminationModel from "../../../../models/child-card/neurologists-examination/examination.model";
@@ -14,6 +15,7 @@ import MainAppService from "../../../../services/main-app.service";
         NotificationsService
     ],
     selector: 'neurologists-examination-form',
+    styleUrls: ['form.component.css'],
     templateUrl: 'form.component.html'
 })
 export default class NeurologistsExaminationFormComponent {
@@ -74,6 +76,23 @@ export default class NeurologistsExaminationFormComponent {
                 this._lastLoadingErrorMessage = 'При отриманні результатів огляду \
                     виникла помилка: \r\n' + <any>error;
             });
+    }
+
+    @ViewChild('neurologicalStateHeadCircumferenceInput')
+    set _neurologicalStateHeadCircumferenceInput(elementRef: ElementRef) {
+        if (elementRef) {
+            $(elementRef.nativeElement).tooltip();
+        }
+    }
+
+    set _neurologicalStateHeadCircumferenceValue(value: string) {
+        this._neurologistsExamination.neurologicalState.headCircumference =
+            parseFloat(value.replace(',', '.'));
+    }
+
+    get _neurologicalStateHeadCircumferenceValue(): string {
+        let value = this._neurologistsExamination.neurologicalState.headCircumference;
+        return value ? value.toString().replace('.', ',') : '';
     }
 
     private _save():void {

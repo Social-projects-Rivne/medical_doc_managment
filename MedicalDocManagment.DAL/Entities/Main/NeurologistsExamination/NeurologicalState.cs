@@ -15,8 +15,9 @@ namespace MedicalDocManagment.DAL.Entities.Main.NeurologistsExamination
         [StringLength(78)]
         public string MeningealSymptoms { get; set; }
 
-        [StringLength(17)]
-        public string HeadCircumference { get; set; }
+        [Range(10, 100)]
+        [RegularExpression(@"[1-9]\d(\.\d)?")]
+        public float HeadCircumference { get; set; }
 
         [StringLength(46)]
         public string HeadShape { get; set; }

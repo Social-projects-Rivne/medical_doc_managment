@@ -2,7 +2,7 @@
     consciousness: string;
     reactionToOthers: string;
     meningealSymptoms: string;
-    headCircumference: string;
+    headCircumference: number;
     headShape: string;
     cranialNerves: string;
     reflexMotorArea: string;

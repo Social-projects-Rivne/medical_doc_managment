@@ -4,7 +4,6 @@ namespace MedicalDocManagment.WebUI.Models.Main.NeurologistsExamination
 {
     public class NeurologistsExaminationVM
     {
-        [Key]
         public int Id { get; set; }
 
         [StringLength(290)]
