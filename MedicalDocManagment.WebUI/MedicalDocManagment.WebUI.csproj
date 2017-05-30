@@ -293,7 +293,6 @@
     <Compile Include="Helpers\PositionMapHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\RehabilitationMapHelper.cs" />
-    <Compile Include="Helpers\ViewPatientDataHelper.cs" />
     <Compile Include="Models\Main\ParentVM.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
