@@ -6,7 +6,6 @@ import ChildCardModel from "../../../../models/child-card/child-card.model";
 import NeurologistsExaminationModel from "../../../../models/child-card/neurologists-examination/examination.model";
 
 import ChildrenCardService from '../../../../services/children-card.service';
-import MainAppService from "../../../../services/main-app.service";
 
 @Component({
     moduleId: module.id,
@@ -31,10 +30,10 @@ export default class NeurologistsExaminationFormComponent {
     private _notificationOptions: any;
     private _notificationService: NotificationsService;
 
-    constructor(childrenCardService: ChildrenCardService, mainAppService: MainAppService,
-        notificationService: NotificationsService, ){
+    constructor(childrenCardService: ChildrenCardService,
+        notificationService: NotificationsService, ) {
         this._childrenCardService = childrenCardService;
-        this._childCard = mainAppService.currentCard;
+        this._childCard = null;
         this._isErrorOnLoading = false;
         this._isErrorOnSaving = false;
         this._isLoading = true;
@@ -57,6 +56,10 @@ export default class NeurologistsExaminationFormComponent {
         };
         this._notificationService = notificationService;
 
+        route.params.subscribe(params => {
+            this._childCard = new ChildCardModel({ id: params['id'] });
+            this._loadChildCard(params['id']);
+        })
         this._loadExaminationFromServer();
     }
 

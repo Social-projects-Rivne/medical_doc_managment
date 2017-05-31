@@ -4,7 +4,6 @@ import ChildCardModel from "../../../../models/child-card/child-card.model";
 import NeurologistsExaminationModel from "../../../../models/child-card/neurologists-examination/examination.model";
 
 import ChildrenCardService from '../../../../services/children-card.service';
-import MainAppService from "../../../../services/main-app.service";
 
 @Component({
     moduleId: module.id,
@@ -19,9 +18,9 @@ export default class NeurologistsExaminationViewComponent {
     private _lastLoadingErrorMessage: string;
     private _neurologistsExamination: NeurologistsExaminationModel;
 
-    constructor(childrenCardService: ChildrenCardService, mainAppService: MainAppService) {
+    constructor(childrenCardService: ChildrenCardService) {
         this._childrenCardService = childrenCardService;
-        this._childCard = mainAppService.currentCard;
+        this._childCard = null;
         this._isErrorOnLoading = false;
         this._isLoading = true;
         this._lastLoadingErrorMessage = '';

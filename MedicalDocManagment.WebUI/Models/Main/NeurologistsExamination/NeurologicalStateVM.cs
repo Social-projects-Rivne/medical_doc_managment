@@ -14,7 +14,7 @@ namespace MedicalDocManagment.WebUI.Models.Main.NeurologistsExamination
         public string MeningealSymptoms { get; set; }
 
         [Range(10,100)]
-        [RegularExpression(@"[1-9]\d(\.\d)?")]
+        [RegularExpression(@"^[1-9]\d(?:(?:\.|,)\d)?$")]
         public float HeadCircumference { get; set; }
 
         [StringLength(46)]
