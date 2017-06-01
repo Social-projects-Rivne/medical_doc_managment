@@ -1,25 +1,27 @@
-﻿import { Component, ElementRef, ViewChild } from '@angular/core';
+﻿import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
+import { Subscription } from 'rxjs/Subscription';
 declare var $;
 
 import ChildCardModel from "../../../../models/child-card/child-card.model";
 import NeurologistsExaminationModel from "../../../../models/child-card/neurologists-examination/examination.model";
 
-import ChildrenCardService from '../../../../services/children-card.service';
+import ChildCardService from '../../../../services/child-card.service';
 
 @Component({
     moduleId: module.id,
     providers: [
-        ChildrenCardService,
+        ChildCardService,
         NotificationsService
     ],
     selector: 'neurologists-examination-form',
     styleUrls: ['form.component.css'],
     templateUrl: 'form.component.html'
 })
-export default class NeurologistsExaminationFormComponent {
+export default class NeurologistsExaminationFormComponent implements OnDestroy {
     private _childCard: ChildCardModel;
-    private _childrenCardService: ChildrenCardService;
+    private _childCardSubscription: Subscription;
+    private _childCardService: ChildCardService;
     private _isErrorOnLoading: boolean;
     private _isErrorOnSaving: boolean;
     private _isLoading: boolean;
@@ -30,10 +32,15 @@ export default class NeurologistsExaminationFormComponent {
     private _notificationOptions: any;
     private _notificationService: NotificationsService;
 
-    constructor(childrenCardService: ChildrenCardService,
+    constructor(childCardService: ChildCardService,
         notificationService: NotificationsService, ) {
-        this._childrenCardService = childrenCardService;
         this._childCard = null;
+        this._childCardService = childCardService;
+        this._childCardSubscription = this._childCardService.currentChildCardObservable
+            .subscribe((childCard: ChildCardModel) => {
+                this._childCard = childCard;
+                this._loadExaminationFromServer();
+            });
         this._isErrorOnLoading = false;
         this._isErrorOnSaving = false;
         this._isLoading = true;
@@ -55,12 +62,6 @@ export default class NeurologistsExaminationFormComponent {
             position: ['right', 'bottom']
         };
         this._notificationService = notificationService;
-
-        route.params.subscribe(params => {
-            this._childCard = new ChildCardModel({ id: params['id'] });
-            this._loadChildCard(params['id']);
-        })
-        this._loadExaminationFromServer();
     }
 
     private _loadExaminationFromServer(): void {
@@ -68,7 +69,7 @@ export default class NeurologistsExaminationFormComponent {
         this._isErrorOnLoading = false;
         this._lastLoadingErrorMessage = '';
 
-        this._childrenCardService.getNeurologistsExamination(this._childCard.id)
+        this._childCardService.getNeurologistsExamination(this._childCard.id)
             .subscribe((examination: NeurologistsExaminationModel) => {
                 this._neurologistsExamination = examination;
                 this._isLoading = false;
@@ -102,7 +103,9 @@ export default class NeurologistsExaminationFormComponent {
         this._lastSavingErrorMessage = '';
         this._isErrorOnSaving = false;
         this._isSaving = true;
-        this._childrenCardService.saveNeurologistsExamination(this._childCard.id,
+
+        this._neurologistsExamination.diagnosisId = this._neurologistsExamination.diagnosis.id;
+        this._childCardService.saveNeurologistsExamination(this._childCard.id,
             this._neurologistsExamination)
             .subscribe((savedExamination: NeurologistsExaminationModel) => {
                 this._notificationService.success("Успіх", "Огляд невролога успішно збережено");
@@ -117,5 +120,9 @@ export default class NeurologistsExaminationFormComponent {
                 this._lastSavingErrorMessage = 'При збереженні результатів огляду \
                     виникла помилка: \r\n' + <any>error;
             });
+    }
+
+    ngOnDestroy(): void {
+        this._childCardSubscription.unsubscribe();
     }
 }

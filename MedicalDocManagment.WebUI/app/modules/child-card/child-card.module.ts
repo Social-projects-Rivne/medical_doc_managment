@@ -19,7 +19,7 @@ import TinyMceEditorComponent from "../../components/shared/tiny-mce-editor/tiny
 
 import { AuthenticationService } from '../../services/authentication.service';
 import { AuthGuard } from '../../services/guards/auth.guard';
-import ChildrenCardService from '../../services/children-card.service';
+import ChildCardService from '../../services/child-card.service';
 
 @NgModule({
     imports: [
@@ -45,7 +45,7 @@ import ChildrenCardService from '../../services/children-card.service';
     providers: [
         AuthenticationService,
         AuthGuard,
-        ChildrenCardService
+        ChildCardService
     ]
 })
 export default class ChildCardModule {

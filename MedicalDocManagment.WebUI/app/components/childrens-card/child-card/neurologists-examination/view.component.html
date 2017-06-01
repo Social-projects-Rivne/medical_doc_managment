@@ -70,8 +70,9 @@
       </div>
       <!-- Data about head -->
       <div class="row">
-        Голова: ОГ <u>{{_neurologistsExamination.neurologicalState.headCircumference}}</u>
-        см, форма <u>{{_neurologistsExamination.neurologicalState.headShape}}</u>
+        Голова: 
+        ОГ <u>{{_neurologistsExamination.neurologicalState.headCircumference?.toLocaleString()}}</u> см,&nbsp;
+        форма <u>{{_neurologistsExamination.neurologicalState.headShape}}</u>
       </div>
       <!-- Черепно-мозкові нерви -->
       <div class="row">
@@ -155,8 +156,7 @@
     <br />
     <!-- Діагноз -->
     <div class="row">
-      <b>Діагноз:</b>
-      <pre>{{_neurologistsExamination.diagnosis}}</pre>
+      <b>Діагноз:</b><u>{{_neurologistsExamination.diagnosis?.name}}</u>
     </div>
 
     <hr />

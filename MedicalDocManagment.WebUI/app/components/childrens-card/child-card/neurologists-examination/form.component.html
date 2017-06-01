@@ -448,11 +448,18 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
-          <b>Діагноз:</b>
-          <textarea class="form-control" id="diagnosis" name="diagnosis"
-                    [(ngModel)]="_neurologistsExamination.diagnosis"
-                    #diagnosisTextArea="ngModel" [disabled]="_isSaving"
-                    maxlength="1477" rows=15></textarea>
+          <b>Діагноз:</b> 
+          <u>
+            {{_neurologistsExamination.diagnosis?.id}} {{_neurologistsExamination.diagnosis?.name}}
+          </u>
+          <br />
+          <diagnosis-select-modal [(diagnosis)]="_neurologistsExamination.diagnosis">
+          </diagnosis-select-modal>
+          <button type="button" class="btn btn-primary" [disabled]="_isSaving" 
+                  data-toggle="modal" data-target="#diagnosisSelectModal">
+            <span *ngIf="_neurologistsExamination.diagnosis">Змінити</span>
+            <span *ngIf="!_neurologistsExamination.diagnosis">Додати</span>
+          </button>
         </div>
       </div>
     </div>

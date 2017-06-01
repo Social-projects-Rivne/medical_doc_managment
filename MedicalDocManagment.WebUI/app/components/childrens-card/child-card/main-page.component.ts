@@ -2,9 +2,11 @@
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
-import ChildCardModel from "../../../models/child-card/child-card.model";
-import ChildrenCardService from '../../../services/children-card.service';
+import { AuthenticationService } from "../../../services/authentication.service";
+import ChildCardService from '../../../services/child-card.service';
 import MainAppService from "../../../services/main-app.service";
+
+import ChildCardModel from "../../../models/child-card/child-card.model";
 
 @Component({
     moduleId: module.id,
@@ -13,18 +15,18 @@ import MainAppService from "../../../services/main-app.service";
 })
 export default class MainPageComponent {
     private _childCard: ChildCardModel;
-    private _childrenCardService: ChildrenCardService;
+    private _childCardService: ChildCardService;
     private _currentUsersPositionName: string;
     private _isLoading: boolean;
     private _isErrorOnLoading: boolean;
     private _lastLoadingErrorMessage: string;
     private _mainAppService: MainAppService;
 
-    constructor(childrenCardService: ChildrenCardService, mainAppService: MainAppService,
-        route: ActivatedRoute) {
-        this._childrenCardService = childrenCardService;
+    constructor(childCardService: ChildCardService, mainAppService: MainAppService,
+        route: ActivatedRoute, authenticationService: AuthenticationService) {
+        this._childCardService = childCardService;
         this._childCard = mainAppService.currentCard;
-        this._currentUsersPositionName = this._childrenCardService.currentUsersPositionName;
+        this._currentUsersPositionName = authenticationService.position;
         this._isLoading = false;
         this._isErrorOnLoading = false;
         this._lastLoadingErrorMessage = '';
@@ -43,7 +45,7 @@ export default class MainPageComponent {
         this._isErrorOnLoading = false;
         this._lastLoadingErrorMessage = '';
 
-        this._childrenCardService.getChildCard(childCardId)
+        this._childCardService.getChildCard(childCardId)
             .subscribe((childCard: ChildCardModel) => {
                 this._childCard = this._mainAppService.currentCard = childCard;
                 this._isLoading = false;

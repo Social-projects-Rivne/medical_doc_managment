@@ -92,6 +92,23 @@ namespace MedicalDocManagement.BLL.Services
             return mapper.Map<List<BlockMkhDTO>>(relatedBlocksMkh);
         }
 
+        public List<BlockMkhDTO> GetRelatedBlocksMkhByNosology(string nosologyMkhId)
+        {
+            var nosologyMkh = _unitOfWork.NosologyMkhRepository
+                                       .Get(n => n.Id == nosologyMkhId)
+                                       .AsNoTracking()
+                                       .SingleOrDefault();
+
+            if (nosologyMkh != null)
+            {
+                return GetRelatedBlocksMkh(nosologyMkh.BlockMkh.ClassId);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public List<NosologyMkhDTO> GetRelatedNosologiesMkh(string blockMkhId)
         {
             var relatedNosologiesMkh = _unitOfWork.NosologyMkhRepository
@@ -102,6 +119,23 @@ namespace MedicalDocManagement.BLL.Services
             var mapper = config.CreateMapper();
 
             return mapper.Map<List<NosologyMkhDTO>>(relatedNosologiesMkh);
+        }
+
+        public List<NosologyMkhDTO> GetRelatedNosologiesMkhByDiagnsosis(string diagnosisMkhId)
+        {
+            var diagnosisMkH = _unitOfWork.DiagnosisMkhRepository
+                                       .Get(n => n.Id == diagnosisMkhId)
+                                       .AsNoTracking()
+                                       .SingleOrDefault();
+
+            if (diagnosisMkH != null)
+            {
+                return GetRelatedNosologiesMkh(diagnosisMkH.NosologyMkh.BlockId);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<DiagnosisMkhDTO> GetRelatedDiagnosesMkh(string nosologyMkhId)

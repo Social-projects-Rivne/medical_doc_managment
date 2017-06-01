@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using MedicalDocManagement.BLL.DTO;
 using MedicalDocManagment.BLL.DTO.Main.NeurologistsExamination;
+using MedicalDocManagment.WebUI.Models.Main;
 using MedicalDocManagment.WebUI.Models.Main.NeurologistsExamination;
 
 namespace MedicalDocManagment.WebUI.Helpers
@@ -14,9 +16,11 @@ namespace MedicalDocManagment.WebUI.Helpers
                  configuration =>
                  {
                      configuration.CreateMap<NeurologicalStateDTO, NeurologicalStateVM>();
+                     configuration.CreateMap<DiagnosisMkhDTO, DiagnosisMkhVM>();
                      configuration.CreateMap<NeurologistsExaminationDTO, NeurologistsExaminationVM>();
 
                      configuration.CreateMap<NeurologicalStateVM, NeurologicalStateDTO>();
+                     configuration.CreateMap<DiagnosisMkhVM, DiagnosisMkhDTO>();
                      configuration.CreateMap<NeurologistsExaminationVM, NeurologistsExaminationDTO>();
                  }
              );

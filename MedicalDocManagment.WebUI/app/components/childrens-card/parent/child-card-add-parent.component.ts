@@ -4,31 +4,31 @@ import { Observable } from 'rxjs/Observable';
 
 declare var jQuery: any;
 
-import ChildrenCardService from "../../../services/children-card.service";
+import ChildCardService from "../../../services/child-card.service";
 import ParentModel from "../../../models/child-card/parent.model";
 
 @Component({
     moduleId: module.id,
     selector: 'child-card-add-parent',
     templateUrl: 'child-card-add-parent.component.html',
-    providers: [ChildrenCardService],
+    providers: [ChildCardService],
     styleUrls: ['child-card-add-parent.component.css']
 })
 
 export default class ChildCardAddParentComponent {
     @Output() parentAddedEvent: EventEmitter<ParentModel>;
 
-    private _childrenCardService: ChildrenCardService;
+    private _childCardService: ChildCardService;
     private _isAdding: boolean;
     private _isErrorOnAdding: boolean;
     private _lastErrorMessage: string;
     private _parent: ParentModel;
     private _phoneMask: Array<string | RegExp>;
 
-    constructor(childrenCardService: ChildrenCardService) {
+    constructor(childCardService: ChildCardService) {
         this.parentAddedEvent = new EventEmitter<ParentModel>();
 
-        this._childrenCardService = childrenCardService;
+        this._childCardService = childCardService;
         this._isAdding = false;
         this._isErrorOnAdding = false;
         this._lastErrorMessage = null;
@@ -39,7 +39,7 @@ export default class ChildCardAddParentComponent {
     private _onSave(form: FormGroup): void {
         this._isAdding = true;
         this._isErrorOnAdding = false;
-        this._childrenCardService.addParent(this._parent)
+        this._childCardService.addParent(this._parent)
             .subscribe((result: any) => {
                 if (result) {
                     this._isAdding = false;

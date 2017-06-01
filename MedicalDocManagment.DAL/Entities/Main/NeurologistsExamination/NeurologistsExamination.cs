@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedicalDocManagment.DAL.Entities.Main.NeurologistsExamination
 {
@@ -21,7 +22,9 @@ namespace MedicalDocManagment.DAL.Entities.Main.NeurologistsExamination
 
         public NeurologicalState NeurologicalState { get; set; }
 
-        [StringLength(1477)]
-        public string Diagnosis { get; set; }
+        public string DiagnosisId { get; set; }
+
+        [ForeignKey("DiagnosisId")]
+        public virtual DiagnosisMkh Diagnosis { get; set; }
     }
 }

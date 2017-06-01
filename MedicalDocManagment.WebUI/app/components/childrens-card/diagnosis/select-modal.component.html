@@ -1,0 +1,117 @@
+﻿<div id="diagnosisSelectModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Вибір діагнозу згідно МКХ-10</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" #childCardAddParentForm="ngForm">
+          <!-- Клас -->
+          <div class="row">
+            <div class="col-xs-12">
+              <label class="control-label col-xs-2" for="classMKH">Клас</label>
+              <div class="input-group col-xs-10">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-th-list" aria-hidden="true">
+                  </i>
+                </span>
+                <select class="form-control" name="classMKH" id="classMKH"
+                        [(ngModel)]="_selectedClassId">
+                  <option [ngValue]="null">
+                    - Виберіть клас -
+                  </option>
+                  <option *ngFor="let class of _classesObservable | async" [ngValue]="class.id">
+                    {{class.id}} {{class.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- Блок -->
+          <div class="row" *ngIf="_selectedClassId">
+            <div class="col-xs-12">
+              <label class="control-label col-xs-2" for="blockMKH">Блок</label>
+              <div class="input-group col-xs-10">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-th-list" aria-hidden="true">
+                  </i>
+                </span>
+                <select class="form-control" name="blockMKH" id="blockMKH"
+                        [(ngModel)]="_selectedBlockId">
+                  <option [ngValue]="null">
+                    - Виберіть блок -
+                  </option>
+                  <option *ngFor="let block of _blocksObservable | async" [ngValue]="block.id">
+                    {{block.id}} {{block.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- Нозологія -->
+          <div class="row" *ngIf="_selectedBlockId">
+            <div class="col-xs-12">
+              <label class="control-label col-xs-2" for="nosologyMKH">Нозологія</label>
+              <div class="input-group col-xs-10">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-th-list" aria-hidden="true">
+                  </i>
+                </span>
+                <select class="form-control" name="nosologyMKH" id="nosologyMKH"
+                        [(ngModel)]="_selectedNosologyId">
+                  <option [ngValue]="null">
+                    - Виберіть нозологію -
+                  </option>
+                  <option *ngFor="let nosology of _nosologiesObservable | async" 
+                          [ngValue]="nosology.id">
+                    {{nosology.id}} {{nosology.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- Діагноз -->
+          <div class="row" *ngIf="_selectedNosologyId">
+            <div class="col-xs-12">
+              <label class="control-label col-xs-2" for="diagnosisMKH">Діагноз</label>
+              <div class="input-group col-xs-10">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-th-list" aria-hidden="true">
+                  </i>
+                </span>
+                <select class="form-control" name="diagnosisMKH" id="diagnosisMKH"
+                        [(ngModel)]="_selectedDiagnosisId">
+                  <option [ngValue]="null">
+                    - Виберіть діагноз -
+                  </option>
+                  <option *ngFor="let diagnosis of _diagnoses" 
+                          [ngValue]="diagnosis.id">
+                    {{diagnosis.id}} {{diagnosis.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <!-- Buttons "Choose" and "Cancel"-->
+          <div class="row">
+            <div class="col-xs-3 col-xs-offset-6">
+              <button type="button" class="btn btn-primary" data-dismiss="modal"
+                      (click)="_selectDiagnosis(childCardAddParentForm)"
+                      [disabled]="!_selectedDiagnosisId">
+                Вибрати
+              </button>
+            </div>
+            <div class="col-xs-3">
+              <button type="button" class="btn btn-default" data-dismiss="modal"
+                      (click)="_loadMkhTreeForDiagnosis()">
+                Відміна
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

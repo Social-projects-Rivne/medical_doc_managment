@@ -1,4 +1,6 @@
-﻿namespace MedicalDocManagment.BLL.DTO.Main.NeurologistsExamination
+﻿using MedicalDocManagement.BLL.DTO;
+
+namespace MedicalDocManagment.BLL.DTO.Main.NeurologistsExamination
 {
     public class NeurologistsExaminationDTO
     {
@@ -8,6 +10,7 @@
         public string StatokineticDevelopment { get; set; }
         public string PsychospeechDevelopment { get; set; }
         public NeurologicalStateDTO NeurologicalState { get; set; }
-        public string Diagnosis { get; set; }
+        public string DiagnosisId { get; set; }
+        public DiagnosisMkhDTO Diagnosis { get; set; }
     }
 }

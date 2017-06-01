@@ -20,7 +20,8 @@ namespace MedicalDocManagment.WebUI.Models.Main.NeurologistsExamination
 
         public NeurologicalStateVM NeurologicalState { get; set; }
 
-        [StringLength(1477)]
-        public string Diagnosis { get; set; }
+        public string DiagnosisId { get; set; }
+
+        public DiagnosisMkhVM Diagnosis { get; set; }
     }
 }

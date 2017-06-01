@@ -188,6 +188,8 @@
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.css" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list.component.html" />
+    <Content Include="app\components\childrens-card\diagnosis\select-modal.component.css" />
+    <Content Include="app\components\childrens-card\diagnosis\select-modal.component.html" />
     <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.html" />
     <Content Include="app\components\childrens-card\visit\add\visit.component.css" />
     <Content Include="app\components\childrens-card\visit\add\visit.component.html" />
@@ -263,6 +265,7 @@
     <TypeScriptCompile Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\main-page.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\diagnosis\select-modal.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\add\visit.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\list\list-visits.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\main-page\visit-main-page.component.ts" />
@@ -285,6 +288,8 @@
     <TypeScriptCompile Include="app\modules\child-card\pediatricians-examination.module.ts" />
     <TypeScriptCompile Include="app\modules\child-card\child-card.module.ts" />
     <TypeScriptCompile Include="app\modules\users-search.module.ts" />
+    <Compile Include="Controllers\ChildCardController.cs" />
+    <Compile Include="Controllers\MkhController.cs" />
     <Compile Include="Controllers\ChildCardsController.cs" />
     <Compile Include="Controllers\CustomAttributes\NeurologistsOnlyAuthorization.cs" />
     <Compile Include="Controllers\CustomAttributes\PediatriciansOnlyAuthorization.cs" />
@@ -340,6 +345,7 @@
     <Compile Include="Models\Validators\UserEditModelValidator.cs" />
     <Compile Include="Models\Validators\UserModelValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <TypeScriptCompile Include="app\services\child-card.service.ts" />
     <TypeScriptCompile Include="app\services\visit.service.ts" />
     <TypeScriptCompile Include="app\shared\custom-datepicker\component.ts" />
   </ItemGroup>
