@@ -160,25 +160,13 @@
     <Compile Include="Migrations\201705242005409_View_patient_data.Designer.cs">
       <DependentUpon>201705242005409_View_patient_data.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705291443155_Fill_form_neurologist.cs" />
-    <Compile Include="Migrations\201705291443155_Fill_form_neurologist.Designer.cs">
-      <DependentUpon>201705291443155_Fill_form_neurologist.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201705270648406_Add_Visit_Table.cs" />
     <Compile Include="Migrations\201705270648406_Add_Visit_Table.Designer.cs">
       <DependentUpon>201705270648406_Add_Visit_Table.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705291650234_Merge.cs" />
-    <Compile Include="Migrations\201705291650234_Merge.Designer.cs">
-      <DependentUpon>201705291650234_Merge.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705300854274_Fill_form_neurologist1.cs" />
-    <Compile Include="Migrations\201705300854274_Fill_form_neurologist1.Designer.cs">
-      <DependentUpon>201705300854274_Fill_form_neurologist1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706011354094_Fill_form_neurologist2.cs" />
-    <Compile Include="Migrations\201706011354094_Fill_form_neurologist2.Designer.cs">
-      <DependentUpon>201706011354094_Fill_form_neurologist2.cs</DependentUpon>
+    <Compile Include="Migrations\201706021606473_Feature_form_neurologist.cs" />
+    <Compile Include="Migrations\201706021606473_Feature_form_neurologist.Designer.cs">
+      <DependentUpon>201706021606473_Feature_form_neurologist.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -242,20 +230,11 @@
     <EmbeddedResource Include="Migrations\201705242005409_View_patient_data.resx">
       <DependentUpon>201705242005409_View_patient_data.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705291443155_Fill_form_neurologist.resx">
-      <DependentUpon>201705291443155_Fill_form_neurologist.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705270648406_Add_Visit_Table.resx">
       <DependentUpon>201705270648406_Add_Visit_Table.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705291650234_Merge.resx">
-      <DependentUpon>201705291650234_Merge.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705300854274_Fill_form_neurologist1.resx">
-      <DependentUpon>201705300854274_Fill_form_neurologist1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706011354094_Fill_form_neurologist2.resx">
-      <DependentUpon>201706011354094_Fill_form_neurologist2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706021606473_Feature_form_neurologist.resx">
+      <DependentUpon>201706021606473_Feature_form_neurologist.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

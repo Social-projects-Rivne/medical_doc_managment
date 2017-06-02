@@ -224,6 +224,7 @@ namespace MedicalDocManagment.WebUI.Controllers
         }
         #endregion
 
+        #region Diagnoses
         //[Authorize]
         [HttpGet]
         public IHttpActionResult GetDiagnosesMkh(string nosologyMkhId)
@@ -236,5 +237,26 @@ namespace MedicalDocManagment.WebUI.Controllers
 
             return Ok(diagnosesMkhVM);
         }
+
+        [Authorize]
+        [HttpGet]
+        public IHttpActionResult GetDiagnosisMkh(string diagnosisMkhId)
+        {
+            var diagnosisMkhDTO = _mkhService.GetDiagnosisMkh(diagnosisMkhId);
+
+            if (diagnosisMkhDTO != null)
+            {
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<DiagnosisMkhDTO, DiagnosisMkhVM>());
+                var mapper = config.CreateMapper();
+                var diagnosisMkhVM = mapper.Map<DiagnosisMkhVM>(diagnosisMkhDTO);
+
+                return Ok(diagnosisMkhVM);
+            }
+            else
+            {
+                return Ok();
+            }
+        }
+        #endregion
     }
 }

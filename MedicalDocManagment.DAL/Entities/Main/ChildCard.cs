@@ -55,11 +55,11 @@ namespace MedicalDocManagment.DAL.Entities
         [ForeignKey("PediatriciansExaminationId")]
         public virtual PediatriciansExamination PediatriciansExamination { get; set; }
 
+        public virtual ICollection<Visit> Visits { get; set; }
+
         public int? NeurologistsExaminationId { get; set; }
 
         [ForeignKey("NeurologistsExaminationId")]
         public virtual NeurologistsExamination NeurologistsExamination { get; set; }
-
-	public virtual ICollection<Visit> Visits { get; set; }
     }
 }

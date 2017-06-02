@@ -11,6 +11,5 @@ namespace MedicalDocManagment.BLL.DTO.Main.NeurologistsExamination
         public string PsychospeechDevelopment { get; set; }
         public NeurologicalStateDTO NeurologicalState { get; set; }
         public string DiagnosisId { get; set; }
-        public DiagnosisMkhDTO Diagnosis { get; set; }
     }
 }

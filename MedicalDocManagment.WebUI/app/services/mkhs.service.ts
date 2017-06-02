@@ -119,6 +119,13 @@ export default class MkhsService {
             .catch((error: any) => { return Observable.throw(error); });
     }
 
+    getDiagnosis(diagnosisId: string): Observable<DiagnosisModel> {
+        let headers = this._headers;
+        return this._http.get(this._apiUrl + '/getdiagnosismkh?diagnosisMkhId=' + diagnosisId, { headers })
+            .map((resp: Response) => { return new DiagnosisModel(resp.json()); })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
+
     private _handleError(error: any) {
         console.error('Caught error', error);
         return Observable.throw(error.message || error);

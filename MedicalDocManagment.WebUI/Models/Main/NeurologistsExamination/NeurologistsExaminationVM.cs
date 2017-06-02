@@ -21,7 +21,5 @@ namespace MedicalDocManagment.WebUI.Models.Main.NeurologistsExamination
         public NeurologicalStateVM NeurologicalState { get; set; }
 
         public string DiagnosisId { get; set; }
-
-        public DiagnosisMkhVM Diagnosis { get; set; }
     }
 }

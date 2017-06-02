@@ -1,9 +1,8 @@
 namespace MedicalDocManagment.DAL.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Fill_form_neurologist : DbMigration
+    public partial class Feature_form_neurologist : DbMigration
     {
         public override void Up()
         {
@@ -19,7 +18,7 @@ namespace MedicalDocManagment.DAL.Migrations
                         NeurologicalState_Consciousness = c.String(maxLength: 89),
                         NeurologicalState_ReactionToOthers = c.String(maxLength: 79),
                         NeurologicalState_MeningealSymptoms = c.String(maxLength: 78),
-                        NeurologicalState_HeadCircumference = c.String(maxLength: 17),
+                        NeurologicalState_HeadCircumference = c.Single(),
                         NeurologicalState_HeadShape = c.String(maxLength: 46),
                         NeurologicalState_CranialNerves = c.String(maxLength: 276),
                         NeurologicalState_ReflexMotorArea = c.String(maxLength: 74),
@@ -39,9 +38,11 @@ namespace MedicalDocManagment.DAL.Migrations
                         NeurologicalState_Hyperkinesis = c.String(maxLength: 87),
                         NeurologicalState_Episyndrome = c.String(maxLength: 286),
                         NeurologicalState_FunctionsOfPelvicOrgans = c.String(maxLength: 76),
-                        Diagnosis = c.String(maxLength: 1477),
+                        DiagnosisId = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.DiagnosesMkh", t => t.DiagnosisId)
+                .Index(t => t.DiagnosisId);
             
             AddColumn("dbo.ChildrenCards", "NeurologistsExaminationId", c => c.Int());
             CreateIndex("dbo.ChildrenCards", "NeurologistsExaminationId");
@@ -51,6 +52,8 @@ namespace MedicalDocManagment.DAL.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.ChildrenCards", "NeurologistsExaminationId", "dbo.NeurologistsExaminations");
+            DropForeignKey("dbo.NeurologistsExaminations", "DiagnosisId", "dbo.DiagnosesMkh");
+            DropIndex("dbo.NeurologistsExaminations", new[] { "DiagnosisId" });
             DropIndex("dbo.ChildrenCards", new[] { "NeurologistsExaminationId" });
             DropColumn("dbo.ChildrenCards", "NeurologistsExaminationId");
             DropTable("dbo.NeurologistsExaminations");

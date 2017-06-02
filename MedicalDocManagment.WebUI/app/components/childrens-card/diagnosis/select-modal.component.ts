@@ -1,4 +1,6 @@
-﻿import { Component, EventEmitter, Input, Output } from '@angular/core';
+﻿import {
+    Component, ElementRef, EventEmitter, Input, NgZone, Output, ViewChild
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 declare var $;
@@ -22,86 +24,204 @@ import NosologiesModel from "../../../models/nosologies.model";
     styleUrls: ['select-modal.component.css']
 
 })
-export default class DiagnosisSelectModalComponent {
-    @Output() diagnosisChange: EventEmitter<DiagnosisModel>;
+export default class DiagnosisSelectModalComponent{
+    @Output() diagnosisIdChange: EventEmitter<string>;
 
-    private _blocksObservable: Observable<BlocksModel>;
-    private _classesObservable: Observable<ClassesModel>;
+    private _blocks: BlocksModel;
+    private _blocksLoading: boolean;
+    private _classes: ClassesModel;
+    private _classesLoading: boolean;
     private _diagnoses: DiagnosesModel;
-    private _lastErrorMessage: string;
+    private _diagnosesLoading: boolean;
+    private _diagnosisLoading: boolean;
     private _mkhsService: MkhsService;
-    private _modalResultDiagnosis: DiagnosisModel;
-    private _nosologiesObservable: Observable<NosologiesModel>;
+    private _ngZone: NgZone;
+    private _resultDiagnosisId: string;
+    private _nosologies: NosologiesModel;
+    private _nosologiesLoading: boolean;
     private _selectedBlockIdValue: string;
     private _selectedClassIdValue: string;
     private _selectedDiagnosisIdValue: string;
     private _selectedNosologyIdValue: string;
 
-    constructor(mkhsService: MkhsService) {
-        this.diagnosisChange = new EventEmitter<DiagnosisModel>();
+    constructor(mkhsService: MkhsService, ngZone: NgZone) {
+        this.diagnosisIdChange = new EventEmitter<string>();
 
-        this._blocksObservable = this._lastErrorMessage =
-            this._modalResultDiagnosis = this._nosologiesObservable =
-            this._selectedBlockIdValue = this._selectedClassIdValue =
+        this._blocks = this._classes = this._diagnoses = this._nosologies = [];
+
+        this._blocksLoading = this._classesLoading = this._diagnosesLoading =
+            this._diagnosisLoading = this._nosologiesLoading = false;
+
+        this._ngZone = ngZone;
+
+        this._resultDiagnosisId = this._selectedBlockIdValue = this._selectedClassIdValue =
             this._selectedDiagnosisIdValue = this._selectedNosologyIdValue = null;
 
-        this._diagnoses = [];
-
-        this._classesObservable = mkhsService.getClasses();
         this._mkhsService = mkhsService;
     }
 
     @Input()
-    get diagnosis(): DiagnosisModel {
-        return this._modalResultDiagnosis;
+    get diagnosisId(): string {
+        return this._resultDiagnosisId;
     }
-    set diagnosis(value: DiagnosisModel) {
-        this._modalResultDiagnosis = value;
-        this._loadMkhTreeForDiagnosis();
-        this.diagnosisChange.emit(value);
+    set diagnosisId(value: string) {
+        this._resultDiagnosisId = value;
+        this._loadMkhTreeForDiagnosis(this._resultDiagnosisId);
+
+        this.diagnosisIdChange.emit(value);
     }
 
-    _loadMkhTreeForDiagnosis(): void {
-        if (this._modalResultDiagnosis) {
-            var classSubscription = this._mkhsService.getClassByDiagnosisId(
-                this._modalResultDiagnosis.id)
-                .subscribe((classModel: ClassModel) => {
-                    this._selectedClassId = classModel.id;
-                    classSubscription.unsubscribe();
+    _diagnosisSelected(): void {
+        this.diagnosisId = this._selectedDiagnosisId;
+    }
 
-                    var blockSubscription = this._mkhsService.getBlockByDiagnosisId(
-                        this._modalResultDiagnosis.id)
-                        .subscribe((block: BlockModel) => {
-                            this._selectedBlockId = block.id;
-                            blockSubscription.unsubscribe();
+    @ViewChild('diagnosisSelectModal')
+    set _diagnosisSelectModal(elementRef: ElementRef) {
+        $(elementRef.nativeElement).on('hide.bs.modal', () => {
+            this._ngZone.run(() => {
+                if (this._selectedDiagnosisId != this.diagnosisId) {
+                    this._loadMkhTreeForDiagnosis(this.diagnosisId);
+                }
+            })
+        });
+    }
 
-                            var nosologySubscription = this._mkhsService.getNosologyByDiagnosisId(
-                                this._modalResultDiagnosis.id)
-                                .subscribe((nosology: NosologyModel) => {
-                                    this._selectedNosologyId = nosology.id;
-                                    this._selectedDiagnosisId = this._modalResultDiagnosis.id;
-                                    nosologySubscription.unsubscribe();
+    _loadClasses(afterLoad: () => void = () => { }): void {
+        this._classesLoading = true;
+        this._classes = [];
+        var subscription = this._mkhsService.getClasses()
+            .subscribe(
+            (classes: ClassesModel) => {
+                this._classes = this._classes.concat(classes);
+            },
+            (error) => { },
+            () => {
+                this._classesLoading = false;
+                afterLoad();
+                subscription.unsubscribe();
+            })
+    }
+
+    _loadBlocksForClass(classId: string, afterLoad: () => void = () => { }): void {
+        this._blocks = [];
+        if (classId) {
+            this._blocksLoading = true;
+            var subscription = this._mkhsService.getBlocksByClassId(classId)
+                .subscribe(
+                (blocks: BlocksModel) => {
+                    this._blocks = this._blocks.concat(blocks);
+                },
+                (error) => { },
+                () => {
+                    this._blocksLoading = false;
+                    afterLoad();
+                    subscription.unsubscribe();
+                })
+        }
+        else {
+            afterLoad();
+        }
+    }
+
+    _loadDiagnosesForNosology(nosologyId: string, afterLoad: () => void = () => { }): void {
+        this._diagnoses = [];
+        if (nosologyId) {
+            this._diagnosesLoading = true;
+            var subscription = this._mkhsService.getDiagnosesByNosologyId(nosologyId)
+                .subscribe(
+                (diagnoses: DiagnosesModel) => {
+                    this._diagnoses = this._diagnoses.concat(diagnoses);
+                },
+                () => { },
+                () => {
+                    this._diagnosesLoading = false;
+                    afterLoad();
+                    subscription.unsubscribe();
+                }
+                );
+        }
+        else {
+            afterLoad();
+        }
+    }
+
+    _loadNosologiesForBlock(blockId: string, afterLoad: () => void = () => { }): void {
+        this._nosologies = [];
+        if (blockId) {
+            this._nosologiesLoading = true;
+            var subscription = this._mkhsService.getNosologiesByBlockId(blockId)
+                .subscribe(
+                (nosologies: NosologiesModel) => {
+                    this._nosologies = this._nosologies.concat(nosologies);
+                },
+                (error) => { },
+                () => {
+                    this._nosologiesLoading = false;
+                    afterLoad();
+                    subscription.unsubscribe;
+                })
+        }
+        else {
+            afterLoad();
+        }
+    }
+
+    _loadMkhTreeForDiagnosis(diagnosisId: string): void {
+        if (diagnosisId) {
+            if (this._selectedDiagnosisId != diagnosisId) {
+                this._diagnosisLoading = true;
+                this._loadClasses(() => {
+                    this._selectClassForDiagnosis(diagnosisId, () => {
+                        this._loadBlocksForClass(this._selectedClassId, () => {
+                            this._selectBlockForDiagnosis(diagnosisId, () => {
+                                this._loadNosologiesForBlock(this._selectedBlockId, () => {
+                                    this._selectNosologyForDiagnosis(diagnosisId, () => {
+                                        this._loadDiagnosesForNosology(this._selectedNosologyId, () => {
+                                            this._selectedDiagnosisId = diagnosisId;
+                                            this._diagnosisLoading = false;
+                                        })
+                                    })
                                 })
+                            })
                         })
+                    })
                 });
+            }
         }
         else {
-            this._blocksObservable = this._nosologiesObservable =
-                this._selectedBlockIdValue = this._selectedClassIdValue =
+            this._loadClasses();
+            this._blocks = this._diagnoses = this._nosologies = [];
+            this._selectedBlockIdValue = this._selectedClassIdValue =
                 this._selectedDiagnosisIdValue = this._selectedNosologyIdValue = null;
-
-            this._diagnoses = [];
         }
     }
 
-    _selectDiagnosis(form: FormGroup): void {
-        if (this._selectedDiagnosisId)
-        {
-            this.diagnosisChange.emit(this._diagnoses.find(x => x.id == this._selectedDiagnosisId));
-        }
-        else {
-            this.diagnosisChange.emit(null);
-        }
+    _selectBlockForDiagnosis(diagnosisId: string,
+        afterSelect: () => void = () => { }): void {
+        var blockSubscription = this._mkhsService.getBlockByDiagnosisId(
+            diagnosisId)
+            .subscribe((block: BlockModel) => {
+                this._selectedBlockIdValue = block.id;
+            },
+            (error) => { },
+            () => {
+                afterSelect();
+                blockSubscription.unsubscribe();
+            })
+    }
+
+    _selectClassForDiagnosis(diagnosisId: string,
+        afterSelect: () => void = () => { }): void {
+        var classSubscription = this._mkhsService.getClassByDiagnosisId(
+            diagnosisId)
+            .subscribe((classModel: ClassModel) => {
+                this._selectedClassIdValue = classModel.id;
+            },
+            (error) => { },
+            () => {
+                    afterSelect();
+                    classSubscription.unsubscribe();
+                });
     }
 
     get _selectedBlockId(): string {
@@ -110,13 +230,13 @@ export default class DiagnosisSelectModalComponent {
     set _selectedBlockId(newValue: string) {
         if (this._selectedBlockIdValue != newValue) {
             this._selectedBlockIdValue = newValue;
-            this._selectedNosologyId = null;
-            if (newValue) {
-                this._nosologiesObservable = this._mkhsService.getNosologiesByBlockId(newValue);
-            }
-            else {
-                this._nosologiesObservable = Observable.of(null);
-            }
+
+            this._loadNosologiesForBlock(newValue, () => {                
+                if (!this._nosologies.find(x => x.id == this._selectedNosologyId)) {
+                    this._selectedNosologyId = null;
+                }
+            });
+            this._diagnoses = [];
         }
     }
 
@@ -126,13 +246,13 @@ export default class DiagnosisSelectModalComponent {
     set _selectedClassId(newValue: string) {
         if (this._selectedClassIdValue != newValue) {
             this._selectedClassIdValue = newValue;
-            this._selectedBlockId = null;
-            if (newValue) {
-                this._blocksObservable = this._mkhsService.getBlocksByClassId(newValue);
-            }
-            else {
-                this._blocksObservable = Observable.of(null);
-            }
+
+            this._loadBlocksForClass(newValue, () => {
+                if (!this._blocks.find(x => x.id == this._selectedBlockId)) {
+                    this._selectedBlockId = null;
+                }
+            });
+            this._nosologies = this._diagnoses = [];
         }
     }
 
@@ -151,21 +271,26 @@ export default class DiagnosisSelectModalComponent {
     set _selectedNosologyId(newValue: string) {
         if (this._selectedNosologyIdValue != newValue) {
             this._selectedNosologyIdValue = newValue;
-            this._selectedDiagnosisId = null;
-            if (newValue) {
-                this._diagnoses = [];
-                var subscription = this._mkhsService.getDiagnosesByNosologyId(newValue)
-                    .subscribe(
-                        (diagnoses: DiagnosesModel) => {
-                            this._diagnoses = this._diagnoses.concat(diagnoses);
-                        },
-                        () => { },
-                        () => { subscription.unsubscribe(); }
-                    );
-            }
-            else {
-                this._diagnoses = [];
-            }
+
+            this._loadDiagnosesForNosology(newValue, () => {
+                if (!this._diagnoses.find(x => x.id == this._selectedDiagnosisId)) {
+                    this._selectedDiagnosisId = null;
+                }
+            });
         }
+    }
+
+    _selectNosologyForDiagnosis(diagnosisId: string,
+        afterSelect: () => void = () => { }): void {
+        var nosologySubscription = this._mkhsService.getNosologyByDiagnosisId(
+            diagnosisId)
+            .subscribe((nosology: NosologyModel) => {
+                this._selectedNosologyIdValue = nosology.id;
+            },
+            (error) => { },
+            () => {
+                afterSelect();
+                nosologySubscription.unsubscribe();
+            })
     }
 }

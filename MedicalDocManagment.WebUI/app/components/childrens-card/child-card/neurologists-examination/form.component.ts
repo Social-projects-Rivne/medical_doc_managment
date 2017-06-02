@@ -25,6 +25,7 @@ export default class NeurologistsExaminationFormComponent implements OnDestroy {
     private _isErrorOnLoading: boolean;
     private _isErrorOnSaving: boolean;
     private _isLoading: boolean;
+    private _isLoadingDiagnosis: boolean;
     private _isSaving: boolean;
     private _lastLoadingErrorMessage: string;
     private _lastSavingErrorMessage: string;
@@ -33,7 +34,7 @@ export default class NeurologistsExaminationFormComponent implements OnDestroy {
     private _notificationService: NotificationsService;
 
     constructor(childCardService: ChildCardService,
-        notificationService: NotificationsService, ) {
+        notificationService: NotificationsService) {
         this._childCard = null;
         this._childCardService = childCardService;
         this._childCardSubscription = this._childCardService.currentChildCardObservable
@@ -41,10 +42,10 @@ export default class NeurologistsExaminationFormComponent implements OnDestroy {
                 this._childCard = childCard;
                 this._loadExaminationFromServer();
             });
-        this._isErrorOnLoading = false;
-        this._isErrorOnSaving = false;
+        this._isErrorOnLoading = this._isErrorOnSaving = false;
         this._isLoading = true;
         this._isSaving = false;
+        this._isLoadingDiagnosis = false;
         this._lastLoadingErrorMessage = '';
         this._lastSavingErrorMessage = '';
         this._neurologistsExamination = new NeurologistsExaminationModel();
@@ -104,7 +105,6 @@ export default class NeurologistsExaminationFormComponent implements OnDestroy {
         this._isErrorOnSaving = false;
         this._isSaving = true;
 
-        this._neurologistsExamination.diagnosisId = this._neurologistsExamination.diagnosis.id;
         this._childCardService.saveNeurologistsExamination(this._childCard.id,
             this._neurologistsExamination)
             .subscribe((savedExamination: NeurologistsExaminationModel) => {

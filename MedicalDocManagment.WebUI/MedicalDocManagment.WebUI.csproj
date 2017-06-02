@@ -265,6 +265,8 @@
     <TypeScriptCompile Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\main-page.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.ts" />
+    <Content Include="app\components\childrens-card\diagnosis\text.component.html" />
+    <TypeScriptCompile Include="app\components\childrens-card\diagnosis\text.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\diagnosis\select-modal.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\add\visit.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\list\list-visits.component.ts" />

@@ -156,7 +156,8 @@
     <br />
     <!-- Діагноз -->
     <div class="row">
-      <b>Діагноз:</b><u>{{_neurologistsExamination.diagnosis?.name}}</u>
+      <b>Діагноз:</b>
+      <diagnosis-text [diagnosisId]="_neurologistsExamination.diagnosisId"></diagnosis-text>
     </div>
 
     <hr />

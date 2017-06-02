@@ -6,6 +6,7 @@ import { MomentModule } from 'angular2-moment';
 import { NotificationsService, SimpleNotificationsModule } from 'angular2-notifications';
 
 import DiagnosisSelectModalComponent from '../../components/childrens-card/diagnosis/select-modal.component';
+import DiagnosisTextComponent from '../../components/childrens-card/diagnosis/text.component';
 import NeurologistsExaminationComponent from '../../components/childrens-card/child-card/neurologists-examination/component';
 import NeurologistsExaminationFormComponent from '../../components/childrens-card/child-card/neurologists-examination/form.component';
 import NeurologistsExaminationViewComponent from '../../components/childrens-card/child-card/neurologists-examination/view.component';
@@ -25,6 +26,7 @@ import MkhsService from "../../services/mkhs.service";
     ],
     declarations: [
         DiagnosisSelectModalComponent,
+        DiagnosisTextComponent,
         NeurologistsExaminationComponent,
         NeurologistsExaminationFormComponent,
         NeurologistsExaminationViewComponent

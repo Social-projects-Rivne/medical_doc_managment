@@ -98,9 +98,9 @@ namespace MedicalDocManagement.BLL.Services
         public BlockMkhDTO GetRelatedBlockMkhByDiagnosis(string diagnosisId)
         {
             var diagnosis = _unitOfWork.DiagnosisMkhRepository
-                                      .Get(x => x.Id == diagnosisId)
-                                      .AsNoTracking()
-                                      .SingleOrDefault();
+                                       .Get(x => x.Id == diagnosisId)
+                                       .AsNoTracking()
+                                       .SingleOrDefault();
 
             var config = new MapperConfiguration(cfg => cfg.CreateMap<BlockMkh, BlockMkhDTO>());
             var mapper = config.CreateMapper();
@@ -134,10 +134,10 @@ namespace MedicalDocManagement.BLL.Services
         public List<BlockMkhDTO> GetRelatedBlocksMkhByNosology(string nosologyMkhId)
         {
             var nosologyMkh = _unitOfWork.NosologyMkhRepository
-                                       .Get(n => n.Id == nosologyMkhId)
-                                       .AsNoTracking()
-                                       .SingleOrDefault();
-
+                                         .Get(n => n.Id == nosologyMkhId)
+                                         .AsNoTracking()
+                                         .SingleOrDefault();
+             
             return nosologyMkh != null ? GetRelatedBlocksMkh(nosologyMkh.BlockMkh.ClassId) : null;
         }
         #endregion
@@ -158,10 +158,10 @@ namespace MedicalDocManagement.BLL.Services
         public List<NosologyMkhDTO> GetRelatedNosologiesMkhByDiagnosis(string diagnosisMkhId)
         {
             var diagnosisMkh = _unitOfWork.DiagnosisMkhRepository
-                                       .Get(n => n.Id == diagnosisMkhId)
-                                       .AsNoTracking()
-                                       .SingleOrDefault();
-
+                                          .Get(n => n.Id == diagnosisMkhId)
+                                          .AsNoTracking()
+                                          .SingleOrDefault();
+              
             return diagnosisMkh != null ? GetRelatedNosologiesMkh(diagnosisMkh.NosologyMkh.BlockId) :
                 null;
         }
@@ -169,10 +169,10 @@ namespace MedicalDocManagement.BLL.Services
         public NosologyMkhDTO GetRelatedNosologyMkhByDiagnosis(string diagnosisMkhId)
         {
             var diagnosisMkh = _unitOfWork.DiagnosisMkhRepository
-                                       .Get(n => n.Id == diagnosisMkhId)
-                                       .AsNoTracking()
-                                       .SingleOrDefault();
-
+                                          .Get(n => n.Id == diagnosisMkhId)
+                                          .AsNoTracking()
+                                          .SingleOrDefault();
+              
             var config = new MapperConfiguration(cfg => cfg.CreateMap<NosologyMkh, NosologyMkhDTO>());
             var mapper = config.CreateMapper();
 
@@ -180,6 +180,27 @@ namespace MedicalDocManagement.BLL.Services
                 null;
         }
         #endregion
+
+        #region Diagnoses
+        public DiagnosisMkhDTO GetDiagnosisMkh(string diagnosisMkhId)
+        {
+            var diagnosisMkh = _unitOfWork.DiagnosisMkhRepository
+                                          .Get(x => x.Id == diagnosisMkhId)
+                                          .AsNoTracking()
+                                          .SingleOrDefault();
+
+            if (diagnosisMkh != null)
+            {
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<DiagnosisMkh, DiagnosisMkhDTO>());
+                var mapper = config.CreateMapper();
+
+                return mapper.Map<DiagnosisMkhDTO>(diagnosisMkh);
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public List<DiagnosisMkhDTO> GetRelatedDiagnosesMkh(string nosologyMkhId)
         {
@@ -192,5 +213,6 @@ namespace MedicalDocManagement.BLL.Services
 
             return mapper.Map<List<DiagnosisMkhDTO>>(relatedNosologiesMkh);
         }
+        #endregion
     }
 }

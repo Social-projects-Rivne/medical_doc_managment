@@ -21,6 +21,7 @@ namespace MedicalDocManagement.BLL.Services.Abstract
         List<NosologyMkhDTO> GetRelatedNosologiesMkhByDiagnosis(string diagnosisMkhId);
         NosologyMkhDTO GetRelatedNosologyMkhByDiagnosis(string diagnosisMkhId);
 
+        DiagnosisMkhDTO GetDiagnosisMkh(string diagnosisMkhId);
         List<DiagnosisMkhDTO> GetRelatedDiagnosesMkh(string nosologyMkhId);
     }
 }
