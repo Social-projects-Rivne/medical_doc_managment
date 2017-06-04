@@ -266,19 +266,18 @@ namespace MedicalDocManagment.WebUI.Controllers
 
         [Authorize]
         [HttpPut]
-        public IHttpActionResult AddRehabilitationIntoChildCard(int childCardId,
+        public HttpResponseMessage AddRehabilitationIntoChildCard(int childCardId,
            [FromBody]RehabilitationVM rehabilitationVM)
         {
             try
             {
                 var rehabilitationDTO = RehabilitationMapHelper.VMToDTO(rehabilitationVM);
-                _childCardsService.AddRehabilitationIntoChildCard(childCardId,
-                    rehabilitationDTO);
-                return Ok();
+                _childCardsService.AddRehabilitationIntoChildCard(childCardId, rehabilitationDTO);
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception exception)
             {
-                return InternalServerError(exception);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception);
             }
         }
 
