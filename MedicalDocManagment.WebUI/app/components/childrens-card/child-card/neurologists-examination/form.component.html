@@ -172,8 +172,8 @@
           <!-- Alert for head circumference -->
           <div class="col-xs-4 no-horizontal-padding">
             <div *ngIf="neurologicalStateHeadCircumference.touched &&
-               (neurologicalStateHeadCircumference.value ||
-               neurologicalStateHeadCircumference.invalid)"
+               neurologicalStateHeadCircumference.value &&
+               neurologicalStateHeadCircumference.invalid"
                  id="neurologicalStateHeadCircumferenceAlert"
                  class="alert alert-danger hyphens">
               Введіть правильне значення окружності голови.

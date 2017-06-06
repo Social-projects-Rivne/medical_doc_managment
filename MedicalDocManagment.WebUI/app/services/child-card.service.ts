@@ -10,7 +10,6 @@ import { AuthenticationService } from "./authentication.service";
 
 import ChildCardModel from "../models/child-card/child-card.model";
 import NeurologistsExaminationModel from "../models/child-card/neurologists-examination/examination.model";
-import ParentModel from '../models/child-card/parent.model';
 import PediatriciansExaminationModel from "../models/child-card/pediatricians-examination/pediatricians-examination.model";
 
 @Injectable()
@@ -56,18 +55,24 @@ export default class ChildCardService {
         this._http = http;
     }
 
-    /**
-     * Method sends to server request for adding new parent.
-     * @param {ParentModel} parent Contains data about parent to add
-     * @return {Observable<ParentModel>} Model, which contains added data of parent.
-     */
-    addParent(parent: ParentModel): Observable<ParentModel> {
-        let body: string = JSON.stringify(parent);
+    addChildrenCard(childCard: ChildCardModel): Observable<ChildCardModel> {
         let headers = this._headers;
-        return this._http.post(this._apiUrl + 'addparent', body, { headers: headers })
-            .map((resp: Response) => {
-                return Observable.of(new ParentModel(resp.json()));
-            })
+        let sendObj = {
+            lastName: childCard.lastName,
+            firstName: childCard.firstName,
+            secondName: childCard.secondName,
+            date: childCard.date,
+            checkin: childCard.checkIn,
+            checkout: childCard.checkOut,
+            address: childCard.address,
+            diagnosisCode: childCard.diagnosis.id,
+            prescription: childCard.prescription,
+            directedBy: childCard.directedBy,
+        };
+        let body = JSON.stringify(sendObj);
+
+        return this._http.post(this._apiUrl + '/addpatient', body, { headers })
+            .map((resp: Response) => new ChildCardModel(resp.json()))
             .catch((error: any) => { return Observable.throw(error); });
     }
 
