@@ -2,7 +2,7 @@
 import { NgForm } from '@angular/forms';
 
 import MainAppService from "../../../../services/main-app.service";
-import ChildrenCardService from '../../../../services/children-card.service';
+import ChildCardService from '../../../../services/child-card.service';
 import SharedService from '../../../../services/shared.service';
 import VisitService from '../../../../services/visit.service';
 
@@ -28,7 +28,7 @@ export default class VisitMainPageComponent {
 
     constructor(private _visitService: VisitService,
                 private _sharedService: SharedService,
-                private _childrenCardService: ChildrenCardService,
+                private _childCardService: ChildCardService,
                 private _mainAppService: MainAppService) {
         this.visits = [];
 
@@ -54,7 +54,7 @@ export default class VisitMainPageComponent {
     }
 
     loadPatient(patientId: number) {
-        this._childrenCardService.getChildCard(patientId)
+        this._childCardService.getChildCard(patientId)
                                  .subscribe(
                                      (patient: ChildCardModel) => {
                                          this.patient = this._mainAppService.currentCard = patient;

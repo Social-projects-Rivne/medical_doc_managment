@@ -15,6 +15,8 @@ using MedicalDocManagment.DAL.Repository.Interfaces;
 using MedicalDocManagement.BLL.DTO.Main.PediatriciansExamination;
 using MedicalDocManagment.DAL.Entities.Main.PediatriciansExamination;
 using MedicalDocManagement.BLL.DTO.Main;
+using MedicalDocManagment.BLL.DTO.Main.NeurologistsExamination;
+using MedicalDocManagment.DAL.Entities.Main.NeurologistsExamination;
 
 namespace MedicalDocManagement.BLL.Services
 {
@@ -90,6 +92,23 @@ namespace MedicalDocManagement.BLL.Services
             return mapper.Map<List<BlockMkhDTO>>(relatedBlocksMkh);
         }
 
+        public List<BlockMkhDTO> GetRelatedBlocksMkhByNosology(string nosologyMkhId)
+        {
+            var nosologyMkh = _unitOfWork.NosologyMkhRepository
+                                       .Get(n => n.Id == nosologyMkhId)
+                                       .AsNoTracking()
+                                       .SingleOrDefault();
+
+            if (nosologyMkh != null)
+            {
+                return GetRelatedBlocksMkh(nosologyMkh.BlockMkh.ClassId);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public List<NosologyMkhDTO> GetRelatedNosologiesMkh(string blockMkhId)
         {
             var relatedNosologiesMkh = _unitOfWork.NosologyMkhRepository
@@ -100,6 +119,23 @@ namespace MedicalDocManagement.BLL.Services
             var mapper = config.CreateMapper();
 
             return mapper.Map<List<NosologyMkhDTO>>(relatedNosologiesMkh);
+        }
+
+        public List<NosologyMkhDTO> GetRelatedNosologiesMkhByDiagnsosis(string diagnosisMkhId)
+        {
+            var diagnosisMkH = _unitOfWork.DiagnosisMkhRepository
+                                       .Get(n => n.Id == diagnosisMkhId)
+                                       .AsNoTracking()
+                                       .SingleOrDefault();
+
+            if (diagnosisMkH != null)
+            {
+                return GetRelatedNosologiesMkh(diagnosisMkH.NosologyMkh.BlockId);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<DiagnosisMkhDTO> GetRelatedDiagnosesMkh(string nosologyMkhId)
@@ -263,6 +299,40 @@ namespace MedicalDocManagement.BLL.Services
             }
 
             return ChildCardDTOHelper.EntitiesToDTOs(parents);
+        }
+
+        public NeurologistsExaminationDTO GetNeurologistsExamination(int childCardId)
+        {
+            var childCard = _unitOfWork.ChildrenCardsRepository
+                                       .Get(card => card.Id == childCardId)
+                                       .AsNoTracking()
+                                       .Single();
+
+            return NeurologistsExaminationDTOHelper.EntityToDTO(childCard.NeurologistsExamination);
+        }
+
+        public NeurologistsExaminationDTO SaveNeurologistsExamination(int childCardId,
+            NeurologistsExaminationDTO examinationDTO)
+        {
+            var childCard = _unitOfWork.ChildrenCardsRepository
+                                       .Get(card => card.Id == childCardId)
+                                       .Single();
+            NeurologistsExamination examination = NeurologistsExaminationDTOHelper.DTOToEntity(examinationDTO);
+            if (childCard.NeurologistsExaminationId == null)
+            {
+                _unitOfWork.NeurologistsExaminationsRepository.Add(examination);
+                _unitOfWork.Save();
+                childCard.NeurologistsExaminationId = examination.Id;
+                _unitOfWork.ChildrenCardsRepository.Update(childCard);
+            }
+            else
+            {
+                examination.Id = childCard.NeurologistsExaminationId.Value;
+                _unitOfWork.NeurologistsExaminationsRepository.Update(examination);
+            }
+            _unitOfWork.Save();
+
+            return NeurologistsExaminationDTOHelper.EntityToDTO(examination);
         }
     }
 }

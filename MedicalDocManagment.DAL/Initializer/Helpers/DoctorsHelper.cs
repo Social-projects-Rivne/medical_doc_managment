@@ -32,13 +32,22 @@ namespace MedicalDocManagment.DAL.Initializer.Helpers
                 },
                 new User
                 {
-                    UserName = "speech-therapist",
+                    UserName = "speechTherapist",
                     Email = "speech_therapist@mail.com",
                     LastName = "Петренко",
                     FirstName = "Леонід",
                     SecondName = "Іванович",
                     PasswordHash = passwordHash,
                     Position = new Position { Name = "логопед" },
+                    IsActive = true,
+                    Image = new Image { ImageUrl = "/Files/no-image.png" }
+                },
+                new User
+                {
+                    UserName = "neurologist",
+                    Email = "neurologist@mail.com",
+                    PasswordHash = passwordHash,
+                    Position = new Position { Name = "невролог" },
                     IsActive = true,
                     Image = new Image { ImageUrl = "/Files/no-image.png" }
                 }

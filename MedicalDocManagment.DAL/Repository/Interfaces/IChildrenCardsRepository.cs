@@ -1,8 +1,6 @@
-﻿using MedicalDocManagment.DAL.Entities;
-
-namespace MedicalDocManagment.DAL.Repository.Interfaces
+﻿namespace MedicalDocManagment.DAL.Repository.Interfaces
 {
-    public interface IChildrenCardsRepository : IGenericRepository<ChildCard>
+    public interface IChildrenCardsRepository : IGenericRepository<Entities.ChildCard>
     {
     }
 }

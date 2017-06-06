@@ -1,0 +1,31 @@
+﻿<i unselectable="on">
+  (
+  <span class="interactable"
+        [class.selected]="_level == LevelOfFormationEnum.High"
+        [class.not-selected]="_level != LevelOfFormationEnum.High && 
+          _level != LevelOfFormationEnum.Unknown"
+        (click)="_levelValueClick(LevelOfFormationEnum.High)"
+        onmouseover="this.classList.add('active')"
+        onmouseout="this.classList.remove('active')">
+    високий
+  </span>,
+  <span class="interactable"
+        [class.selected]="_level == LevelOfFormationEnum.Medium"
+        [class.not-selected]="_level != LevelOfFormationEnum.Medium && 
+          _level != LevelOfFormationEnum.Unknown"
+        (click)="_levelValueClick(LevelOfFormationEnum.Medium)"
+        onmouseover="this.classList.add('active')"
+        onmouseout="this.classList.remove('active')">
+    середній
+  </span>,
+  <span class="interactable"
+        [class.selected]="_level == LevelOfFormationEnum.Low"
+        [class.not-selected]="_level != LevelOfFormationEnum.Low && 
+          _level != LevelOfFormationEnum.Unknown"
+        (click)="_levelValueClick(LevelOfFormationEnum.Low)"
+        onmouseover="this.classList.add('active')"
+        onmouseout="this.classList.remove('active')">
+    низький
+  </span>
+  )
+</i>
