@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 import { MomentModule } from 'angular2-moment';
 import { NotificationsService, SimpleNotificationsModule } from 'angular2-notifications';
 
+import CustomDatepickerModule from "../custom-datepicker.module";
+
 import LevelOfFormationComponent from '../../components/childrens-card/child-card/speech-therapists-examination/level-of-formation.component';
 import SpeechTherapistsExaminationComponent from '../../components/childrens-card/child-card/speech-therapists-examination/component';
 import SpeechTherapistsExaminationFormComponent from '../../components/childrens-card/child-card/speech-therapists-examination/form.component';
@@ -20,7 +22,8 @@ import ChildrenCardService from '../../services/children-card.service';
         FormsModule,
         HttpModule,
         MomentModule,
-        SimpleNotificationsModule
+        SimpleNotificationsModule,
+        CustomDatepickerModule
     ],
     declarations: [
         LevelOfFormationComponent,

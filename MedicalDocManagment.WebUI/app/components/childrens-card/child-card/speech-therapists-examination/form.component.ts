@@ -22,6 +22,7 @@ export default class SpeechTherapistsExaminationFormComponent implements OnDestr
     private _childCard: ChildCardModel;
     private _childCardSubscription: Subscription;
     private _childCardService: ChildCardService;
+    private _dateFormat: Object;
     private _examination: SpeechTherapistsExaminationModel;
     private _isErrorOnLoading: boolean;
     private _isErrorOnSaving: boolean;
@@ -42,6 +43,22 @@ export default class SpeechTherapistsExaminationFormComponent implements OnDestr
                 this._childCard = childCard;
                 this._loadExaminationFromServer();
             });
+        this._dateFormat = {
+            toDisplay: (date: Date, format, language) => {
+                let str = date.format('"dd" MM yyyyр.');
+                console.log('toDisplay: (date: Date, format, language)');
+                console.log(date);
+                console.log(str);
+                return str;
+            },
+            toValue: (date, format, language) => {
+                let obj = new Date(date);
+                console.log('toValue: (date: string, format, language)');
+                console.log(date);
+                console.log(obj);
+                return obj;
+            },
+        }
         this._examination = new SpeechTherapistsExaminationModel();
         this._isErrorOnLoading = this._isErrorOnSaving = false;
         this._isLoading = true;
