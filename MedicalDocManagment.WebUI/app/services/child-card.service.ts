@@ -157,6 +157,7 @@ export default class ChildCardService {
     saveSpeechTherapistsExamination(childCardId: number, examination: SpeechTherapistsExaminationModel):
         Observable<SpeechTherapistsExaminationModel> {
         let headers: Headers = this._headers;
+        examination.doctorsId = this._authenticationService.id;
         let body: string = JSON.stringify(examination);
         return this._http.put(this._apiUrl + 'saveSpeechTherapistsExamination?childCardId=' + childCardId,
             body, { headers })

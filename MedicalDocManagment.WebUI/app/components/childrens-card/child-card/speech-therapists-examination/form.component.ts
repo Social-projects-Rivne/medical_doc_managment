@@ -1,18 +1,22 @@
 ﻿import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
 import { Subscription } from 'rxjs/Subscription';
-declare var $;
+import * as moment from 'moment';
+
+declare var $: any;
 
 import ChildCardModel from "../../../../models/child-card/child-card.model";
 import SpeechTherapistsExaminationModel from "../../../../models/child-card/speech-therapists-examination/examination.model";
 
 import ChildCardService from '../../../../services/child-card.service';
+import SharedService from '../../../../services/shared.service';
 
 @Component({
     moduleId: module.id,
     providers: [
         ChildCardService,
-        NotificationsService
+        NotificationsService,
+        SharedService
     ],
     selector: 'speech-therapists-examination-form',
     styleUrls: ['form.component.css'],
@@ -35,7 +39,8 @@ export default class SpeechTherapistsExaminationFormComponent implements OnDestr
     private _notificationService: NotificationsService;
 
     constructor(childCardService: ChildCardService,
-        notificationService: NotificationsService) {
+        notificationService: NotificationsService,
+        sharedService: SharedService) {
         this._childCard = null;
         this._childCardService = childCardService;
         this._childCardSubscription = this._childCardService.currentChildCardObservable
@@ -43,19 +48,28 @@ export default class SpeechTherapistsExaminationFormComponent implements OnDestr
                 this._childCard = childCard;
                 this._loadExaminationFromServer();
             });
+        moment.updateLocale('uk', {
+            longDateFormat: {
+                LT: 'HH:mm',
+                LTS: 'HH:mm:ss',
+                L: 'DD.MM.YYYY',
+                LL: '"DD" MMMM YYYYр.',
+                LLL: 'D MMMM YYYY р., HH:mm',
+                LLLL: 'dddd, D MMMM YYYY р., HH:mm'
+            },
+            months: {
+                'format': 'січня_лютого_березня_квітня_травня_червня_липня_серпня_вересня_жовтня_листопада_грудня'.split('_'),
+                'standalone': 'січень_лютий_березень_квітень_травень_червень_липень_серпень_вересень_жовтень_листопад_грудень'.split('_'),
+                isFormat: /"DD" MMMM YYYYр./
+            }
+        });
         this._dateFormat = {
             toDisplay: (date: Date, format, language) => {
-                let str = date.format('"dd" MM yyyyр.');
-                console.log('toDisplay: (date: Date, format, language)');
-                console.log(date);
-                console.log(str);
+                let str = moment(date).format('LL');                
                 return str;
             },
-            toValue: (date, format, language) => {
-                let obj = new Date(date);
-                console.log('toValue: (date: string, format, language)');
-                console.log(date);
-                console.log(obj);
+            toValue: (date: string, format, language) => {
+                let obj = moment(date, 'LL').toDate();
                 return obj;
             },
         }
@@ -66,19 +80,7 @@ export default class SpeechTherapistsExaminationFormComponent implements OnDestr
         this._isLoadingDiagnosis = false;
         this._lastLoadingErrorMessage = '';
         this._lastSavingErrorMessage = '';
-        this._notificationOptions = {
-            timeOut: 5000,
-            lastOnBottom: true,
-            clickToClose: true,
-            maxLength: 0,
-            maxStack: 7,
-            showProgressBar: true,
-            pauseOnHover: false,
-            preventDuplicates: false,
-            preventLastDuplicates: 'visible',
-            animate: 'scale',
-            position: ['right', 'bottom']
-        };
+        this._notificationOptions = sharedService.notificationOptions;
         this._notificationService = notificationService;
     }
 

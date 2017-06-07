@@ -1,24 +1,16 @@
-.hyphens {
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
-}
-.no-horizontal-padding {
-  padding-left: 0px;
-  padding-right: 0px;
-}
 textarea {
-  resize: vertical;
+    resize: vertical;
 }
-#neurologicalStateHeadDataHeadText {
-  width: 25%;
+
+.elements-with-equal-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
 }
-#neurologicalStateHeadCircumferenceAlert {
-  margin-left: 25%;
-}
-:host /deep/ .tooltip-inner {
-  margin-left: 25%;
-  max-width: 100%;
-  text-align: left;
+
+.vertical-alignment {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }

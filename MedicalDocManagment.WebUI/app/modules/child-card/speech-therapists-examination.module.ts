@@ -7,6 +7,7 @@ import { NotificationsService, SimpleNotificationsModule } from 'angular2-notifi
 
 import CustomDatepickerModule from "../custom-datepicker.module";
 
+import CurrentUserLfsComponent from '../../components/user/current-user-lfs.component';
 import LevelOfFormationComponent from '../../components/childrens-card/child-card/speech-therapists-examination/level-of-formation.component';
 import SpeechTherapistsExaminationComponent from '../../components/childrens-card/child-card/speech-therapists-examination/component';
 import SpeechTherapistsExaminationFormComponent from '../../components/childrens-card/child-card/speech-therapists-examination/form.component';
@@ -15,6 +16,7 @@ import SpeechTherapistsExaminationViewComponent from '../../components/childrens
 import { AuthenticationService } from '../../services/authentication.service';
 import { AuthGuard } from '../../services/guards/auth.guard';
 import ChildrenCardService from '../../services/children-card.service';
+import SharedService from '../../services/shared.service';
 
 @NgModule({
     imports: [
@@ -26,6 +28,7 @@ import ChildrenCardService from '../../services/children-card.service';
         CustomDatepickerModule
     ],
     declarations: [
+        CurrentUserLfsComponent,
         LevelOfFormationComponent,
         SpeechTherapistsExaminationComponent,
         SpeechTherapistsExaminationFormComponent,
@@ -35,7 +38,8 @@ import ChildrenCardService from '../../services/children-card.service';
         AuthenticationService,
         AuthGuard,
         ChildrenCardService,
-        NotificationsService
+        NotificationsService,
+        SharedService
     ],
     exports: [SpeechTherapistsExaminationComponent]
 })

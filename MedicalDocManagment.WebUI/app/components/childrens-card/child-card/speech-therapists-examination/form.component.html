@@ -29,6 +29,7 @@
         ОГЛЯД ЛОГОПЕДА
       </h4>
     </div>
+    <br />
 
     <!-- І. Ранній мовленнєвий розвиток дитини -->
     <div>
@@ -328,14 +329,19 @@
     </div>
 
     <!-- Date, "Логопед" and initials -->
-    <div class="row">
-      <div class="col-xs-5">
-        <div class="form-group">
+    <div class="row elements-with-equal-height">
+      <div class="col-xs-3">
+        <div class="form-group vertical-alignment">
           <custom-datepicker [(ngModel)]="_examination.date" 
                              [format]="_dateFormat"
                              [disabled]="_isSaving"
                              name="date" #date="ngModel">
           </custom-datepicker>
+        </div>
+      </div>
+      <div class="col-xs-offset-5 col-xs-3">
+        <div class="form-group vertical-alignment">
+          Логопед <current-user-lfs></current-user-lfs>
         </div>
       </div>
     </div>

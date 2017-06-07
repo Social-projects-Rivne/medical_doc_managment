@@ -175,6 +175,7 @@
     <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\component.html" />
     <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\form.component.html" />
     <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\level-of-formation.component.css" />
+    <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\view.component.css" />
     <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\view.component.html" />
     <Content Include="app\components\childrens-card\child-card\neurologists-examination\component.html" />
     <Content Include="app\components\childrens-card\child-card\neurologists-examination\form.component.html" />
@@ -284,6 +285,7 @@
     <TypeScriptCompile Include="app\components\childrens-card\visit\main-page\visit-main-page.component.ts" />
     <TypeScriptCompile Include="app\components\shared\tiny-mce-editor\tiny-mce-editor.component.ts" />
     <TypeScriptCompile Include="app\components\shared\tiny-mce-editor\tiny-mce-editor.translate.ts" />
+    <TypeScriptCompile Include="app\components\user\current-user-lfs.component.ts" />
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
     <TypeScriptCompile Include="app\models\child-card\speech-therapists-examination\features-of-phonetic-and-phonematic-speech-components.model.ts" />
     <TypeScriptCompile Include="app\models\child-card\speech-therapists-examination\level-of-formation.enum.ts" />

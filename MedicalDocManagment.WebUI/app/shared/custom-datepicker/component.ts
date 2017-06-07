@@ -73,7 +73,7 @@ export default class CustomDatepickerComponent implements ControlValueAccessor {
     }
     set date(value: Date) {
         this._date = value;
-        this._onChange(this._date.toDateString());
+        this._onChange(this._date ? this._date.toDateString(): "");
     }
 
     writeValue(value: string) {
