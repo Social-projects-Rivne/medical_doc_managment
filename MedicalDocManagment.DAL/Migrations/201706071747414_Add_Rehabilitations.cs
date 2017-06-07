@@ -3,7 +3,7 @@ namespace MedicalDocManagment.DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Add_Therapeutic_Procedures : DbMigration
+    public partial class Add_Rehabilitations : DbMigration
     {
         public override void Up()
         {
@@ -15,11 +15,11 @@ namespace MedicalDocManagment.DAL.Migrations
                         BeginDate = c.DateTime(nullable: false),
                         Count = c.Int(nullable: false),
                         Commentary = c.String(),
-                        TherapeuticProcedure_Id = c.Int(),
+                        TherapeuticProcedureId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.TherapeuticProcedure", t => t.TherapeuticProcedure_Id)
-                .Index(t => t.TherapeuticProcedure_Id);
+                .ForeignKey("dbo.TherapeuticProcedure", t => t.TherapeuticProcedureId, cascadeDelete: true)
+                .Index(t => t.TherapeuticProcedureId);
             
             CreateTable(
                 "dbo.TherapeuticProcedure",
@@ -47,12 +47,12 @@ namespace MedicalDocManagment.DAL.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Rehabilitations", "TherapeuticProcedure_Id", "dbo.TherapeuticProcedure");
+            DropForeignKey("dbo.Rehabilitations", "TherapeuticProcedureId", "dbo.TherapeuticProcedure");
             DropForeignKey("dbo.RehabilitationChildCards", "ChildCard_Id", "dbo.ChildrenCards");
             DropForeignKey("dbo.RehabilitationChildCards", "Rehabilitation_Id", "dbo.Rehabilitations");
             DropIndex("dbo.RehabilitationChildCards", new[] { "ChildCard_Id" });
             DropIndex("dbo.RehabilitationChildCards", new[] { "Rehabilitation_Id" });
-            DropIndex("dbo.Rehabilitations", new[] { "TherapeuticProcedure_Id" });
+            DropIndex("dbo.Rehabilitations", new[] { "TherapeuticProcedureId" });
             DropTable("dbo.RehabilitationChildCards");
             DropTable("dbo.TherapeuticProcedure");
             DropTable("dbo.Rehabilitations");

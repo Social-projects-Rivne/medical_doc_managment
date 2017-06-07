@@ -7,13 +7,13 @@ namespace MedicalDocManagment.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class Add_Therapeutic_Procedures : IMigrationMetadata
+    public sealed partial class Add_Rehabilitations : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_Therapeutic_Procedures));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_Rehabilitations));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705231834155_Add_Therapeutic_Procedures"; }
+            get { return "201706071747414_Add_Rehabilitations"; }
         }
         
         string IMigrationMetadata.Source

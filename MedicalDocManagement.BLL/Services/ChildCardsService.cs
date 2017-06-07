@@ -221,8 +221,8 @@ namespace MedicalDocManagement.BLL.Services
                                        .Get(card => card.Id == childCardId)
                                        .AsNoTracking()
                                        .Single();
-
-            return RehabilitationDTOHelper.EntitiesToDTOs(childCard.Rehabilitations.ToList());
+            var rehabilitationsSortedByDate = childCard.Rehabilitations.OrderBy(rehabilitation => rehabilitation.BeginDate);
+            return RehabilitationDTOHelper.EntitiesToDTOs(rehabilitationsSortedByDate.ToList());
         }
         public RehabilitationDTO AddRehabilitationIntoChildCard(int childCardId,
             RehabilitationDTO rehabilitationDTO)

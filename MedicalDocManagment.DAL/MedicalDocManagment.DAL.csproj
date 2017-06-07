@@ -156,14 +156,6 @@
     <Compile Include="Migrations\201705151252104_Improvement-component_for_adding_parent_to_user_card.Designer.cs">
       <DependentUpon>201705151252104_Improvement-component_for_adding_parent_to_user_card.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705231834155_Add_Therapeutic_Procedures.cs" />
-    <Compile Include="Migrations\201705231834155_Add_Therapeutic_Procedures.Designer.cs">
-      <DependentUpon>201705231834155_Add_Therapeutic_Procedures.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705251524226_Add_Therapeutic_Procedures1.cs" />
-    <Compile Include="Migrations\201705251524226_Add_Therapeutic_Procedures1.Designer.cs">
-      <DependentUpon>201705251524226_Add_Therapeutic_Procedures1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201705242005409_View_patient_data.cs" />
     <Compile Include="Migrations\201705242005409_View_patient_data.Designer.cs">
       <DependentUpon>201705242005409_View_patient_data.cs</DependentUpon>
@@ -171,6 +163,10 @@
     <Compile Include="Migrations\201705270648406_Add_Visit_Table.cs" />
     <Compile Include="Migrations\201705270648406_Add_Visit_Table.Designer.cs">
       <DependentUpon>201705270648406_Add_Visit_Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706071747414_Add_Rehabilitations.cs" />
+    <Compile Include="Migrations\201706071747414_Add_Rehabilitations.Designer.cs">
+      <DependentUpon>201706071747414_Add_Rehabilitations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -233,17 +229,14 @@
     <EmbeddedResource Include="Migrations\201705151252104_Improvement-component_for_adding_parent_to_user_card.resx">
       <DependentUpon>201705151252104_Improvement-component_for_adding_parent_to_user_card.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705231834155_Add_Therapeutic_Procedures.resx">
-      <DependentUpon>201705231834155_Add_Therapeutic_Procedures.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705251524226_Add_Therapeutic_Procedures1.resx">
-      <DependentUpon>201705251524226_Add_Therapeutic_Procedures1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705242005409_View_patient_data.resx">
       <DependentUpon>201705242005409_View_patient_data.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705270648406_Add_Visit_Table.resx">
       <DependentUpon>201705270648406_Add_Visit_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706071747414_Add_Rehabilitations.resx">
+      <DependentUpon>201706071747414_Add_Rehabilitations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
