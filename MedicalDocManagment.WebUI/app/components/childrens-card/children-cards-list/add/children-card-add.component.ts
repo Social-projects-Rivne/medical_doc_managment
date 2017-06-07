@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
+import ChildCardService from '../../../../services/child-card.service';
 import ChildrensCardService from '../../../../services/children-card.service';
 import MkhsService from "../../../../services/mkhs.service";
 import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
@@ -23,6 +24,7 @@ declare var $;
     selector: 'children-card-add',
     templateUrl: 'children-card-add.component.html',
     providers: [
+        ChildCardService,
         ChildrensCardService,
         MkhsService,
         NotificationsService
@@ -51,10 +53,12 @@ export default class ChildrenCardAddComponent {
         animate: 'scale',
         position: ['right', 'bottom']
     };
+    private _childCardService: ChildCardService;
 
     constructor(private _childrensCardService: ChildrensCardService,
         private _notificationService: NotificationsService,
-        private _mkhsService: MkhsService) {
+        private _mkhsService: MkhsService, childCardService: ChildCardService) {
+        this._childCardService = childCardService;
     }
 
     parentAddedEvent(parent: ParentModel) {
@@ -82,7 +86,7 @@ export default class ChildrenCardAddComponent {
     }
 
     submit(form: NgForm ) {
-        this._childrensCardService.addChildrenCard(this.childrensCard)
+        this._childCardService.addChildrenCard(this.childrensCard)
             .subscribe(
                 (data) => {
                     this._notificationService.success("Успіх", "Дитячу картку успішно додано");

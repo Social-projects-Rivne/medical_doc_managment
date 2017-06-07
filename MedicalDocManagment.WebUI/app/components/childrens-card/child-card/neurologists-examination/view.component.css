@@ -1,0 +1,19 @@
+﻿.hyphens {
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+pre {
+    .hyphens;
+	/* Next for word wrapping multiple lines */
+    word-break: keep-all; /* webkit */
+	word-wrap: break-word;
+	white-space: pre-wrap; /* css-3 */
+	white-space: -moz-pre-wrap; /* fennec */
+	white-space: pre-wrap;
+	white-space: -pre-wrap; /* Opera 4-6 */
+	white-space: -o-pre-wrap; /* Opera 7 */ 
+	white-space: pre\9; /* IE7+ */
+}

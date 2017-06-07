@@ -27,26 +27,20 @@ export default class ChildrensCardService {
         this._headers.append('Authorization', 'Bearer ' + this._authenticationService.token);
         this._childrenCardsSubject = new Subject<any>();
     }
-    
-    addChildrenCard(childCard: ChildCardModel): Observable<ChildCardModel> {
-        let headers = this._headers;
-        let sendObj = {
-            lastName: childCard.lastName,
-            firstName: childCard.firstName,
-            secondName: childCard.secondName,
-            date: childCard.date,
-            checkin: childCard.checkIn,
-            checkout: childCard.checkOut,
-            address: childCard.address,
-            diagnosisCode: childCard.diagnosis.id,
-            prescription: childCard.prescription,
-            directedBy: childCard.directedBy,
-        };
-        let body = JSON.stringify(sendObj);
 
-        return this._http.post(this._apiUrl + '/addpatient', body, { headers })
-                         .map((resp: Response) => new ChildCardModel(resp.json()))
-                         .catch((error: any) => { return Observable.throw(error); });
+    /**
+     * Method sends to server request for adding new parent.
+     * @param {ParentModel} parent Contains data about parent to add
+     * @return {Observable<ParentModel>} Model, which contains added data of parent.
+     */
+    addParent(parent: ParentModel): Observable<ParentModel> {
+        let body: string = JSON.stringify(parent);
+        let headers = this._headers;
+        return this._http.post(this._apiUrl + '/addparent', body, { headers: headers })
+            .map((resp: Response) => {
+                return Observable.of(new ParentModel(resp.json()));
+            })
+            .catch((error: any) => { return Observable.throw(error); });
     }
 
     addParentIntoChildCard(parent: ParentModel, childCard: ChildCardModel): Observable<ParentChildCard> {

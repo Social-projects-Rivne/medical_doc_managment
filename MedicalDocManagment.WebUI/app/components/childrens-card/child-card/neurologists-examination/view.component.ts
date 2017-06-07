@@ -10,6 +10,7 @@ import ChildCardService from '../../../../services/child-card.service';
     moduleId: module.id,
     providers: [ ChildCardService ],
     selector: 'neurologists-examination-view',
+    styleUrls: ['view.component.css'],
     templateUrl: 'view.component.html'
 })
 export default class NeurologistsExaminationViewComponent implements OnDestroy  {
