@@ -183,6 +183,7 @@
     <Content Include="app\components\childrens-card\child-card\main-page.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\add\children-card-add.component.html" />
     <None Include="app\components\childrens-card\child-card\neurologists-examination\form.component.less" />
+    <Content Include="app\components\childrens-card\child-card\neurologists-examination\view.component.css" />
     <None Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.less" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.html" />

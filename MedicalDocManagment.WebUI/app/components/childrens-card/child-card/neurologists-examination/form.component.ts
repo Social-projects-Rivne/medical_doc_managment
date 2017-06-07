@@ -7,12 +7,14 @@ import ChildCardModel from "../../../../models/child-card/child-card.model";
 import NeurologistsExaminationModel from "../../../../models/child-card/neurologists-examination/examination.model";
 
 import ChildCardService from '../../../../services/child-card.service';
+import SharedService from '../../../../services/shared.service';
 
 @Component({
     moduleId: module.id,
     providers: [
         ChildCardService,
-        NotificationsService
+        NotificationsService,
+        SharedService
     ],
     selector: 'neurologists-examination-form',
     styleUrls: ['form.component.css'],
@@ -34,7 +36,8 @@ export default class NeurologistsExaminationFormComponent implements OnDestroy {
     private _notificationService: NotificationsService;
 
     constructor(childCardService: ChildCardService,
-        notificationService: NotificationsService) {
+        notificationService: NotificationsService,
+        sharedService: SharedService) {
         this._childCard = null;
         this._childCardService = childCardService;
         this._childCardSubscription = this._childCardService.currentChildCardObservable
@@ -49,19 +52,7 @@ export default class NeurologistsExaminationFormComponent implements OnDestroy {
         this._lastLoadingErrorMessage = '';
         this._lastSavingErrorMessage = '';
         this._neurologistsExamination = new NeurologistsExaminationModel();
-        this._notificationOptions = {
-            timeOut: 5000,
-            lastOnBottom: true,
-            clickToClose: true,
-            maxLength: 0,
-            maxStack: 7,
-            showProgressBar: true,
-            pauseOnHover: false,
-            preventDuplicates: false,
-            preventLastDuplicates: 'visible',
-            animate: 'scale',
-            position: ['right', 'bottom']
-        };
+        this._notificationOptions = sharedService.notificationOptions;
         this._notificationService = notificationService;
     }
 
