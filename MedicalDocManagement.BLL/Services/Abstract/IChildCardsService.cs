@@ -4,6 +4,7 @@ using MedicalDocManagement.BLL.DTO;
 using MedicalDocManagement.BLL.DTO.Main.PediatriciansExamination;
 using MedicalDocManagement.BLL.DTO.Main;
 using MedicalDocManagment.BLL.DTO.Main.NeurologistsExamination;
+using MedicalDocManagment.BLL.DTO.Main;
 
 namespace MedicalDocManagement.BLL.Services.Abstract
 {
@@ -33,5 +34,8 @@ namespace MedicalDocManagement.BLL.Services.Abstract
         NeurologistsExaminationDTO GetNeurologistsExamination(int childCardId);
         NeurologistsExaminationDTO SaveNeurologistsExamination(int childCardId,
             NeurologistsExaminationDTO examination);
+        SpeechTherapistsExaminationDTO GetSpeechTherapistsExamination(int childCardId);
+        SpeechTherapistsExaminationDTO SaveSpeechTherapistsExamination(int childCardId,
+            SpeechTherapistsExaminationDTO examinationDTO);
     }
 }

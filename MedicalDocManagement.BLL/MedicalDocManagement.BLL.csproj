@@ -77,6 +77,8 @@
     <Compile Include="DTO\Main\PediatriciansExamination\PediatriciansExaminationDTO.cs" />
     <Compile Include="DTO\Main\PediatriciansExamination\PregnancyDetailsDTO.cs" />
     <Compile Include="DTO\Main\PediatriciansExamination\PsychomotorDevelopmentDTO.cs" />
+    <Compile Include="DTO\Main\SpeechTherapistsExaminationDTO.cs" />
+    <Compile Include="Helpers\SpeechTherapistsExaminationDTOHelper.cs" />
     <Compile Include="Helpers\NeurologistsExaminationDTOHelper.cs" />
     <Compile Include="DTO\Main\VisitDTO.cs" />
     <Compile Include="Helpers\PediatriciansExaminationDTOHelper.cs" />
@@ -98,6 +100,10 @@
     <Compile Include="Services\VisitService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MedicalDocManagement.CUL\MedicalDocManagement.CUL.csproj">
+      <Project>{797eaa69-9aa4-49a0-a90d-290acf68aa48}</Project>
+      <Name>MedicalDocManagement.CUL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MedicalDocManagment.DAL\MedicalDocManagment.DAL.csproj">
       <Project>{0F99F474-B98C-4710-AA81-B9CC16AD04D0}</Project>
       <Name>MedicalDocManagment.DAL</Name>

@@ -106,8 +106,8 @@ namespace MedicalDocManagment.WebUI.Controllers
             var fluentValidationResult = viewPatientDataValidator.Validate(viewPatientDataVM);
             if (!fluentValidationResult.IsValid)
             {
-                return ResponseMessage(Request.CreateResponse
-                    (HttpStatusCode.BadRequest, fluentValidationResult.Errors)
+                return ResponseMessage(Request.CreateResponse(
+                    HttpStatusCode.BadRequest, fluentValidationResult.Errors)
                     );
             }
 

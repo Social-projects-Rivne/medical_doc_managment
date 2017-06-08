@@ -17,6 +17,8 @@ using MedicalDocManagment.DAL.Entities.Main.PediatriciansExamination;
 using MedicalDocManagement.BLL.DTO.Main;
 using MedicalDocManagment.BLL.DTO.Main.NeurologistsExamination;
 using MedicalDocManagment.DAL.Entities.Main.NeurologistsExamination;
+using MedicalDocManagement.DAL.Entities.Main;
+using MedicalDocManagment.BLL.DTO.Main;
 
 namespace MedicalDocManagement.BLL.Services
 {
@@ -333,6 +335,41 @@ namespace MedicalDocManagement.BLL.Services
             _unitOfWork.Save();
 
             return NeurologistsExaminationDTOHelper.EntityToDTO(examination);
+        }
+
+        public SpeechTherapistsExaminationDTO GetSpeechTherapistsExamination(int childCardId)
+        {
+            var childCard = _unitOfWork.ChildrenCardsRepository
+                                       .Get(card => card.Id == childCardId)
+                                       .AsNoTracking()
+                                       .Single();
+
+            return SpeechTherapistsExaminationDTOHelper.EntityToDTO(childCard.SpeechTherapistsExamination);
+        }
+
+        public SpeechTherapistsExaminationDTO SaveSpeechTherapistsExamination(int childCardId,
+            SpeechTherapistsExaminationDTO examinationDTO)
+        {
+            var childCard = _unitOfWork.ChildrenCardsRepository
+                                       .Get(card => card.Id == childCardId)
+                                       .Single();
+            SpeechTherapistsExaminationEntity examination = SpeechTherapistsExaminationDTOHelper
+                .DTOToEntity(examinationDTO);
+            if (childCard.NeurologistsExaminationId == null)
+            {
+                _unitOfWork.SpeechTherapistsExaminationsRepository.Add(examination);
+                _unitOfWork.Save();
+                childCard.SpeechTherapistsExaminationId = examination.Id;
+                _unitOfWork.ChildrenCardsRepository.Update(childCard);
+            }
+            else
+            {
+                examination.Id = childCard.SpeechTherapistsExaminationId.Value;
+                _unitOfWork.SpeechTherapistsExaminationsRepository.Update(examination);
+            }
+            _unitOfWork.Save();
+
+            return SpeechTherapistsExaminationDTOHelper.EntityToDTO(examination);
         }
     }
 }

@@ -35,6 +35,8 @@ namespace MedicalDocManagment.DAL.Initializer
                                          .Without(childCard => childCard.PediatriciansExamination)
                                          .Without(childCard => childCard.NeurologistsExaminationId)
                                          .Without(childCard => childCard.NeurologistsExamination)
+                                         .Without(childCard => childCard.SpeechTherapistsExaminationId)
+                                         .Without(childCard => childCard.SpeechTherapistsExamination)
                                          .Without(childCard => childCard.Visits)
                                          .CreateMany(30);
 
@@ -52,6 +54,8 @@ namespace MedicalDocManagment.DAL.Initializer
                                         .Without(childCard => childCard.PediatriciansExamination)
                                         .Without(childCard => childCard.NeurologistsExaminationId)
                                         .Without(childCard => childCard.NeurologistsExamination)
+                                        .Without(childCard => childCard.SpeechTherapistsExaminationId)
+                                        .Without(childCard => childCard.SpeechTherapistsExamination)
                                         .Without(childCard => childCard.Visits)
                                         .CreateMany(6);
 
@@ -67,6 +71,8 @@ namespace MedicalDocManagment.DAL.Initializer
                                         .Without(childCard => childCard.PediatriciansExamination)
                                         .Without(childCard => childCard.NeurologistsExaminationId)
                                         .Without(childCard => childCard.NeurologistsExamination)
+                                        .Without(childCard => childCard.SpeechTherapistsExaminationId)
+                                        .Without(childCard => childCard.SpeechTherapistsExamination)
                                         .Without(childCard => childCard.Visits)
                                         .CreateMany(5);
 

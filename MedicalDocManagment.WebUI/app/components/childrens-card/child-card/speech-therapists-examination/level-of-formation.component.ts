@@ -11,10 +11,13 @@ import LevelOfFormationEnum from "../../../../models/child-card/speech-therapist
 export default class LevelOfFormationComponent {
     @Output() levelChange: EventEmitter<LevelOfFormationEnum>;
     LevelOfFormationEnum = LevelOfFormationEnum;
+    @Input() readonly: boolean;
+
     private _level: LevelOfFormationEnum;
 
     constructor() {
         this.levelChange = new EventEmitter<LevelOfFormationEnum>();
+        this.readonly = false;
 
         this._level = LevelOfFormationEnum.Unknown;
     }
@@ -28,7 +31,22 @@ export default class LevelOfFormationComponent {
         this.levelChange.emit(this._level);
     }
 
+    _mouseOver($event: any) {
+        if (!this.readonly)
+        {
+            $event.target.classList.add('active');
+        }
+    }
+
+    _mouseOut($event: any) {
+        if (!this.readonly) {
+            $event.target.classList.remove('active');
+        }
+    }
+
     _levelValueClick(levelValue: LevelOfFormationEnum) {
-        this.level = this.level != levelValue ? levelValue : LevelOfFormationEnum.Unknown;
+        if (!this.readonly) {
+            this.level = this.level != levelValue ? levelValue : LevelOfFormationEnum.Unknown;
+        }        
     }
 }

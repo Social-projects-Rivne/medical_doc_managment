@@ -154,19 +154,6 @@ export default class ChildCardService {
             .catch((error: any) => { return Observable.throw(error); });
     }
 
-    saveSpeechTherapistsExamination(childCardId: number, examination: SpeechTherapistsExaminationModel):
-        Observable<SpeechTherapistsExaminationModel> {
-        let headers: Headers = this._headers;
-        examination.doctorsId = this._authenticationService.id;
-        let body: string = JSON.stringify(examination);
-        return this._http.put(this._apiUrl + 'saveSpeechTherapistsExamination?childCardId=' + childCardId,
-            body, { headers })
-            .map((resp: Response) => {
-                return new SpeechTherapistsExaminationModel(resp.json());
-            })
-            .catch((error: any) => { return Observable.throw(error); });
-    }
-
     /**
      * Method saves psychiatrist's conclusion to child card
      * @param {string} childCardId Id of child card to save conclusion into
@@ -178,6 +165,23 @@ export default class ChildCardService {
         return this._http.patch(this._apiUrl + 'savePsychiatristsConclusion?childCardId=' +
             childCardId, '"' + conclusion + '"', { headers })
             .map((resp: Response) => { return JSON.parse(resp.text()); })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    saveSpeechTherapistsExamination(childCardId: number, examination: SpeechTherapistsExaminationModel):
+        Observable<SpeechTherapistsExaminationModel> {
+        let headers: Headers = this._headers;
+
+        let examinationToSend: SpeechTherapistsExaminationModel
+            = new SpeechTherapistsExaminationModel(examination);
+        examinationToSend.doctorsId = this._authenticationService.id;
+
+        let body: string = JSON.stringify(examinationToSend);
+        return this._http.put(this._apiUrl + 'saveSpeechTherapistsExamination?childCardId=' + childCardId,
+            body, { headers })
+            .map((resp: Response) => {
+                return new SpeechTherapistsExaminationModel(resp.json());
+            })
             .catch((error: any) => { return Observable.throw(error); });
     }
 }

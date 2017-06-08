@@ -17,6 +17,7 @@ namespace MedicalDocManagment.DAL.Repository.Interfaces
         IImageRepository ImageRepository { get; }
         IPediatriciansExaminationsRepository PediatriciansExaminationsRepository { get; }
         INeurologistsExaminationsRepository NeurologistsExaminationsRepository { get; }
+        ISpeechTherapistsExaminationsRepository SpeechTherapistsExaminationsRepository { get; }
         IVisitsRepository VisitsRepository { get; }
 
         UsersManager UsersManager { get; }

@@ -20,7 +20,7 @@ export default class CustomDatepickerComponent implements ControlValueAccessor {
     private _datePickerElementRef: ElementRef;
     private _disabled: boolean;
     private _format: string | Object;
-    private _onChange: (_: string) => void;
+    private _onChange: (_: Date) => void;
     private _onTouched: () => void;
 
     constructor() {
@@ -28,7 +28,7 @@ export default class CustomDatepickerComponent implements ControlValueAccessor {
         this._datePickerElementRef = null;
         this._disabled = false;
         this._format = 'dd.mm.yyyy';
-        this._onChange = (_: string) => {};
+        this._onChange = (_: Date) => {};
         this._onTouched = () => {};
     }
 
@@ -73,14 +73,16 @@ export default class CustomDatepickerComponent implements ControlValueAccessor {
     }
     set date(value: Date) {
         this._date = value;
-        this._onChange(this._date ? this._date.toDateString(): "");
+        this._onChange(this._date);
     }
 
-    writeValue(value: string) {
-        this._date = new Date(value);
+    writeValue(value: Date) {
+        this._date = value;
+
+        $(this._datePickerElementRef.nativeElement).datepicker('setUTCDate',this._date);
     }
 
-    registerOnChange(fn: (_: string) => void): void {
+    registerOnChange(fn: (_: Date) => void): void {
         this._onChange = fn;
     }
 

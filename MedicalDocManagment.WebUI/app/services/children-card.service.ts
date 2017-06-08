@@ -13,6 +13,7 @@ import ChildCardModel from '../models/child-card/child-card.model';
 import ChildrenCardsModel from '../models/children-cards.model';
 import ParentModel from '../models/child-card/parent.model';
 import ChildrenCardsPagedModel from '../models/children-cards-paged.model';
+import ViewPatientDataModel from '../models/view-patient-data.model';
 
 import { AuthenticationService } from "./authentication.service";
 
@@ -95,8 +96,10 @@ export default class ChildrensCardService {
      * @param {any} dataOfPatient Contains data about patient to view
      * @return {Observable<ChildrenCardsModel>} Contains data about patients
     */
-    viewPatientData(dataOfPatient: any): Observable<ChildrenCardsModel> {
+    viewPatientData(dataOfPatient: ViewPatientDataModel): Observable<ChildrenCardsModel> {
         let headers = this._headers;
+
+        dataOfPatient.date = new Date(dataOfPatient.date).toISOString();
 
         return this._http.get('/api/childcards/viewPatientData?' +
             $.param(dataOfPatient), { headers })

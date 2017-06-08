@@ -176,7 +176,7 @@
               </span>
               <input type="text" class="form-control" id="stateOfTheLexicalPartOfSpeechLevelOfFormationText"
                      name="stateOfTheLexicalPartOfSpeechLevelOfFormationText"
-                     [(ngModel)]="_examination.stateOfTheLexicalPartOfSpeech.firstWords"
+                     [(ngModel)]="_examination.stateOfTheLexicalPartOfSpeech.levelOfFormationText"
                      #stateOfTheLexicalPartOfSpeechLevelOfFormationText="ngModel"
                      [disabled]="_isSaving" maxlength="116" />
             </div>
@@ -187,7 +187,7 @@
 
     <!-- ІII. Граматична будова мовлення -->
     <div>
-      <!-- Імпресивне мовлення -->
+      <!-- Textbox with label -->
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
@@ -216,7 +216,7 @@
               <input type="text" class="form-control" 
                      id="grammaticalStructureOfSpeechLevelOfFormationText"
                      name="grammaticalStructureOfSpeechLevelOfFormationText"
-                     [(ngModel)]="_examination.grammaticalStructureOfSpeech.firstWords"
+                     [(ngModel)]="_examination.grammaticalStructureOfSpeech.levelOfFormationText"
                      #grammaticalStructureOfSpeechLevelOfFormationText="ngModel"
                      [disabled]="_isSaving" maxlength="135" />
             </div>
@@ -227,7 +227,7 @@
 
     <!-- ІV. Особливості фонетико-фонематичної складової мовлення -->
     <div>
-      <!-- Імпресивне мовлення -->
+      <!-- Textbox with label -->
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
@@ -341,7 +341,7 @@
       </div>
       <div class="col-xs-offset-5 col-xs-3">
         <div class="form-group vertical-alignment">
-          Логопед <current-user-lfs></current-user-lfs>
+          Логопед <users-lfs [id]="_examination.doctorsId"></users-lfs>
         </div>
       </div>
     </div>

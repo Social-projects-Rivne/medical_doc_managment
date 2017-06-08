@@ -110,6 +110,7 @@
     <Compile Include="Entities\Main\PediatriciansExamination\PediatriciansExamination.cs" />
     <Compile Include="Entities\Main\PediatriciansExamination\PregnancyDetails.cs" />
     <Compile Include="Entities\Main\PediatriciansExamination\PsychomotorDevelopment.cs" />
+    <Compile Include="Entities\Main\SpeechTherapistsExaminationEntity.cs" />
     <Compile Include="Entities\Main\Visit.cs" />
     <Compile Include="Entities\Position.cs" />
     <Compile Include="Entities\Role.cs" />
@@ -168,9 +169,14 @@
     <Compile Include="Migrations\201706021606473_Feature_form_neurologist.Designer.cs">
       <DependentUpon>201706021606473_Feature_form_neurologist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706081459400_Feature_form_speech_therapist.cs" />
+    <Compile Include="Migrations\201706081459400_Feature_form_speech_therapist.Designer.cs">
+      <DependentUpon>201706081459400_Feature_form_speech_therapist.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ImageRepository.cs" />
+    <Compile Include="Repository\Interfaces\ChildCard\ISpeechTherapistsExaminationsRepository.cs" />
     <Compile Include="Repository\Interfaces\IChildrenCardsRepository.cs" />
     <Compile Include="Repository\Interfaces\IImageRepository.cs" />
     <Compile Include="Repository\Interfaces\IParentChildCardRepository.cs" />
@@ -179,6 +185,7 @@
     <Compile Include="Repository\Interfaces\IParentRepository.cs" />
     <Compile Include="Repository\Interfaces\IVisitRepository.cs" />
     <Compile Include="Repository\Main\BlockMkhRepository.cs" />
+    <Compile Include="Repository\Main\ChildCard\SpeechTherapistsExaminationRepository.cs" />
     <Compile Include="Repository\Main\ChildrenCardsRepository.cs" />
     <Compile Include="Repository\Main\ClassMkhRepository.cs" />
     <Compile Include="Repository\Main\DiagnosisMkhRepository.cs" />
@@ -236,12 +243,20 @@
     <EmbeddedResource Include="Migrations\201706021606473_Feature_form_neurologist.resx">
       <DependentUpon>201706021606473_Feature_form_neurologist.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706081459400_Feature_form_speech_therapist.resx">
+      <DependentUpon>201706081459400_Feature_form_speech_therapist.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MedicalDocManagement.CUL\MedicalDocManagement.CUL.csproj">
+      <Project>{797eaa69-9aa4-49a0-a90d-290acf68aa48}</Project>
+      <Name>MedicalDocManagement.CUL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
