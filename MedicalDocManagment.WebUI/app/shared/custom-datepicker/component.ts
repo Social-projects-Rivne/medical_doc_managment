@@ -76,10 +76,17 @@ export default class CustomDatepickerComponent implements ControlValueAccessor {
         this._onChange(this._date);
     }
 
-    writeValue(value: Date) {
-        this._date = value;
-
-        $(this._datePickerElementRef.nativeElement).datepicker('setUTCDate',this._date);
+    writeValue(value: any) {
+        if (typeof(value) == 'string') {
+            this._date = new Date(value);
+            $(this._datePickerElementRef.nativeElement).datepicker('setDate', this._date);
+        }
+        else {
+            if (value instanceof Date) {
+                this._date = value;
+                $(this._datePickerElementRef.nativeElement).datepicker('setDate', this._date);
+            }
+        }
     }
 
     registerOnChange(fn: (_: Date) => void): void {

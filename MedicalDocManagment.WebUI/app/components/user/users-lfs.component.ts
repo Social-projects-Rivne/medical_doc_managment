@@ -24,23 +24,24 @@ export default class UsersLfsComponent {
     @Input()
     set id(value: string) {
         this._id = value;
-
         this._user = null;
-        this._httpFacade.getUserById(this._id).subscribe(
-            (userModel: UserModel) => {
-                this._user = userModel;
-            }
-        );
+        if (this._id) {
+            this._httpFacade.getUserById(this._id).subscribe(
+                (userModel: UserModel) => {
+                    this._user = userModel;
+                }
+            );
+        }
     }
 
     get lfs(): string {
         if (this._user) {
-            let firstName = this._authenticationService.firstName;
+            let firstName = this._user.firstName;
             let f = firstName ? (firstName.length > 0 ? firstName[0] : '') : '';
-            let secondName = this._authenticationService.secondName;
+            let secondName = this._user.secondName;
             let s = secondName ? (secondName.length > 0 ? secondName[0] : '') : '';
 
-            return (this._authenticationService.lastName + ' ' + f + '. ' + s + '.');
+            return (this._user.lastName + ' ' + f + '. ' + s + '.');
         }
         else {
             return "";

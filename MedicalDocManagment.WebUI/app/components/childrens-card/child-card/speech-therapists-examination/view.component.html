@@ -39,32 +39,32 @@
       <!-- Гуління... -->
       <p class="row">
         Гуління <i>(у нормі з 2 міс.)</i>, час появи, характер
-        {{_examination.childsEarlySpeechDevelopment.cooing}}
+        <u>{{_examination.childsEarlySpeechDevelopment.cooing}}</u>
       </p>
       <!-- Лепет... -->
       <p class="row">
         Лепет <i>(у нормі з 4-6 міс.)</i>, час появи, характер
-        {{_examination.childsEarlySpeechDevelopment.babble}}
+        <u>{{_examination.childsEarlySpeechDevelopment.babble}}</u>
       </p>
       <!-- Перші слова... -->
       <p class="row">
         Перші слова <i>(характеристика звуконаслідування, кількість)</i>
-        {{_examination.childsEarlySpeechDevelopment.firstWords}}
+        <u>{{_examination.childsEarlySpeechDevelopment.firstWords}}</u>
       </p>
       <!-- Фразове мовлення... -->
       <p class="row">
         Фразове мовлення <i>(у нормі з 1,5-2 р.)</i>
-        {{_examination.childsEarlySpeechDevelopment.phraseSpeech}}
+        <u>{{_examination.childsEarlySpeechDevelopment.phraseSpeech}}</u>
       </p>
       <!-- Чи переривається мовленнєвий... -->
       <p class="row">
         Чи переривається мовленнєвий розвиток, з якої причини
-        {{_examination.childsEarlySpeechDevelopment.breaksInDevelopment}}
+        <u>{{_examination.childsEarlySpeechDevelopment.breaksInDevelopment}}</u>
       </p>
       <!-- Чи проводились заняття з вчителем-логопедом ... -->
       <p class="row">
         Чи проводились заняття з вчителем-логопедом <i>(тривалість занять, результат)</i>
-        {{_examination.childsEarlySpeechDevelopment.workWithTeacherAndSpeechTherapist}}
+        <u>{{_examination.childsEarlySpeechDevelopment.workWithTeacherAndSpeechTherapist}}</u>
       </p>
     </div>
 
@@ -77,271 +77,93 @@
       <!-- Імпресивне мовлення -->
       <p class="row">
         Імпресивне мовлення
-        {{_examination.stateOfTheLexicalPartOfSpeech.impressiveSpeech}}
+        <u>{{_examination.stateOfTheLexicalPartOfSpeech.impressiveSpeech}}</u>
       </p>
       <!-- Експресивне мовлення -->
       <p class="row">
         Експресивне мовлення
-        {{_examination.stateOfTheLexicalPartOfSpeech.exspressiveSpeech}}
+        <u>{{_examination.stateOfTheLexicalPartOfSpeech.exspressiveSpeech}}</u>
       </p>
       <!-- Рівень стану сформованості... -->
       <p class="row">
         Рівень стану сформованості лексичної складової мовлення
-        <level-of-formation [(level)]="_examination.stateOfTheLexicalPartOfSpeech.levelOfFormation">
+        <level-of-formation [readonly]="true"
+                            [(level)]="_examination.stateOfTheLexicalPartOfSpeech.levelOfFormation">
         </level-of-formation>
-        {{_examination.stateOfTheLexicalPartOfSpeech.levelOfFormationText}}
+        <u>{{_examination.stateOfTheLexicalPartOfSpeech.levelOfFormationText}}</u>
       </p>
     </div>
 
     <!-- ІII. Граматична будова мовлення -->
     <div>
       <!-- Textbox with label -->
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><b>ІII. Граматична будова мовлення</b></span>
-              <input type="text" class="form-control" id="grammaticalStructureOfSpeechText"
-                     name="grammaticalStructureOfSpeechText"
-                     [(ngModel)]="_examination.grammaticalStructureOfSpeech.text"
-                     #grammaticalStructureOfSpeechText="ngModel"
-                     [disabled]="_isSaving" maxlength="161" />
-            </div>
-          </div>
-        </div>
-      </div>
+      <p class="row">
+        <b>ІII. Граматична будова мовлення</b>
+        <u>{{_examination.grammaticalStructureOfSpeech.text}}</u>
+      </p>
       <!-- Рівень стану сформованості... -->
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon">
-                Рівень стану сформованості граматичної складової мовлення
-                <level-of-formation [(level)]="_examination.grammaticalStructureOfSpeech
+      <p class="row">
+        Рівень стану сформованості граматичної складової мовлення
+        <level-of-formation [readonly]="true"
+                            [(level)]="_examination.grammaticalStructureOfSpeech
                                     .levelOfFormation">
-                </level-of-formation>
-              </span>
-              <input type="text" class="form-control"
-                     id="grammaticalStructureOfSpeechLevelOfFormationText"
-                     name="grammaticalStructureOfSpeechLevelOfFormationText"
-                     [(ngModel)]="_examination.grammaticalStructureOfSpeech.levelOfFormationText"
-                     #grammaticalStructureOfSpeechLevelOfFormationText="ngModel"
-                     [disabled]="_isSaving" maxlength="135" />
-            </div>
-          </div>
-        </div>
-      </div>
+        </level-of-formation>
+        <u>{{_examination.grammaticalStructureOfSpeech.levelOfFormationText}}</u>
+      </p>
     </div>
 
     <!-- ІV. Особливості фонетико-фонематичної складової мовлення -->
     <div>
       <!-- Textbox with label -->
       <div class="row">
-        <div class="col-xs-12">
-          <div class="form-group">
-            <b>ІV. Особливості фонетико-фонематичної складової мовлення</b>
-            <textarea class="form-control" [disabled]="_isSaving"
-                      id="featuresOfPhoneticAndPhonematicSpeechComponentsText"
-                      name="featuresOfPhoneticAndPhonematicSpeechComponentsText"
-                      [(ngModel)]="_examination.featuresOfPhoneticAndPhonematicSpeechComponents.text"
-                      #featuresOfPhoneticAndPhonematicSpeechComponentsText="ngModel"
-                      maxlength="328" rows=3></textarea>
-          </div>
-        </div>
+        <b>ІV. Особливості фонетико-фонематичної складової мовлення</b>
+        <pre>{{_examination.featuresOfPhoneticAndPhonematicSpeechComponents.text}}</pre>
       </div>
       <!-- Рівень стану сформованості... -->
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon">
-                Рівень стану сформованості фонетико-фонематичної складової мовлення
-                <level-of-formation [(level)]="_examination
-                                    .featuresOfPhoneticAndPhonematicSpeechComponents
+      <p class="row">
+        Рівень стану сформованості фонетико-фонематичної складової мовлення
+        <level-of-formation [readonly]="true"
+                            [(level)]="_examination.featuresOfPhoneticAndPhonematicSpeechComponents
                                     .levelOfFormation">
-                </level-of-formation>
-              </span>
-              <input type="text" class="form-control"
-                     id="featuresOfPhoneticAndPhonematicSpeechComponentsLevelOfFormationText"
-                     name="featuresOfPhoneticAndPhonematicSpeechComponentsLevelOfFormationText"
-                     [(ngModel)]="_examination.featuresOfPhoneticAndPhonematicSpeechComponents
-                     .levelOfFormationText"
-                     #featuresOfPhoneticAndPhonematicSpeechComponentsLevelOfFormationText="ngModel"
-                     [disabled]="_isSaving" maxlength="125" />
-            </div>
-          </div>
-        </div>
-      </div>
+        </level-of-formation>
+        <u>{{_examination.featuresOfPhoneticAndPhonematicSpeechComponents.levelOfFormationText}}</u>
+      </p>
     </div>
 
     <!-- V. Прояви заїкання -->
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-addon"><b>V. Прояви заїкання</b></span>
-            <input type="text" class="form-control" id="manifestationsOfStuttering"
-                   name="manifestationsOfStuttering"
-                   [(ngModel)]="_examination.manifestationsOfStuttering"
-                   #manifestationsOfStuttering="ngModel"
-                   [disabled]="_isSaving" maxlength="78" />
-          </div>
-        </div>
-      </div>
-    </div>
+    <p class="row">
+      <b>V. Прояви заїкання</b>
+      <u>{{_examination.manifestationsOfStuttering}}</u>
+    </p>
 
     <!-- VI. Заключення -->
     <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <b>VI. Заключення</b>
-          <textarea class="form-control" [disabled]="_isSaving"
-                    id="conclusion"
-                    name="conclusion"
-                    [(ngModel)]="_examination.conclusion"
-                    #conclusion="ngModel"
-                    maxlength="466" rows=5></textarea>
-        </div>
-      </div>
+      <b>VI. Заключення</b>
+      <pre>{{_examination.conclusion}}</pre>
     </div>
 
     <!-- VIІ. Перспективний індивідуальний план кореляційної роботи -->
     <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <b>VIІ. Перспективний індивідуальний план кореляційної роботи</b>
-          <textarea class="form-control" [disabled]="_isSaving"
-                    id="longtermIndividualPlanOfRemedialWork"
-                    name="longtermIndividualPlanOfRemedialWork"
-                    [(ngModel)]="_examination.longtermIndividualPlanOfRemedialWork"
-                    #longtermIndividualPlanOfRemedialWork="ngModel"
-                    maxlength="902" rows=9></textarea>
-        </div>
-      </div>
+      <b>VIІ. Перспективний індивідуальний план кореляційної роботи</b>
+      <pre>{{_examination.longtermIndividualPlanOfRemedialWork}}</pre>
     </div>
 
-    <!-- Скарги -->
+    <br />
+    <!-- Результативність логопедичного впливу -->
     <div class="row">
-      Скарги:
-      <pre>{{_neurologistsExamination.complaints}}</pre>
-    </div>
-    <!-- Анамнез (доповнення) -->
-    <div class="row">
-      Анамнез (доповнення):
-      <pre>{{_neurologistsExamination.anamnesis}}</pre>
-    </div>
-    <!-- Статокінетичний розвиток -->
-    <div class="row">
-      Статокінетичний розвиток
-      <pre>{{_neurologistsExamination.statokineticDevelopment}}</pre>
-    </div>
-    <!-- Психомовленнєвий розвиток -->
-    <div class="row">
-      Психомовленнєвий розвиток
-      <u>{{_neurologistsExamination.psychospeechDevelopment}}</u>
+      Результативність логопедичного впливу
+      <pre>{{_examination.efficiencyOfSpeechTherapyEffect}}</pre>
     </div>
 
-    <!-- Neurological state group -->
-    <div>
-      <!-- Неврологічний статус: -->
-      <div class="row">
-        <b><i>Неврологічний статус:</i></b>
+    <br />
+    <br />
+    <!-- Date, "Логопед" and initials -->
+    <div class="row">
+      <div class="col-xs-3">
+        <custom-formatted-date [date]="_examination.date"></custom-formatted-date>
       </div>
-      <!-- Свідомість -->
-      <div class="row">
-        Свідомість <u>{{_neurologistsExamination.neurologicalState.consciousness}}</u>
-      </div>
-      <!-- Реакція на оточуючих -->
-      <div class="row">
-        Реакція на оточуючих <u>{{_neurologistsExamination.neurologicalState.reactionToOthers}}</u>
-      </div>
-      <!-- Менінгеальні симптоми -->
-      <div class="row">
-        Менінгеальні симптоми <u>{{_neurologistsExamination.neurologicalState.meningealSymptoms}}</u>
-      </div>
-      <!-- Data about head -->
-      <div class="row">
-        Голова: 
-        ОГ <u>{{_neurologistsExamination.neurologicalState.headCircumference?.toLocaleString()}}</u> см,&nbsp;
-        форма <u>{{_neurologistsExamination.neurologicalState.headShape}}</u>
-      </div>
-      <!-- Черепно-мозкові нерви -->
-      <div class="row">
-        Черепно-мозкові нерви:
-        <pre>{{_neurologistsExamination.neurologicalState.cranialNerves}}</pre>
-      </div>
-      <!-- Рефлекторно-рухова сфера -->
-      <div class="row">
-        Рефлекторно-рухова сфера: <u>{{_neurologistsExamination.neurologicalState.reflexMotorArea}}</u>
-      </div>
-      <!-- Об'єм рухів -->
-      <div class="row">
-        Об'єм рухів
-        <pre>{{_neurologistsExamination.neurologicalState.movementsVolume}}</pre>
-      </div>
-      <!-- Сухожильні та періостальні рефлекси -->
-      <div class="row">
-        Сухожильні та періостальні рефлекси
-        <pre>{{_neurologistsExamination.neurologicalState.tendonAndPeriostealReflexes}}</pre>
-      </div>
-      <!-- Черевні рефлекси -->
-      <div class="row">
-        Черевні рефлекси: <u>{{_neurologistsExamination.neurologicalState.abdominalReflexes}}</u>
-      </div>
-      <!-- Патологічні рефлекси -->
-      <div class="row">
-        Патологічні рефлекси
-        <pre>{{_neurologistsExamination.neurologicalState.abnormalReflexes}}</pre>
-      </div>
-      <!-- Безумовні рефлекси -->
-      <div class="row">
-        Безумовні рефлекси:
-        <pre>{{_neurologistsExamination.neurologicalState.unconditionedReflexes}}</pre>
-      </div>
-      <!-- Контроль голови: -->
-      <div class="row">
-        Контроль голови: <u>{{_neurologistsExamination.neurologicalState.headControl}}</u>
-      </div>
-      <!-- Перевертання на живіт: -->
-      <div class="row">
-        Перевертання на живіт: <u>{{_neurologistsExamination.neurologicalState.turningOnStomach}}</u>
-      </div>
-      <!-- Проба на тракцію: -->
-      <div class="row">
-        Проба на тракцію: <u>{{_neurologistsExamination.neurologicalState.testForTraction}}</u>
-      </div>
-      <!-- Сидіння: -->
-      <div class="row">
-        Сидіння: <u>{{_neurologistsExamination.neurologicalState.sitting}}</u>
-      </div>
-      <!-- Повзання: -->
-      <div class="row">
-        Повзання: <u>{{_neurologistsExamination.neurologicalState.crawling}}</u>
-      </div>
-      <!-- Стояння: -->
-      <div class="row">
-        Стояння: <u>{{_neurologistsExamination.neurologicalState.standing}}</u>
-      </div>
-      <!-- Опора: -->
-      <div class="row">
-        Опора: <u>{{_neurologistsExamination.neurologicalState.backing}}</u>
-      </div>
-      <!-- Ходьба: -->
-      <div class="row">
-        Ходьба: <u>{{_neurologistsExamination.neurologicalState.walking}}</u>
-      </div>
-      <!-- Гіперкінези: -->
-      <div class="row">
-        Гіперкінези: <u>{{_neurologistsExamination.neurologicalState.hyperkinesis}}</u>
-      </div>
-      <!-- Епісиндром -->
-      <div class="row">
-        Епісиндром:
-        <pre>{{_neurologistsExamination.neurologicalState.episyndrome}}</pre>
-      </div>
-      <!-- Функції тазових органів -->
-      <div class="row">
-        Функції тазових органів <u>{{_neurologistsExamination.neurologicalState.functionsOfPelvicOrgans}}</u>
+      <div class="col-xs-offset-5 col-xs-3">
+        Логопед <users-lfs [id]="_examination.doctorsId"></users-lfs>
       </div>
     </div>
 

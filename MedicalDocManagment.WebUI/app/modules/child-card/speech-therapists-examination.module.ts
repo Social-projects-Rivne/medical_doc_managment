@@ -7,11 +7,12 @@ import { NotificationsService, SimpleNotificationsModule } from 'angular2-notifi
 
 import CustomDatepickerModule from "../custom-datepicker.module";
 
-import UsersLfsComponent from '../../components/user/users-lfs.component';
+import CustomFormattedDateComponent from '../../components/childrens-card/child-card/speech-therapists-examination/custom-formatted-date.component';
 import LevelOfFormationComponent from '../../components/childrens-card/child-card/speech-therapists-examination/level-of-formation.component';
 import SpeechTherapistsExaminationComponent from '../../components/childrens-card/child-card/speech-therapists-examination/component';
 import SpeechTherapistsExaminationFormComponent from '../../components/childrens-card/child-card/speech-therapists-examination/form.component';
 import SpeechTherapistsExaminationViewComponent from '../../components/childrens-card/child-card/speech-therapists-examination/view.component';
+import UsersLfsComponent from '../../components/user/users-lfs.component';
 
 import { AuthenticationService } from '../../services/authentication.service';
 import { AuthGuard } from '../../services/guards/auth.guard';
@@ -29,6 +30,7 @@ import { HttpFacade } from '../../services/http.facade';
         CustomDatepickerModule
     ],
     declarations: [
+        CustomFormattedDateComponent,
         LevelOfFormationComponent,
         SpeechTherapistsExaminationComponent,
         SpeechTherapistsExaminationFormComponent,

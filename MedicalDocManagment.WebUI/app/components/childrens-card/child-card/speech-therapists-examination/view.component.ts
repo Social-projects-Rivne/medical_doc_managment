@@ -1,6 +1,7 @@
 ﻿import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
+
 import ChildCardModel from "../../../../models/child-card/child-card.model";
 import SpeechTherapistsExaminationModel from "../../../../models/child-card/speech-therapists-examination/examination.model";
 
@@ -20,7 +21,7 @@ export default class SpeechTherapistsExaminationViewComponent implements OnDestr
     private _isErrorOnLoading: boolean;
     private _isLoading: boolean;
     private _lastLoadingErrorMessage: string;
-    private _speechTherapistsExamination: SpeechTherapistsExaminationModel;
+    private _examination: SpeechTherapistsExaminationModel;
 
     constructor(childCardService: ChildCardService) {
         this._childCard = null;
@@ -33,7 +34,7 @@ export default class SpeechTherapistsExaminationViewComponent implements OnDestr
         this._isErrorOnLoading = false;
         this._isLoading = true;
         this._lastLoadingErrorMessage = '';
-        this._speechTherapistsExamination = new SpeechTherapistsExaminationModel();
+        this._examination = new SpeechTherapistsExaminationModel();
     }
 
     private _loadExaminationFromServer(): void {
@@ -43,7 +44,7 @@ export default class SpeechTherapistsExaminationViewComponent implements OnDestr
 
         this._childCardService.getSpeechTherapistsExamination(this._childCard.id)
             .subscribe((examination: SpeechTherapistsExaminationModel) => {
-                this._speechTherapistsExamination = examination;
+                this._examination = examination;
                 this._isLoading = false;
             },
             (error: any) => {

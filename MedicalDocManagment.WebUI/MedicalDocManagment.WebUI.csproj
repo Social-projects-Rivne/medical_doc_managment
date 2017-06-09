@@ -263,6 +263,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\custom-formatted-date.component.html" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\speech-therapists-examination\custom-formatted-date.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\speech-therapists-examination\level-of-formation.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\speech-therapists-examination\component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\speech-therapists-examination\form.component.ts" />

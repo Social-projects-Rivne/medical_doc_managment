@@ -17,7 +17,7 @@
     середній
   </span>,
   <span [class.interactable]="!readonly"
-        [class.selected]="_level == LevelOfFormationEnum.Low && !readonly"
+        [class.selected]="_level == LevelOfFormationEnum.Low"
         [class.not-selected]="_level != LevelOfFormationEnum.Low && 
           _level != LevelOfFormationEnum.Unknown"
         (click)="_levelValueClick(LevelOfFormationEnum.Low)"
