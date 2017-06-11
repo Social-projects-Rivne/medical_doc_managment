@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 declare var jQuery: any;
 
 import ChildrenCardService from "../../../services/children-card.service";
+import flexiblePhoneMask from "./flexible-phone-mask.function";
 import ParentModel from "../../../models/child-card/parent.model";
 
 @Component({
@@ -16,6 +17,7 @@ import ParentModel from "../../../models/child-card/parent.model";
 })
 
 export default class ChildCardAddParentComponent {
+    flexiblePhoneMask = flexiblePhoneMask;
     @Output() parentAddedEvent: EventEmitter<ParentModel>;
 
     private _childrenCardService: ChildrenCardService;
@@ -23,7 +25,6 @@ export default class ChildCardAddParentComponent {
     private _isErrorOnAdding: boolean;
     private _lastErrorMessage: string;
     private _parent: ParentModel;
-    private _phoneMask: Array<string | RegExp>;
 
     constructor(childrenCardService: ChildrenCardService) {
         this.parentAddedEvent = new EventEmitter<ParentModel>();
@@ -33,8 +34,7 @@ export default class ChildCardAddParentComponent {
         this._isErrorOnAdding = false;
         this._lastErrorMessage = null;
         this._parent = new ParentModel();
-        this._phoneMask = ['0', ' ', /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
-    }
+    }    
 
     private _onSave(form: FormGroup): void {
         this._isAdding = true;

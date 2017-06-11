@@ -100,9 +100,8 @@
                 </span>
                 <input type="text" class="form-control" id="phone" name="phone"
                        [(ngModel)]="_parent.phone" 
-                       [textMask]="{mask: _phoneMask, keepCharPositions : true, showMask: true}"
-                       #phone="ngModel" [disabled]="_isAdding" required 
-                       pattern="0 \d\d \d\d\d\d\d\d\d"/>
+                       [textMask]="{mask: flexiblePhoneMask, keepCharPositions : true, showMask: true}"
+                       #phone="ngModel" [disabled]="_isAdding" required />
               </div>
               <span [hidden]="phone.valid || phone.untouched || _isAdding"
                     class="alert alert-danger col-xs-offset-4 col-xs-7">
