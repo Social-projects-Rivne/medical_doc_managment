@@ -12,6 +12,9 @@ import ParentChildCard from '../models/child-card/parent-child-card.model';
 import ChildCardModel from '../models/child-card/child-card.model';
 import ChildrenCardsModel from '../models/children-cards.model';
 import ParentModel from '../models/child-card/parent.model';
+import ProcedureModel from '../models/child-card/procedure.model';
+import RehabilitationModel from '../models/child-card/rehabilitation.model';
+import ViewPatientDataModel from '../models/view-patient-data.model';
 import ChildrenCardsPagedModel from '../models/children-cards-paged.model';
 import PediatriciansExaminationModel from "../models/child-card/pediatricians-examination/pediatricians-examination.model";
 
@@ -82,6 +85,13 @@ export default class ChildrensCardService {
         return this._authenticationService.position;
     }
 
+    getProcedures(): Observable<ProcedureModel[]> {
+        let headers = this._headers;
+        return this._http.get('/api/childcards/gettherapeuticprocedures', { headers })
+            .map((resp: Response) => { console.log(resp); return resp.json(); })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
+
     getChildrenCards(): Observable<ChildrenCardsModel> {
         let headers = this._headers;
         return this._http.get('/api/childcards/getchildrencards', { headers })
@@ -125,6 +135,18 @@ export default class ChildrensCardService {
             .map((resp: Response) => { return new ChildrenCardsModel(resp.json()); })
             .catch((error: any) => { return Observable.throw(error); });
     }
+
+    addRehabilitationIntoChildCard(childCardId: number, rehabilitation: RehabilitationModel):
+        Observable<RehabilitationModel> {
+    let headers: Headers = this._headers;
+    let body: string = JSON.stringify(rehabilitation);
+    return this._http.put('/api/childcards/addRehabilitationIntoChildCard?childCardId=' + childCardId,
+        body, { headers })
+        .map((resp: Response) => {
+            return resp;
+        })
+        .catch((error: any) => { return Observable.throw(error); });
+}
 
     /**
      * Method saves psychiatrist's conclusion to child card
@@ -192,5 +214,15 @@ export default class ChildrensCardService {
                              return resp.json();
                          })
                          .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    getChildsRehabilitations(childCardId: number): Observable<RehabilitationModel[]> {
+        let headers: Headers = this._headers;
+        return this._http.get('/api/childcards/GetRehabilitations?childCardId=' + childCardId,
+            { headers })
+            .map((resp: Response) => {
+                return resp.json();
+            })
+            .catch((error: any) => { return Observable.throw(error); });
     }
 }

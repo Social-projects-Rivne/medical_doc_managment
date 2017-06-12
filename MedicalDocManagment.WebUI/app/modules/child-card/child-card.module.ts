@@ -11,6 +11,8 @@ import PediatriciansExaminationModule from './pediatricians-examination.module';
 import ChildCardMainPageComponent from '../../components/childrens-card/child-card/main-page.component';
 import ChildCardParentsListComponent from '../../components/childrens-card/child-card/parents/parents-list.component';
 import ChildCardPsychiatristsConclusionFormComponent from '../../components/childrens-card/child-card/psychiatrists-conclusion-form.component';
+import ProceduresAddComponent from '../../components/childrens-card/child-card/therapeutic-procedures/procedures-add.component';
+import ProceduresListComponent from '../../components/childrens-card/child-card/therapeutic-procedures/procedures-list.component';
 import VisitComponent from '../../components/childrens-card/visit/add/visit.component';
 import VisitsListComponent from '../../components/childrens-card/visit/list/list-visits.component';
 import VisitMainPageComponent from '../../components/childrens-card/visit/main-page/visit-main-page.component';
@@ -37,6 +39,9 @@ import ChildrenCardService from '../../services/children-card.service';
         VisitComponent,
         VisitsListComponent,
         ChildCardParentsListComponent,
+        ChildCardPsychiatristsConclusionFormComponent,
+        ProceduresAddComponent,
+        ProceduresListComponent,
         VisitMainPageComponent,
         TinyMceEditorComponent
     ],

@@ -119,7 +119,13 @@ namespace MedicalDocManagment.WebUI.Controllers
 
             return Ok(result);
         }
+        [HttpGet]
+        public IHttpActionResult GetTherapeuticProcedures()
+        {
+            var procedures = _childCardsService.GetTherapeuticProcedures();
 
+            return Ok(procedures);
+        }
         [HttpGet]
         public IHttpActionResult GetClassesMkh()
         {
@@ -250,6 +256,39 @@ namespace MedicalDocManagment.WebUI.Controllers
                 var resultDTO = _childCardsService.SavePediatriciansExamination(childCardId,
                     examinationDTO);
                 var resultVM = PediatriciansExaminationHelper.DTOToVM(resultDTO);
+                return Ok(resultVM);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
+
+        [Authorize]
+        [HttpPut]
+        public HttpResponseMessage AddRehabilitationIntoChildCard(int childCardId,
+           [FromBody]RehabilitationVM rehabilitationVM)
+        {
+            try
+            {
+                var rehabilitationDTO = RehabilitationMapHelper.VMToDTO(rehabilitationVM);
+                _childCardsService.AddRehabilitationIntoChildCard(childCardId, rehabilitationDTO);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception exception)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception);
+            }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IHttpActionResult GetRehabilitations(int childCardId)
+        {
+            try
+            {
+                var resultDTO = _childCardsService.GetRehabilitationsList(childCardId);
+                var resultVM = RehabilitationMapHelper.DTOsToVMs(resultDTO);
                 return Ok(resultVM);
             }
             catch (Exception exception)

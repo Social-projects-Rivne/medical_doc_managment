@@ -9,6 +9,7 @@ import { HomeMainComponent } from "../components/home/main/home-main.component";
 import ChildCardAddComponent from "../components/childrens-card/children-cards-list/add/children-card-add.component";
 import ChildCardMainPageComponent from '../components/childrens-card/child-card/main-page.component';
 import ChildCardPediatriciansExaminationComponent from '../components/childrens-card/child-card/pediatricians-examination/component';
+import ProceduresAddComponent from '../components/childrens-card/child-card/therapeutic-procedures/procedures-add.component';
 import ViewPatientDataComponent from "../components/childrens-card/view-patient-data/view-patient-data.component";
 import MainAppComponent from "../components/main-app.component";
 import AdminAppComponent from "../components/admin-app.component";
@@ -36,6 +37,10 @@ const appRoutes: Routes = [
                 path: 'childCard/:id',
                 children: [
                     { path: '', component: ChildCardMainPageComponent, pathMatch: 'full' },
+                    {
+                        path: 'addProcedure',
+                        component: ProceduresAddComponent
+                    },
                     {
                         path: 'pediatriciansExamination',
                         component: ChildCardPediatriciansExaminationComponent

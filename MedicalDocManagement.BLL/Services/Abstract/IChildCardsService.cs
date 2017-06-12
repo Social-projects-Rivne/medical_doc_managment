@@ -27,5 +27,8 @@ namespace MedicalDocManagement.BLL.Services.Abstract
             PediatriciansExaminationDTO examination);
         ChildCardDTO GetChildCard(int childCardId);
         List<ParentDTO> GetChildsParents(int childCardId);
+        List<TherapeuticProcedureDTO> GetTherapeuticProcedures();
+        RehabilitationDTO AddRehabilitationIntoChildCard(int childCardId, RehabilitationDTO rehabilitationDTO);
+        List<RehabilitationDTO> GetRehabilitationsList(int childCardId);
     }
 }
