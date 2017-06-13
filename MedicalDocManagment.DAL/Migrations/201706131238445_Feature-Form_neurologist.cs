@@ -1,8 +1,9 @@
 namespace MedicalDocManagment.DAL.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Feature_form_neurologist : DbMigration
+    public partial class FeatureForm_neurologist : DbMigration
     {
         public override void Up()
         {

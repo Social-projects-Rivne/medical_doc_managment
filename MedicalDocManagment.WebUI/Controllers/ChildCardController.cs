@@ -7,10 +7,8 @@ using MedicalDocManagment.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Controllers.CustomAttributes;
 using MedicalDocManagment.WebUI.Models.Main.NeurologistsExamination;
 using System.Net.Http;
-using MedicalDocManagment.WebUI.Models;
 using MedicalDocManagment.WebUI.Models.Validators;
 using System.Net;
-using MedicalDocManagement.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Models.Main;
 using MedicalDocManagment.WebUI.Models.Main.PediatriciansExamination;
 

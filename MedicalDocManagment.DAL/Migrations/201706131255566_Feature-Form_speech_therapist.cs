@@ -3,7 +3,7 @@ namespace MedicalDocManagment.DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Feature_form_speech_therapist : DbMigration
+    public partial class FeatureForm_speech_therapist : DbMigration
     {
         public override void Up()
         {

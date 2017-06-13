@@ -12,11 +12,9 @@ namespace MedicalDocManagement.BLL.Services.Abstract
         PediatriciansExaminationDTO GetPediatriciansExamination(int childCardId);
         PediatriciansExaminationDTO SavePediatriciansExamination(int childCardId,
             PediatriciansExaminationDTO examinationDTO);
-
         NeurologistsExaminationDTO GetNeurologistsExamination(int childCardId);
         NeurologistsExaminationDTO SaveNeurologistsExamination(int childCardId,
             NeurologistsExaminationDTO examinationDTO);
-
         SpeechTherapistsExaminationDTO GetSpeechTherapistsExamination(int childCardId);
         SpeechTherapistsExaminationDTO SaveSpeechTherapistsExamination(int childCardId,
             SpeechTherapistsExaminationDTO examinationDTO);

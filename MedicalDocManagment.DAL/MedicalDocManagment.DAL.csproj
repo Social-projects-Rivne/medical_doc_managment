@@ -167,21 +167,17 @@
     <Compile Include="Migrations\201705270648406_Add_Visit_Table.Designer.cs">
       <DependentUpon>201705270648406_Add_Visit_Table.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706021606473_Feature_form_neurologist.cs" />
-    <Compile Include="Migrations\201706021606473_Feature_form_neurologist.Designer.cs">
-      <DependentUpon>201706021606473_Feature_form_neurologist.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706081459400_Feature_form_speech_therapist.cs" />
-    <Compile Include="Migrations\201706081459400_Feature_form_speech_therapist.Designer.cs">
-      <DependentUpon>201706081459400_Feature_form_speech_therapist.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201706071747414_Add_Rehabilitations.cs" />
     <Compile Include="Migrations\201706071747414_Add_Rehabilitations.Designer.cs">
       <DependentUpon>201706071747414_Add_Rehabilitations.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706130953144_Merge.cs" />
-    <Compile Include="Migrations\201706130953144_Merge.Designer.cs">
-      <DependentUpon>201706130953144_Merge.cs</DependentUpon>
+    <Compile Include="Migrations\201706131238445_Feature-Form_neurologist.cs" />
+    <Compile Include="Migrations\201706131238445_Feature-Form_neurologist.Designer.cs">
+      <DependentUpon>201706131238445_Feature-Form_neurologist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706131255566_Feature-Form_speech_therapist.cs" />
+    <Compile Include="Migrations\201706131255566_Feature-Form_speech_therapist.Designer.cs">
+      <DependentUpon>201706131255566_Feature-Form_speech_therapist.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -254,17 +250,14 @@
     <EmbeddedResource Include="Migrations\201705270648406_Add_Visit_Table.resx">
       <DependentUpon>201705270648406_Add_Visit_Table.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706021606473_Feature_form_neurologist.resx">
-      <DependentUpon>201706021606473_Feature_form_neurologist.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706081459400_Feature_form_speech_therapist.resx">
-      <DependentUpon>201706081459400_Feature_form_speech_therapist.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706071747414_Add_Rehabilitations.resx">
       <DependentUpon>201706071747414_Add_Rehabilitations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706130953144_Merge.resx">
-      <DependentUpon>201706130953144_Merge.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706131238445_Feature-Form_neurologist.resx">
+      <DependentUpon>201706131238445_Feature-Form_neurologist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706131255566_Feature-Form_speech_therapist.resx">
+      <DependentUpon>201706131255566_Feature-Form_speech_therapist.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

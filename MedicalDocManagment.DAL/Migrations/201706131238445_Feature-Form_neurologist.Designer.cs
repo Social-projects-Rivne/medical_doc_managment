@@ -7,13 +7,13 @@ namespace MedicalDocManagment.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class Feature_form_neurologist : IMigrationMetadata
+    public sealed partial class FeatureForm_neurologist : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Feature_form_neurologist));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FeatureForm_neurologist));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706021606473_Feature_form_neurologist"; }
+            get { return "201706131238445_Feature-Form_neurologist"; }
         }
         
         string IMigrationMetadata.Source
