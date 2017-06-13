@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using MedicalDocManagement.BLL.DTO;
 using MedicalDocManagment.BLL.DTO.Main.NeurologistsExamination;
-using MedicalDocManagment.DAL.Entities;
 using MedicalDocManagment.DAL.Entities.Main.NeurologistsExamination;
 
 namespace MedicalDocManagement.BLL.Helpers

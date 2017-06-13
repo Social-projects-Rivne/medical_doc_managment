@@ -1,0 +1,388 @@
+﻿<div class="container">
+  <!-- "Loading" progress bar and related error alert -->
+  <div class="row" *ngIf="_isLoading">
+    <div class="progress">
+      <div class="progress-bar progress-bar-info progress-bar-striped active"
+           role="progressbar" aria-valuenow="0" aria-valuemin="0"
+           aria-valuemax="0" style="width:100%">
+        Отримання інформації щодо форми ...
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="_isErrorOnLoading">
+    <div class="alert alert-danger col-xs-12">
+      {{_lastLoadingErrorMessage}}
+    </div>
+  </div>
+
+  <form class="form-horizontal" *ngIf="!_isLoading"
+        #speechTherapistsExaminationForm="ngForm" (submit)="_save()">
+    <!-- ПІБ пацієнта, якого стосується форма -->
+    <div class="row">
+      <h4 class="text-center">
+        {{_childCard.lastName}} {{_childCard.firstName}} {{_childCard.secondName}}
+      </h4>
+    </div>
+    <!-- Заголовок форми -->
+    <div class="row">
+      <h4 class="text-center">
+        ОГЛЯД ЛОГОПЕДА
+      </h4>
+    </div>
+    <br />
+
+    <!-- І. Ранній мовленнєвий розвиток дитини -->
+    <div>
+      <!-- Heading text -->
+      <p class="row">
+        <b>І. Ранній мовленнєвий розвиток дитини</b>
+      </p>
+      <!-- Гуління... -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Гуління <i>(у нормі з 2 міс.)</i>, час появи, характер</span>
+              <input type="text" class="form-control" id="childsEarlySpeechDevelopmentCooing"
+                     name="childsEarlySpeechDevelopmentCooing"
+                     [(ngModel)]="_examination.childsEarlySpeechDevelopment.cooing"
+                     #childsEarlySpeechDevelopmentCooing="ngModel"
+                     [disabled]="_isSaving" maxlength="58" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Лепет... -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Лепет <i>(у нормі з 4-6 міс.)</i>, час появи, характер</span>
+              <input type="text" class="form-control" id="childsEarlySpeechDevelopmentBabble"
+                     name="childsEarlySpeechDevelopmentBabble"
+                     [(ngModel)]="_examination.childsEarlySpeechDevelopment.babble"
+                     #childsEarlySpeechDevelopmentBabble="ngModel"
+                     [disabled]="_isSaving" maxlength="58" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Перші слова... -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Перші слова <i>(характеристика звуконаслідування, кількість)</i></span>
+              <input type="text" class="form-control" id="childsEarlySpeechDevelopmentFirstWords"
+                     name="childsEarlySpeechDevelopmentFirstWords"
+                     [(ngModel)]="_examination.childsEarlySpeechDevelopment.firstWords"
+                     #childsEarlySpeechDevelopmentFirstWords="ngModel"
+                     [disabled]="_isSaving" maxlength="49" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Фразове мовлення... -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Фразове мовлення <i>(у нормі з 1,5-2 р.)</i></span>
+              <input type="text" class="form-control" id="childsEarlySpeechDevelopmentPhraseSpeech"
+                     name="childsEarlySpeechDevelopmentPhraseSpeech"
+                     [(ngModel)]="_examination.childsEarlySpeechDevelopment.phraseSpeech"
+                     #childsEarlySpeechDevelopmentPhraseSpeech="ngModel"
+                     [disabled]="_isSaving" maxlength="61" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Чи переривається мовленнєвий... -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Чи переривається мовленнєвий розвиток, з якої причини</span>
+              <input type="text" class="form-control" id="childsEarlySpeechDevelopmentBreaksInDevelopment"
+                     name="childsEarlySpeechDevelopmentBreaksInDevelopment"
+                     [(ngModel)]="_examination.childsEarlySpeechDevelopment.breaksInDevelopment"
+                     #childsEarlySpeechDevelopmentBreaksInDevelopment="ngModel"
+                     [disabled]="_isSaving" maxlength="145" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Чи проводились заняття з вчителем-логопедом ... -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Чи проводились заняття з вчителем-логопедом <i>(тривалість занять, результат)</i></span>
+              <input type="text" class="form-control" id="childsEarlySpeechDevelopmentWorkWithTeacherAndSpeechTherapist"
+                     name="childsEarlySpeechDevelopmentWorkWithTeacherAndSpeechTherapist"
+                     [(ngModel)]="_examination.childsEarlySpeechDevelopment.workWithTeacherAndSpeechTherapist"
+                     #childsEarlySpeechDevelopmentWorkWithTeacherAndSpeechTherapist="ngModel"
+                     [disabled]="_isSaving" maxlength="122" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ІI. Стан лексичної складової мовлення -->
+    <div>
+      <!-- Heading text -->
+      <p class="row">
+        <b>ІI. Стан лексичної складової мовлення</b>
+      </p>
+      <!-- Імпресивне мовлення -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Імпресивне мовлення</span>
+              <input type="text" class="form-control" id="stateOfTheLexicalPartOfSpeechImpressiveSpeech"
+                     name="stateOfTheLexicalPartOfSpeechImpressiveSpeech"
+                     [(ngModel)]="_examination.stateOfTheLexicalPartOfSpeech.impressiveSpeech"
+                     #stateOfTheLexicalPartOfSpeechImpressiveSpeech="ngModel"
+                     [disabled]="_isSaving" maxlength="173" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Експресивне мовлення -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Експресивне мовлення</span>
+              <input type="text" class="form-control" id="stateOfTheLexicalPartOfSpeechExpressiveSpeech"
+                     name="stateOfTheLexicalPartOfSpeechExpressiveSpeech"
+                     [(ngModel)]="_examination.stateOfTheLexicalPartOfSpeech.exspressiveSpeech"
+                     #stateOfTheLexicalPartOfSpeechExpressiveSpeech="ngModel"
+                     [disabled]="_isSaving" maxlength="172" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Рівень стану сформованості... -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Рівень стану сформованості лексичної складової мовлення 
+                <level-of-formation [(level)]="_examination.stateOfTheLexicalPartOfSpeech.levelOfFormation">
+                </level-of-formation>
+              </span>
+              <input type="text" class="form-control" id="stateOfTheLexicalPartOfSpeechLevelOfFormationText"
+                     name="stateOfTheLexicalPartOfSpeechLevelOfFormationText"
+                     [(ngModel)]="_examination.stateOfTheLexicalPartOfSpeech.levelOfFormationText"
+                     #stateOfTheLexicalPartOfSpeechLevelOfFormationText="ngModel"
+                     [disabled]="_isSaving" maxlength="116" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ІII. Граматична будова мовлення -->
+    <div>
+      <!-- Textbox with label -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group">              
+              <span class="input-group-addon"><b>ІII. Граматична будова мовлення</b></span>
+              <input type="text" class="form-control" id="grammaticalStructureOfSpeechText"
+                     name="grammaticalStructureOfSpeechText"
+                     [(ngModel)]="_examination.grammaticalStructureOfSpeech.text"
+                     #grammaticalStructureOfSpeechText="ngModel"
+                     [disabled]="_isSaving" maxlength="161" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Рівень стану сформованості... -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">
+                Рівень стану сформованості граматичної складової мовлення
+                <level-of-formation [(level)]="_examination.grammaticalStructureOfSpeech
+                                    .levelOfFormation">
+                </level-of-formation>
+              </span>
+              <input type="text" class="form-control" 
+                     id="grammaticalStructureOfSpeechLevelOfFormationText"
+                     name="grammaticalStructureOfSpeechLevelOfFormationText"
+                     [(ngModel)]="_examination.grammaticalStructureOfSpeech.levelOfFormationText"
+                     #grammaticalStructureOfSpeechLevelOfFormationText="ngModel"
+                     [disabled]="_isSaving" maxlength="135" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ІV. Особливості фонетико-фонематичної складової мовлення -->
+    <div>
+      <!-- Textbox with label -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <b>ІV. Особливості фонетико-фонематичної складової мовлення</b>
+            <textarea class="form-control" [disabled]="_isSaving"
+                      id="featuresOfPhoneticAndPhonematicSpeechComponentsText"
+                      name="featuresOfPhoneticAndPhonematicSpeechComponentsText" 
+                      [(ngModel)]="_examination.featuresOfPhoneticAndPhonematicSpeechComponents.text"
+                      #featuresOfPhoneticAndPhonematicSpeechComponentsText="ngModel"
+                      maxlength="328" rows=3></textarea>
+          </div>
+        </div>
+      </div>
+      <!-- Рівень стану сформованості... -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">
+                Рівень стану сформованості фонетико-фонематичної складової мовлення
+                <level-of-formation [(level)]="_examination
+                                    .featuresOfPhoneticAndPhonematicSpeechComponents
+                                    .levelOfFormation">
+                </level-of-formation>
+              </span>
+              <input type="text" class="form-control"
+                     id="featuresOfPhoneticAndPhonematicSpeechComponentsLevelOfFormationText"
+                     name="featuresOfPhoneticAndPhonematicSpeechComponentsLevelOfFormationText"
+                     [(ngModel)]="_examination.featuresOfPhoneticAndPhonematicSpeechComponents
+                     .levelOfFormationText"
+                     #featuresOfPhoneticAndPhonematicSpeechComponentsLevelOfFormationText="ngModel"
+                     [disabled]="_isSaving" maxlength="125" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- V. Прояви заїкання -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon"><b>V. Прояви заїкання</b></span>
+            <input type="text" class="form-control" id="manifestationsOfStuttering"
+                   name="manifestationsOfStuttering"
+                   [(ngModel)]="_examination.manifestationsOfStuttering"
+                   #manifestationsOfStuttering="ngModel"
+                   [disabled]="_isSaving" maxlength="78" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VI. Заключення -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <b>VI. Заключення</b>
+          <textarea class="form-control" [disabled]="_isSaving"
+                    id="conclusion"
+                    name="conclusion"
+                    [(ngModel)]="_examination.conclusion"
+                    #conclusion="ngModel"
+                    maxlength="466" rows=5></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIІ. Перспективний індивідуальний план кореляційної роботи -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <b>VIІ. Перспективний індивідуальний план кореляційної роботи</b>
+          <textarea class="form-control" [disabled]="_isSaving"
+                    id="longtermIndividualPlanOfRemedialWork"
+                    name="longtermIndividualPlanOfRemedialWork"
+                    [(ngModel)]="_examination.longtermIndividualPlanOfRemedialWork"
+                    #longtermIndividualPlanOfRemedialWork="ngModel"
+                    maxlength="902" rows=9></textarea>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <!-- Результативність логопедичного впливу -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          Результативність логопедичного впливу
+          <textarea class="form-control" [disabled]="_isSaving"
+                    id="efficiencyOfSpeechTherapyEffect"
+                    name="efficiencyOfSpeechTherapyEffect"
+                    [(ngModel)]="_examination.efficiencyOfSpeechTherapyEffect"
+                    #efficiencyOfSpeechTherapyEffect="ngModel"
+                    maxlength="347" rows=3></textarea>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <br />
+    <!-- Date, "Логопед" and initials -->
+    <div class="row elements-with-equal-height">
+      <div class="col-xs-3">
+        <div class="form-group vertical-alignment">
+          <custom-datepicker [(ngModel)]="_examination.date" 
+                             [format]="_dateFormat"
+                             [disabled]="_isSaving"
+                             name="date" #date="ngModel">
+          </custom-datepicker>
+        </div>
+      </div>
+      <div class="col-xs-offset-5 col-xs-3">
+        <div class="form-group vertical-alignment">
+          Логопед <users-lfs [id]="_examination.doctorsId"></users-lfs>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+    <!-- Alert when there are missing values -->
+    <div class="row">
+      <div class="col-xs-4">
+        <div *ngIf="speechTherapistsExaminationForm.invalid"
+             class="alert alert-danger">
+          Для збереження введіть правильні значення.
+        </div>
+      </div>
+    </div>
+    <!-- Saving progress bar and alert for saving errors -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="progress" *ngIf="_isSaving">
+          <div class="progress-bar progress-bar-info progress-bar-striped active"
+               role="progressbar" aria-valuenow="0" aria-valuemin="0"
+               aria-valuemax="0" style="width:100%">
+            Збереження результату огляду...
+          </div>
+        </div>
+        <div *ngIf="_isErrorOnSaving" class="alert alert-danger col-xs-12">
+          {{_lastSavingErrorMessage}}
+        </div>
+      </div>
+    </div>
+    <!-- Save button -->
+    <div class="row">
+      <div class="form-group col-xs-11">
+        <button type="submit" class="btn btn-primary"
+                [disabled]="_isSaving || speechTherapistsExaminationForm.invalid">
+          Зберегти
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <simple-notifications [options]="_notificationOptions"></simple-notifications>
+</div>

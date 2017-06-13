@@ -10,6 +10,7 @@ import ChildCardAddComponent from "../components/childrens-card/children-cards-l
 import ChildCardMainPageComponent from '../components/childrens-card/child-card/main-page.component';
 import ChildCardPediatriciansExaminationComponent from '../components/childrens-card/child-card/pediatricians-examination/component';
 import ChildCardNeurologistsExaminationComponent from '../components/childrens-card/child-card/neurologists-examination/component';
+import ChildCardSpeechTherapistsExaminationComponent from '../components/childrens-card/child-card/speech-therapists-examination/component';
 import ProceduresAddComponent from '../components/childrens-card/child-card/therapeutic-procedures/procedures-add.component';
 import ViewPatientDataComponent from "../components/childrens-card/view-patient-data/view-patient-data.component";
 import MainAppComponent from "../components/main-app.component";
@@ -49,6 +50,10 @@ const appRoutes: Routes = [
                     {
                         path: 'neurologistsExamination',
                         component: ChildCardNeurologistsExaminationComponent
+                    },
+                    {
+                        path: 'speechTherapistsExamination',
+                        component: ChildCardSpeechTherapistsExaminationComponent
                     },
                     {
                         path: 'visit',

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Web.Http;
 
 using MedicalDocManagement.BLL.Services;
@@ -6,6 +6,10 @@ using MedicalDocManagement.BLL.Services.Abstract;
 using MedicalDocManagment.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Controllers.CustomAttributes;
 using MedicalDocManagment.WebUI.Models.Main.NeurologistsExamination;
+using System.Net.Http;
+using MedicalDocManagment.WebUI.Models.Validators;
+using System.Net;
+using MedicalDocManagment.WebUI.Models.Main;
 using MedicalDocManagment.WebUI.Models.Main.PediatriciansExamination;
 
 namespace MedicalDocManagment.WebUI.Controllers
@@ -122,5 +126,58 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return InternalServerError(exception);
             }
         }
+
+        [SpeechTherapistsOnlyAuthorization]
+        [HttpPut]
+        public IHttpActionResult SaveSpeechTherapistsExamination(int childCardId,
+            [FromBody]SpeechTherapistsExaminationVM examinationVM)
+        {
+            if (examinationVM == null)
+            {
+                return BadRequest("No examination to save.");
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var validator = new SpeechTherapistsExaminationValidator();
+            var fluentValidationResult = validator.Validate(examinationVM);
+            if (!fluentValidationResult.IsValid)
+            {
+                return ResponseMessage(Request.CreateResponse
+                    (HttpStatusCode.BadRequest, fluentValidationResult.Errors)
+                    );
+            }
+
+            try
+            {
+                var examinationDTO = SpeechTherapistsExaminationHelper.VMToDTO(examinationVM);
+                var resultDTO = childCardService.SaveSpeechTherapistsExamination(childCardId,
+                    examinationDTO);
+                var resultVM = SpeechTherapistsExaminationHelper.DTOToVM(resultDTO);
+                return Ok(resultVM);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IHttpActionResult GetSpeechTherapistsExamination(int childCardId)
+        {
+            try
+            {
+                var resultDTO = childCardService.GetSpeechTherapistsExamination(childCardId);
+                var resultVM = SpeechTherapistsExaminationHelper.DTOToVM(resultDTO);
+                return Ok(resultVM);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
     }
 }
+

@@ -164,8 +164,10 @@ export default class ChildrensCardService {
      * @param {any} dataOfPatient Contains data about patient to view
      * @return {Observable<ChildrenCardsModel>} Contains data about patients
     */
-    viewPatientData(dataOfPatient: any): Observable<ChildrenCardsModel> {
+    viewPatientData(dataOfPatient: ViewPatientDataModel): Observable<ChildrenCardsModel> {
         let headers = this._headers;
+
+        dataOfPatient.date = new Date(dataOfPatient.date).toISOString();
 
         return this._http.get('/api/childcards/viewPatientData?' +
             $.param(dataOfPatient), { headers })

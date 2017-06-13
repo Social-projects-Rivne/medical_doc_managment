@@ -1,3 +1,4 @@
+using MedicalDocManagement.DAL.Entities.Main;
 using MedicalDocManagment.DAL.Entities.Main;
 using MedicalDocManagment.DAL.Entities.Main.NeurologistsExamination;
 using MedicalDocManagment.DAL.Entities.Main.PediatriciansExamination;
@@ -63,5 +64,10 @@ namespace MedicalDocManagment.DAL.Entities
 
         [ForeignKey("NeurologistsExaminationId")]
         public virtual NeurologistsExamination NeurologistsExamination { get; set; }
+
+        public int? SpeechTherapistsExaminationId { get; set; }
+
+        [ForeignKey("SpeechTherapistsExaminationId")]
+        public virtual SpeechTherapistsExaminationEntity SpeechTherapistsExamination { get; set; }
     }
 }

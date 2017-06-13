@@ -1,4 +1,4 @@
-﻿import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -9,6 +9,7 @@ import { AuthenticationService } from "./authentication.service";
 import ChildCardModel from "../models/child-card/child-card.model";
 import NeurologistsExaminationModel from "../models/child-card/neurologists-examination/examination.model";
 import PediatriciansExaminationModel from "../models/child-card/pediatricians-examination/pediatricians-examination.model";
+import SpeechTherapistsExaminationModel from "../models/child-card/speech-therapists-examination/examination.model";
 
 @Injectable()
 export default class ChildCardService {
@@ -47,6 +48,16 @@ export default class ChildCardService {
             { headers })
             .map((resp: Response) => {
                 return new PediatriciansExaminationModel(resp.json());
+            })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    getSpeechTherapistsExamination(childCardId: number): Observable<SpeechTherapistsExaminationModel> {
+        let headers: Headers = this._headers;
+        return this._http.get(this._apiUrl + 'getSpeechTherapistsExamination?childCardId=' + childCardId,
+            { headers })
+            .map((resp: Response) => {
+                return new SpeechTherapistsExaminationModel(resp.json());
             })
             .catch((error: any) => { return Observable.throw(error); });
     }
@@ -96,4 +107,22 @@ export default class ChildCardService {
             .map((resp: Response) => { return JSON.parse(resp.text()); })
             .catch((error: any) => { return Observable.throw(error); });
     }
+
+    saveSpeechTherapistsExamination(childCardId: number, examination: SpeechTherapistsExaminationModel):
+        Observable<SpeechTherapistsExaminationModel> {
+        let headers: Headers = this._headers;
+
+        let examinationToSend: SpeechTherapistsExaminationModel
+            = new SpeechTherapistsExaminationModel(examination);
+        examinationToSend.doctorsId = this._authenticationService.id;
+
+        let body: string = JSON.stringify(examinationToSend);
+        return this._http.put(this._apiUrl + 'saveSpeechTherapistsExamination?childCardId=' + childCardId,
+            body, { headers })
+            .map((resp: Response) => {
+                return new SpeechTherapistsExaminationModel(resp.json());
+            })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
 }
+

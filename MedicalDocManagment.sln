@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalDocManagment.DAL", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalDocManagement.BLL", "MedicalDocManagement.BLL\MedicalDocManagement.BLL.csproj", "{34FC668E-D391-4FB8-BA59-731CE70F18A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalDocManagement.CUL", "MedicalDocManagement.CUL\MedicalDocManagement.CUL.csproj", "{797EAA69-9AA4-49A0-A90D-290ACF68AA48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{34FC668E-D391-4FB8-BA59-731CE70F18A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34FC668E-D391-4FB8-BA59-731CE70F18A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34FC668E-D391-4FB8-BA59-731CE70F18A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{797EAA69-9AA4-49A0-A90D-290ACF68AA48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{797EAA69-9AA4-49A0-A90D-290ACF68AA48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{797EAA69-9AA4-49A0-A90D-290ACF68AA48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{797EAA69-9AA4-49A0-A90D-290ACF68AA48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

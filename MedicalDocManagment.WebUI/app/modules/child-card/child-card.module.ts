@@ -8,6 +8,7 @@ import { MyDatePickerModule } from 'mydatepicker';
 
 import NeurologistsExaminationModule from './neurologists-examination.module';
 import PediatriciansExaminationModule from './pediatricians-examination.module';
+import SpeechTherapistsExaminationModule from './speech-therapists-examination.module';
 
 import ChildCardMainPageComponent from '../../components/childrens-card/child-card/main-page.component';
 import ChildCardParentsListComponent from '../../components/childrens-card/child-card/parents/parents-list.component';
@@ -31,6 +32,7 @@ import ChildCardService from '../../services/child-card.service';
         MomentModule,
         NeurologistsExaminationModule,
         PediatriciansExaminationModule,
+        SpeechTherapistsExaminationModule,
         SimpleNotificationsModule,
         PushNotificationsModule,
         MyDatePickerModule 
