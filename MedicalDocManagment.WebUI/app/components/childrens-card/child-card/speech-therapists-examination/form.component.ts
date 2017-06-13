@@ -9,12 +9,14 @@ import ChildCardModel from "../../../../models/child-card/child-card.model";
 import SpeechTherapistsExaminationModel from "../../../../models/child-card/speech-therapists-examination/examination.model";
 
 import ChildCardService from '../../../../services/child-card.service';
+import ChildrenCardService from '../../../../services/children-card.service';
 import SharedService from '../../../../services/shared.service';
 
 @Component({
     moduleId: module.id,
     providers: [
         ChildCardService,
+        ChildrenCardService,
         NotificationsService,
         SharedService
     ],
@@ -26,6 +28,7 @@ export default class SpeechTherapistsExaminationFormComponent implements OnDestr
     private _childCard: ChildCardModel;
     private _childCardSubscription: Subscription;
     private _childCardService: ChildCardService;
+    private _childrenCardService: ChildrenCardService;
     private _dateFormat: Object;
     private _examination: SpeechTherapistsExaminationModel;
     private _isErrorOnLoading: boolean;
@@ -38,12 +41,13 @@ export default class SpeechTherapistsExaminationFormComponent implements OnDestr
     private _notificationOptions: any;
     private _notificationService: NotificationsService;
 
-    constructor(childCardService: ChildCardService,
+    constructor(childCardService: ChildCardService, childrenCardService: ChildrenCardService,
         notificationService: NotificationsService,
         sharedService: SharedService) {
         this._childCard = null;
         this._childCardService = childCardService;
-        this._childCardSubscription = this._childCardService.currentChildCardObservable
+        this._childrenCardService = childrenCardService;
+        this._childCardSubscription = this._childrenCardService.currentChildCardObservable
             .subscribe((childCard: ChildCardModel) => {
                 this._childCard = childCard;
                 this._loadExaminationFromServer();

@@ -13,6 +13,7 @@ import NeurologistsExaminationViewComponent from '../../components/childrens-car
 
 import { AuthenticationService } from '../../services/authentication.service';
 import { AuthGuard } from '../../services/guards/auth.guard';
+import ChildCardService from '../../services/child-card.service';
 import ChildrenCardService from '../../services/children-card.service';
 import MkhsService from "../../services/mkhs.service";
 import SharedService from '../../services/shared.service';
@@ -35,6 +36,7 @@ import SharedService from '../../services/shared.service';
     providers: [
         AuthenticationService,
         AuthGuard,
+        ChildCardService,
         ChildrenCardService,
         NotificationsService,
         MkhsService,

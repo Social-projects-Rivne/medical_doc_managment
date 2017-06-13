@@ -1,0 +1,95 @@
+﻿<div>
+    <form class="form-horizontal" (ngSubmit)="submit($event,rehabilitationAddForm);" #rehabilitationAddForm="ngForm">
+        <div class="container">
+            <div class="row">
+                <h4 class="text-center">
+                    {{_childCard?.lastName}} {{_childCard?.firstName}} {{_childCard?.secondName}}
+                </h4>
+            </div>
+            <div class="row">
+                <h4 class="text-center">
+                    Додати призначення
+                </h4>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="position" class="control-label col-xs-4">Призначення</label>
+                    <div class="col-xs-4">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-th-list" aria-hidden="true"></i></span>
+                            <select name="procedure" id="procedure" [(ngModel)]="rehabilitation.therapeuticProcedure.id" class="form-control"
+                                    #procedure="ngModel" required>
+                                <option *ngFor="let procedure of procedures" [ngValue]="procedure.id">
+                                    {{procedure.procedureCaption}}
+                                </option>
+                            </select>
+                        </div>
+                        <div [hidden]="procedure.valid || procedure.untouched" class="alert alert-danger">
+                            Необхідно вибрати призначення
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="countProcedures" class="control-label col-xs-4">Кількість процедур</label>
+                    <div class="col-xs-4">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign" aria-hidden="true"></i></span>
+                            <input type="number" min="1" class="form-control" id="countProcedures" name="countProcedures"
+                                   [(ngModel)]="rehabilitation.count" #countProcedures="ngModel" required
+                                   (ngModelChange)="isProceduresCountValid()" />
+                        </div>
+                        <div *ngIf="_isMoreThanMaxProcedure" class="alert alert-danger">
+                            Кількість процедур не може перевищувати {{maxCountProcedures}}
+                        </div>
+                        <div [hidden]="countProcedures.valid || countProcedures.untouched" class="alert alert-danger">
+                            Необхідно зазначити кількість процедур
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="date" class="control-label col-xs-4">Дата призначення</label>
+                    <div class="col-xs-4">
+                        <my-date-picker #date name="date" id="date" [options]="myDatePickerOptions"
+                                        [(ngModel)]="datePickerModel" #dateProcedure="ngModel" required></my-date-picker>
+                        <div [hidden]="dateProcedure.valid || dateProcedure.untouched" class="alert alert-danger">
+                            Необхідно зазначити дату призначення
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="commentary" class="control-label col-xs-4">Коментар до призначення</label>
+                    <div class="col-xs-4">
+                        <textarea class="form-control" 
+                                  style="min-width: 100%; max-width: 100%;"
+                                  id="commentary"
+                                  name="commentary" [(ngModel)]="rehabilitation.commentary"
+                                  #rehabilitationTextArea="ngModel"
+                                  maxlength="200" rows=5></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-offset-4 col-xs-4">
+                    <div *ngIf="_isErrorOcurred" class="alert alert-danger">
+                        {{this._errorMessage}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-xs-offset-4 col-xs-8">
+                        <button [disabled]="rehabilitationAddForm.form.invalid || _isSaving || _isMoreThanMaxProcedure" class="btn btn-default" type="submit">Додати призначення</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+    <simple-notifications [options]="_sharedService.notificationOptions"></simple-notifications>
+</div>
+

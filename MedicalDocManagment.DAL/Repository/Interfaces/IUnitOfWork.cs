@@ -18,6 +18,8 @@ namespace MedicalDocManagment.DAL.Repository.Interfaces
         IPediatriciansExaminationsRepository PediatriciansExaminationsRepository { get; }
         INeurologistsExaminationsRepository NeurologistsExaminationsRepository { get; }
         ISpeechTherapistsExaminationsRepository SpeechTherapistsExaminationsRepository { get; }
+        ITherapeuticProceduresRepository TherapeuticProceduresRepository { get; }
+        IRehabilitationsRepository RehabilitationsRepository { get; }
         IVisitsRepository VisitsRepository { get; }
 
         UsersManager UsersManager { get; }

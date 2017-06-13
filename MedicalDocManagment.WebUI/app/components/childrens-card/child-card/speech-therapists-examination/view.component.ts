@@ -6,10 +6,11 @@ import ChildCardModel from "../../../../models/child-card/child-card.model";
 import SpeechTherapistsExaminationModel from "../../../../models/child-card/speech-therapists-examination/examination.model";
 
 import ChildCardService from '../../../../services/child-card.service';
+import ChildrenCardService from '../../../../services/children-card.service';
 
 @Component({
     moduleId: module.id,
-    providers: [ ChildCardService ],
+    providers: [ChildCardService, ChildrenCardService ],
     selector: 'speech-therapists-examination-view',
     styleUrls: ['view.component.css'],
     templateUrl: 'view.component.html'
@@ -18,15 +19,17 @@ export default class SpeechTherapistsExaminationViewComponent implements OnDestr
     private _childCard: ChildCardModel;
     private _childCardSubscription: Subscription;
     private _childCardService: ChildCardService;
+    private _childrenCardService: ChildrenCardService;
     private _isErrorOnLoading: boolean;
     private _isLoading: boolean;
     private _lastLoadingErrorMessage: string;
     private _examination: SpeechTherapistsExaminationModel;
 
-    constructor(childCardService: ChildCardService) {
+    constructor(childCardService: ChildCardService, childrenCardService: ChildrenCardService) {
         this._childCard = null;
         this._childCardService = childCardService;
-        this._childCardSubscription = this._childCardService.currentChildCardObservable
+        this._childrenCardService = childrenCardService;
+        this._childCardSubscription = this._childrenCardService.currentChildCardObservable
             .subscribe((childCard: ChildCardModel) => {
                 this._childCard = childCard;
                 this._loadExaminationFromServer();

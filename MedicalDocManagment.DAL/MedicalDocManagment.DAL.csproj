@@ -111,6 +111,8 @@
     <Compile Include="Entities\Main\PediatriciansExamination\PregnancyDetails.cs" />
     <Compile Include="Entities\Main\PediatriciansExamination\PsychomotorDevelopment.cs" />
     <Compile Include="Entities\Main\SpeechTherapistsExaminationEntity.cs" />
+    <Compile Include="Entities\Main\Rehabilitation.cs" />
+    <Compile Include="Entities\Main\TherapeuticProcedure.cs" />
     <Compile Include="Entities\Main\Visit.cs" />
     <Compile Include="Entities\Position.cs" />
     <Compile Include="Entities\Role.cs" />
@@ -173,6 +175,14 @@
     <Compile Include="Migrations\201706081459400_Feature_form_speech_therapist.Designer.cs">
       <DependentUpon>201706081459400_Feature_form_speech_therapist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706071747414_Add_Rehabilitations.cs" />
+    <Compile Include="Migrations\201706071747414_Add_Rehabilitations.Designer.cs">
+      <DependentUpon>201706071747414_Add_Rehabilitations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706130953144_Merge.cs" />
+    <Compile Include="Migrations\201706130953144_Merge.Designer.cs">
+      <DependentUpon>201706130953144_Merge.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ImageRepository.cs" />
@@ -183,6 +193,8 @@
     <Compile Include="Repository\Interfaces\ChildCard\INeurologistsExaminationsRepository.cs" />
     <Compile Include="Repository\Interfaces\ChildCard\IPediatriciansExaminationsRepository.cs" />
     <Compile Include="Repository\Interfaces\IParentRepository.cs" />
+    <Compile Include="Repository\Interfaces\IRehabilitationsRepository.cs" />
+    <Compile Include="Repository\Interfaces\ITherapeuticProceduresRepository.cs" />
     <Compile Include="Repository\Interfaces\IVisitRepository.cs" />
     <Compile Include="Repository\Main\BlockMkhRepository.cs" />
     <Compile Include="Repository\Main\ChildCard\SpeechTherapistsExaminationRepository.cs" />
@@ -202,6 +214,8 @@
     <Compile Include="Repository\Main\ChildCard\NeurologistsExaminationRepository.cs" />
     <Compile Include="Repository\Main\ChildCard\PediatriciansExaminationRepository.cs" />
     <Compile Include="Repository\Main\ParentRepository.cs" />
+    <Compile Include="Repository\Main\RehabilitationsRepository.cs" />
+    <Compile Include="Repository\Main\TherapeuticProceduresRepository.cs" />
     <Compile Include="Repository\Main\VisitRepository.cs" />
     <Compile Include="Repository\PositionRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
@@ -245,6 +259,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706081459400_Feature_form_speech_therapist.resx">
       <DependentUpon>201706081459400_Feature_form_speech_therapist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706071747414_Add_Rehabilitations.resx">
+      <DependentUpon>201706071747414_Add_Rehabilitations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706130953144_Merge.resx">
+      <DependentUpon>201706130953144_Merge.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

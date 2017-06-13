@@ -4,7 +4,6 @@ using System.Web.Http;
 using MedicalDocManagement.BLL.Services;
 using MedicalDocManagement.BLL.Services.Abstract;
 using MedicalDocManagment.WebUI.Helpers;
-using MedicalDocManagment.WebUI.Models.Main.PediatriciansExamination;
 using MedicalDocManagment.WebUI.Controllers.CustomAttributes;
 using MedicalDocManagment.WebUI.Models.Main.NeurologistsExamination;
 using System.Net.Http;
@@ -13,59 +12,36 @@ using MedicalDocManagment.WebUI.Models.Validators;
 using System.Net;
 using MedicalDocManagement.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Models.Main;
+using MedicalDocManagment.WebUI.Models.Main.PediatriciansExamination;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
     public class ChildCardController : ApiController
     {
-        private readonly IChildCardsService _childCardsService;
+        private readonly IChildCardService childCardService;
 
         public ChildCardController()
         {
-            _childCardsService = new ChildCardsService();
-        }
-
-        [Authorize]
-        [HttpPost]
-        public HttpResponseMessage AddPatient(AddPatientVM addPatientVM)
-        {
-            var addPatientValidator = new AddPatientVMValidator();
-            var fluentValidationResult = addPatientValidator.Validate(addPatientVM);
-            if (!fluentValidationResult.IsValid)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, fluentValidationResult.Errors);
-            }
-
-            var newChildCardDTO = AddPatientHelper.AddPatientVMToChildCardDTO(addPatientVM);
-
-            try
-            {
-                var result = _childCardsService.AddChildCard(newChildCardDTO);
-                return Request.CreateResponse(HttpStatusCode.OK, result);
-            }
-            catch (Exception exception)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception);
-            }
+            childCardService = new ChildCardService();
         }
 
         [PsychiatristsOnlyAuthorization]
         [HttpPatch]
         public IHttpActionResult SavePsychiatristsConclusion(int childCardId,
-            [FromBody]string conclusion)
+    [FromBody]string conclusion)
         {
             if (conclusion == null)
             {
                 return BadRequest("No conclusion is supplied.");
             }
-            if (conclusion.Length>2260)
+            if (conclusion.Length > 2260)
             {
                 return BadRequest("Conclusion is too long.");
             }
 
             try
             {
-                var result = _childCardsService.AddPsychiatristsConclusion(childCardId, conclusion);
+                var result = childCardService.AddPsychiatristsConclusion(childCardId, conclusion);
                 return Ok(result);
             }
             catch (Exception exception)
@@ -82,7 +58,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             try
             {
                 var examinationDTO = PediatriciansExaminationHelper.VMToDTO(examinationVM);
-                var resultDTO = _childCardsService.SavePediatriciansExamination(childCardId,
+                var resultDTO = childCardService.SavePediatriciansExamination(childCardId,
                     examinationDTO);
                 var resultVM = PediatriciansExaminationHelper.DTOToVM(resultDTO);
                 return Ok(resultVM);
@@ -99,32 +75,9 @@ namespace MedicalDocManagment.WebUI.Controllers
         {
             try
             {
-                var resultDTO = _childCardsService.GetPediatriciansExamination(childCardId);
+                var resultDTO = childCardService.GetPediatriciansExamination(childCardId);
                 var resultVM = PediatriciansExaminationHelper.DTOToVM(resultDTO);
                 return Ok(resultVM);
-            }
-            catch (Exception exception)
-            {
-                return InternalServerError(exception);
-            }
-        }
-
-        [Authorize]
-        [HttpGet]
-        public IHttpActionResult GetChildCard(int childCardId)
-        {
-            try
-            {
-                var resultDTO = _childCardsService.GetChildCard(childCardId);
-
-                if (resultDTO!=null)
-                {
-                    return Ok(ChildCardMapHelper.DTOToVM(resultDTO));
-                }
-                else
-                {
-                    return Ok();
-                }
             }
             catch (Exception exception)
             {
@@ -149,7 +102,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             try
             {
                 var examinationDTO = NeurologistsExaminationHelper.VMToDTO(examinationVM);
-                var resultDTO = _childCardsService.SaveNeurologistsExamination(childCardId,
+                var resultDTO = childCardService.SaveNeurologistsExamination(childCardId,
                     examinationDTO);
                 var resultVM = NeurologistsExaminationHelper.DTOToVM(resultDTO);
                 return Ok(resultVM);
@@ -166,7 +119,7 @@ namespace MedicalDocManagment.WebUI.Controllers
         {
             try
             {
-                var resultDTO = _childCardsService.GetNeurologistsExamination(childCardId);
+                var resultDTO = childCardService.GetNeurologistsExamination(childCardId);
                 var resultVM = NeurologistsExaminationHelper.DTOToVM(resultDTO);
                 return Ok(resultVM);
             }
@@ -201,7 +154,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             try
             {
                 var examinationDTO = SpeechTherapistsExaminationHelper.VMToDTO(examinationVM);
-                var resultDTO = _childCardsService.SaveSpeechTherapistsExamination(childCardId,
+                var resultDTO = childCardService.SaveSpeechTherapistsExamination(childCardId,
                     examinationDTO);
                 var resultVM = SpeechTherapistsExaminationHelper.DTOToVM(resultDTO);
                 return Ok(resultVM);
@@ -218,7 +171,7 @@ namespace MedicalDocManagment.WebUI.Controllers
         {
             try
             {
-                var resultDTO = _childCardsService.GetSpeechTherapistsExamination(childCardId);
+                var resultDTO = childCardService.GetSpeechTherapistsExamination(childCardId);
                 var resultVM = SpeechTherapistsExaminationHelper.DTOToVM(resultDTO);
                 return Ok(resultVM);
             }

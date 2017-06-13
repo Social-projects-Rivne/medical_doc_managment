@@ -1,8 +1,6 @@
 ﻿import { Inject, Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -15,76 +13,18 @@ import SpeechTherapistsExaminationModel from "../models/child-card/speech-therap
 
 @Injectable()
 export default class ChildCardService {
-    readonly currentChildCardObservable: Observable<ChildCardModel>;
-
     private readonly _apiUrl: string;
     private _authenticationService: AuthenticationService;
-    private _currentChildCard: ChildCardModel;
     private _headers: Headers;
     private _http: Http;
 
     constructor(http: Http, @Inject(AuthenticationService)
-    authenticationService: AuthenticationService, route: ActivatedRoute) {
+    authenticationService: AuthenticationService) {
         this._apiUrl = '/api/childcard/';
         this._authenticationService = authenticationService;
-        this._currentChildCard = null;
-
-        this.currentChildCardObservable = Observable.create(
-            (observer: Observer<ChildCardModel>) => {
-                let subscription = route.params.subscribe(params => {
-                    let childCardId = params['id'];
-                    if (childCardId) {
-                        if (!this._currentChildCard || (this._currentChildCard
-                            && this._currentChildCard.id != childCardId)) {
-                            this.getChildCard(childCardId)
-                                .subscribe((childCard: ChildCardModel) => {
-                                    this._currentChildCard = childCard;
-                                    observer.next(childCard);
-                                },
-                                (error: any) => {
-                                    observer.error(error);
-                                });
-                        }
-                    }
-
-                    return () => { subscription.unsubscribe(); }
-                })
-            })
-
         this._headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
         this._headers.append('Authorization', 'Bearer ' + this._authenticationService.token);
         this._http = http;
-    }
-
-    addChildrenCard(childCard: ChildCardModel): Observable<ChildCardModel> {
-        let headers = this._headers;
-        let sendObj = {
-            lastName: childCard.lastName,
-            firstName: childCard.firstName,
-            secondName: childCard.secondName,
-            date: childCard.date,
-            checkin: childCard.checkIn,
-            checkout: childCard.checkOut,
-            address: childCard.address,
-            diagnosisCode: childCard.diagnosis.id,
-            prescription: childCard.prescription,
-            directedBy: childCard.directedBy,
-        };
-        let body = JSON.stringify(sendObj);
-
-        return this._http.post(this._apiUrl + '/addpatient', body, { headers })
-            .map((resp: Response) => new ChildCardModel(resp.json()))
-            .catch((error: any) => { return Observable.throw(error); });
-    }
-
-    getChildCard(childCardId: number): Observable<ChildCardModel> {
-        let headers: Headers = this._headers;
-        return this._http.get(this._apiUrl + 'getChildCard?childCardId=' + childCardId,
-            { headers })
-            .map((resp: Response) => {
-                return new ChildCardModel(resp.json());
-            })
-            .catch((error: any) => { return Observable.throw(error); });
     }
 
     getNeurologistsExamination(childCardId: number): Observable<NeurologistsExaminationModel> {

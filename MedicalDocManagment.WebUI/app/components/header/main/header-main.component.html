@@ -15,6 +15,11 @@
         <ul class="dropdown-menu">
           <li><a [routerLink]="['/main/childCard/'+_mainAppService.currentCard.id]">Головна сторінка</a></li>
           <li>
+            <a [routerLink]="['/main/childCard/'+_mainAppService.currentCard.id+'/addProcedure']">
+              Додати призначення
+            </a>
+          </li>
+          <li>
             <a [routerLink]="['/main/childCard/'+_mainAppService.currentCard.id+'/pediatriciansExamination']">
               Огляд лікаря-педіатра
             </a>
