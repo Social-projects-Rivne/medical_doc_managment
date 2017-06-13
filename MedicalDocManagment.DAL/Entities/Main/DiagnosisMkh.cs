@@ -16,6 +16,6 @@ namespace MedicalDocManagment.DAL.Entities
         public string NosologyId { get; set; }
 
         [ForeignKey("NosologyId")]
-        public virtual NosologyMkh NosologyMkh { get; set; }
+        public NosologyMkh NosologyMkh { get; set; }
     }
 }

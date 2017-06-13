@@ -1,6 +1,6 @@
 ﻿using MedicalDocManagment.DAL.Entities.Main.PediatriciansExamination;
 
-namespace MedicalDocManagment.DAL.Repository.Interfaces.ChildCard
+namespace MedicalDocManagment.DAL.Repository.Interfaces
 {
     public interface IPediatriciansExaminationsRepository : 
         IGenericRepository<PediatriciansExamination>

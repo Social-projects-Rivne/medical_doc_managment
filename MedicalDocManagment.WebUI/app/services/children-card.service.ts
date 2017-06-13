@@ -12,6 +12,9 @@ import ParentChildCard from '../models/child-card/parent-child-card.model';
 import ChildCardModel from '../models/child-card/child-card.model';
 import ChildrenCardsModel from '../models/children-cards.model';
 import ParentModel from '../models/child-card/parent.model';
+import ProcedureModel from '../models/child-card/procedure.model';
+import RehabilitationModel from '../models/child-card/rehabilitation.model';
+import ViewPatientDataModel from '../models/view-patient-data.model';
 import ChildrenCardsPagedModel from '../models/children-cards-paged.model';
 
 import { AuthenticationService } from "./authentication.service";
@@ -27,7 +30,7 @@ export default class ChildrensCardService {
         this._headers.append('Authorization', 'Bearer ' + this._authenticationService.token);
         this._childrenCardsSubject = new Subject<any>();
     }
-
+    
     addChildrenCard(childCard: ChildCardModel): Observable<ChildCardModel> {
         let headers = this._headers;
         let sendObj = {
@@ -45,23 +48,8 @@ export default class ChildrensCardService {
         let body = JSON.stringify(sendObj);
 
         return this._http.post(this._apiUrl + '/addpatient', body, { headers })
-            .map((resp: Response) => new ChildCardModel(resp.json()))
-            .catch((error: any) => { return Observable.throw(error); });
-    }
-
-    /**
-     * Method sends to server request for adding new parent.
-     * @param {ParentModel} parent Contains data about parent to add
-     * @return {Observable<ParentModel>} Model, which contains added data of parent.
-     */
-    addParent(parent: ParentModel): Observable<ParentModel> {
-        let body: string = JSON.stringify(parent);
-        let headers = this._headers;
-        return this._http.post(this._apiUrl + '/addparent', body, { headers: headers })
-            .map((resp: Response) => {
-                return Observable.of(new ParentModel(resp.json()));
-            })
-            .catch((error: any) => { return Observable.throw(error); });
+                         .map((resp: Response) => new ChildCardModel(resp.json()))
+                         .catch((error: any) => { return Observable.throw(error); });
     }
 
     addParentIntoChildCard(parent: ParentModel, childCard: ChildCardModel): Observable<ParentChildCard> {
@@ -77,6 +65,21 @@ export default class ChildrensCardService {
                          .catch((error: any) => { return Observable.throw(error); });
     }
 
+    /**
+     * Method sends to server request for adding new parent.
+     * @param {ParentModel} parent Contains data about parent to add
+     * @return {Observable<ParentModel>} Model, which contains added data of parent.
+     */
+    addParent(parent: ParentModel): Observable<ParentModel> {
+        let body:string = JSON.stringify(parent);
+        let headers = this._headers;
+        return this._http.post('/api/childcards/addparent', body, { headers: headers })
+            .map((resp: Response) => {
+                return Observable.of(new ParentModel(resp.json()));
+            })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
+
     get currentUsersPositionName(): string {
         return this._authenticationService.position;
     }
@@ -88,6 +91,13 @@ export default class ChildrensCardService {
             .map((resp: Response) => {
                 return new ChildCardModel(resp.json());
             })
+            .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    getProcedures(): Observable<ProcedureModel[]> {
+        let headers = this._headers;
+        return this._http.get('/api/childcards/gettherapeuticprocedures', { headers })
+            .map((resp: Response) => { console.log(resp); return resp.json(); })
             .catch((error: any) => { return Observable.throw(error); });
     }
 
@@ -135,6 +145,18 @@ export default class ChildrensCardService {
             .catch((error: any) => { return Observable.throw(error); });
     }
 
+    addRehabilitationIntoChildCard(childCardId: number, rehabilitation: RehabilitationModel):
+        Observable<RehabilitationModel> {
+    let headers: Headers = this._headers;
+    let body: string = JSON.stringify(rehabilitation);
+    return this._http.put('/api/childcards/addRehabilitationIntoChildCard?childCardId=' + childCardId,
+        body, { headers })
+        .map((resp: Response) => {
+            return resp;
+        })
+        .catch((error: any) => { return Observable.throw(error); });
+}
+
     getChildsParents(childCardId: number): Observable<ParentModel[]> {
         let headers: Headers = this._headers;
         return this._http.get('/api/childcards/getChildsParents?childCardId=' + childCardId,
@@ -143,5 +165,15 @@ export default class ChildrensCardService {
                              return resp.json();
                          })
                          .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    getChildsRehabilitations(childCardId: number): Observable<RehabilitationModel[]> {
+        let headers: Headers = this._headers;
+        return this._http.get('/api/childcards/GetRehabilitations?childCardId=' + childCardId,
+            { headers })
+            .map((resp: Response) => {
+                return resp.json();
+            })
+            .catch((error: any) => { return Observable.throw(error); });
     }
 }

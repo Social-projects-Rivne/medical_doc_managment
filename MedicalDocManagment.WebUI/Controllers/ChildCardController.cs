@@ -11,11 +11,11 @@ namespace MedicalDocManagment.WebUI.Controllers
 {
     public class ChildCardController : ApiController
     {
-        private readonly IChildCardsService _childCardsService;
+        private readonly IChildCardService childCardService;
 
         public ChildCardController()
         {
-            _childCardsService = new ChildCardsService();
+            childCardService = new ChildCardService();
         }
 
         [PsychiatristsOnlyAuthorization]
@@ -34,7 +34,7 @@ namespace MedicalDocManagment.WebUI.Controllers
 
             try
             {
-                var result = _childCardsService.AddPsychiatristsConclusion(childCardId, conclusion);
+                var result = childCardService.AddPsychiatristsConclusion(childCardId, conclusion);
                 return Ok(result);
             }
             catch (Exception exception)
@@ -51,7 +51,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             try
             {
                 var examinationDTO = PediatriciansExaminationHelper.VMToDTO(examinationVM);
-                var resultDTO = _childCardsService.SavePediatriciansExamination(childCardId,
+                var resultDTO = childCardService.SavePediatriciansExamination(childCardId,
                     examinationDTO);
                 var resultVM = PediatriciansExaminationHelper.DTOToVM(resultDTO);
                 return Ok(resultVM);
@@ -68,7 +68,7 @@ namespace MedicalDocManagment.WebUI.Controllers
         {
             try
             {
-                var resultDTO = _childCardsService.GetPediatriciansExamination(childCardId);
+                var resultDTO = childCardService.GetPediatriciansExamination(childCardId);
                 var resultVM = PediatriciansExaminationHelper.DTOToVM(resultDTO);
                 return Ok(resultVM);
             }

@@ -12,8 +12,7 @@ using MedicalDocManagement.BLL.Services.Abstract;
 using MedicalDocManagment.DAL.Entities;
 using MedicalDocManagment.DAL.Repository;
 using MedicalDocManagment.DAL.Repository.Interfaces;
-using MedicalDocManagement.BLL.DTO.Main.PediatriciansExamination;
-using MedicalDocManagment.DAL.Entities.Main.PediatriciansExamination;
+using MedicalDocManagment.DAL.Entities.Main;
 using MedicalDocManagement.BLL.DTO.Main;
 
 namespace MedicalDocManagement.BLL.Services
@@ -53,99 +52,15 @@ namespace MedicalDocManagement.BLL.Services
                                            .ToList();
             return ChildCardDTOHelper.EntitiesToDTOs(childrenCards);
         }
-        public List<ClassMkhDTO> GetClassesMkh()
+        public List<TherapeuticProcedureDTO> GetTherapeuticProcedures()
         {
-            var classesMkh = _unitOfWork.ClassMkhRepository
-                                        .Get()
-                                        .AsNoTracking();  
-                                                                  
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<ClassMkh, ClassMkhDTO>());
+            var procedures = _unitOfWork.TherapeuticProceduresRepository.Get()
+                                                                        .AsNoTracking()
+                                                                        .ToList();
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<TherapeuticProcedure, TherapeuticProcedureDTO>());
             var mapper = config.CreateMapper();
 
-            return mapper.Map<List<ClassMkhDTO>>(classesMkh);             
-        }
-
-        public ClassMkhDTO GetClassesMkh(string id)
-        {
-            var classMkh = _unitOfWork.ClassMkhRepository
-                                      .Get(c => c.Id == id)
-                                      .AsNoTracking()
-                                      .FirstOrDefault();
-
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<ClassMkh, ClassMkhDTO>());
-            var mapper = config.CreateMapper();
-
-            return mapper.Map<ClassMkhDTO>(classMkh);
-        }
-
-        public List<BlockMkhDTO> GetRelatedBlocksMkh(string classMkhId)
-        {
-            var relatedBlocksMkh = _unitOfWork.BlockMkhRepository
-                                              .Get(b => b.ClassId == classMkhId)
-                                              .AsNoTracking();
-
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<BlockMkh, BlockMkhDTO>());
-            var mapper = config.CreateMapper();
-
-            return mapper.Map<List<BlockMkhDTO>>(relatedBlocksMkh);
-        }
-
-        public List<BlockMkhDTO> GetRelatedBlocksMkhByNosology(string nosologyMkhId)
-        {
-            var nosologyMkh = _unitOfWork.NosologyMkhRepository
-                                       .Get(n => n.Id == nosologyMkhId)
-                                       .AsNoTracking()
-                                       .SingleOrDefault();
-
-            if (nosologyMkh != null)
-            {
-                return GetRelatedBlocksMkh(nosologyMkh.BlockMkh.ClassId);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public List<NosologyMkhDTO> GetRelatedNosologiesMkh(string blockMkhId)
-        {
-            var relatedNosologiesMkh = _unitOfWork.NosologyMkhRepository
-                                                  .Get(n => n.BlockId == blockMkhId)
-                                                  .AsNoTracking();
-
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<NosologyMkh, NosologyMkhDTO>());
-            var mapper = config.CreateMapper();
-
-            return mapper.Map<List<NosologyMkhDTO>>(relatedNosologiesMkh);
-        }
-
-        public List<NosologyMkhDTO> GetRelatedNosologiesMkhByDiagnsosis(string diagnosisMkhId)
-        {
-            var diagnosisMkH = _unitOfWork.DiagnosisMkhRepository
-                                       .Get(n => n.Id == diagnosisMkhId)
-                                       .AsNoTracking()
-                                       .SingleOrDefault();
-
-            if (diagnosisMkH != null)
-            {
-                return GetRelatedNosologiesMkh(diagnosisMkH.NosologyMkh.BlockId);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public List<DiagnosisMkhDTO> GetRelatedDiagnosesMkh(string nosologyMkhId)
-        {
-            var relatedNosologiesMkh = _unitOfWork.DiagnosisMkhRepository
-                                                  .Get(b => b.NosologyId == nosologyMkhId)
-                                                  .AsNoTracking();
-
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<DiagnosisMkh, DiagnosisMkhDTO>());
-            var mapper = config.CreateMapper();
-
-            return mapper.Map<List<DiagnosisMkhDTO>>(relatedNosologiesMkh);
+            return mapper.Map<List<TherapeuticProcedureDTO>>(procedures);
         }
 
         public ChildCardDTO AddChildCard(ChildCardDTO childCardDTO)
@@ -213,55 +128,33 @@ namespace MedicalDocManagement.BLL.Services
             return ChildCardDTOHelper.EntitiesToDTOs(childCards);
         }
 
-        public string AddPsychiatristsConclusion(int childCardId, string conclusion)
-        {
-            var childCard = _unitOfWork.ChildrenCardsRepository
-                                       .Get(card => card.Id == childCardId)
-                                       .Single();
-            childCard.PsychiatristsConclusion = conclusion;
-            _unitOfWork.ChildrenCardsRepository.Update(childCard);
-            _unitOfWork.Save();
-
-            return childCard.PsychiatristsConclusion;
-        }
-
         public void Dispose()
         {
             _unitOfWork.Dispose();
         }
 
-        public PediatriciansExaminationDTO GetPediatriciansExamination(int childCardId)
+        public List<RehabilitationDTO> GetRehabilitationsList(int childCardId)
         {
             var childCard = _unitOfWork.ChildrenCardsRepository
                                        .Get(card => card.Id == childCardId)
                                        .AsNoTracking()
                                        .Single();
-
-            return PediatriciansExaminationDTOHelper.EntityToDTO(childCard.PediatriciansExamination);
+            var rehabilitationsSortedByDate = childCard.Rehabilitations.OrderBy(rehabilitation => rehabilitation.BeginDate);
+            return RehabilitationDTOHelper.EntitiesToDTOs(rehabilitationsSortedByDate.ToList());
         }
-
-        public PediatriciansExaminationDTO SavePediatriciansExamination(int childCardId, 
-            PediatriciansExaminationDTO examinationDTO)
+        public RehabilitationDTO AddRehabilitationIntoChildCard(int childCardId,
+            RehabilitationDTO rehabilitationDTO)
         {
             var childCard = _unitOfWork.ChildrenCardsRepository
                                        .Get(card => card.Id == childCardId)
                                        .Single();
-            PediatriciansExamination examination = PediatriciansExaminationDTOHelper.DTOToEntity(examinationDTO);
-            if (childCard.PediatriciansExaminationId == null)
-            {
-                _unitOfWork.PediatriciansExaminationsRepository.Add(examination);
-                _unitOfWork.Save();
-                childCard.PediatriciansExaminationId = examination.Id;
-                _unitOfWork.ChildrenCardsRepository.Update(childCard);
-            }
-            else
-            {
-                examination.Id = childCard.PediatriciansExaminationId.Value;
-                _unitOfWork.PediatriciansExaminationsRepository.Update(examination);
-            }
+            var rehabilitation = RehabilitationDTOHelper.DTOToEntity(rehabilitationDTO);
+
+            _unitOfWork.RehabilitationsRepository.Add(rehabilitation);
+            childCard.Rehabilitations.Add(rehabilitation);
             _unitOfWork.Save();
 
-            return PediatriciansExaminationDTOHelper.EntityToDTO(examination);
+            return RehabilitationDTOHelper.EntityToDTO(rehabilitation);
         }
 
         public ChildCardDTO GetChildCard(int childCardId)

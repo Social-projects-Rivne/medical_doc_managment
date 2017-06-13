@@ -1,4 +1,5 @@
 ﻿using MedicalDocManagment.DAL.Entities;
+using MedicalDocManagment.DAL.Entities.Main;
 using Ploeh.AutoFixture;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,45 @@ namespace MedicalDocManagment.DAL.Initializer
         {
             var childrenCards = CreateChildCards();
             CreateParentsForSomeChildren(context, childrenCards);
+            var therapeuticProcedures = CreateTherapeuticProcedures();
 
             context.ChildrenCards.AddRange(childrenCards);
+            context.TherapeuticProcedures.AddRange(therapeuticProcedures);
             context.SaveChanges();
         }
-
+        private static IEnumerable<TherapeuticProcedure> CreateTherapeuticProcedures()
+        {
+            var procedures = new List<TherapeuticProcedure>
+            {
+                new TherapeuticProcedure { ProcedureCaption = "Басейн (гідротерапія)"},
+                new TherapeuticProcedure { ProcedureCaption = "Гідромасаж"},
+                new TherapeuticProcedure { ProcedureCaption = "Теплолікування"},
+                new TherapeuticProcedure { ProcedureCaption = "Спелеолікування"},
+                new TherapeuticProcedure { ProcedureCaption = "Кисневі коктейлі"},
+                new TherapeuticProcedure { ProcedureCaption = "Фізіотерапевтичний кабінет"},
+                new TherapeuticProcedure { ProcedureCaption = "Інгаляції"},
+                new TherapeuticProcedure { ProcedureCaption = "Рефлекотерапія"},
+                new TherapeuticProcedure { ProcedureCaption = "М.Р.Т."},
+                new TherapeuticProcedure { ProcedureCaption = "Масаж"},
+                new TherapeuticProcedure { ProcedureCaption = "Артикуляційний масаж"},
+                new TherapeuticProcedure { ProcedureCaption = "ЛФК"},
+                new TherapeuticProcedure { ProcedureCaption = "Механотерапія"},
+                new TherapeuticProcedure { ProcedureCaption = "Мануальна терапія"},
+                new TherapeuticProcedure { ProcedureCaption = "Бобат терапія"},
+                new TherapeuticProcedure { ProcedureCaption = "Дефектолог-логопед"},
+                new TherapeuticProcedure { ProcedureCaption = "Сенсорний кабінет"},
+                new TherapeuticProcedure { ProcedureCaption = "Кабінет релаксації"},
+                new TherapeuticProcedure { ProcedureCaption = "АРТ-терапія"},
+                new TherapeuticProcedure { ProcedureCaption = "Муз. терапія"},
+                new TherapeuticProcedure { ProcedureCaption = "Монтессорі терапія"},
+                new TherapeuticProcedure { ProcedureCaption = "Лялькотерапія"},
+                new TherapeuticProcedure { ProcedureCaption = "Психолог"},
+                new TherapeuticProcedure { ProcedureCaption = "Лабораторія"},
+                new TherapeuticProcedure { ProcedureCaption = "Огляд лікарями"},
+                new TherapeuticProcedure { ProcedureCaption = "Образотворчого мистецтва і ручної праці"}
+            };
+            return procedures;
+        }
         private static IEnumerable<ChildCard> CreateChildCards()
         {
             var fixture = new Fixture();
@@ -33,6 +68,7 @@ namespace MedicalDocManagment.DAL.Initializer
                                          .Without(childCard => childCard.PsychiatristsConclusion)
                                          .Without(childCard => childCard.PediatriciansExaminationId)
                                          .Without(childCard => childCard.PediatriciansExamination)
+                                         .Without(childCard => childCard.Rehabilitations)
                                          .Without(childCard => childCard.Visits)
                                          .CreateMany(30);
 
@@ -48,6 +84,7 @@ namespace MedicalDocManagment.DAL.Initializer
                                         .Without(childCard => childCard.DiagnosisId)
                                         .Without(childCard => childCard.PediatriciansExaminationId)
                                         .Without(childCard => childCard.PediatriciansExamination)
+                                        .Without(childCard => childCard.Rehabilitations)
                                         .Without(childCard => childCard.Visits)
                                         .CreateMany(6);
 
@@ -61,6 +98,7 @@ namespace MedicalDocManagment.DAL.Initializer
                                         .Without(childCard => childCard.Diagnosis)
                                         .Without(childCard => childCard.PediatriciansExaminationId)
                                         .Without(childCard => childCard.PediatriciansExamination)
+                                        .Without(childCard => childCard.Rehabilitations)
                                         .Without(childCard => childCard.Visits)
                                         .CreateMany(5);
 

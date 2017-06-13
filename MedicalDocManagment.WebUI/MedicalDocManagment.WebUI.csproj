@@ -57,12 +57,16 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentValidation, Version=6.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.6.4.0\lib\Net45\FluentValidation.dll</HintPath>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.7.0.1\lib\net45\FluentValidation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentValidation.Mvc, Version=6.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.MVC5.6.4.0\lib\Net45\FluentValidation.Mvc.dll</HintPath>
+    <Reference Include="FluentValidation.Mvc, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.Mvc5.7.0.0\lib\net45\FluentValidation.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation.WebApi, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.WebApi.7.0.1\lib\net45\FluentValidation.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -178,14 +182,16 @@
     <Content Include="app\components\childrens-card\child-card\pediatricians-examination\form.component.html" />
     <Content Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.html" />
     <Content Include="app\components\childrens-card\child-card\main-page.component.html" />
+    <Content Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-add.component.css" />
+    <Content Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-list.component.css" />
+    <Content Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-list.component.html" />
+    <Content Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-add.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\add\children-card-add.component.html" />
     <None Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.less" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.css" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list.component.html" />
-    <Content Include="app\components\childrens-card\diagnosis\select-modal.component.css" />
-    <Content Include="app\components\childrens-card\diagnosis\select-modal.component.html" />
     <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.html" />
     <Content Include="app\components\childrens-card\visit\add\visit.component.css" />
     <Content Include="app\components\childrens-card\visit\add\visit.component.html" />
@@ -257,16 +263,17 @@
     <TypeScriptCompile Include="app\components\childrens-card\child-card\pediatricians-examination\form.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\main-page.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-list.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-add.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.ts" />
-    <Content Include="app\components\childrens-card\diagnosis\text.component.html" />
-    <TypeScriptCompile Include="app\components\childrens-card\diagnosis\text.component.ts" />
-    <TypeScriptCompile Include="app\components\childrens-card\diagnosis\select-modal.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\add\visit.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\list\list-visits.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\main-page\visit-main-page.component.ts" />
     <TypeScriptCompile Include="app\components\shared\tiny-mce-editor\tiny-mce-editor.component.ts" />
     <TypeScriptCompile Include="app\components\shared\tiny-mce-editor\tiny-mce-editor.translate.ts" />
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
+    <TypeScriptCompile Include="app\models\child-card\procedure.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\rehabilitation.model.ts" />
     <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
     <TypeScriptCompile Include="app\models\visit.model.ts" />
     <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\child-birth.enum.ts" />
@@ -282,6 +289,7 @@
     <TypeScriptCompile Include="app\modules\users-search.module.ts" />
     <Compile Include="Controllers\ChildCardController.cs" />
     <Compile Include="Controllers\MkhController.cs" />
+    <Compile Include="ValidateFilters\ValidateModelStateFilter.cs" />
     <Compile Include="Controllers\ChildCardsController.cs" />
     <Compile Include="Controllers\CustomAttributes\PediatriciansOnlyAuthorization.cs" />
     <Compile Include="Controllers\CustomAttributes\PsychiatristsOnlyAuthorization.cs" />
@@ -292,6 +300,7 @@
     <Compile Include="Helpers\PediatriciansExaminationHelper.cs" />
     <Compile Include="Helpers\PositionMapHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\RehabilitationMapHelper.cs" />
     <Compile Include="Models\Main\ParentVM.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
@@ -307,10 +316,14 @@
     <Compile Include="Models\Main\NosologyMkhVM.cs" />
     <Compile Include="Models\Main\AddParentChildCardVM.cs" />
     <Compile Include="Models\Main\AddParentVM.cs" />
+    <Compile Include="Models\Main\RehabilitationVM.cs" />
+    <Compile Include="Models\Main\TherapeuticProcedureVM.cs" />
     <Compile Include="Models\Main\ViewPatientDataVM.cs" />
     <Compile Include="Models\Main\ViewVisitVM.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
+    <Compile Include="Models\Validators\Helpers\RehabilitationVMValidationHelper.cs" />
     <Compile Include="Models\Validators\Helpers\ViewPatientDataValidatorHelper.cs" />
+    <Compile Include="Models\Validators\RehabilitationVMValidator.cs" />
     <Compile Include="Models\Validators\ViewPatientDataValidator.cs" />
     <Compile Include="Models\Validators\AddPatientValidator.cs" />
     <Compile Include="Models\Validators\CreateVisitValidator.cs" />

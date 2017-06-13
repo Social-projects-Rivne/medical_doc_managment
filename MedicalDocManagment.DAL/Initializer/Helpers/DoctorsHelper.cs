@@ -29,15 +29,6 @@ namespace MedicalDocManagment.DAL.Initializer.Helpers
                     Position = new Position { Name = "психіатр" },
                     IsActive = true,
                     Image = new Image { ImageUrl = "/Files/no-image.png" }
-                },
-                new User
-                {
-                    UserName = "neurologist",
-                    Email = "neurologist@mail.com",
-                    PasswordHash = passwordHash,
-                    Position = new Position { Name = "невролог" },
-                    IsActive = true,
-                    Image = new Image { ImageUrl = "/Files/no-image.png" }
                 }
             };
 

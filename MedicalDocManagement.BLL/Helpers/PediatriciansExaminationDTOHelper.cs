@@ -10,7 +10,7 @@ namespace MedicalDocManagement.BLL.Helpers
 
         static PediatriciansExaminationDTOHelper()
         {
-            mapperConfiguration = new MapperConfiguration(
+           mapperConfiguration = new MapperConfiguration(
                 configuration =>
                 {
                     configuration.CreateMap<BirthDetails, BirthDetailsDTO>();
