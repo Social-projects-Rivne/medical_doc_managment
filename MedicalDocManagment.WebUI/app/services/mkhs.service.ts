@@ -19,7 +19,7 @@ import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export default class MkhsService {
-    private _apiUrl: string = '/api/childcards';
+    private _apiUrl: string = '/api/mkh';
     private _headers: Headers;
 
     constructor(private _http: Http, @Inject(AuthenticationService) private _authenticationService: AuthenticationService) {

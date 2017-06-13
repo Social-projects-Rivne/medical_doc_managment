@@ -126,69 +126,6 @@ namespace MedicalDocManagment.WebUI.Controllers
 
             return Ok(procedures);
         }
-        [HttpGet]
-        public IHttpActionResult GetClassesMkh()
-        {
-            var classesMkhDTO = _childCardsService.GetClassesMkh();
-
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<ClassMkhDTO, ClassMkhVM>());
-            var mapper = config.CreateMapper();
-            var classesMkhVM = mapper.Map<List<ClassMkhVM>>(classesMkhDTO);
-
-            return Ok(classesMkhVM);
-        }
-
-        //[Authorize]
-        [HttpGet]
-        public IHttpActionResult GetClassesMkh(string id)
-        {
-            var classMkhDTO = _childCardsService.GetClassesMkh(id);
-
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<ClassMkhDTO, ClassMkhVM>());
-            var mapper = config.CreateMapper();
-            var classMkhVM = mapper.Map<ClassMkhVM>(classMkhDTO);
-
-            return Ok(classMkhVM);
-        }
-
-        //[Authorize]
-        [HttpGet]
-        public IHttpActionResult GetBlocksMkh(string classMkhId)
-        {
-            var blocksMkhDTO = _childCardsService.GetRelatedBlocksMkh(classMkhId);
-
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<BlockMkhDTO, BlockMkhVM>());
-            var mapper = config.CreateMapper();
-            var blocksMkhVM = mapper.Map<List<BlockMkhVM>>(blocksMkhDTO);
-
-            return Ok(blocksMkhVM);
-        }
-
-        //[Authorize]
-        [HttpGet]
-        public IHttpActionResult GetNosologiesMkh(string blockMkhId)
-        {
-            var nosologiesMkhDTO = _childCardsService.GetRelatedNosologiesMkh(blockMkhId);
-
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<NosologyMkhDTO, NosologyMkhVM>());
-            var mapper = config.CreateMapper();
-            var nosologiesMkhVM = mapper.Map<List<NosologyMkhVM>>(nosologiesMkhDTO);
-
-            return Ok(nosologiesMkhVM);
-        }
-
-        //[Authorize]
-        [HttpGet]
-        public IHttpActionResult GetDiagnosesMkh(string nosologyMkhId)
-        {
-            var diagnosesMkhDTO = _childCardsService.GetRelatedDiagnosesMkh(nosologyMkhId);
-
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<DiagnosisMkhDTO, DiagnosisMkhVM>());
-            var mapper = config.CreateMapper();
-            var diagnosesMkhVM = mapper.Map<List<DiagnosisMkhVM>>(diagnosesMkhDTO);
-
-            return Ok(diagnosesMkhVM);
-        }
 
         [Authorize]
         [HttpGet]
@@ -213,50 +150,6 @@ namespace MedicalDocManagment.WebUI.Controllers
                 var result = _childCardsService.FindChildCards(viewPatientDataVM);
 
                 return Ok(result);
-            }
-            catch (Exception exception)
-            {
-                return InternalServerError(exception);
-            }
-        }
-
-        [PsychiatristsOnlyAuthorization]
-        [HttpPatch]
-        public IHttpActionResult SavePsychiatristsConclusion(int childCardId,
-            [FromBody]string conclusion)
-        {
-            if (conclusion == null)
-            {
-                return BadRequest("No conclusion is supplied.");
-            }
-            if (conclusion.Length>2260)
-            {
-                return BadRequest("Conclusion is too long.");
-            }
-
-            try
-            {
-                var result = _childCardsService.AddPsychiatristsConclusion(childCardId, conclusion);
-                return Ok(result);
-            }
-            catch (Exception exception)
-            {
-                return InternalServerError(exception);
-            }
-        }
-
-        [PediatriciansOnlyAuthorization]
-        [HttpPut]
-        public IHttpActionResult SavePediatriciansExamination(int childCardId,
-            [FromBody]PediatriciansExaminationVM examinationVM)
-        {
-            try
-            {
-                var examinationDTO = PediatriciansExaminationHelper.VMToDTO(examinationVM);
-                var resultDTO = _childCardsService.SavePediatriciansExamination(childCardId,
-                    examinationDTO);
-                var resultVM = PediatriciansExaminationHelper.DTOToVM(resultDTO);
-                return Ok(resultVM);
             }
             catch (Exception exception)
             {
@@ -297,21 +190,6 @@ namespace MedicalDocManagment.WebUI.Controllers
             }
         }
 
-        [Authorize]
-        [HttpGet]
-        public IHttpActionResult GetPediatriciansExamination(int childCardId)
-        {
-            try
-            {
-                var resultDTO = _childCardsService.GetPediatriciansExamination(childCardId);
-                var resultVM = PediatriciansExaminationHelper.DTOToVM(resultDTO);
-                return Ok(resultVM);
-            }
-            catch (Exception exception)
-            {
-                return InternalServerError(exception);
-            }
-        }
 
         [Authorize]
         [HttpGet]
@@ -321,7 +199,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             {
                 var resultDTO = _childCardsService.GetChildCard(childCardId);
 
-                if (resultDTO!=null)
+                if (resultDTO != null)
                 {
                     return Ok(ChildCardMapHelper.DTOToVM(resultDTO));
                 }
