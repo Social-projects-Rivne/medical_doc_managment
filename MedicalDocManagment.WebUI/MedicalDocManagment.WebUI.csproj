@@ -287,6 +287,8 @@
     <TypeScriptCompile Include="app\modules\child-card\pediatricians-examination.module.ts" />
     <TypeScriptCompile Include="app\modules\child-card\child-card.module.ts" />
     <TypeScriptCompile Include="app\modules\users-search.module.ts" />
+    <Compile Include="Controllers\ChildCardController.cs" />
+    <Compile Include="Controllers\MkhController.cs" />
     <Compile Include="ValidateFilters\ValidateModelStateFilter.cs" />
     <Compile Include="Controllers\ChildCardsController.cs" />
     <Compile Include="Controllers\CustomAttributes\PediatriciansOnlyAuthorization.cs" />
@@ -344,6 +346,7 @@
     <Compile Include="Models\Validators\UserEditModelValidator.cs" />
     <Compile Include="Models\Validators\UserModelValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <TypeScriptCompile Include="app\services\child-card.service.ts" />
     <TypeScriptCompile Include="app\services\visit.service.ts" />
     <TypeScriptCompile Include="app\shared\custom-datepicker\component.ts" />
   </ItemGroup>

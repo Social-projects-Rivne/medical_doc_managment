@@ -83,10 +83,14 @@
     <Compile Include="Helpers\RehabilitationDTOHelper.cs" />
     <Compile Include="Helpers\UserDTOHelper.cs" />
     <Compile Include="Helpers\VisitDTOHelper.cs" />
+    <Compile Include="Services\Abstract\IChildCardService.cs" />
+    <Compile Include="Services\Abstract\IMkhService.cs" />
     <Compile Include="Services\Abstract\IPositionsService.cs" />
     <Compile Include="Services\Abstract\IUsersService.cs" />
     <Compile Include="Services\Abstract\IChildCardsService.cs" />
     <Compile Include="Services\Abstract\IVisitsService.cs" />
+    <Compile Include="Services\ChildCardService.cs" />
+    <Compile Include="Services\MkhService.cs" />
     <Compile Include="Services\PositionsService.cs" />
     <Compile Include="DTO\Main\RehabilitationDTO.cs" />
     <Compile Include="Services\UsersService.cs" />
