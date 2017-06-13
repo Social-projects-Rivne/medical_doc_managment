@@ -1,4 +1,4 @@
-﻿using MedicalDocManagement.BLL.DTO.Main.PediatriciansExamination;
+using MedicalDocManagement.BLL.DTO.Main.PediatriciansExamination;
 using MedicalDocManagement.BLL.Helpers;
 using MedicalDocManagement.BLL.Services.Abstract;
 using MedicalDocManagement.DAL.Entities.Main;
@@ -144,3 +144,4 @@ namespace MedicalDocManagement.BLL.Services
         }
     }
 }
+

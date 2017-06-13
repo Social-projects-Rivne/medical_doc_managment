@@ -1,4 +1,4 @@
-﻿.hyphens {
+.hyphens {
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     -ms-hyphens: auto;
@@ -17,3 +17,4 @@ pre {
     white-space: -o-pre-wrap; /* Opera 7 */
     white-space: pre\9; /* IE7+ */
 }
+

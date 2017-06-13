@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Web.Http;
 
 using MedicalDocManagement.BLL.Services;
@@ -180,3 +180,4 @@ namespace MedicalDocManagment.WebUI.Controllers
         }
     }
 }
+

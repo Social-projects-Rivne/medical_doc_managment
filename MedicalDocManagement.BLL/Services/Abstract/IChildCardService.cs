@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using MedicalDocManagement.BLL.DTO.Main.PediatriciansExamination;
 using MedicalDocManagment.BLL.DTO.Main.NeurologistsExamination;
 using MedicalDocManagment.BLL.DTO.Main;

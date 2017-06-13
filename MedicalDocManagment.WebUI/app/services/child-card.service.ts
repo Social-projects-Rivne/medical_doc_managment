@@ -1,4 +1,4 @@
-﻿import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -125,3 +125,4 @@ export default class ChildCardService {
             .catch((error: any) => { return Observable.throw(error); });
     }
 }
+
