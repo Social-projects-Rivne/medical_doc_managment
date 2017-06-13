@@ -1,7 +1,7 @@
 ﻿import { Component, EventEmitter, Input, Output } from '@angular/core';
 declare var jQuery: any;
 
-import ChildrenCardService from '../../../services/children-card.service';
+import ChildCardService from '../../../services/child-card.service';
 
 @Component({
     moduleId: module.id,
@@ -11,16 +11,16 @@ import ChildrenCardService from '../../../services/children-card.service';
 export default class PsychiatristsConclusionFormComponent {
     @Input() childCardId: number;
     @Output() conclusionAdded: EventEmitter<string>;
-    private _childrenCardService: ChildrenCardService;
+    private _childCardService: ChildCardService;
     private _conclusion: string;
     private _isErrorOnSaving: boolean;
     private _isSaving: boolean;
     private _lastErrorMessage: string;
 
-    constructor(childrenCardService: ChildrenCardService) {
+    constructor(childCardService: ChildCardService) {
         this.childCardId = null;
         this.conclusionAdded = new EventEmitter<string>();
-        this._childrenCardService = childrenCardService;
+        this._childCardService = childCardService;
         this._isErrorOnSaving = false;
         this._isSaving = false;
         this._lastErrorMessage = '';
@@ -30,7 +30,7 @@ export default class PsychiatristsConclusionFormComponent {
         this._lastErrorMessage = '';
         this._isErrorOnSaving = false;
         this._isSaving = true;
-        this._childrenCardService.savePsychiatristsConclusion(this.childCardId, this._conclusion)
+        this._childCardService.savePsychiatristsConclusion(this.childCardId, this._conclusion)
                                  .subscribe((conclusion: string) => {
                                      this._isSaving = false;
                                      jQuery('#psychiatristsConclusionFormModal').modal('hide');

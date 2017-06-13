@@ -1,7 +1,7 @@
 ﻿using MedicalDocManagment.DAL.Entities.Main.PediatriciansExamination;
-using MedicalDocManagment.DAL.Repository.Interfaces;
+using MedicalDocManagment.DAL.Repository.Interfaces.ChildCard;
 
-namespace MedicalDocManagment.DAL.Repository.Main
+namespace MedicalDocManagment.DAL.Repository.Main.ChildCard
 {
     public class PediatriciansExaminationsRepository : 
         GenericRepository<PediatriciansExamination>, IPediatriciansExaminationsRepository

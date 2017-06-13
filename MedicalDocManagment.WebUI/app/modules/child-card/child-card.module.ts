@@ -6,6 +6,7 @@ import { MomentModule } from 'angular2-moment';
 import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
 import { MyDatePickerModule } from 'mydatepicker';
 
+import NeurologistsExaminationModule from './neurologists-examination.module';
 import PediatriciansExaminationModule from './pediatricians-examination.module';
 
 import ChildCardMainPageComponent from '../../components/childrens-card/child-card/main-page.component';
@@ -20,7 +21,7 @@ import TinyMceEditorComponent from "../../components/shared/tiny-mce-editor/tiny
 
 import { AuthenticationService } from '../../services/authentication.service';
 import { AuthGuard } from '../../services/guards/auth.guard';
-import ChildrenCardService from '../../services/children-card.service';
+import ChildCardService from '../../services/child-card.service';
 
 @NgModule({
     imports: [
@@ -28,6 +29,7 @@ import ChildrenCardService from '../../services/children-card.service';
         FormsModule,
         HttpModule,
         MomentModule,
+        NeurologistsExaminationModule,
         PediatriciansExaminationModule,
         SimpleNotificationsModule,
         PushNotificationsModule,
@@ -48,7 +50,7 @@ import ChildrenCardService from '../../services/children-card.service';
     providers: [
         AuthenticationService,
         AuthGuard,
-        ChildrenCardService
+        ChildCardService
     ]
 })
 export default class ChildCardModule {

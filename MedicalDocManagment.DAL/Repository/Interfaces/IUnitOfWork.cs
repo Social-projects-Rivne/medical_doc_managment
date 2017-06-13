@@ -1,10 +1,6 @@
-﻿using MedicalDocManagment.DAL.Entities;
-using MedicalDocManagment.DAL.Manager;
+﻿using MedicalDocManagment.DAL.Manager;
+using MedicalDocManagment.DAL.Repository.Interfaces.ChildCard;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalDocManagment.DAL.Repository.Interfaces
 {
@@ -20,6 +16,7 @@ namespace MedicalDocManagment.DAL.Repository.Interfaces
         IParentChildCardRepository ParentChildCardRepository { get; }
         IImageRepository ImageRepository { get; }
         IPediatriciansExaminationsRepository PediatriciansExaminationsRepository { get; }
+        INeurologistsExaminationsRepository NeurologistsExaminationsRepository { get; }
         ITherapeuticProceduresRepository TherapeuticProceduresRepository { get; }
         IRehabilitationsRepository RehabilitationsRepository { get; }
         IVisitsRepository VisitsRepository { get; }
