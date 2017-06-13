@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from "../../../services/authentication.service";
-import ChildCardService from '../../../services/child-card.service';
+import ChildrenCardService from '../../../services/children-card.service';
 import MainAppService from "../../../services/main-app.service";
 
 import ChildCardModel from "../../../models/child-card/child-card.model";
@@ -15,16 +15,16 @@ import ChildCardModel from "../../../models/child-card/child-card.model";
 })
 export default class MainPageComponent {
     private _childCard: ChildCardModel;
-    private _childCardService: ChildCardService;
+    private _childrenCardService: ChildrenCardService;
     private _currentUsersPositionName: string;
     private _isLoading: boolean;
     private _isErrorOnLoading: boolean;
     private _lastLoadingErrorMessage: string;
     private _mainAppService: MainAppService;
 
-    constructor(childCardService: ChildCardService, mainAppService: MainAppService,
+    constructor(childrenCardService: ChildrenCardService, mainAppService: MainAppService,
         route: ActivatedRoute, authenticationService: AuthenticationService) {
-        this._childCardService = childCardService;
+        this._childrenCardService = childrenCardService;
         this._childCard = mainAppService.currentCard;
         this._currentUsersPositionName = authenticationService.position;
         this._isLoading = false;
@@ -45,7 +45,7 @@ export default class MainPageComponent {
         this._isErrorOnLoading = false;
         this._lastLoadingErrorMessage = '';
 
-        this._childCardService.getChildCard(childCardId)
+        this._childrenCardService.getChildCard(childCardId)
             .subscribe((childCard: ChildCardModel) => {
                 this._childCard = this._mainAppService.currentCard = childCard;
                 this._isLoading = false;

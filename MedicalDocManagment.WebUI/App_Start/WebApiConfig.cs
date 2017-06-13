@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentValidation.WebApi;
+using MedicalDocManagment.WebUI.ValidateFilters;
 using System.Net.Http.Headers;
 using System.Web.Http;
 
@@ -11,7 +10,7 @@ namespace MedicalDocManagment.WebUI
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
+            config.Filters.Add(new ValidateModelStateFilter());
             // Web API routes
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
@@ -20,6 +19,7 @@ namespace MedicalDocManagment.WebUI
                 defaults: new { id = RouteParameter.Optional }
             );
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            FluentValidationModelValidatorProvider.Configure(config);
         }
     }
 }

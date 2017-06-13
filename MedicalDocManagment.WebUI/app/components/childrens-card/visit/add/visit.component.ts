@@ -89,7 +89,9 @@ export default class VisitComponent implements OnInit {
     }
 
     updateDate() {
-        this.visit.date = this.datePickerModel.jsdate;
+        let dateWithTimezoneOffset = this.datePickerModel.jsdate; 
+        let dateWithoutTimezoneOffset = new Date(dateWithTimezoneOffset.getTime() - (60000 * dateWithTimezoneOffset.getTimezoneOffset())); 
+        this.visit.date = dateWithoutTimezoneOffset;
     }
 
     keyupHandlerFunction(editor: any) {

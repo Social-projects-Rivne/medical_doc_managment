@@ -90,6 +90,9 @@
             <div *ngIf="_childCard.id" class="col-xs-5">
                 <parents-list [childCardId]="_childCard.id"></parents-list>
             </div>
+            <div *ngIf="_childCard.id" class="col-xs-12">
+                <procedures-list [childCardId]="_childCard.id"></procedures-list>
+            </div>
         </div>
     </div>
 </div>

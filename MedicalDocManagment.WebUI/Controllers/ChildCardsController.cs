@@ -14,6 +14,7 @@ using MedicalDocManagment.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Models.Validators;
 using System.Net.Http;
 using System.Net;
+using MedicalDocManagement.WebUI.Helpers;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -65,6 +66,30 @@ namespace MedicalDocManagment.WebUI.Controllers
 
         [Authorize]
         [HttpPost]
+        public HttpResponseMessage AddPatient(AddPatientVM addPatientVM)
+        {
+            var addPatientValidator = new AddPatientVMValidator();
+            var fluentValidationResult = addPatientValidator.Validate(addPatientVM);
+            if (!fluentValidationResult.IsValid)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, fluentValidationResult.Errors);
+            }
+
+            var newChildCardDTO = AddPatientHelper.AddPatientVMToChildCardDTO(addPatientVM);
+
+            try
+            {
+                var result = _childCardsService.AddChildCard(newChildCardDTO);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception exception)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception);
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
         public IHttpActionResult AddParent(AddParentVM parentVM)
         {
             if (!ModelState.IsValid)
@@ -92,7 +117,13 @@ namespace MedicalDocManagment.WebUI.Controllers
 
             return Ok(result);
         }
+        [HttpGet]
+        public IHttpActionResult GetTherapeuticProcedures()
+        {
+            var procedures = _childCardsService.GetTherapeuticProcedures();
 
+            return Ok(procedures);
+        }
         [Authorize]
         [HttpGet]
         public IHttpActionResult ViewPatientData([FromUri]ViewPatientDataVM viewPatientDataVM)
@@ -116,6 +147,63 @@ namespace MedicalDocManagment.WebUI.Controllers
                 var result = _childCardsService.FindChildCards(viewPatientDataVM);
 
                 return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
+
+        [Authorize]
+        [HttpPut]
+        public HttpResponseMessage AddRehabilitationIntoChildCard(int childCardId,
+           [FromBody]RehabilitationVM rehabilitationVM)
+        {
+            try
+            {
+                var rehabilitationDTO = RehabilitationMapHelper.VMToDTO(rehabilitationVM);
+                _childCardsService.AddRehabilitationIntoChildCard(childCardId, rehabilitationDTO);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception exception)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception);
+            }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IHttpActionResult GetRehabilitations(int childCardId)
+        {
+            try
+            {
+                var resultDTO = _childCardsService.GetRehabilitationsList(childCardId);
+                var resultVM = RehabilitationMapHelper.DTOsToVMs(resultDTO);
+                return Ok(resultVM);
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
+        }
+
+
+        [Authorize]
+        [HttpGet]
+        public IHttpActionResult GetChildCard(int childCardId)
+        {
+            try
+            {
+                var resultDTO = _childCardsService.GetChildCard(childCardId);
+
+                if (resultDTO != null)
+                {
+                    return Ok(ChildCardMapHelper.DTOToVM(resultDTO));
+                }
+                else
+                {
+                    return Ok();
+                }
             }
             catch (Exception exception)
             {
