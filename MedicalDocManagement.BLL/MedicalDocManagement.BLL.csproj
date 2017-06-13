@@ -65,8 +65,6 @@
     <Compile Include="DTO\Main\ChildCardDTO.cs" />
     <Compile Include="DTO\Main\DiagnosisMkhDTO.cs" />
     <Compile Include="DTO\Main\IViewPatientData.cs" />
-    <Compile Include="DTO\Main\NeurologistsExamination\NeurologicalStateDTO.cs" />
-    <Compile Include="DTO\Main\NeurologistsExamination\NeurologistsExaminationDTO.cs" />
     <Compile Include="DTO\Main\NosologyMkhDTO.cs" />
     <Compile Include="DTO\Main\ParentChildCardDTO.cs" />
     <Compile Include="DTO\Main\ParentDTO.cs" />
@@ -77,7 +75,6 @@
     <Compile Include="DTO\Main\PediatriciansExamination\PediatriciansExaminationDTO.cs" />
     <Compile Include="DTO\Main\PediatriciansExamination\PregnancyDetailsDTO.cs" />
     <Compile Include="DTO\Main\PediatriciansExamination\PsychomotorDevelopmentDTO.cs" />
-    <Compile Include="Helpers\NeurologistsExaminationDTOHelper.cs" />
     <Compile Include="DTO\Main\VisitDTO.cs" />
     <Compile Include="Helpers\PediatriciansExaminationDTOHelper.cs" />
     <Compile Include="Helpers\ChildCardDTOHelper.cs" />

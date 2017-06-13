@@ -33,8 +33,6 @@ namespace MedicalDocManagment.DAL.Initializer
                                          .Without(childCard => childCard.PsychiatristsConclusion)
                                          .Without(childCard => childCard.PediatriciansExaminationId)
                                          .Without(childCard => childCard.PediatriciansExamination)
-                                         .Without(childCard => childCard.NeurologistsExaminationId)
-                                         .Without(childCard => childCard.NeurologistsExamination)
                                          .Without(childCard => childCard.Visits)
                                          .CreateMany(30);
 
@@ -50,8 +48,6 @@ namespace MedicalDocManagment.DAL.Initializer
                                         .Without(childCard => childCard.DiagnosisId)
                                         .Without(childCard => childCard.PediatriciansExaminationId)
                                         .Without(childCard => childCard.PediatriciansExamination)
-                                        .Without(childCard => childCard.NeurologistsExaminationId)
-                                        .Without(childCard => childCard.NeurologistsExamination)
                                         .Without(childCard => childCard.Visits)
                                         .CreateMany(6);
 
@@ -65,8 +61,6 @@ namespace MedicalDocManagment.DAL.Initializer
                                         .Without(childCard => childCard.Diagnosis)
                                         .Without(childCard => childCard.PediatriciansExaminationId)
                                         .Without(childCard => childCard.PediatriciansExamination)
-                                        .Without(childCard => childCard.NeurologistsExaminationId)
-                                        .Without(childCard => childCard.NeurologistsExamination)
                                         .Without(childCard => childCard.Visits)
                                         .CreateMany(5);
 

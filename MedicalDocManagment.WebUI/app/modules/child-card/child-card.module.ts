@@ -6,7 +6,6 @@ import { MomentModule } from 'angular2-moment';
 import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
 import { MyDatePickerModule } from 'mydatepicker';
 
-import NeurologistsExaminationModule from './neurologists-examination.module';
 import PediatriciansExaminationModule from './pediatricians-examination.module';
 
 import ChildCardMainPageComponent from '../../components/childrens-card/child-card/main-page.component';
@@ -27,7 +26,6 @@ import ChildCardService from '../../services/child-card.service';
         FormsModule,
         HttpModule,
         MomentModule,
-        NeurologistsExaminationModule,
         PediatriciansExaminationModule,
         SimpleNotificationsModule,
         PushNotificationsModule,

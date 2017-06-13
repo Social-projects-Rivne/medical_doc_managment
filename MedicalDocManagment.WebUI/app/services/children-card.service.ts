@@ -28,6 +28,27 @@ export default class ChildrensCardService {
         this._childrenCardsSubject = new Subject<any>();
     }
 
+    addChildrenCard(childCard: ChildCardModel): Observable<ChildCardModel> {
+        let headers = this._headers;
+        let sendObj = {
+            lastName: childCard.lastName,
+            firstName: childCard.firstName,
+            secondName: childCard.secondName,
+            date: childCard.date,
+            checkin: childCard.checkIn,
+            checkout: childCard.checkOut,
+            address: childCard.address,
+            diagnosisCode: childCard.diagnosis.id,
+            prescription: childCard.prescription,
+            directedBy: childCard.directedBy,
+        };
+        let body = JSON.stringify(sendObj);
+
+        return this._http.post(this._apiUrl + '/addpatient', body, { headers })
+            .map((resp: Response) => new ChildCardModel(resp.json()))
+            .catch((error: any) => { return Observable.throw(error); });
+    }
+
     /**
      * Method sends to server request for adding new parent.
      * @param {ParentModel} parent Contains data about parent to add
@@ -58,6 +79,16 @@ export default class ChildrensCardService {
 
     get currentUsersPositionName(): string {
         return this._authenticationService.position;
+    }
+
+    getChildCard(childCardId: number): Observable<ChildCardModel> {
+        let headers: Headers = this._headers;
+        return this._http.get(this._apiUrl + 'getChildCard?childCardId=' + childCardId,
+            { headers })
+            .map((resp: Response) => {
+                return new ChildCardModel(resp.json());
+            })
+            .catch((error: any) => { return Observable.throw(error); });
     }
 
     getChildrenCards(): Observable<ChildrenCardsModel> {

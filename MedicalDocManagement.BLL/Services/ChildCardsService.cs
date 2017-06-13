@@ -15,8 +15,6 @@ using MedicalDocManagment.DAL.Repository.Interfaces;
 using MedicalDocManagement.BLL.DTO.Main.PediatriciansExamination;
 using MedicalDocManagment.DAL.Entities.Main.PediatriciansExamination;
 using MedicalDocManagement.BLL.DTO.Main;
-using MedicalDocManagment.BLL.DTO.Main.NeurologistsExamination;
-using MedicalDocManagment.DAL.Entities.Main.NeurologistsExamination;
 
 namespace MedicalDocManagement.BLL.Services
 {
@@ -299,40 +297,6 @@ namespace MedicalDocManagement.BLL.Services
             }
 
             return ChildCardDTOHelper.EntitiesToDTOs(parents);
-        }
-
-        public NeurologistsExaminationDTO GetNeurologistsExamination(int childCardId)
-        {
-            var childCard = _unitOfWork.ChildrenCardsRepository
-                                       .Get(card => card.Id == childCardId)
-                                       .AsNoTracking()
-                                       .Single();
-
-            return NeurologistsExaminationDTOHelper.EntityToDTO(childCard.NeurologistsExamination);
-        }
-
-        public NeurologistsExaminationDTO SaveNeurologistsExamination(int childCardId,
-            NeurologistsExaminationDTO examinationDTO)
-        {
-            var childCard = _unitOfWork.ChildrenCardsRepository
-                                       .Get(card => card.Id == childCardId)
-                                       .Single();
-            NeurologistsExamination examination = NeurologistsExaminationDTOHelper.DTOToEntity(examinationDTO);
-            if (childCard.NeurologistsExaminationId == null)
-            {
-                _unitOfWork.NeurologistsExaminationsRepository.Add(examination);
-                _unitOfWork.Save();
-                childCard.NeurologistsExaminationId = examination.Id;
-                _unitOfWork.ChildrenCardsRepository.Update(childCard);
-            }
-            else
-            {
-                examination.Id = childCard.NeurologistsExaminationId.Value;
-                _unitOfWork.NeurologistsExaminationsRepository.Update(examination);
-            }
-            _unitOfWork.Save();
-
-            return NeurologistsExaminationDTOHelper.EntityToDTO(examination);
         }
     }
 }

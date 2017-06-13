@@ -14,6 +14,7 @@ using MedicalDocManagment.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Models.Validators;
 using System.Net.Http;
 using System.Net;
+using MedicalDocManagement.WebUI.Helpers;
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
@@ -28,6 +29,53 @@ namespace MedicalDocManagment.WebUI.Controllers
             _unitOfWork = new UnitOfWork();
             //TODO DI
             _childCardsService = new ChildCardsService();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public HttpResponseMessage AddPatient(AddPatientVM addPatientVM)
+        {
+            var addPatientValidator = new AddPatientVMValidator();
+            var fluentValidationResult = addPatientValidator.Validate(addPatientVM);
+            if (!fluentValidationResult.IsValid)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, fluentValidationResult.Errors);
+            }
+
+            var newChildCardDTO = AddPatientHelper.AddPatientVMToChildCardDTO(addPatientVM);
+
+            try
+            {
+                var result = _childCardsService.AddChildCard(newChildCardDTO);
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception exception)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception);
+            }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IHttpActionResult GetChildCard(int childCardId)
+        {
+            try
+            {
+                var resultDTO = _childCardsService.GetChildCard(childCardId);
+
+                if (resultDTO != null)
+                {
+                    return Ok(ChildCardMapHelper.DTOToVM(resultDTO));
+                }
+                else
+                {
+                    return Ok();
+                }
+            }
+            catch (Exception exception)
+            {
+                return InternalServerError(exception);
+            }
         }
 
         [Authorize]

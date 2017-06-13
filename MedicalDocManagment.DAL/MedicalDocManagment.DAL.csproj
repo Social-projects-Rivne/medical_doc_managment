@@ -103,8 +103,6 @@
     <Compile Include="Entities\Main\NosologyMkh.cs" />
     <Compile Include="Entities\Main\Parent.cs" />
     <Compile Include="Entities\Main\ParentChildCard.cs" />
-    <Compile Include="Entities\Main\NeurologistsExamination\NeurologicalState.cs" />
-    <Compile Include="Entities\Main\NeurologistsExamination\NeurologistsExamination.cs" />
     <Compile Include="Entities\Main\PediatriciansExamination\BirthDetails.cs" />
     <Compile Include="Entities\Main\PediatriciansExamination\Header.cs" />
     <Compile Include="Entities\Main\PediatriciansExamination\PediatriciansExamination.cs" />
@@ -164,17 +162,12 @@
     <Compile Include="Migrations\201705270648406_Add_Visit_Table.Designer.cs">
       <DependentUpon>201705270648406_Add_Visit_Table.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706021606473_Feature_form_neurologist.cs" />
-    <Compile Include="Migrations\201706021606473_Feature_form_neurologist.Designer.cs">
-      <DependentUpon>201706021606473_Feature_form_neurologist.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ImageRepository.cs" />
     <Compile Include="Repository\Interfaces\IChildrenCardsRepository.cs" />
     <Compile Include="Repository\Interfaces\IImageRepository.cs" />
     <Compile Include="Repository\Interfaces\IParentChildCardRepository.cs" />
-    <Compile Include="Repository\Interfaces\ChildCard\INeurologistsExaminationsRepository.cs" />
     <Compile Include="Repository\Interfaces\ChildCard\IPediatriciansExaminationsRepository.cs" />
     <Compile Include="Repository\Interfaces\IParentRepository.cs" />
     <Compile Include="Repository\Interfaces\IVisitRepository.cs" />
@@ -192,7 +185,6 @@
     <Compile Include="Repository\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Repository\Main\NosologyMkhRepository.cs" />
     <Compile Include="Repository\Main\ParentChildCardRepository.cs" />
-    <Compile Include="Repository\Main\ChildCard\NeurologistsExaminationRepository.cs" />
     <Compile Include="Repository\Main\ChildCard\PediatriciansExaminationRepository.cs" />
     <Compile Include="Repository\Main\ParentRepository.cs" />
     <Compile Include="Repository\Main\VisitRepository.cs" />
@@ -232,9 +224,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705270648406_Add_Visit_Table.resx">
       <DependentUpon>201705270648406_Add_Visit_Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706021606473_Feature_form_neurologist.resx">
-      <DependentUpon>201706021606473_Feature_form_neurologist.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
