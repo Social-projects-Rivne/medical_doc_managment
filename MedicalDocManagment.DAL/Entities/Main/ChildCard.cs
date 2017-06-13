@@ -1,4 +1,4 @@
-﻿using MedicalDocManagment.DAL.Entities.Main;
+using MedicalDocManagment.DAL.Entities.Main;
 using MedicalDocManagment.DAL.Entities.Main.PediatriciansExamination;
 using System;
 using System.Collections.Generic;
