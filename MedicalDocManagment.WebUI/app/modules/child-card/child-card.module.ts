@@ -6,11 +6,15 @@ import { MomentModule } from 'angular2-moment';
 import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
 import { MyDatePickerModule } from 'mydatepicker';
 
+import NeurologistsExaminationModule from './neurologists-examination.module';
 import PediatriciansExaminationModule from './pediatricians-examination.module';
+import SpeechTherapistsExaminationModule from './speech-therapists-examination.module';
 
 import ChildCardMainPageComponent from '../../components/childrens-card/child-card/main-page.component';
 import ChildCardParentsListComponent from '../../components/childrens-card/child-card/parents/parents-list.component';
 import ChildCardPsychiatristsConclusionFormComponent from '../../components/childrens-card/child-card/psychiatrists-conclusion-form.component';
+import ProceduresAddComponent from '../../components/childrens-card/child-card/therapeutic-procedures/procedures-add.component';
+import ProceduresListComponent from '../../components/childrens-card/child-card/therapeutic-procedures/procedures-list.component';
 import VisitComponent from '../../components/childrens-card/visit/add/visit.component';
 import VisitsListComponent from '../../components/childrens-card/visit/list/list-visits.component';
 import VisitMainPageComponent from '../../components/childrens-card/visit/main-page/visit-main-page.component';
@@ -18,7 +22,7 @@ import TinyMceEditorComponent from "../../components/shared/tiny-mce-editor/tiny
 
 import { AuthenticationService } from '../../services/authentication.service';
 import { AuthGuard } from '../../services/guards/auth.guard';
-import ChildrenCardService from '../../services/children-card.service';
+import ChildCardService from '../../services/child-card.service';
 
 @NgModule({
     imports: [
@@ -26,7 +30,9 @@ import ChildrenCardService from '../../services/children-card.service';
         FormsModule,
         HttpModule,
         MomentModule,
+        NeurologistsExaminationModule,
         PediatriciansExaminationModule,
+        SpeechTherapistsExaminationModule,
         SimpleNotificationsModule,
         PushNotificationsModule,
         MyDatePickerModule 
@@ -37,13 +43,16 @@ import ChildrenCardService from '../../services/children-card.service';
         VisitComponent,
         VisitsListComponent,
         ChildCardParentsListComponent,
+        ChildCardPsychiatristsConclusionFormComponent,
+        ProceduresAddComponent,
+        ProceduresListComponent,
         VisitMainPageComponent,
         TinyMceEditorComponent
     ],
     providers: [
         AuthenticationService,
         AuthGuard,
-        ChildrenCardService
+        ChildCardService
     ]
 })
 export default class ChildCardModule {

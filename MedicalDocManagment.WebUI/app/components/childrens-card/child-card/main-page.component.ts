@@ -2,9 +2,11 @@
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
-import ChildCardModel from "../../../models/child-card/child-card.model";
+import { AuthenticationService } from "../../../services/authentication.service";
 import ChildrenCardService from '../../../services/children-card.service';
 import MainAppService from "../../../services/main-app.service";
+
+import ChildCardModel from "../../../models/child-card/child-card.model";
 
 @Component({
     moduleId: module.id,
@@ -21,10 +23,10 @@ export default class MainPageComponent {
     private _mainAppService: MainAppService;
 
     constructor(childrenCardService: ChildrenCardService, mainAppService: MainAppService,
-        route: ActivatedRoute) {
+        route: ActivatedRoute, authenticationService: AuthenticationService) {
         this._childrenCardService = childrenCardService;
         this._childCard = mainAppService.currentCard;
-        this._currentUsersPositionName = this._childrenCardService.currentUsersPositionName;
+        this._currentUsersPositionName = authenticationService.position;
         this._isLoading = false;
         this._isErrorOnLoading = false;
         this._lastLoadingErrorMessage = '';

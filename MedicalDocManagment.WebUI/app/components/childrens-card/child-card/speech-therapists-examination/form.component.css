@@ -1,0 +1,16 @@
+textarea {
+    resize: vertical;
+}
+
+.elements-with-equal-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.vertical-alignment {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}

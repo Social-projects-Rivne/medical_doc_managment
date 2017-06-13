@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { UserService} from '../../../services/user.service';
 import {User} from '../../../models/user';
 import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications';
@@ -57,12 +58,19 @@ export class UserAddComponent implements OnInit {
         this.showImageSelectedMessage = true;
         this.showImageInvalidMessage = false;
     }
-    submit(event: Event) {
+
+    resetFormData(form: NgForm) {
+        form.reset();
+        this.resetImage();
+    }
+
+    submit(event: Event, form: NgForm) {
         event.preventDefault();
         this.userService.postDataWithImage(this.user, this.userImage)
             .subscribe(
             (data) => {
-                console.log(data);
+                this.resetFormData(form);
+                this.resetMessages();
                 this._service.success("Успіх", "Успішно додано користувача");
             },
             (error) => {

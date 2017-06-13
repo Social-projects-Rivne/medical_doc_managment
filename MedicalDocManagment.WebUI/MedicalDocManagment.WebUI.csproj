@@ -57,12 +57,16 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentValidation, Version=6.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.6.4.0\lib\Net45\FluentValidation.dll</HintPath>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.7.0.1\lib\net45\FluentValidation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentValidation.Mvc, Version=6.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.MVC5.6.4.0\lib\Net45\FluentValidation.Mvc.dll</HintPath>
+    <Reference Include="FluentValidation.Mvc, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.Mvc5.7.0.0\lib\net45\FluentValidation.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation.WebApi, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.WebApi.7.0.1\lib\net45\FluentValidation.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -172,18 +176,36 @@
   <ItemGroup>
     <Content Include="app\.gitignore" />
     <Content Include="app\components\admin-app.component.html" />
+    <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\component.html" />
+    <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\form.component.html" />
+    <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\level-of-formation.component.css" />
+    <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\view.component.css" />
+    <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\view.component.html" />
+    <Content Include="app\components\childrens-card\child-card\neurologists-examination\component.html" />
+    <Content Include="app\components\childrens-card\child-card\neurologists-examination\form.component.html" />
+    <Content Include="app\components\childrens-card\child-card\neurologists-examination\view.component.html" />
     <Content Include="app\components\childrens-card\child-card\parents\parents-list.component.html" />
     <Content Include="app\components\childrens-card\child-card\pediatricians-examination\view.component.html" />
     <Content Include="app\components\childrens-card\child-card\pediatricians-examination\component.html" />
     <Content Include="app\components\childrens-card\child-card\pediatricians-examination\form.component.html" />
     <Content Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.html" />
     <Content Include="app\components\childrens-card\child-card\main-page.component.html" />
+    <Content Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-add.component.css" />
+    <Content Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-list.component.css" />
+    <Content Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-list.component.html" />
+    <Content Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-add.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\add\children-card-add.component.html" />
+    <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\form.component.css" />
+    <None Include="app\components\childrens-card\child-card\neurologists-examination\form.component.less" />
+    <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\level-of-formation.component.html" />
+    <Content Include="app\components\childrens-card\child-card\neurologists-examination\view.component.css" />
     <None Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.less" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-item.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.html" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.css" />
     <Content Include="app\components\childrens-card\children-cards-list\children-cards-list.component.html" />
+    <Content Include="app\components\childrens-card\diagnosis\select-modal.component.css" />
+    <Content Include="app\components\childrens-card\diagnosis\select-modal.component.html" />
     <Content Include="app\components\childrens-card\parent\child-card-add-parent.component.html" />
     <Content Include="app\components\childrens-card\visit\add\visit.component.css" />
     <Content Include="app\components\childrens-card\visit\add\visit.component.html" />
@@ -249,19 +271,44 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\custom-formatted-date.component.html" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\speech-therapists-examination\custom-formatted-date.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\speech-therapists-examination\level-of-formation.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\speech-therapists-examination\component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\speech-therapists-examination\form.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\speech-therapists-examination\view.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\neurologists-examination\component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\neurologists-examination\form.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\neurologists-examination\view.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\parents\parents-list.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\pediatricians-examination\view.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\pediatricians-examination\component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\pediatricians-examination\form.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\psychiatrists-conclusion-form.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\child-card\main-page.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-list.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\child-card\therapeutic-procedures\procedures-add.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\children-cards-list\children-cards-list-without-lazy.component.ts" />
+    <Content Include="app\components\childrens-card\diagnosis\text.component.html" />
+    <TypeScriptCompile Include="app\components\childrens-card\diagnosis\text.component.ts" />
+    <TypeScriptCompile Include="app\components\childrens-card\diagnosis\select-modal.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\add\visit.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\list\list-visits.component.ts" />
     <TypeScriptCompile Include="app\components\childrens-card\visit\main-page\visit-main-page.component.ts" />
     <TypeScriptCompile Include="app\components\shared\tiny-mce-editor\tiny-mce-editor.component.ts" />
     <TypeScriptCompile Include="app\components\shared\tiny-mce-editor\tiny-mce-editor.translate.ts" />
+    <TypeScriptCompile Include="app\components\user\users-lfs.component.ts" />
     <TypeScriptCompile Include="app\components\user\users-search\search-options.component.ts" />
+    <TypeScriptCompile Include="app\models\child-card\speech-therapists-examination\features-of-phonetic-and-phonematic-speech-components.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\speech-therapists-examination\level-of-formation.enum.ts" />
+    <TypeScriptCompile Include="app\models\child-card\speech-therapists-examination\grammatical-structure-of-speech.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\speech-therapists-examination\state-of-the-lexical-part-of-speech.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\speech-therapists-examination\childs-early-speech-development.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\speech-therapists-examination\examination.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\neurologists-examination\neurological-state.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\neurologists-examination\examination.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\procedure.model.ts" />
+    <TypeScriptCompile Include="app\models\child-card\rehabilitation.model.ts" />
     <TypeScriptCompile Include="app\models\children-cards-paged.model.ts" />
     <TypeScriptCompile Include="app\models\visit.model.ts" />
     <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\child-birth.enum.ts" />
@@ -271,20 +318,32 @@
     <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\pregnancy-details.model.ts" />
     <TypeScriptCompile Include="app\models\child-card\pediatricians-examination\pediatricians-examination.model.ts" />
     <TypeScriptCompile Include="app\models\child-card\parent-child-card.model.ts" />
+    <TypeScriptCompile Include="app\modules\child-card\speech-therapists-examination.module.ts" />
+    <TypeScriptCompile Include="app\modules\child-card\neurologists-examination.module.ts" />
     <TypeScriptCompile Include="app\modules\custom-datepicker.module.ts" />
     <TypeScriptCompile Include="app\modules\child-card\pediatricians-examination.module.ts" />
     <TypeScriptCompile Include="app\modules\child-card\child-card.module.ts" />
     <TypeScriptCompile Include="app\modules\users-search.module.ts" />
+    <Compile Include="Controllers\ChildCardController.cs" />
+    <Compile Include="Controllers\CustomAttributes\SpeechTherapistsOnlyAuthorization.cs" />
+    <Compile Include="Controllers\MkhController.cs" />
+    <Compile Include="ValidateFilters\ValidateModelStateFilter.cs" />
     <Compile Include="Controllers\ChildCardsController.cs" />
+    <Compile Include="Controllers\CustomAttributes\NeurologistsOnlyAuthorization.cs" />
     <Compile Include="Controllers\CustomAttributes\PediatriciansOnlyAuthorization.cs" />
     <Compile Include="Controllers\CustomAttributes\PsychiatristsOnlyAuthorization.cs" />
     <Compile Include="Controllers\VisitsController.cs" />
     <Compile Include="Helpers\AddPatientHelper.cs" />
     <Compile Include="Helpers\ChildCardMapHelper.cs" />
+    <Compile Include="Helpers\SpeechTherapistsExaminationHelper.cs" />
+    <Compile Include="Helpers\NeurologistsExaminationHelper.cs" />
     <Compile Include="Helpers\CreateVisitHelper.cs" />
     <Compile Include="Helpers\PediatriciansExaminationHelper.cs" />
     <Compile Include="Helpers\PositionMapHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Models\Main\NeurologistsExamination\NeurologicalStateVM.cs" />
+    <Compile Include="Models\Main\NeurologistsExamination\NeurologistsExaminationVM.cs" />
+    <Compile Include="Helpers\RehabilitationMapHelper.cs" />
     <Compile Include="Models\Main\ParentVM.cs" />
     <Compile Include="Models\Main\AddPatientVM.cs" />
     <Compile Include="Models\Main\BlockMkhVM.cs" />
@@ -300,10 +359,16 @@
     <Compile Include="Models\Main\NosologyMkhVM.cs" />
     <Compile Include="Models\Main\AddParentChildCardVM.cs" />
     <Compile Include="Models\Main\AddParentVM.cs" />
+    <Compile Include="Models\Main\SpeechTherapistsExaminationVM.cs" />
+    <Compile Include="Models\Main\RehabilitationVM.cs" />
+    <Compile Include="Models\Main\TherapeuticProcedureVM.cs" />
     <Compile Include="Models\Main\ViewPatientDataVM.cs" />
     <Compile Include="Models\Main\ViewVisitVM.cs" />
     <Compile Include="Models\UserIndexModel.cs" />
+    <Compile Include="Models\Validators\Helpers\RehabilitationVMValidationHelper.cs" />
     <Compile Include="Models\Validators\Helpers\ViewPatientDataValidatorHelper.cs" />
+    <Compile Include="Models\Validators\SpeechTherapistsExaminationValidator.cs" />
+    <Compile Include="Models\Validators\RehabilitationVMValidator.cs" />
     <Compile Include="Models\Validators\ViewPatientDataValidator.cs" />
     <Compile Include="Models\Validators\AddPatientValidator.cs" />
     <Compile Include="Models\Validators\CreateVisitValidator.cs" />
@@ -326,6 +391,7 @@
     <Compile Include="Models\Validators\UserEditModelValidator.cs" />
     <Compile Include="Models\Validators\UserModelValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <TypeScriptCompile Include="app\services\child-card.service.ts" />
     <TypeScriptCompile Include="app\services\visit.service.ts" />
     <TypeScriptCompile Include="app\shared\custom-datepicker\component.ts" />
   </ItemGroup>
@@ -415,6 +481,10 @@
     <ProjectReference Include="..\MedicalDocManagement.BLL\MedicalDocManagement.BLL.csproj">
       <Project>{34fc668e-d391-4fb8-ba59-731ce70f18a7}</Project>
       <Name>MedicalDocManagement.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MedicalDocManagement.CUL\MedicalDocManagement.CUL.csproj">
+      <Project>{797eaa69-9aa4-49a0-a90d-290acf68aa48}</Project>
+      <Name>MedicalDocManagement.CUL</Name>
     </ProjectReference>
     <ProjectReference Include="..\MedicalDocManagment.DAL\MedicalDocManagment.DAL.csproj">
       <Project>{0f99f474-b98c-4710-aa81-b9cc16ad04d0}</Project>

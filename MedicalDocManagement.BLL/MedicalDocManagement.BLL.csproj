@@ -65,6 +65,8 @@
     <Compile Include="DTO\Main\ChildCardDTO.cs" />
     <Compile Include="DTO\Main\DiagnosisMkhDTO.cs" />
     <Compile Include="DTO\Main\IViewPatientData.cs" />
+    <Compile Include="DTO\Main\NeurologistsExamination\NeurologicalStateDTO.cs" />
+    <Compile Include="DTO\Main\NeurologistsExamination\NeurologistsExaminationDTO.cs" />
     <Compile Include="DTO\Main\NosologyMkhDTO.cs" />
     <Compile Include="DTO\Main\ParentChildCardDTO.cs" />
     <Compile Include="DTO\Main\ParentDTO.cs" />
@@ -75,17 +77,27 @@
     <Compile Include="DTO\Main\PediatriciansExamination\PediatriciansExaminationDTO.cs" />
     <Compile Include="DTO\Main\PediatriciansExamination\PregnancyDetailsDTO.cs" />
     <Compile Include="DTO\Main\PediatriciansExamination\PsychomotorDevelopmentDTO.cs" />
+    <Compile Include="DTO\Main\SpeechTherapistsExaminationDTO.cs" />
+    <Compile Include="Helpers\SpeechTherapistsExaminationDTOHelper.cs" />
+    <Compile Include="Helpers\NeurologistsExaminationDTOHelper.cs" />
+    <Compile Include="DTO\Main\TherapeuticProcedureDTO.cs" />
     <Compile Include="DTO\Main\VisitDTO.cs" />
     <Compile Include="Helpers\PediatriciansExaminationDTOHelper.cs" />
     <Compile Include="Helpers\ChildCardDTOHelper.cs" />
     <Compile Include="Helpers\PositionDTOHelper.cs" />
+    <Compile Include="Helpers\RehabilitationDTOHelper.cs" />
     <Compile Include="Helpers\UserDTOHelper.cs" />
     <Compile Include="Helpers\VisitDTOHelper.cs" />
+    <Compile Include="Services\Abstract\IChildCardService.cs" />
+    <Compile Include="Services\Abstract\IChildCardsService.cs" />
+    <Compile Include="Services\Abstract\IMkhService.cs" />
     <Compile Include="Services\Abstract\IPositionsService.cs" />
     <Compile Include="Services\Abstract\IUsersService.cs" />
-    <Compile Include="Services\Abstract\IChildCardsService.cs" />
     <Compile Include="Services\Abstract\IVisitsService.cs" />
+    <Compile Include="Services\ChildCardService.cs" />
+    <Compile Include="Services\MkhService.cs" />
     <Compile Include="Services\PositionsService.cs" />
+    <Compile Include="DTO\Main\RehabilitationDTO.cs" />
     <Compile Include="Services\UsersService.cs" />
     <Compile Include="Services\ChildCardsService.cs" />
     <Compile Include="DTO\Main\ClassMkhDTO.cs" />
@@ -93,6 +105,10 @@
     <Compile Include="Services\VisitService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MedicalDocManagement.CUL\MedicalDocManagement.CUL.csproj">
+      <Project>{797eaa69-9aa4-49a0-a90d-290acf68aa48}</Project>
+      <Name>MedicalDocManagement.CUL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MedicalDocManagment.DAL\MedicalDocManagment.DAL.csproj">
       <Project>{0F99F474-B98C-4710-AA81-B9CC16AD04D0}</Project>
       <Name>MedicalDocManagment.DAL</Name>
