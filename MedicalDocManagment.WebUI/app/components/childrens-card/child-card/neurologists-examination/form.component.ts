@@ -7,12 +7,14 @@ import ChildCardModel from "../../../../models/child-card/child-card.model";
 import NeurologistsExaminationModel from "../../../../models/child-card/neurologists-examination/examination.model";
 
 import ChildCardService from '../../../../services/child-card.service';
+import ChildrensCardService from '../../../../services/children-card.service';
 import SharedService from '../../../../services/shared.service';
 
 @Component({
     moduleId: module.id,
     providers: [
         ChildCardService,
+        ChildrensCardService,
         NotificationsService,
         SharedService
     ],
@@ -24,6 +26,7 @@ export default class NeurologistsExaminationFormComponent implements OnDestroy {
     private _childCard: ChildCardModel;
     private _childCardSubscription: Subscription;
     private _childCardService: ChildCardService;
+    private _childrensCardService: ChildrensCardService;
     private _isErrorOnLoading: boolean;
     private _isErrorOnSaving: boolean;
     private _isLoading: boolean;
@@ -36,11 +39,13 @@ export default class NeurologistsExaminationFormComponent implements OnDestroy {
     private _notificationService: NotificationsService;
 
     constructor(childCardService: ChildCardService,
+        childrensCardService: ChildrensCardService,
         notificationService: NotificationsService,
         sharedService: SharedService) {
         this._childCard = null;
         this._childCardService = childCardService;
-        this._childCardSubscription = this._childCardService.currentChildCardObservable
+        this._childrensCardService = childrensCardService;
+        this._childCardSubscription = this._childrensCardService.currentChildCardObservable
             .subscribe((childCard: ChildCardModel) => {
                 this._childCard = childCard;
                 this._loadExaminationFromServer();

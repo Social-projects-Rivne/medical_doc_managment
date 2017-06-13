@@ -27,6 +27,8 @@ namespace MedicalDocManagment.DAL.Repository
         private readonly Lazy<UsersManager> _usersManager;
         private readonly Lazy<IPediatriciansExaminationsRepository> _pediatriciansExaminationsRepository;
         private readonly Lazy<INeurologistsExaminationsRepository> _neurologistsExaminationsRepository;
+        private readonly Lazy<ITherapeuticProceduresRepository> _therapeuticProceduresRepository;
+        private readonly Lazy<IRehabilitationsRepository> _rehabilitationsRepository;
         private readonly Lazy<IVisitsRepository> _visitsRepository;
         private readonly Lazy<RolesManager> _rolesManager;
 
@@ -44,6 +46,8 @@ namespace MedicalDocManagment.DAL.Repository
             _parentChildCardRepository = new Lazy<IParentChildCardRepository>(() => new ParentChildCardRepository(_context));
             _visitsRepository = new Lazy<IVisitsRepository>(() => new VisitsRepository(_context));
             _imageRepository = new Lazy<IImageRepository>(() => new ImageRepository(_context));
+            _therapeuticProceduresRepository = new Lazy<ITherapeuticProceduresRepository>(() => new TherapeuticProceduresRepository(_context));
+            _rehabilitationsRepository = new Lazy<IRehabilitationsRepository>(() => new RehabilitationsRepository(_context));
             _usersManager = new Lazy<UsersManager>(() => HttpContext.Current
                                                                     .GetOwinContext()
                                                                     .GetUserManager<UsersManager>());
@@ -69,6 +73,8 @@ namespace MedicalDocManagment.DAL.Repository
         public IVisitsRepository VisitsRepository => _visitsRepository.Value;
         public UsersManager UsersManager => HttpContext.Current.GetOwinContext().GetUserManager<UsersManager>();
         public IImageRepository ImageRepository => _imageRepository.Value;
+        public ITherapeuticProceduresRepository TherapeuticProceduresRepository => _therapeuticProceduresRepository.Value;
+        public IRehabilitationsRepository RehabilitationsRepository => _rehabilitationsRepository.Value;
         public RolesManager RolesManager => _rolesManager.Value;
 
         public void Dispose()
