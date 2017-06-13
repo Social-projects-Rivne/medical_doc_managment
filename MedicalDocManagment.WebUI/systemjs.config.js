@@ -31,8 +31,6 @@
             'ngx-infinite-scroll':'node_modules/ngx-infinite-scroll',
             'moment': 'dist:js/moment/',
             'angular2-moment': 'dist:lib/npmlibs/angular2-moment',
-            'angular2-text-mask': 'dist:lib/npmlibs/angular2-text-mask',
-            'text-mask-core': 'dist:lib/npmlibs/text-mask-core',
             'angular2-image-upload': 'node_modules/angular2-image-upload',
             'mydatepicker': 'npm:mydatepicker/bundles/mydatepicker.umd.min.js',
             'angular2-masonry': 'dist:lib/npmlibs/angular2-masonry',
@@ -67,8 +65,6 @@
                 main: 'bundles/ngx-infinite-scroll.umd.js',
                 defaultExtension: 'js'
             },
-            'angular2-text-mask': { main: 'angular2TextMask.js', defaultExtension: 'js' },
-            'text-mask-core': { main: 'dist/textMaskCore.js', defaultExtension: 'js' },
             'angular2-image-upload': { main: './index.js', defaultExtension: 'js' },
             'angular2-masonry': { main: 'index', defaultExtension: 'js' }
         }

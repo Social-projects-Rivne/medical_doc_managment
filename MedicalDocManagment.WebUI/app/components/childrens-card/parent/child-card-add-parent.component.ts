@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 declare var jQuery: any;
 
 import ChildrenCardService from "../../../services/children-card.service";
-import flexiblePhoneMask from "./flexible-phone-mask.function";
 import ParentModel from "../../../models/child-card/parent.model";
 
 @Component({
@@ -17,7 +16,6 @@ import ParentModel from "../../../models/child-card/parent.model";
 })
 
 export default class ChildCardAddParentComponent {
-    flexiblePhoneMask = flexiblePhoneMask;
     @Output() parentAddedEvent: EventEmitter<ParentModel>;
 
     private _childrenCardService: ChildrenCardService;
