@@ -23,7 +23,6 @@ export default class ChildCardAddParentComponent {
     private _isErrorOnAdding: boolean;
     private _lastErrorMessage: string;
     private _parent: ParentModel;
-    private _phoneMask: Array<string | RegExp>;
 
     constructor(childrenCardService: ChildrenCardService) {
         this.parentAddedEvent = new EventEmitter<ParentModel>();
@@ -33,8 +32,7 @@ export default class ChildCardAddParentComponent {
         this._isErrorOnAdding = false;
         this._lastErrorMessage = null;
         this._parent = new ParentModel();
-        this._phoneMask = ['0', ' ', /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
-    }
+    }    
 
     private _onSave(form: FormGroup): void {
         this._isAdding = true;

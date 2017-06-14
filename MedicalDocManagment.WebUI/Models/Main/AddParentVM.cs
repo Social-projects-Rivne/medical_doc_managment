@@ -21,7 +21,7 @@ namespace MedicalDocManagment.WebUI.Models.Main
         public string Work { get; set; }
 
         [Required]
-        [StringLength(12)]
+        [StringLength(16)]
         public string Phone { get; set; }
     }
 }

@@ -179,6 +179,10 @@
     <Compile Include="Migrations\201706131255566_Feature-Form_speech_therapist.Designer.cs">
       <DependentUpon>201706131255566_Feature-Form_speech_therapist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706132045300_Add_parent-Phone_number.cs" />
+    <Compile Include="Migrations\201706132045300_Add_parent-Phone_number.Designer.cs">
+      <DependentUpon>201706132045300_Add_parent-Phone_number.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ImageRepository.cs" />
@@ -258,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706131255566_Feature-Form_speech_therapist.resx">
       <DependentUpon>201706131255566_Feature-Form_speech_therapist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706132045300_Add_parent-Phone_number.resx">
+      <DependentUpon>201706132045300_Add_parent-Phone_number.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
