@@ -10,7 +10,7 @@ namespace MedicalDocManagment.WebUI.Models
         byFirstName, byLastName, bySecondName, byBirthDate, byCardNumber, byAllInTheAbove
     }
 
-    [Validator(typeof(AddPatientVMValidator))]
+    [Validator(typeof(ViewPatientDataVM))]
     public class ViewPatientDataVM: IViewPatientData
     {
         public string LastName { get; set; }
