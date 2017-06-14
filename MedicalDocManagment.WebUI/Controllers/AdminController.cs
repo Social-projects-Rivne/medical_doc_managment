@@ -41,7 +41,7 @@ namespace MedicalDocManagment.WebUI.Controllers
         {
             var config = new MapperConfiguration(cfg => {
                 cfg.CreateMap<UserDTO, UserIndexModel>()
-                   .ForMember("Avatar", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                   .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
                 cfg.CreateMap<PositionDTO, PositionModel>();
             });
             var mapper = config.CreateMapper();
@@ -78,7 +78,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             int total = _usersService.GetUsersCount();
             var config = new MapperConfiguration(cfg => {
                 cfg.CreateMap<UserDTO, UserIndexModel>()
-                   .ForMember("Avatar", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                   .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
                 cfg.CreateMap<PositionDTO, PositionModel>();
             });
             var mapper = config.CreateMapper();
@@ -92,7 +92,7 @@ namespace MedicalDocManagment.WebUI.Controllers
         {
             Mapper.Initialize(config => {
                 config.CreateMap<User, UserIndexModel>()
-                      .ForMember("Avatar", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                      .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
                 config.CreateMap<Position, PositionModel>();
             });
             var user = await _unitOfWork.UsersManager.FindByIdAsync(id.ToString());
@@ -195,7 +195,7 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return identityErrors;
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, new { Avatar = user.Image.ImageUrl });
+            return Request.CreateResponse(HttpStatusCode.OK, new { Photo = user.Image.ImageUrl });
         }
 
         private HttpResponseMessage _getErrorIdentityResult(IdentityResult result)
@@ -249,7 +249,7 @@ namespace MedicalDocManagment.WebUI.Controllers
         {
             Mapper.Initialize(config => {
                 config.CreateMap<User, UserIndexModel>()
-                      .ForMember("Avatar", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                      .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
                 config.CreateMap<Position, PositionModel>();
             });
             var user = await _unitOfWork.UsersManager.FindByNameAsync(userName);
@@ -267,7 +267,7 @@ namespace MedicalDocManagment.WebUI.Controllers
         {
             Mapper.Initialize(config => {
                 config.CreateMap<User, UserIndexModel>()
-                      .ForMember("Avatar", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                      .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
                 config.CreateMap<Position, PositionModel>();
             });
             var user = await _unitOfWork.UsersManager.FindByEmailAsync(email);
@@ -285,7 +285,7 @@ namespace MedicalDocManagment.WebUI.Controllers
         {
             Mapper.Initialize(config => {
                 config.CreateMap<User, UserIndexModel>()
-                      .ForMember("Avatar", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                      .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
                 config.CreateMap<Position, PositionModel>();
             });
             var users = _unitOfWork.UsersManager.Users.Where(user => user.PositionId == positionId).ToList();
@@ -304,7 +304,7 @@ namespace MedicalDocManagment.WebUI.Controllers
         {
             Mapper.Initialize(config => {
                 config.CreateMap<User, UserIndexModel>()
-                      .ForMember("Avatar", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                      .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
                 config.CreateMap<Position, PositionModel>();
             });
             var users = _unitOfWork.UsersManager.Users.Where(user => user.Position.Name == positionName).ToList();
@@ -323,7 +323,7 @@ namespace MedicalDocManagment.WebUI.Controllers
         {
             Mapper.Initialize(config => {
                 config.CreateMap<User, UserIndexModel>()
-                      .ForMember("Avatar", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                      .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
                 config.CreateMap<Position, PositionModel>();
             });
             var users = _unitOfWork.UsersManager.Users.Where(user => user.IsActive == userStatus).ToList();
