@@ -137,6 +137,10 @@ export class AuthenticationService {
     }
 
     logout(): void {
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        let options = new RequestOptions({ headers: headers });
+        this.http.get('/logout', options).subscribe();
+
         // clear token remove user from local storage to log user out
         this.token = null;
         this.id = null;
