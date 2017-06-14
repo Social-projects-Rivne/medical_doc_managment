@@ -35,8 +35,8 @@
         <div class="input-group col-xs-offset-2 col-xs-4">
           <span class="input-group-addon">Вік</span>
           <input type="text" class="form-control" id="childAge" name="childAge"
-                 [(ngModel)]="_pediatriciansExamination.header.age" #lastName="ngModel"
-                 [disabled]="_isSaving" maxlength="33" />
+                 [(ngModel)]="_pediatriciansExamination.header.age" #childAge="ngModel"
+                 [disabled]="_isSaving" readonly/>
         </div>
       </div>
     </div>
@@ -141,14 +141,20 @@
                  #lastName="ngModel" [disabled]="_isSaving" maxlength="54" />
           <span class="input-group-addon">
             вагітності, яка протікала:
-            <span [style.font-style]="'italic'"
+            <span class="interactable unselectable" unselectable="on"
+                  [style.font-style]="'italic'"
                   [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedNormally)"
-                  (click)="_pediatriciansExamination.pregnancyDetails.switchPassedNormally()">
+                  (click)="_pediatriciansExamination.pregnancyDetails.switchPassedNormally()"
+                  (mouseover)="_interactableMouseOver($event)"
+                  (mouseout)="_interactableMouseOut($event)">
               нормально
             </span><i>, </i>
-            <span [style.font-style]="'italic'"
+            <span class="interactable unselectable" unselectable="on"
+                  [style.font-style]="'italic'"
                   [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedWithToxemia)"
-                  (click)="_pediatriciansExamination.pregnancyDetails.switchPassedWithToxemia()">
+                  (click)="_pediatriciansExamination.pregnancyDetails.switchPassedWithToxemia()"
+                  (mouseover)="_interactableMouseOver($event)"
+                  (mouseout)="_interactableMouseOut($event)">
               з токсикозом
             </span>
           </span>
@@ -165,19 +171,28 @@
                  #lastName="ngModel" maxlength="22"
                  [disabled]="_isSaving || !_pediatriciansExamination.pregnancyDetails.passedWithToxemia" />
           <span class="input-group-addon">
-            <span [style.font-style]="'italic'"
+            <span class="interactable unselectable" unselectable="on"
+                  [style.font-style]="'italic'"
                   [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedWithToxemia)"
-                  (click)="_pediatriciansExamination.pregnancyDetails.switchPassedWithToxemia()">
+                  (click)="_pediatriciansExamination.pregnancyDetails.switchPassedWithToxemia()"
+                  (mouseover)="_interactableMouseOver($event)"
+                  (mouseout)="_interactableMouseOut($event)">
               половини
             </span><i>, </i>
-            <span [style.font-style]="'italic'"
+            <span class="interactable unselectable" unselectable="on"
+                  [style.font-style]="'italic'"
                   [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedWithAnemia)"
-                  (click)="_pediatriciansExamination.pregnancyDetails.switchPassedWithAnemia()">
+                  (click)="_pediatriciansExamination.pregnancyDetails.switchPassedWithAnemia()"
+                  (mouseover)="_interactableMouseOver($event)"
+                  (mouseout)="_interactableMouseOut($event)">
               анемією
             </span><i>, </i>
-            <span [style.font-style]="'italic'"
+            <span class="interactable unselectable" unselectable="on"
+                  [style.font-style]="'italic'"
                   [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.withThreatInInterruption)"
-                  (click)="_pediatriciansExamination.pregnancyDetails.switchWithThreatInInterruption()">
+                  (click)="_pediatriciansExamination.pregnancyDetails.switchWithThreatInInterruption()"
+                  (mouseover)="_interactableMouseOver($event)"
+                  (mouseout)="_interactableMouseOut($event)">
               загрозою переривання у терміні
             </span>
           </span>
@@ -199,20 +214,22 @@
                  [(ngModel)]="_pediatriciansExamination.pregnancyDetails.fromDetails"
                  #lastName="ngModel" maxlength="60"
                  [disabled]="_isSaving || _pediatriciansExamination.pregnancyDetails.childBirth == ChildBirthEnum.Unknown" />
-          <span class="input-group-addon" [style.font-style]="'italic'"
-                (click)="_pediatriciansExamination.pregnancyDetails.childBirth = (_pediatriciansExamination.pregnancyDetails.childBirth+1) % 4">
+          <span class="input-group-addon interactable unselectable" unselectable="on" [style.font-style]="'italic'"
+                (click)="_pediatriciansExamination.pregnancyDetails.childBirth = (_pediatriciansExamination.pregnancyDetails.childBirth+1) % 4"                
+                (mouseover)="_interactableMouseOver($event)"
+                (mouseout)="_interactableMouseOut($event)">
             <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
-                    pregnancyDetails.childBirth == ChildBirthEnum.Urgent)">
+                  pregnancyDetails.childBirth == ChildBirthEnum.Urgent)">
               термінових
             </span>
             ,
             <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
-                    pregnancyDetails.childBirth == ChildBirthEnum.Premature)">
+                  pregnancyDetails.childBirth == ChildBirthEnum.Premature)">
               передчасних
             </span>
             ,
             <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
-                    pregnancyDetails.childBirth == ChildBirthEnum.Operative)">
+                  pregnancyDetails.childBirth == ChildBirthEnum.Operative)">
               оперативних пологів
             </span>
             .
@@ -267,8 +284,11 @@
         <div class="input-group col-xs-12">
           <span class="input-group-addon">
             Ранній неонатальний період протікав
-            <span [style.font-style]="'italic'"
-                  (click)="_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications=!_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications">
+            <span class="interactable unselectable" unselectable="on" 
+                  [style.font-style]="'italic'"
+                  (click)="_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications=!_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications"
+                  (mouseover)="_interactableMouseOver($event)"
+                  (mouseout)="_interactableMouseOut($event)">
               <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications)">
                 без ускладнень
               </span>
@@ -304,13 +324,19 @@
           <span class="input-group-addon">
             Психомоторний розвиток на 1-му році життя
             <span [style.font-style]="'italic'">
-              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit)"
-                    (click)="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit=!_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit">
+              <span class="interactable unselectable" unselectable="on" 
+                    [style.text-decoration]="_textDecoration(_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit)"
+                    (click)="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit=!_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit"
+                    (mouseover)="_interactableMouseOver($event)"
+                    (mouseout)="_interactableMouseOut($event)">
                 відповідав віковій нормі
               </span>
               ,
-              <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal)"
-                    (click)="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal=!_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal">
+              <span class="interactable unselectable" unselectable="on" 
+                    [style.text-decoration]="_textDecoration(_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal)"
+                    (click)="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal=!_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal"
+                    (mouseover)="_interactableMouseOver($event)"
+                    (mouseout)="_interactableMouseOut($event)">
                 не відповідав нормі
               </span>
             </span>
@@ -373,7 +399,10 @@
         <div class="input-group col-xs-12">
           <span class="input-group-addon">
             Шкідливі звички:
-            <span [style.font-style]="'italic'"
+            <span class="interactable unselectable" unselectable="on"
+                  (mouseover)="_interactableMouseOver($event)"
+                  (mouseout)="_interactableMouseOut($event)"                  
+                  [style.font-style]="'italic'"
                   (click)="_pediatriciansExamination.badHabitsPresent=!_pediatriciansExamination.badHabitsPresent">
               <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.badHabitsAbsent)">
                 немає
@@ -397,8 +426,11 @@
         <div class="input-group col-xs-12">
           <span class="input-group-addon">
             Алергологічний анамнез:
-            <span [style.font-style]="'italic'"
-                  (click)="_pediatriciansExamination.weightedWithAllergicHistory=!_pediatriciansExamination.weightedWithAllergicHistory">
+            <span class="interactable unselectable" unselectable="on"
+                  [style.font-style]="'italic'"
+                  (click)="_pediatriciansExamination.weightedWithAllergicHistory=!_pediatriciansExamination.weightedWithAllergicHistory"
+                  (mouseover)="_interactableMouseOver($event)"
+                  (mouseout)="_interactableMouseOut($event)">
               <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.notWeightedWithAllergicHistory)">
                 не обтяжений
               </span>
@@ -421,8 +453,11 @@
         <div class="input-group col-xs-12">
           <span class="input-group-addon">
             Спадковий анамнез:
-            <span [style.font-style]="'italic'"
-                  (click)="_pediatriciansExamination.weightedWithAncestralAnamnesis=!_pediatriciansExamination.weightedWithAncestralAnamnesis">
+            <span class="interactable unselectable" unselectable="on"
+                  [style.font-style]="'italic'"
+                  (click)="_pediatriciansExamination.weightedWithAncestralAnamnesis=!_pediatriciansExamination.weightedWithAncestralAnamnesis"
+                  (mouseover)="_interactableMouseOver($event)"
+                  (mouseout)="_interactableMouseOut($event)">
               <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.notWeightedWithAncestralAnamnesis)">
                 не обтяжений
               </span>

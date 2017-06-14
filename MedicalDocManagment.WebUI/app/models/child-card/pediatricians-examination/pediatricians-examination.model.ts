@@ -35,10 +35,10 @@ export default class PediatriciansExaminationModel {
         this.earlyNeonatalPeriodWasWithoutComplications = null;
         this.psychomotorDevelopmentOnFirstYear = new PsychomotorDevelopmentModel();
 
-        this.id = this.complaints = this.anamnesisOfDisease = 
-            this.anamnesisOfLife = this.complicationsDuringNeonatalPeriod =
-            this.detailsAfterEarlyNeonatalPeriod = this.naturalFeedingDetails =
-            this.nonNaturalFeedingDetails = this.mixedFeedingDetails =
+        this.id = 0;
+        this.complaints = this.anamnesisOfDisease = this.anamnesisOfLife =
+            this.complicationsDuringNeonatalPeriod = this.detailsAfterEarlyNeonatalPeriod =
+            this.naturalFeedingDetails = this.nonNaturalFeedingDetails = this.mixedFeedingDetails =
             this.pastIllnesses = this.screeningReasonsDetails = 
             this.badHabitsPresent = this.badHabitsDetails =
             this.weightedWithAllergicHistory = this.allergicHistoryDetails =
