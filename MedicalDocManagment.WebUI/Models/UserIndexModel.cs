@@ -15,7 +15,7 @@ namespace MedicalDocManagment.WebUI.Models
         public string SecondName { get; set; }
         public string LastName { get; set; }
         public bool IsActive { get; set; }
-        public string Avatar { get; set; }
+        public string Photo { get; set; }
         public int PositionId { get; set; }
         public PositionModel Position { get; set; }
     }

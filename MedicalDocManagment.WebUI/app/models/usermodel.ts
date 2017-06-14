@@ -8,14 +8,14 @@ export default class UserModel {
     secondName: string;
     lastName: string;
     email: string;
-    avatar: string;
+    photo: string;
     position: PositionModel;
     positionId: number;
     role: RoleModel;
     isActive: boolean;
 
     constructor(jsonObject?) {
-        this.id = this.userName = this.email = this.avatar = this.position = this.role =
+        this.id = this.userName = this.email = this.photo = this.position = this.role =
             this.isActive = this.firstName = this.lastName = this.secondName =
             this.positionId = null;
         if (jsonObject) {

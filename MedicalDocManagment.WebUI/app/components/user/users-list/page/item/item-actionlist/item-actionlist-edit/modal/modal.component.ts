@@ -58,8 +58,8 @@ export default class ItemActionListEditModal implements OnInit  {
                     this.user.clone(this.tempUser);
                     this.resetImage();
                     this.resetMessages();
-                    let updatedAvatar = JSON.parse(data._body).avatar;
-                    this.user.avatar = updatedAvatar;
+                    let updatedPhoto = JSON.parse(data._body).photo;
+                    this.user.photo = updatedPhoto;
                     this._service.success("Успіх", "Успішно відредаговано користувача");
                     $('#userEditModal').modal('hide');
                 },
