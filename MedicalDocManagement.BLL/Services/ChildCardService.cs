@@ -126,7 +126,7 @@ namespace MedicalDocManagement.BLL.Services
                                        .Single();
             SpeechTherapistsExaminationEntity examination = SpeechTherapistsExaminationDTOHelper
                 .DTOToEntity(examinationDTO);
-            if (childCard.NeurologistsExaminationId == null)
+            if (childCard.SpeechTherapistsExaminationId == null)
             {
                 _unitOfWork.SpeechTherapistsExaminationsRepository.Add(examination);
                 _unitOfWork.Save();
