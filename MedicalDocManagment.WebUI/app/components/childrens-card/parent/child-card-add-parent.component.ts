@@ -1,4 +1,4 @@
-﻿import { Component, EventEmitter, Output } from '@angular/core';
+﻿import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
@@ -33,6 +33,36 @@ export default class ChildCardAddParentComponent {
         this._lastErrorMessage = null;
         this._parent = new ParentModel();
     }    
+
+    // Initializing tooltips
+
+    @ViewChild('lastNameInput')
+    set _lastNameInput(elementRef: ElementRef) {
+        this._initTooltip(elementRef);
+    }
+
+    @ViewChild('firstNameInput')
+    set _firstNameInput(elementRef: ElementRef) {
+        this._initTooltip(elementRef);
+    }
+
+    @ViewChild('secondNameInput')
+    set _secondNameInput(elementRef: ElementRef) {
+        this._initTooltip(elementRef);
+    }
+
+    @ViewChild('phoneInput')
+    set _phoneInput(elementRef: ElementRef) {
+        this._initTooltip(elementRef);
+    }
+
+    _initTooltip(elementRef: ElementRef): void {
+        if (elementRef) {
+            jQuery(function () {
+                jQuery(elementRef.nativeElement).tooltip()
+            });
+        }
+    }
 
     private _onSave(form: FormGroup): void {
         this._isAdding = true;
