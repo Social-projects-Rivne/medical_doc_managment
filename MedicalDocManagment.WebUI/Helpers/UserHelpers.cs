@@ -1,11 +1,11 @@
-﻿using MedicalDocManagment.UsersDAL.Entities;
+﻿using MedicalDocManagment.DAL.Entities;
 using MedicalDocManagment.WebUI.Models;
 
 namespace MedicalDocManagment.WebUI.Helpers
 {
     public static class UserHelpers
     {   //TODO fix this helper
-        public static User ConvertUserModelToUser(UserModel userModel)
+        public static User ConvertUserModelToUser(UserCreateModel userModel)
         {
             return new User
             {

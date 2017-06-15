@@ -1,0 +1,9 @@
+<td><img src={{user.photo}}></td>
+<td>{{user.lastName}}</td>
+<td>{{user.firstName}}</td>
+<td>{{user.secondName}}</td>
+<td>{{user.userName}}</td>
+<td>{{user.email}}</td>
+<td>{{user.position?.name}}</td>
+<!--<td>{{user.role?.role}}</td>-->
+<td item-ActionList (onItemEdit)="onItemEdit($event)" [user]="user"></td>

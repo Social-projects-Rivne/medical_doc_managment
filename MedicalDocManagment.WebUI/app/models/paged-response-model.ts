@@ -1,4 +1,5 @@
-﻿import UsersModel from '../models/usersmodel';
+﻿import UsersModel from './usersmodel';
+
 export default class PagedResponseModel {
     pageNumber: number;
     pageSize: number;

@@ -1,0 +1,183 @@
+﻿<div class="container">
+  <!-- "Loading" progress bar and related error alert -->
+  <div class="row" *ngIf="_isLoading">
+    <div class="progress">
+      <div class="progress-bar progress-bar-info progress-bar-striped active"
+           role="progressbar" aria-valuenow="0" aria-valuemin="0"
+           aria-valuemax="0" style="width:100%">
+        Отримання інформації щодо форми ...
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="_isErrorOnLoading">
+    <div class="alert alert-danger col-xs-12">
+      {{_lastLoadingErrorMessage}}
+    </div>
+  </div>
+
+  <div *ngIf="!_isLoading">
+    <!-- ПІБ пацієнта, якого стосується форма -->
+    <div class="row">
+      <h4 class="text-center">
+        {{_childCard.lastName}} {{_childCard.firstName}} {{_childCard.secondName}}
+      </h4>
+    </div>
+    <!-- Заголовок форми -->
+    <div class="row">
+      <h4 class="text-center">
+        ОГЛЯД ЛОГОПЕДА
+      </h4>
+    </div>
+    <br />
+
+    <!-- І. Ранній мовленнєвий розвиток дитини -->
+    <div>
+      <!-- Heading text -->
+      <p class="row">
+        <b>І. Ранній мовленнєвий розвиток дитини</b>
+      </p>
+      <!-- Гуління... -->
+      <p class="row">
+        Гуління <i>(у нормі з 2 міс.)</i>, час появи, характер
+        <u>{{_examination.childsEarlySpeechDevelopment.cooing}}</u>
+      </p>
+      <!-- Лепет... -->
+      <p class="row">
+        Лепет <i>(у нормі з 4-6 міс.)</i>, час появи, характер
+        <u>{{_examination.childsEarlySpeechDevelopment.babble}}</u>
+      </p>
+      <!-- Перші слова... -->
+      <p class="row">
+        Перші слова <i>(характеристика звуконаслідування, кількість)</i>
+        <u>{{_examination.childsEarlySpeechDevelopment.firstWords}}</u>
+      </p>
+      <!-- Фразове мовлення... -->
+      <p class="row">
+        Фразове мовлення <i>(у нормі з 1,5-2 р.)</i>
+        <u>{{_examination.childsEarlySpeechDevelopment.phraseSpeech}}</u>
+      </p>
+      <!-- Чи переривається мовленнєвий... -->
+      <p class="row">
+        Чи переривається мовленнєвий розвиток, з якої причини
+        <u>{{_examination.childsEarlySpeechDevelopment.breaksInDevelopment}}</u>
+      </p>
+      <!-- Чи проводились заняття з вчителем-логопедом ... -->
+      <p class="row">
+        Чи проводились заняття з вчителем-логопедом <i>(тривалість занять, результат)</i>
+        <u>{{_examination.childsEarlySpeechDevelopment.workWithTeacherAndSpeechTherapist}}</u>
+      </p>
+    </div>
+
+    <!-- ІI. Стан лексичної складової мовлення -->
+    <div>
+      <!-- Heading text -->
+      <p class="row">
+        <b>ІI. Стан лексичної складової мовлення</b>
+      </p>
+      <!-- Імпресивне мовлення -->
+      <p class="row">
+        Імпресивне мовлення
+        <u>{{_examination.stateOfTheLexicalPartOfSpeech.impressiveSpeech}}</u>
+      </p>
+      <!-- Експресивне мовлення -->
+      <p class="row">
+        Експресивне мовлення
+        <u>{{_examination.stateOfTheLexicalPartOfSpeech.exspressiveSpeech}}</u>
+      </p>
+      <!-- Рівень стану сформованості... -->
+      <p class="row">
+        Рівень стану сформованості лексичної складової мовлення
+        <level-of-formation [readonly]="true"
+                            [(level)]="_examination.stateOfTheLexicalPartOfSpeech.levelOfFormation">
+        </level-of-formation>
+        <u>{{_examination.stateOfTheLexicalPartOfSpeech.levelOfFormationText}}</u>
+      </p>
+    </div>
+
+    <!-- ІII. Граматична будова мовлення -->
+    <div>
+      <!-- Textbox with label -->
+      <p class="row">
+        <b>ІII. Граматична будова мовлення</b>
+        <u>{{_examination.grammaticalStructureOfSpeech.text}}</u>
+      </p>
+      <!-- Рівень стану сформованості... -->
+      <p class="row">
+        Рівень стану сформованості граматичної складової мовлення
+        <level-of-formation [readonly]="true"
+                            [(level)]="_examination.grammaticalStructureOfSpeech
+                                    .levelOfFormation">
+        </level-of-formation>
+        <u>{{_examination.grammaticalStructureOfSpeech.levelOfFormationText}}</u>
+      </p>
+    </div>
+
+    <!-- ІV. Особливості фонетико-фонематичної складової мовлення -->
+    <div>
+      <!-- Textbox with label -->
+      <div class="row">
+        <b>ІV. Особливості фонетико-фонематичної складової мовлення</b>
+        <pre>{{_examination.featuresOfPhoneticAndPhonematicSpeechComponents.text}}</pre>
+      </div>
+      <!-- Рівень стану сформованості... -->
+      <p class="row">
+        Рівень стану сформованості фонетико-фонематичної складової мовлення
+        <level-of-formation [readonly]="true"
+                            [(level)]="_examination.featuresOfPhoneticAndPhonematicSpeechComponents
+                                    .levelOfFormation">
+        </level-of-formation>
+        <u>{{_examination.featuresOfPhoneticAndPhonematicSpeechComponents.levelOfFormationText}}</u>
+      </p>
+    </div>
+
+    <!-- V. Прояви заїкання -->
+    <p class="row">
+      <b>V. Прояви заїкання</b>
+      <u>{{_examination.manifestationsOfStuttering}}</u>
+    </p>
+
+    <!-- VI. Заключення -->
+    <div class="row">
+      <b>VI. Заключення</b>
+      <pre>{{_examination.conclusion}}</pre>
+    </div>
+
+    <!-- VIІ. Перспективний індивідуальний план кореляційної роботи -->
+    <div class="row">
+      <b>VIІ. Перспективний індивідуальний план кореляційної роботи</b>
+      <pre>{{_examination.longtermIndividualPlanOfRemedialWork}}</pre>
+    </div>
+
+    <br />
+    <!-- Результативність логопедичного впливу -->
+    <div class="row">
+      Результативність логопедичного впливу
+      <pre>{{_examination.efficiencyOfSpeechTherapyEffect}}</pre>
+    </div>
+
+    <br />
+    <br />
+    <!-- Date, "Логопед" and initials -->
+    <div class="row">
+      <div class="col-xs-3">
+        <custom-formatted-date [date]="_examination.date"></custom-formatted-date>
+      </div>
+      <div class="col-xs-offset-5 col-xs-3">
+        Логопед <users-lfs [id]="_examination.doctorsId"></users-lfs>
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- Update button -->
+    <div class="row">
+      <div class="form-group col-xs-11">
+        <button type="button" class="btn btn-primary" (click)="_loadExaminationFromServer()"
+                [disabled]="_isLoading">
+          Оновити
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

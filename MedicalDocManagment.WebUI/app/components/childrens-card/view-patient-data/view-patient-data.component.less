@@ -1,0 +1,29 @@
+﻿@import (reference) "./node_modules/bootstrap/less/bootstrap.less";
+
+.view-category-label{
+	.make-xs-column(4);
+    .text-right;
+}
+
+.view-category-input{
+    .make-xs-column(8);
+}
+
+.view-category-alert{
+	.make-xs-column-offset(4);
+	.make-xs-column(8);
+}
+
+.view-category-input-card-number{
+    .make-xs-column(5);
+}
+
+.view-category-alert-card-number{
+	.make-xs-column-offset(4);
+	.make-xs-column(5);
+}
+
+:host /deep/ .tooltip-inner{
+	max-width: 100%; 
+    text-align: left;
+}

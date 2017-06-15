@@ -1,0 +1,23 @@
+﻿<div class="container-fluid"
+     infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="300"
+     (scrolled)="onScrollDown()">
+  <masonry [options]='{ itemSelector : ".brick", gutter : 5, horizontalOrder : true }'>
+    <masonry-brick class="brick" *ngFor="let childCard of childrenCards">
+      <children-cards-list-item [childCard]="childCard"></children-cards-list-item>
+    </masonry-brick>
+  </masonry>
+  <!-- "Loading" progress bar -->
+  <div class="row" *ngIf="loading">
+    <div class="col-xs-offset-2 col-xs-8">
+      <div class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped active"
+             role="progressbar" aria-valuenow="0" aria-valuemin="0"
+             aria-valuemax="0" style="width:100%">
+          Завантаження карток пацієнтів...
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

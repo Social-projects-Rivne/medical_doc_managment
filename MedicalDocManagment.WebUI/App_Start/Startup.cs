@@ -1,8 +1,10 @@
 ﻿using Microsoft.Owin;
 using Owin;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.AspNet.Identity;
-using MedicalDocManagment.UsersDAL;
+using Microsoft.Owin.Security.OAuth;
+using System;
+using MedicalDocManagment.WebUI.Providers;
+using MedicalDocManagment.DAL;
+using MedicalDocManagment.DAL.Manager;
 
 [assembly: OwinStartup(typeof(MedicalDocManagment.Startup))]
 
@@ -12,13 +14,30 @@ namespace MedicalDocManagment
     {
         public void Configuration(IAppBuilder app)
         {
-            app.CreatePerOwinContext<UsersContext>(UsersContext.Create);
+            app.CreatePerOwinContext<Context>(Context.Create);
             app.CreatePerOwinContext<UsersManager>(UsersManager.Create);
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            app.CreatePerOwinContext<RolesManager>(RolesManager.Create);
+            ConfigureOAuth(app);
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            //app.UseCookieAuthentication(new CookieAuthenticationOptions
+            //{
+            //    AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+            //    LoginPath = new PathString("/Account/Login"),
+            //});
+        }
+        public void ConfigureOAuth(IAppBuilder app)
+        {
+            OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
-                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/Login"),
-            });
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                Provider = new AuthorizationServerProvider()
+            };
+
+            // Token Generation
+            app.UseOAuthAuthorizationServer(OAuthServerOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
     }
 }

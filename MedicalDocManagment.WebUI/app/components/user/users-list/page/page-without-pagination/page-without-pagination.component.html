@@ -1,0 +1,8 @@
+﻿<div class="container">
+  <table class="table table-hover">
+    <thead page-header></thead>
+    <tbody>
+      <tr *ngFor="let user of users | async" item (onPageEdit)="onPageEdit($event)" [user]="user"></tr>
+    </tbody>
+  </table>
+</div>

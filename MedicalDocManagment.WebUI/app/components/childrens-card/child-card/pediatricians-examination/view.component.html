@@ -1,0 +1,295 @@
+﻿<div class="container">
+  <!-- "Loading" progress bar and related error alert -->
+  <div class="row" *ngIf="_isLoading">
+    <div class="progress">
+      <div class="progress-bar progress-bar-info progress-bar-striped active"
+           role="progressbar" aria-valuenow="0" aria-valuemin="0"
+           aria-valuemax="0" style="width:100%">
+        Отримання інформації щодо форми ...
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="_isErrorOnLoading">
+    <div class="alert alert-danger col-xs-12">
+      {{_lastLoadingErrorMessage}}
+    </div>
+  </div>
+
+  <div *ngIf="!_isLoading">
+    <!-- ПІБ пацієнта, якого стосується форма -->
+    <div class="row">
+      <h4 class="text-center">
+        {{_childCard.lastName}} {{_childCard.firstName}} {{_childCard.secondName}}
+      </h4>
+    </div>
+    <!-- Заголовок форми — ОГЛЯД ЛІКАРЯ-ПЕДІАТРА -->
+    <div class="row">
+      <h4 class="text-center">
+        ОГЛЯД ЛІКАРЯ-ПЕДІАТРА
+      </h4>
+    </div>
+
+    <!-- Вік -->
+    <span class="row">
+      <span class="header-item">
+        <b>Вік</b>
+        <u>{{_pediatriciansExamination.header.age}}</u>
+      </span>
+    </span>
+    <!-- Вага -->
+    <span class="row">
+      <span class="header-item">
+        <b>Вага</b>
+        <u>{{_pediatriciansExamination.header.weight}}</u>
+      </span>
+    </span>
+    <!-- Зріст -->
+    <span class="row">
+      <span class="header-item">
+        <b>Зріст</b>
+        <u>{{_pediatriciansExamination.header.height}}</u>
+      </span>
+    </span>
+    <!-- Окружність голови -->
+    <span class="row">
+      <span class="header-item">
+        <b>Окружність голови</b>
+        <u>{{_pediatriciansExamination.header.headCircumference}}</u>
+      </span>
+    </span>
+    <!-- Окружність грудної клітки -->
+    <span class="row">
+      <span class="header-item">
+        <b>Окружність грудної клітки</b>
+        <u>{{_pediatriciansExamination.header.chestCircumference}}</u>
+      </span>
+    </span>
+    <!-- ВТ -->
+    <span class="row">
+      <span class="header-item">
+        <b>ВТ</b>
+        <u>{{_pediatriciansExamination.header.vt}}</u>
+      </span>
+    </span>
+
+    <!-- Скарги -->
+    <div class="row col-xs-12">
+      <b>Скарги</b>
+      <pre>{{_pediatriciansExamination.complaints}}</pre>
+    </div>
+    <!-- Анамнез захворювання -->
+    <div class="row col-xs-12">
+      <b>Анамнез захворювання</b>
+      <pre>{{_pediatriciansExamination.anamnesisOfDisease}}</pre>
+    </div>
+    <!-- Анамнез життя -->
+    <div class="row col-xs-12">
+      <b>Анамнез життя</b> 
+      <u>{{_pediatriciansExamination.anamnesisOfLife}}</u>
+    </div>
+
+    <!-- Вагітність та пологи -->  
+    <p class="row col-xs-12">
+      <!-- Рядок 1 -->
+      Дитина від <u>{{_pediatriciansExamination.pregnancyDetails.someDetails}}</u> вагітності, яка протікала:
+      <i>
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedNormally)">
+          нормально
+        </span>
+        ,
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedWithToxemia)">
+          з токсикозом
+        </span>
+      </i>
+      <!-- Рядок 2 -->
+      <u *ngIf="_pediatriciansExamination.pregnancyDetails.passedWithToxemia">
+        {{_pediatriciansExamination.pregnancyDetails.toxemiaDetails}}
+      </u>
+      <i>
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedWithToxemia)">
+          половини
+        </span>
+        ,
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.passedWithAnemia)">
+          анемією
+        </span>
+        ,
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.pregnancyDetails.withThreatInInterruption)">
+          загрозою переривання у терміні
+        </span>
+      </i>
+      <u type="text" *ngIf="_pediatriciansExamination.pregnancyDetails.withThreatInInterruption">
+        {{_pediatriciansExamination.pregnancyDetails.dateOfInterruption}}
+      </u>
+      <!-- Рядок 3 -->
+      &nbsp;від&nbsp;
+      <u *ngIf="_pediatriciansExamination.pregnancyDetails.childBirth != ChildBirthEnum.Unknown">
+        {{_pediatriciansExamination.pregnancyDetails.fromDetails}}
+      </u>
+      &nbsp;
+      <i>
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
+                    pregnancyDetails.childBirth == ChildBirthEnum.Urgent)">
+          термінових
+        </span>
+        ,
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
+                    pregnancyDetails.childBirth == ChildBirthEnum.Premature)">
+          передчасних
+        </span>
+        ,
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.
+                    pregnancyDetails.childBirth == ChildBirthEnum.Operative)">
+          оперативних пологів
+        </span>
+        .
+      </i>
+    </p>
+
+    <!-- Результати огляду при народженні -->    
+    <p class="row col-xs-12">
+      <!-- Рядок 1 -->
+      Вага при народженні
+      <u>{{_pediatriciansExamination.birthDetails.weight}}</u>
+      , довжина тіла
+      <u>{{_pediatriciansExamination.birthDetails.bodyLength}}</u>
+      , окружність голови
+      <u>{{_pediatriciansExamination.birthDetails.headCircumference}}</u>
+      ,
+      <!-- Рядок 2 -->
+      окружність грудної клітки
+      <u>{{_pediatriciansExamination.birthDetails.chestCircumference}}</u>
+      , оцінка за шкалою Апгар
+      <u>{{_pediatriciansExamination.birthDetails.scoreByApgar}}</u>
+      .
+    </p>
+
+    <!-- Ранній неонатальний період -->
+    <p class="row col-xs-12">
+      Ранній неонатальний період протікав
+      <i>
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.earlyNeonatalPeriodWasWithoutComplications)">
+          без ускладнень
+        </span>
+        ,
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.earlyNeonatalPeriodWasWithComplications)">
+          був ускладнений
+        </span>
+      </i>
+      <u *ngIf="_pediatriciansExamination.earlyNeonatalPeriodWasWithComplications">
+        {{_pediatriciansExamination.complicationsDuringNeonatalPeriod}}
+      </u>
+      .
+    </p>
+    <!-- Рядок після рядку з раннім неонатальним періодом -->
+    <p class="row col-xs-12">
+      <u>{{_pediatriciansExamination.detailsAfterEarlyNeonatalPeriod}}</u>
+    </p>
+
+    <!-- Психомоторний розвиток на 1-му році життя -->
+    <p class="row col-xs-12">
+      Психомоторний розвиток на 1-му році життя
+      <i>
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasAccordingToAgeLimit)">
+          відповідав віковій нормі
+        </span>
+        ,
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal)">
+          не відповідав нормі
+        </span>
+      </i>
+      <u *ngIf="_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.wasNotNormal">
+        {{_pediatriciansExamination.psychomotorDevelopmentOnFirstYear.details}}
+      </u>
+    </p>
+    <!-- Вигодовування -->
+    <p class="row col-xs-12">
+      Вигодовування: природнє
+      <u>{{_pediatriciansExamination.naturalFeedingDetails}}</u>
+      , штучне
+      <u>{{_pediatriciansExamination.nonNaturalFeedingDetails}}</u>
+      , змішане
+      <u>{{_pediatriciansExamination.mixedFeedingDetails}}</u>
+    </p>
+    <!-- Перенесені захворювання -->
+    <div class="row col-xs-12">
+      <b>Перенесені захворювання</b>
+      <pre>{{_pediatriciansExamination.pastIllnesses}}</pre>
+    </div>
+    <!-- "Д" облік з приводу -->
+    <div class="row col-xs-12">
+      <b>"Д" облік з приводу</b>
+      <pre>{{_pediatriciansExamination.screeningReasonsDetails}}</pre>
+    </div>
+    <!-- Шкідливі звички -->
+    <p class="row col-xs-12">
+      Шкідливі звички:
+      <i>
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.badHabitsAbsent)">
+          немає
+        </span>
+        ,
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.badHabitsPresent)">
+          є
+        </span>
+      </i>
+      <u *ngIf="_pediatriciansExamination.badHabitsPresent">
+        {{_pediatriciansExamination.badHabitsDetails}}
+      </u>
+    </p>
+    <!-- Алергологічний анамнез -->
+    <p class="row col-xs-12">
+      Алергологічний анамнез:
+      <i>
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.notWeightedWithAllergicHistory)">
+          не обтяжений
+        </span>
+        ,
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.weightedWithAllergicHistory)">
+          обтяжений
+        </span>
+      </i>
+      <u *ngIf="_pediatriciansExamination.weightedWithAllergicHistory">
+        {{_pediatriciansExamination.allergicHistoryDetails}}
+      </u>
+    </p>
+    <!-- Спадковий анамнез -->
+    <p class="row col-xs-12">
+      Спадковий анамнез:
+      <i>
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.notWeightedWithAncestralAnamnesis)">
+          не обтяжений
+        </span>
+        ,
+        <span [style.text-decoration]="_textDecoration(_pediatriciansExamination.weightedWithAncestralAnamnesis)">
+          обтяжений
+        </span>
+      </i>
+      <u *ngIf="_pediatriciansExamination.weightedWithAncestralAnamnesis">
+        {{_pediatriciansExamination.ancestralAnamnesisDetails}}
+      </u>
+    </p>
+    <!-- Розладів стільця... -->
+    <p class="row col-xs-12">
+      Розладів стільця за останні три дні не було. В контакті з інфекційними хворими протягом 21 дня небув(ла).
+    </p>
+    <!-- Профщеплення -->
+    <p class="row col-xs-12">
+      Профщеплення:
+      <u>{{_pediatriciansExamination.preventiveVaccinations}}</u>
+    </p>
+
+    <hr />
+
+    <!-- Update button -->
+    <div class="row">
+      <div class="form-group col-xs-11">
+        <button type="button" class="btn btn-primary" (click)="_loadExaminationFromServer()"
+                [disabled]="_isLoading">
+          Оновити
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

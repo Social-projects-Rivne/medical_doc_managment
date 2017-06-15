@@ -1,0 +1,30 @@
+﻿.center{
+    text-align: center;
+}
+.my-pagination /deep/ .ng2-pagination{
+    padding: unset;
+}
+.my-pagination /deep/ .ng2-pagination li {
+    color: black;
+    margin-right: 3px;
+    float: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.my-pagination /deep/ .ng2-pagination .disabled {
+    padding: 6px 12px;
+    cursor: default;
+    color: #cacaca;
+}
+ .my-pagination /deep/ .ng2-pagination a {
+    padding: 6px 12px;
+    text-decoration: none;
+}
+.my-pagination /deep/ .ng2-pagination .current {
+    padding: 6px 12px;
+    background-color: #5BC0DE;
+    cursor: default;            
+}

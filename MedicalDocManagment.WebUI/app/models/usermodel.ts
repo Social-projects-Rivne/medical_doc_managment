@@ -8,39 +8,28 @@ export default class UserModel {
     secondName: string;
     lastName: string;
     email: string;
-    avatar: string;
+    photo: string;
     position: PositionModel;
     positionId: number;
     role: RoleModel;
     isActive: boolean;
 
-    constructor(jsonobject?) {
-        if (jsonobject) {
-            this.id = jsonobject.id;
-            this.userName = jsonobject.userName;
-            this.email = jsonobject.email;
-            this.avatar = jsonobject.avatar;
-            this.position = jsonobject.position;
-            this.role = jsonobject.role;
-            this.isActive = jsonobject.isActive;
-            this.firstName = jsonobject.firstName;
-            this.lastName = jsonobject.lastName;
-            this.secondName = jsonobject.secondName;
-            this.positionId = jsonobject.positionId;
-        }
-        else
-        {
-            this.id         = null;
-            this.userName   = null;
-            this.email      = null;
-            this.avatar     = null;
-            this.position   = null;
-            this.role       = null;
-            this.isActive   = null;
-            this.firstName  = null;
-            this.lastName   = null;
-            this.secondName = null;
+    constructor(jsonObject?) {
+        this.id = this.userName = this.email = this.photo = this.position = this.role =
+            this.isActive = this.firstName = this.lastName = this.secondName =
             this.positionId = null;
+        if (jsonObject) {
+            for (var prop in this)
+                if (jsonObject.hasOwnProperty(prop))
+                    this[prop] = jsonObject[prop];
+        }
+    }
+
+    public clone(source) {
+        for (var prop in this) {
+            if (source.hasOwnProperty(prop)) {
+                this[prop] = source[prop];
+            }
         }
     }
 }

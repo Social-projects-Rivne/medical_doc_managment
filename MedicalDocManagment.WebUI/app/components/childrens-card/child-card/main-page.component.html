@@ -1,0 +1,98 @@
+﻿<div class="container">
+    <!-- Child card-->
+    <div class="panel panel-default row">
+        <!-- Child card's id as header -->
+        <div *ngIf="_childCard.id" class="panel-heading">
+            <h3 class="text-center">КАРТКА №{{_childCard.cardNumber}}</h3>
+        </div>
+        <!-- All other information as body -->
+        <div class="panel-body">
+            <!-- Main block -->
+            <div class="col-xs-7">
+                <!-- "Loading" progress bar -->
+                <div class="row" *ngIf="_isLoading">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped active"
+                             role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                             aria-valuemax="0" style="width: 100%">
+                            Отримання інформації щодо картки пацієнта ...
+                        </div>
+                    </div>
+                </div>
+                <!-- "Loading" related error alert -->
+                <div class="row" *ngIf="_isErrorOnLoading">
+                    <div class="alert alert-danger col-xs-12">
+                        {{_lastLoadingErrorMessage}}
+                    </div>
+                </div>
+                <!-- Main block data -->
+                <div *ngIf="_childCard && !_isLoading" class="panel panel-primary">
+                    <!-- Last, second and first names -->
+                    <div class="panel-heading clearfix">
+                        <b>ПІБ:</b>
+                        {{_childCard?.lastName}} {{_childCard?.firstName}} {{_childCard?.secondName}}
+                    </div>
+                    <!-- Main part of information -->
+                    <div class="panel-body">
+                        <!-- Birthdate -->
+                        <p>
+                            <b>Дата народження:</b> {{_childCard?.date | amDateFormat:'DD.MM.YYYY'}} <br />
+                        </p>
+                        <!-- Address -->
+                        <p>
+                            <b>Адреса:</b> {{_childCard?.address}} <br />
+                        </p>
+                        <!-- Checkin date -->
+                        <p>
+                            <b>Дата госпіталізації:</b> {{_childCard?.checkIn | amDateFormat:'DD.MM.YYYY'}} <br />
+                        </p>
+                        <!-- Checkout date -->
+                        <p *ngIf="_childCard.checkOut">
+                            <b>Дата виписки:</b> {{_childCard?.checkOut | amDateFormat:'DD.MM.YYYY'}} <br />
+                        </p>
+                        <!-- Diagnosis -->
+                        <p *ngIf="_childCard.diagnosis">
+                            <b>Діагноз:</b> {{_childCard?.diagnosis.name}} <br />
+                        </p>
+                        <!-- Directed by-->
+                        <p *ngIf="_childCard.directedBy">
+                            <b>Ким направлений:</b> {{_childCard?.directedBy}} <br />
+                        </p>
+                        <!-- Prescription -->
+                        <p *ngIf="_childCard.prescription">
+                            <b>Призначення:</b> {{_childCard?.prescription}} <br />
+                        </p>
+                        <!-- Psychiatrists conclusion's section -->
+                        <div>
+                            <!-- Conclusion -->
+                            <div *ngIf="_childCard.psychiatristsConclusion">
+                                <p>
+                                    <b>Заключення психіатра:</b>
+                                </p>
+                                <pre>{{_childCard?.psychiatristsConclusion}}</pre>
+                            </div>
+                            <!-- Button to add the conclusion -->
+                            <span *ngIf="!_childCard.psychiatristsConclusion &&
+              this._currentUsersPositionName=='психіатр'">
+                                <button class="btn btn-primary" data-toggle="modal"
+                                        data-target="#psychiatristsConclusionFormModal">
+                                    Заповнити форму із заключенням
+                                </button>
+                                <psychiatrists-conclusion-form [childCardId]="_childCard.id"
+                                                               (conclusionAdded)="_childCard.psychiatristsConclusion=$event">
+                                </psychiatrists-conclusion-form>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- "Parents" block -->
+            <div *ngIf="_childCard.id" class="col-xs-5">
+                <parents-list [childCardId]="_childCard.id"></parents-list>
+            </div>
+            <div *ngIf="_childCard.id" class="col-xs-12">
+                <procedures-list [childCardId]="_childCard.id"></procedures-list>
+            </div>
+        </div>
+    </div>
+</div>

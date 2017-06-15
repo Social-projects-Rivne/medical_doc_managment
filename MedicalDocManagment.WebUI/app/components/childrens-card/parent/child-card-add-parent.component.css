@@ -1,0 +1,8 @@
+.row {
+  margin-top: 2%;
+}
+
+:not(#phone) :host /deep/ .tooltip-inner {
+  max-width: 100%;
+  text-align: left;
+}

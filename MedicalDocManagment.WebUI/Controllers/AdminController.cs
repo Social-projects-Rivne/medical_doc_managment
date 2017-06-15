@@ -7,47 +7,94 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
 
-using MedicalDocManagment.UsersDAL.Entities;
-using MedicalDocManagment.UsersDAL.Repositories;
-using MedicalDocManagment.UsersDAL.Repositories.Interfaces;
 using MedicalDocManagment.WebUI.Helpers;
 using MedicalDocManagment.WebUI.Models;
 using Microsoft.AspNet.Identity;
+using MedicalDocManagment.DAL.Entities;
+using MedicalDocManagment.DAL.Repository.Interfaces;
+using MedicalDocManagment.DAL.Repository;
+using MedicalDocManagement.BLL.Services.Abstract;
+using MedicalDocManagement.BLL.Services;
+using System;
+using System.IO;
+using MultipartDataMediaFormatter.Infrastructure;
+
 
 namespace MedicalDocManagment.WebUI.Controllers
 {
     public class AdminController : ApiController
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IUsersService _usersService;
+        private readonly IPositionsService _positionsService;
 
         public AdminController()
         {
             _unitOfWork = new UnitOfWork();
+            _usersService = new UsersService();
+            _positionsService = new PositionsService();
         }
 
+        [Authorize]
         [HttpGet]
         public IHttpActionResult GetUsers()
         {
-            return Ok(_unitOfWork.UsersManager.Users.ToList());
-        }
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<UserDTO, UserIndexModel>()
+                   .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                cfg.CreateMap<PositionDTO, PositionModel>();
+            });
+            var mapper = config.CreateMapper();
+            var users = mapper.Map<IList<User>, List<UserIndexModel>>(_unitOfWork.UsersManager.Users.ToList());
 
+            return Ok(users);
+        }
+       
+        private async Task<string> SaveImage(HttpFile photo)
+        {
+            string root = System.Web.HttpContext.Current.Server.MapPath("~");
+            if (!System.IO.Directory.Exists(root))
+            {
+                System.IO.Directory.CreateDirectory(root);
+            }
+
+            byte[] fileArray = photo.Buffer;
+            var filename = photo.FileName;
+            string guid = Guid.NewGuid().ToString();
+            string path = $"/Files/{guid + Path.GetExtension(filename)}";
+            
+            using (System.IO.FileStream fs = new System.IO.FileStream(root+path
+                , System.IO.FileMode.Create))
+            {
+                await fs.WriteAsync(fileArray, 0, fileArray.Length);
+            }
+            return path;
+        }
+        [Authorize]
         [HttpGet]
         public IHttpActionResult GetPaged(int pageNumber = 1, int pageSize = 20)
         {
-            int skip = (pageNumber - 1) * pageSize;
-            int total = _unitOfWork.UsersManager.Users.Count();
-            var users = _unitOfWork.UsersManager.Users
-                                                .OrderBy(c => c.Id)
-                                                .Skip(skip)
-                                                .Take(pageSize)
-                                                .ToList();
+            var usersPagedDTO = _usersService.GetPaged(pageNumber, pageSize);
+            int total = _usersService.GetUsersCount();
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<UserDTO, UserIndexModel>()
+                   .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                cfg.CreateMap<PositionDTO, PositionModel>();
+            });
+            var mapper = config.CreateMapper();
+            var usersMapped = mapper.Map<IList<UserDTO>, List<UserIndexModel>>(usersPagedDTO);
 
-            return Ok(new PagedResultHelper<User>(users, pageNumber, pageSize, total));
+            return Ok(new PagedResultHelper<UserIndexModel>(usersMapped, pageNumber, pageSize, total));
         }
 
         [HttpGet]
         public async Task<IHttpActionResult> GetUser(string id)
         {
+            Mapper.Initialize(config => {
+                config.CreateMap<User, UserIndexModel>()
+                      .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                config.CreateMap<Position, PositionModel>();
+            });
             var user = await _unitOfWork.UsersManager.FindByIdAsync(id.ToString());
 
             if (user == null)
@@ -55,27 +102,50 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(Mapper.Map<User, UserIndexModel>(user));
         }
 
+        [Authorize]
         [HttpPost]
-        public async Task<IHttpActionResult> AddUser(UserModel userModel)
+        public async Task<IHttpActionResult> AddUser(UserCreateModel userModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+            string imagePath = "/Files/no-image.png";
+            if (userModel.Content!=null)
+            {
+                if (!ImageHelper.IsImage(userModel.Content))
+                {
+                    return BadRequest("Image is not valid.");
+                }
+                imagePath = await SaveImage(userModel.Content);
+                var imageSize = userModel.Content.Buffer.Length;
+                if (!ImageHelper.IsImageValid(imagePath, imageSize))
+                {
+                    var imageMappedPath = System.Web.HttpContext.Current.Server.MapPath(imagePath);
+                    if (File.Exists(imageMappedPath))
+                    {
+                        File.Delete(imageMappedPath);
+                    }
+                    return BadRequest("Image is not valid.");
+                }
+            }
             var user = UserHelpers.ConvertUserModelToUser(userModel);
             user.PositionId = userModel.PositionId;
             user.IsActive = true;
+            user.Image = new Image { ImageUrl = imagePath };
+            
             var result = await _unitOfWork.UsersManager.CreateAsync(user, userModel.Password);
+            _unitOfWork.UsersManager.AddToRole(user.Id, "user");
+
             var errorResult = GetErrorResult(result);
 
             return errorResult ?? Ok(result);
         }
 
-
+        [Authorize]
         [HttpPut]
         public async Task<HttpResponseMessage> EditUser(string id, UserEditModel userEditModel)
         {
@@ -85,7 +155,25 @@ namespace MedicalDocManagment.WebUI.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound, $"User wasn't found with ID {id}.");
             }
-
+            string imagePath = String.Empty;
+            if (userEditModel.Content != null)
+            {
+                if (!ImageHelper.IsImage(userEditModel.Content))
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Image is not valid.");
+                }
+                imagePath = await SaveImage(userEditModel.Content);
+                var imageSize = userEditModel.Content.Buffer.Length;
+                if (!ImageHelper.IsImageValid(imagePath, imageSize))
+                {
+                    var imageMappedPath = System.Web.HttpContext.Current.Server.MapPath(imagePath);
+                    if (File.Exists(imageMappedPath))
+                    {
+                        File.Delete(imageMappedPath);
+                    }
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, "Image is not valid.");
+                }
+            }
             user.PositionId = userEditModel.PositionId;
             user.UserName = userEditModel.UserName;
             user.Email = userEditModel.Email;
@@ -93,6 +181,10 @@ namespace MedicalDocManagment.WebUI.Controllers
             user.LastName = userEditModel.LastName;
             user.SecondName = userEditModel.SecondName;
             user.IsActive = userEditModel.IsActive;
+            if(imagePath != String.Empty)
+            {
+                user.Image.ImageUrl = imagePath;
+            }
 
             var result = await _unitOfWork.UsersManager.UpdateAsync(user);
 
@@ -103,7 +195,7 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return identityErrors;
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK, new { Photo = user.Image.ImageUrl });
         }
 
         private HttpResponseMessage _getErrorIdentityResult(IdentityResult result)
@@ -129,6 +221,7 @@ namespace MedicalDocManagment.WebUI.Controllers
             return null;
         }
 
+        [Authorize]
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteUser(string id)
         {
@@ -150,33 +243,51 @@ namespace MedicalDocManagment.WebUI.Controllers
             return Request.CreateResponse(HttpStatusCode.NotFound, "User not found.");
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IHttpActionResult> GetUserByName(string userName)
         {
+            Mapper.Initialize(config => {
+                config.CreateMap<User, UserIndexModel>()
+                      .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                config.CreateMap<Position, PositionModel>();
+            });
             var user = await _unitOfWork.UsersManager.FindByNameAsync(userName);
             if (user == null)
             {
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(Mapper.Map<User, UserIndexModel>(user));
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IHttpActionResult> GetUserByEmail(string email)
         {
+            Mapper.Initialize(config => {
+                config.CreateMap<User, UserIndexModel>()
+                      .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                config.CreateMap<Position, PositionModel>();
+            });
             var user = await _unitOfWork.UsersManager.FindByEmailAsync(email);
             if (user == null)
             {
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(Mapper.Map<User, UserIndexModel>(user));
         }
 
+        [Authorize]
         [HttpGet]
         public IHttpActionResult GetUsersByPosition(int positionId)
         {
+            Mapper.Initialize(config => {
+                config.CreateMap<User, UserIndexModel>()
+                      .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                config.CreateMap<Position, PositionModel>();
+            });
             var users = _unitOfWork.UsersManager.Users.Where(user => user.PositionId == positionId).ToList();
 
             if (!users.Any())
@@ -184,12 +295,18 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return NotFound();
             }
 
-            return Ok(users);
+            return Ok(Mapper.Map<IList<User>, List<UserIndexModel>>(users));
         }
 
+        [Authorize]
         [HttpGet]
         public IHttpActionResult GetUsersByPosition(string positionName)
         {
+            Mapper.Initialize(config => {
+                config.CreateMap<User, UserIndexModel>()
+                      .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                config.CreateMap<Position, PositionModel>();
+            });
             var users = _unitOfWork.UsersManager.Users.Where(user => user.Position.Name == positionName).ToList();
 
             if (!users.Any())
@@ -197,12 +314,18 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return NotFound();
             }
 
-            return Ok(users);
+            return Ok(Mapper.Map<IList<User>, List<UserIndexModel>>(users));
         }
 
+        [Authorize]
         [HttpGet]
         public IHttpActionResult GetUsersByStatus(bool userStatus)
         {
+            Mapper.Initialize(config => {
+                config.CreateMap<User, UserIndexModel>()
+                      .ForMember("Photo", opt => opt.MapFrom(src => src.Image.ImageUrl));
+                config.CreateMap<Position, PositionModel>();
+            });
             var users = _unitOfWork.UsersManager.Users.Where(user => user.IsActive == userStatus).ToList();
 
             if (!users.Any())
@@ -210,7 +333,7 @@ namespace MedicalDocManagment.WebUI.Controllers
                 return NotFound();
             }
 
-            return Ok(users);
+            return Ok(Mapper.Map<IList<User>, List<UserIndexModel>>(users));
         }
 
         private IHttpActionResult GetErrorResult(IdentityResult result)
@@ -240,31 +363,32 @@ namespace MedicalDocManagment.WebUI.Controllers
         }
 
         #region Position's methods
-
+        [Authorize]
         [HttpGet]
         public IHttpActionResult GetPositions()
         {
-            Mapper.Initialize(config => config.CreateMap<Position, PositionModel>());
+            var positionsDTO = _positionsService.GetPositions();
 
-            var positions = Mapper.Map<IList<Position>, List<PositionModel>>(_unitOfWork.PositionRepository.Get().ToList());
-
-            if (positions.Any())
+            if (positionsDTO.Any())
             {
-                return Ok(positions);
+                var positionsMapped = PositionMapHelper.DTOsToVMs(positionsDTO);
+                return Ok(positionsMapped);
             }
 
             return NotFound();
         }
 
+        [Authorize]
         [HttpGet]
         public IHttpActionResult GetPosition(int id)
         {
-            Mapper.Initialize(config => config.CreateMap<Position, PositionModel>());
-            var position = Mapper.Map<Position, PositionModel>(_unitOfWork.PositionRepository.Get(p => p.PositionId == id)
-                                                                                             .FirstOrDefault());
-            if (position != null)
+            var position = _positionsService.GetPosition(id);
+
+            if(position != null)
             {
+                var positionMapped = PositionMapHelper.DTOToVM(position);
                 return Ok(position);
+                
             }
 
             return NotFound();
@@ -273,8 +397,8 @@ namespace MedicalDocManagment.WebUI.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            _unitOfWork.Dispose();
-            base.Dispose(disposing);
+            //_unitOfWork.Dispose();
+            //base.Dispose(disposing);
         }
     }
 }

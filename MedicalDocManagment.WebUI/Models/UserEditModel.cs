@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Attributes;
-using MedicalDocManagment.UsersDAL.Entities;
 using MedicalDocManagment.WebUI.Models.Validators;
+using System.ComponentModel.DataAnnotations.Schema;
+using MultipartDataMediaFormatter.Infrastructure;
 
 namespace MedicalDocManagment.WebUI.Models
 {
@@ -15,5 +16,7 @@ namespace MedicalDocManagment.WebUI.Models
         public bool IsActive { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
+        [NotMapped]
+        public HttpFile Content { get; set; }
     }
 }

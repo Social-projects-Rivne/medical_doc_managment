@@ -1,0 +1,176 @@
+﻿<div class="container">
+  <!-- "Loading" progress bar and related error alert -->
+  <div class="row" *ngIf="_isLoading">
+    <div class="progress">
+      <div class="progress-bar progress-bar-info progress-bar-striped active"
+           role="progressbar" aria-valuenow="0" aria-valuemin="0"
+           aria-valuemax="0" style="width:100%">
+        Отримання інформації щодо форми ...
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="_isErrorOnLoading">
+    <div class="alert alert-danger col-xs-12">
+      {{_lastLoadingErrorMessage}}
+    </div>
+  </div>
+
+  <div *ngIf="!_isLoading">
+    <!-- ПІБ пацієнта, якого стосується форма -->
+    <div class="row">
+      <h4 class="text-center">
+        {{_childCard.lastName}} {{_childCard.firstName}} {{_childCard.secondName}}
+      </h4>
+    </div>
+    <!-- Заголовок форми -->
+    <div class="row">
+      <h4 class="text-center">
+        ОГЛЯД НЕВРОЛОГА
+      </h4>
+    </div>
+
+    <!-- Скарги -->
+    <div class="row">
+      Скарги:
+      <pre>{{_neurologistsExamination.complaints}}</pre>
+    </div>
+    <!-- Анамнез (доповнення) -->
+    <div class="row">
+      Анамнез (доповнення):
+      <pre>{{_neurologistsExamination.anamnesis}}</pre>
+    </div>
+    <!-- Статокінетичний розвиток -->
+    <div class="row">
+      Статокінетичний розвиток
+      <pre>{{_neurologistsExamination.statokineticDevelopment}}</pre>
+    </div>
+    <!-- Психомовленнєвий розвиток -->
+    <div class="row">
+      Психомовленнєвий розвиток
+      <u>{{_neurologistsExamination.psychospeechDevelopment}}</u>
+    </div>
+
+    <!-- Neurological state group -->
+    <div>
+      <!-- Неврологічний статус: -->
+      <div class="row">
+        <b><i>Неврологічний статус:</i></b>
+      </div>
+      <!-- Свідомість -->
+      <div class="row">
+        Свідомість <u>{{_neurologistsExamination.neurologicalState.consciousness}}</u>
+      </div>
+      <!-- Реакція на оточуючих -->
+      <div class="row">
+        Реакція на оточуючих <u>{{_neurologistsExamination.neurologicalState.reactionToOthers}}</u>
+      </div>
+      <!-- Менінгеальні симптоми -->
+      <div class="row">
+        Менінгеальні симптоми <u>{{_neurologistsExamination.neurologicalState.meningealSymptoms}}</u>
+      </div>
+      <!-- Data about head -->
+      <div class="row">
+        Голова: 
+        ОГ <u>{{_neurologistsExamination.neurologicalState.headCircumference?.toLocaleString()}}</u> см,&nbsp;
+        форма <u>{{_neurologistsExamination.neurologicalState.headShape}}</u>
+      </div>
+      <!-- Черепно-мозкові нерви -->
+      <div class="row">
+        Черепно-мозкові нерви:
+        <pre>{{_neurologistsExamination.neurologicalState.cranialNerves}}</pre>
+      </div>
+      <!-- Рефлекторно-рухова сфера -->
+      <div class="row">
+        Рефлекторно-рухова сфера: <u>{{_neurologistsExamination.neurologicalState.reflexMotorArea}}</u>
+      </div>
+      <!-- Об'єм рухів -->
+      <div class="row">
+        Об'єм рухів
+        <pre>{{_neurologistsExamination.neurologicalState.movementsVolume}}</pre>
+      </div>
+      <!-- Сухожильні та періостальні рефлекси -->
+      <div class="row">
+        Сухожильні та періостальні рефлекси
+        <pre>{{_neurologistsExamination.neurologicalState.tendonAndPeriostealReflexes}}</pre>
+      </div>
+      <!-- Черевні рефлекси -->
+      <div class="row">
+        Черевні рефлекси: <u>{{_neurologistsExamination.neurologicalState.abdominalReflexes}}</u>
+      </div>
+      <!-- Патологічні рефлекси -->
+      <div class="row">
+        Патологічні рефлекси
+        <pre>{{_neurologistsExamination.neurologicalState.abnormalReflexes}}</pre>
+      </div>
+      <!-- Безумовні рефлекси -->
+      <div class="row">
+        Безумовні рефлекси:
+        <pre>{{_neurologistsExamination.neurologicalState.unconditionedReflexes}}</pre>
+      </div>
+      <!-- Контроль голови: -->
+      <div class="row">
+        Контроль голови: <u>{{_neurologistsExamination.neurologicalState.headControl}}</u>
+      </div>
+      <!-- Перевертання на живіт: -->
+      <div class="row">
+        Перевертання на живіт: <u>{{_neurologistsExamination.neurologicalState.turningOnStomach}}</u>
+      </div>
+      <!-- Проба на тракцію: -->
+      <div class="row">
+        Проба на тракцію: <u>{{_neurologistsExamination.neurologicalState.testForTraction}}</u>
+      </div>
+      <!-- Сидіння: -->
+      <div class="row">
+        Сидіння: <u>{{_neurologistsExamination.neurologicalState.sitting}}</u>
+      </div>
+      <!-- Повзання: -->
+      <div class="row">
+        Повзання: <u>{{_neurologistsExamination.neurologicalState.crawling}}</u>
+      </div>
+      <!-- Стояння: -->
+      <div class="row">
+        Стояння: <u>{{_neurologistsExamination.neurologicalState.standing}}</u>
+      </div>
+      <!-- Опора: -->
+      <div class="row">
+        Опора: <u>{{_neurologistsExamination.neurologicalState.backing}}</u>
+      </div>
+      <!-- Ходьба: -->
+      <div class="row">
+        Ходьба: <u>{{_neurologistsExamination.neurologicalState.walking}}</u>
+      </div>
+      <!-- Гіперкінези: -->
+      <div class="row">
+        Гіперкінези: <u>{{_neurologistsExamination.neurologicalState.hyperkinesis}}</u>
+      </div>
+      <!-- Епісиндром -->
+      <div class="row">
+        Епісиндром:
+        <pre>{{_neurologistsExamination.neurologicalState.episyndrome}}</pre>
+      </div>
+      <!-- Функції тазових органів -->
+      <div class="row">
+        Функції тазових органів <u>{{_neurologistsExamination.neurologicalState.functionsOfPelvicOrgans}}</u>
+      </div>
+    </div>
+    <br />
+    <!-- Діагноз -->
+    <div class="row">
+      <b>Діагноз:</b>
+      <diagnosis-text [diagnosisId]="_neurologistsExamination.diagnosisId"></diagnosis-text>
+    </div>
+
+    <hr />
+
+    <!-- Update button -->
+    <div class="row">
+      <div class="form-group col-xs-11">
+        <button type="button" class="btn btn-primary" (click)="_loadExaminationFromServer()"
+                [disabled]="_isLoading">
+          Оновити
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
