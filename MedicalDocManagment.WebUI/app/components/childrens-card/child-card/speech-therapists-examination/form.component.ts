@@ -114,7 +114,7 @@ export default class SpeechTherapistsExaminationFormComponent implements OnDestr
         this._childCardService.saveSpeechTherapistsExamination(this._childCard.id,
             this._examination)
             .subscribe((savedExamination: SpeechTherapistsExaminationModel) => {
-                this._notificationService.success("Успіх", "Огляд невролога успішно збережено");
+                this._notificationService.success("Успіх", "Огляд логопеда успішно збережено");
                 this._examination = savedExamination;
                 this._isSaving = false;
             },
