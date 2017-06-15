@@ -23,12 +23,11 @@ import { AuthenticationService } from "./authentication.service";
 
 @Injectable()
 export default class ChildrensCardService {
-    readonly currentChildCardObservable: Observable<ChildCardModel>;
-
     private _apiUrl: string = '/api/childcards';
     private _headers: Headers;
     private _childrenCardsSubject: Subject<any>;
     private _currentChildCard: ChildCardModel;
+    private _route: ActivatedRoute;
 
     constructor(private _http: Http, @Inject(AuthenticationService) private _authenticationService: AuthenticationService,
         route: ActivatedRoute) {
@@ -36,27 +35,7 @@ export default class ChildrensCardService {
         this._headers.append('Authorization', 'Bearer ' + this._authenticationService.token);
         this._childrenCardsSubject = new Subject<any>();
         this._currentChildCard = null;
-        this.currentChildCardObservable = Observable.create(
-            (observer: Observer<ChildCardModel>) => {
-                let subscription = route.params.subscribe(params => {
-                    let childCardId = params['id'];
-                    if (childCardId) {
-                        if (!this._currentChildCard || (this._currentChildCard
-                            && this._currentChildCard.id != childCardId)) {
-                            this.getChildCard(childCardId)
-                                .subscribe((childCard: ChildCardModel) => {
-                                    this._currentChildCard = childCard;
-                                    observer.next(childCard);
-                                },
-                                (error: any) => {
-                                    observer.error(error);
-                                });
-                        }
-                    }
-
-                    return () => { subscription.unsubscribe(); }
-                })
-            })
+        this._route = route;
     }
 
     addChildrenCard(childCard: ChildCardModel): Observable<ChildCardModel> {
@@ -106,6 +85,40 @@ export default class ChildrensCardService {
         return this._http.post(this._apiUrl + '/addparentintochildcard', body, { headers })
                          .map((resp: Response) => { return new ParentChildCard(resp.json()); })
                          .catch((error: any) => { return Observable.throw(error); });
+    }
+
+    get currentChildCardObservable(): Observable<ChildCardModel> {
+        return Observable.create((observer: Observer<ChildCardModel>) => {
+            let subscription = this._route.params.subscribe(
+                params => {
+                    let childCardId = params['id'];
+                    if (childCardId) {
+                        if (!this._currentChildCard || (this._currentChildCard
+                            && this._currentChildCard.id != childCardId)) {
+                            this.getChildCard(childCardId)
+                                .subscribe((childCard: ChildCardModel) => {
+                                    this._currentChildCard = childCard;
+                                    observer.next(this._currentChildCard);
+                                }
+                            );
+                        }
+                        else {
+                            observer.next(this._currentChildCard);
+                        }
+                    }
+                    else {
+                        observer.next(null);
+                    }
+                },
+                (error) => {
+                    console.log(error);
+                },
+                () => {
+                    observer.complete();
+                    subscription.unsubscribe();
+                }
+            );
+        });
     }
 
     get currentUsersPositionName(): string {

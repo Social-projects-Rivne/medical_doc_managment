@@ -176,6 +176,7 @@
   <ItemGroup>
     <Content Include="app\.gitignore" />
     <Content Include="app\components\admin-app.component.html" />
+    <Content Include="app\components\childrens-card\child-card\pediatricians-examination\form.component.css" />
     <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\component.html" />
     <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\form.component.html" />
     <Content Include="app\components\childrens-card\child-card\speech-therapists-examination\level-of-formation.component.css" />
