@@ -22,7 +22,7 @@
                   <input type="text" class="form-control" id="username"
                          name="username"
                          [(ngModel)]="_userToSearchFor.username"
-                         #username="ngModel"
+                         #username="ngModel" maxlength="60"
                          [disabled]="_isSearching" />
                 </div>
               </div>
